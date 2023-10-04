@@ -18,7 +18,7 @@ public class Main extends Application {
             scene.getStylesheets().add(getClass().getResource("/view/view.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Patas Felizes");
-            primaryStage.getIcons().add(new Image("/images/patas.png"));
+            primaryStage.getIcons().add(new Image("/images/pata.png"));
             primaryStage.setResizable(false);
             primaryStage.show();
         } catch(IOException e) {

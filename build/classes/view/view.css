@@ -1,6 +1,7 @@
 .menuButtonDefault {
     -fx-background-color:  #84A1DB;
     -fx-padding: 0px;
+    -fx-cursor: hand;
 }
 
 .menuButtonEntered {
@@ -11,4 +12,112 @@
 .menuButtonExited {
     -fx-background-color:  #84A1DB;
     -fx-padding: 0px;
+}
+
+.buttonFilter {
+    -fx-background-color: transparent;
+    -fx-font: 8pt "Noto Sans Mono Bold";
+    -fx-alignment: center-left;
+    -fx-text-fill: #9e9e9e;
+    -fx-padding: 0px;
+    -fx-cursor: hand;
+    -fx-content-display: top;
+}
+
+.buttonNewItem {
+    -fx-background-color: #DEE8FD;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-content-display: top;
+    -fx-font: 10pt "Noto Sans Mono Bold";
+    -fx-text-fill: #9e9e9e;
+    -fx-cursor: hand;
+    -fx-pref-width: 182;
+    -fx-pref-height: 224;
+}
+
+.buttonPet {
+    -fx-background-color: #DEE8FD;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-cursor: hand;
+    -fx-pref-width: 182;
+    -fx-pref-height: 224;
+    -fx-padding: 0px;
+    -fx-content-display: top;
+    -fx-alignment: top-center;
+}
+
+.nameButtonPet {
+    -fx-font: 10pt "Noto Sans Mono Bold";
+    -fx-text-fill: #494949;
+    -fx-alignment: center-left;
+    -fx-pref-width: 52;
+    -fx-pref-height: 48;
+    -fx-padding: 0px 10px 0px 0px;
+}
+
+.pointButtonPet {
+    -fx-stroke-width: 0px;
+    -fx-fill: #9e9e9e;
+}
+
+.monthButtonPet {
+    -fx-font: 7pt "Noto Sans Mono Bold";
+    -fx-text-fill: #777777;
+    -fx-alignment: center-left;
+    -fx-padding: 0px 0px 0px 10px;
+}
+
+.hBoxInfoPetExternal {
+    -fx-pref-width: 182;
+    -fx-pref-height: 48;
+    -fx-alignment: center-left;
+    -fx-padding: 0px 10px, 0px 10px;
+}
+
+.hBoxInfoPetInternal {
+    -fx-pref-width: 158;
+    -fx-pref-height: 48;
+    -fx-alignment: center-left;
+    -fx-padding: 0px 10px, 0px 0px;
+}
+
+.vBoxPet {
+    -fx-pref-width: 182;
+    -fx-pref-height: 224;
+    -fx-alignment: center;
+}
+
+.scrollPanePet {
+    -fx-pref-width: 1102;
+    -fx-pref-height: 592;
+    -fx-padding: 0px;
+    -fx-hbar-policy: never;
+    -fx-font-size: 10px;
+    -fx-background: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+}
+
+.anchorPanePet {
+    -fx-pref-width: 1038;
+    -fx-pref-height: 224;
+    -fx-padding: 0px;
+    -fx-background-color: transparent;
+}
+
+.vBoxScrollPet {
+    -fx-pref-width: 1038;
+    -fx-pref-height: 592;
+    -fx-padding: 0px;
+    -fx-background-color: transparent;
+    -fx-spacing: 32px;
+}
+
+.hBoxScrollPet {
+    -fx-pref-width: 1038;
+    -fx-pref-height: 224;
+    -fx-padding: 0px;
+    -fx-spacing: 32px;
+    -fx-background-color: transparent;
 }
