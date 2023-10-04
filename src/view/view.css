@@ -1,0 +1,14 @@
+.menuButtonDefault {
+    -fx-background-color:  #84A1DB;
+    -fx-padding: 0px;
+}
+
+.menuButtonEntered {
+    -fx-background-color:  #718abd;
+    -fx-padding: 0px;
+}
+
+.menuButtonExited {
+    -fx-background-color:  #84A1DB;
+    -fx-padding: 0px;
+}

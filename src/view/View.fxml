@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
+   <children>
+      <Pane id="MenuPane" prefHeight="768.0" prefWidth="200.0" style="-fx-background-color: #84A1DB;">
+         <children>
+            <Pane prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: #536B9D;" stylesheets="@view.css">
+               <children>
+                  <Label layoutX="72.0" layoutY="25.0" text="Patas" textFill="WHITE">
+                     <font>
+                        <Font name="Noto Sans Mono Bold" size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="73.0" layoutY="59.0" text="Felizes" textFill="WHITE">
+                     <font>
+                        <Font name="Noto Sans Mono Regular" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/patas.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button fx:id="menuButtonPets" alignment="BASELINE_LEFT" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#menuButtonPetsClicked" onMouseEntered="#menuButtonPetsEntered" onMouseExited="#menuButtonPetsExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@view.css" text="Pets" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <Pane prefHeight="64.0" prefWidth="64.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="64.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="8.0" />
+                        <HBox alignment="CENTER" layoutX="16.0" prefHeight="64.0" prefWidth="48.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/pets.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </graphic>
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="menuButtonFinancas" alignment="BASELINE_LEFT" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#menuButtonFinancasClicked" onMouseEntered="#menuButtonFinancasEntered" onMouseExited="#menuButtonFinancasExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@view.css" text="Finanças" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <Pane prefHeight="64.0" prefWidth="64.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="64.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="8.0" />
+                        <HBox alignment="CENTER" layoutX="16.0" prefHeight="64.0" prefWidth="48.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/financas.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </graphic>
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="menuButtonAgenda" alignment="BASELINE_LEFT" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#menuButtonAgendaClicked" onMouseEntered="#menuButtonAgendaEntered" onMouseExited="#menuButtonAgendaExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@view.css" text="Agenda" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <Pane prefHeight="64.0" prefWidth="64.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="64.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="8.0" />
+                        <HBox alignment="CENTER" layoutX="16.0" prefHeight="64.0" prefWidth="48.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/agenda.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </graphic>
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="menuButtonEquipe" alignment="BASELINE_LEFT" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#menuButtonEquipeClicked" onMouseEntered="#menuButtonEquipeEntered" onMouseExited="#menuButtonEquipeExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@view.css" text="Equipe" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <Pane prefHeight="64.0" prefWidth="64.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="64.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="8.0" />
+                        <HBox alignment="CENTER" layoutX="16.0" prefHeight="64.0" prefWidth="48.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/equipe.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </graphic>
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
