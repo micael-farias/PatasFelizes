@@ -19,6 +19,7 @@ public class Main extends Application {
             primaryStage.setScene(scene);
             primaryStage.setTitle("Patas Felizes");
             primaryStage.getIcons().add(new Image("/images/patas.png"));
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch(IOException e) {
             System.out.println("Error: " + e.getMessage());
