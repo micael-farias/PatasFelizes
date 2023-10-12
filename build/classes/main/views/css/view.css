@@ -73,14 +73,14 @@
     -fx-pref-width: 182;
     -fx-pref-height: 48;
     -fx-alignment: center-left;
-    -fx-padding: 0px 10px, 0px 10px;
+    -fx-padding: 0px 10px 0px 10px;
 }
 
 .hBoxInfoPetInternal {
     -fx-pref-width: 158;
     -fx-pref-height: 48;
     -fx-alignment: center-left;
-    -fx-padding: 0px 10px, 0px 0px;
+    -fx-padding: 0px 10px 0px 0px;
 }
 
 .vBoxPet {

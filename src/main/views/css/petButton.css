@@ -1,0 +1,68 @@
+.petButton {
+    -fx-background-color: #DEE8FD;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-cursor: hand;
+    -fx-pref-width: 182;
+    -fx-pref-height: 224;
+    -fx-padding: 0px;
+    -fx-content-display: top;
+    -fx-alignment: top-center;
+}
+
+.photo {
+    -fx-background-radius: 10px;
+    -fx-background-color: transparent;
+    -fx-pref-width: 182;
+    -fx-pref-height: 176;
+    -fx-alignment: center-left;
+}
+
+.name {
+    -fx-font: 10pt "Noto Sans Mono Bold";
+    -fx-text-fill: #494949;
+    -fx-alignment: center-left;
+    -fx-pref-width: 76;
+    -fx-pref-height: 48;
+    -fx-padding: 0px 10px 0px 0px;
+}
+
+.point {
+    -fx-stroke-width: 0px;
+    -fx-fill: #9e9e9e;
+}
+
+.month {
+    -fx-font: 7pt "Noto Sans Mono Bold";
+    -fx-text-fill: #777777;
+    -fx-alignment: center-left;
+    -fx-padding: 0px 0px 0px 10px;
+    -fx-pref-width: 64;
+    -fx-pref-height: 48;
+}
+
+.sex {
+    -fx-pref-width: 24;
+    -fx-pref-height: 24;
+    -fx-alignment: center-left;
+}
+
+.vBox {
+    -fx-pref-width: 182;
+    -fx-pref-height: 224;
+    -fx-alignment: center;
+}
+
+.hBoxExternal {
+    -fx-pref-width: 182;
+    -fx-pref-height: 48;
+    -fx-alignment: center-left;
+    -fx-padding: 0px 10px 0px 10px;
+}
+
+.hBoxInternal {
+    -fx-pref-width: 138;
+    -fx-pref-height: 48;
+    -fx-alignment: center-left;
+    -fx-padding: 0px 10px 0px 0px;
+}

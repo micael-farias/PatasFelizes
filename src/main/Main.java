@@ -1,4 +1,4 @@
-package app;
+package main;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -13,12 +13,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/View.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/main/views/fxml/View.fxml"));
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/view/view.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/main/views/css/view.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Patas Felizes");
-            primaryStage.getIcons().add(new Image("/images/pata.png"));
+            primaryStage.getIcons().add(new Image("/assets/images/pata.png"));
             primaryStage.setResizable(false);
             primaryStage.show();
         } catch(IOException e) {

@@ -16,11 +16,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ViewController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.ViewController">
    <children>
       <Pane id="MenuPane" prefHeight="768.0" prefWidth="200.0" style="-fx-background-color: #84A1DB;">
          <children>
-            <Pane prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: #536B9D;" stylesheets="@view.css">
+            <Pane prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: #536B9D;" stylesheets="@../css/view.css">
                <children>
                   <Label layoutX="72.0" layoutY="25.0" text="Patas" textFill="WHITE">
                      <font>
@@ -34,12 +34,12 @@
                   </Label>
                   <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/pata.png" />
+                        <Image url="@../../../assets/images/pata.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
-            <Button fx:id="menuButtonPets" alignment="BASELINE_LEFT" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#menuButtonPetsClicked" onMouseEntered="#menuButtonPetsEntered" onMouseExited="#menuButtonPetsExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@view.css" text="Pets" textFill="WHITE">
+            <Button fx:id="menuButtonPets" alignment="BASELINE_LEFT" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#menuButtonPetsClicked" onMouseEntered="#menuButtonPetsEntered" onMouseExited="#menuButtonPetsExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@../css/view.css" text="Pets" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -51,7 +51,7 @@
                            <children>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/pets.png" />
+                                    <Image url="@../../../assets/images/pets.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -63,7 +63,7 @@
                   <Font name="Noto Sans Mono Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="menuButtonFinancas" alignment="BASELINE_LEFT" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#menuButtonFinancasClicked" onMouseEntered="#menuButtonFinancasEntered" onMouseExited="#menuButtonFinancasExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@view.css" text="Finanças" textFill="WHITE">
+            <Button fx:id="menuButtonFinancas" alignment="BASELINE_LEFT" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#menuButtonFinancasClicked" onMouseEntered="#menuButtonFinancasEntered" onMouseExited="#menuButtonFinancasExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@../css/view.css" text="Finanças" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -75,7 +75,7 @@
                            <children>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/financas.png" />
+                                    <Image url="@../../../assets/images/financas.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -87,7 +87,7 @@
                   <Font name="Noto Sans Mono Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="menuButtonAgenda" alignment="BASELINE_LEFT" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#menuButtonAgendaClicked" onMouseEntered="#menuButtonAgendaEntered" onMouseExited="#menuButtonAgendaExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@view.css" text="Agenda" textFill="WHITE">
+            <Button fx:id="menuButtonAgenda" alignment="BASELINE_LEFT" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#menuButtonAgendaClicked" onMouseEntered="#menuButtonAgendaEntered" onMouseExited="#menuButtonAgendaExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@../css/view.css" text="Agenda" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -99,7 +99,7 @@
                            <children>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/agenda.png" />
+                                    <Image url="@../../../assets/images/agenda.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -111,7 +111,7 @@
                   <Font name="Noto Sans Mono Bold" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="menuButtonEquipe" alignment="BASELINE_LEFT" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#menuButtonEquipeClicked" onMouseEntered="#menuButtonEquipeEntered" onMouseExited="#menuButtonEquipeExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@view.css" text="Equipe" textFill="WHITE">
+            <Button fx:id="menuButtonEquipe" alignment="BASELINE_LEFT" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#menuButtonEquipeClicked" onMouseEntered="#menuButtonEquipeEntered" onMouseExited="#menuButtonEquipeExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@../css/view.css" text="Equipe" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -123,7 +123,7 @@
                            <children>
                               <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/equipe.png" />
+                                    <Image url="@../../../assets/images/equipe.png" />
                                  </image>
                               </ImageView>
                            </children>
@@ -139,40 +139,40 @@
       </Pane>
       <Pane layoutX="200.0" prefHeight="768.0" prefWidth="1166.0">
          <children>
-            <ScrollPane hbarPolicy="NEVER" layoutX="64.0" layoutY="144.0" prefHeight="592.0" prefWidth="1038.0" styleClass="scrollPanePet" stylesheets="@view.css" vbarPolicy="ALWAYS">
+            <ScrollPane hbarPolicy="NEVER" layoutX="64.0" layoutY="144.0" prefHeight="592.0" prefWidth="1038.0" styleClass="scrollPanePet" stylesheets="@../css/view.css" vbarPolicy="ALWAYS">
               <content>
-                <AnchorPane fx:id="anchorPanePet" minHeight="0.0" minWidth="0.0" prefHeight="560.0" prefWidth="1036.0" styleClass="anchorPanePet" stylesheets="@view.css">
+                <AnchorPane fx:id="anchorPanePet" minHeight="0.0" minWidth="0.0" prefHeight="560.0" prefWidth="1036.0" styleClass="anchorPanePet" stylesheets="@../css/view.css">
                      <children>
-                        <VBox fx:id="vBoxPets" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxScrollPet" stylesheets="@view.css">
+                        <VBox fx:id="vBoxPets" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxScrollPet" stylesheets="@../css/view.css">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hBoxScrollPet" stylesheets="@view.css">
+                              <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hBoxScrollPet" stylesheets="@../css/view.css">
                                  <children>
-                                    <Button mnemonicParsing="false" onMouseClicked="#newPetClicked" prefHeight="224.0" prefWidth="182.0" styleClass="buttonNewItem" stylesheets="@view.css" text="Novo Pet">
+                                    <Button mnemonicParsing="false" onMouseClicked="#newPetClicked" prefHeight="224.0" prefWidth="182.0" styleClass="buttonNewItem" stylesheets="@../css/view.css" text="Novo Pet">
                                        <graphic>
                                           <ImageView fitHeight="72.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../images/plus.png" />
+                                                <Image url="@../../../assets/images/plus.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button mnemonicParsing="false" styleClass="buttonPet" stylesheets="@view.css">
+                                    <Button mnemonicParsing="false" styleClass="buttonPet" stylesheets="@../css/view.css">
                                        <graphic>
-                                          <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vBoxPet" stylesheets="@view.css">
+                                          <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vBoxPet" stylesheets="@../css/view.css">
                                              <children>
                                                 <ImageView fitHeight="176.0" fitWidth="182.0" pickOnBounds="true" />
-                                                <HBox styleClass="hBoxInfoPetExternal" stylesheets="@view.css">
+                                                <HBox styleClass="hBoxInfoPetExternal" stylesheets="@../css/view.css">
                                                    <children>
-                                                      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hBoxInfoPetInternal" stylesheets="@view.css">
+                                                      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hBoxInfoPetInternal" stylesheets="@../css/view.css">
                                                          <children>
-                                                            <Label prefHeight="48.0" prefWidth="76.0" styleClass="nameButtonPet" stylesheets="@view.css" text="Nome" />
+                                                            <Label prefHeight="48.0" prefWidth="76.0" styleClass="nameButtonPet" stylesheets="@../css/view.css" text="Nome" />
                                                             <Circle fill="DODGERBLUE" radius="2.0" stroke="BLACK" strokeType="INSIDE" styleClass="pointButtonPet" />
-                                                            <Label alignment="BOTTOM_RIGHT" prefHeight="48.0" prefWidth="64.0" styleClass="monthButtonPet" stylesheets="@view.css" text="48 meses" />
+                                                            <Label alignment="BOTTOM_RIGHT" prefHeight="48.0" prefWidth="64.0" styleClass="monthButtonPet" stylesheets="@../css/view.css" text="48 meses" />
                                                          </children>
                                                       </HBox>
                                                       <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@../images/femea.png" />
+                                                            <Image url="@../../../assets/images/femea.png" />
                                                          </image>
                                                          <HBox.margin>
                                                             <Insets />
@@ -197,11 +197,11 @@
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
             </TextField>
-            <Button contentDisplay="TOP" layoutX="1054.0" layoutY="63.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@view.css" text="Filtrar">
+            <Button contentDisplay="TOP" layoutX="1054.0" layoutY="63.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
                      <image>
-                        <Image url="@../images/filtro.png" />
+                        <Image url="@../../../assets/images/filtro.png" />
                      </image>
                   </ImageView>
                </graphic>
