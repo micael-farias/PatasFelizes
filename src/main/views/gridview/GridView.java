@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 
 public abstract class GridView<T> {
     
+    private Insets insets = new Insets(0);
     private GridPane grid;
     private int numColumns;
     private List<T> items;
@@ -48,7 +49,11 @@ public abstract class GridView<T> {
             row++;
         }
 
-        GridPane.setMargin(gridItem, new Insets(10));     
+        GridPane.setMargin(gridItem, insets);     
+    }
+    
+    public void setInsets(Insets insets){
+        this.insets = insets;
     }
 }
 

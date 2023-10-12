@@ -1,6 +1,7 @@
 package main.views.gridview;
 
 import java.util.List;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -20,6 +21,7 @@ public class AnimalGridView extends GridView<Animal> {
     public AnimalGridView(GridPane animaisGrid, int numColumns, List<Animal> items, Pane contentFather) {
         super(animaisGrid, numColumns, items);
         this.contentFather = contentFather;
+        setInsets(new Insets(10));
     }
 
     @Override

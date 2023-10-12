@@ -3,11 +3,13 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FinancasController">
@@ -74,6 +76,14 @@
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
       </Button>
-      <ListView layoutX="64.0" layoutY="203.0" prefHeight="515.0" prefWidth="1041.0" />
+      <ScrollPane layoutX="64.0" layoutY="184.0" prefHeight="475.0" prefWidth="1042.0" styleClass="scrollPanePet" stylesheets="@../css/view.css">
+         <content>
+            <GridPane fx:id="despesasGrid" prefHeight="0.0" prefWidth="0.0">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

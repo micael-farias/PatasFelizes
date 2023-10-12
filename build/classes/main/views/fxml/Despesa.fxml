@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+
+<HBox fx:id="layoutDespesa" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="1008.0" style="-fx-background-color: #FF00FF;" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
+   <children>
+      <Label alignment="CENTER" prefHeight="38.0" prefWidth="449.0" text="nOME" />
+   </children>
+</HBox>
