@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AnimalCardController">
+   <children>
+      <ImageView fx:id="imagemAnimal" cache="true" fitHeight="176.0" fitWidth="180.0" pickOnBounds="true" smooth="false" />
+      <HBox style="-fx-background-color: transparent;" styleClass="buttonNewItem" stylesheets="@../css/view.css">
+         <children>
+            <HBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="146.0" styleClass="hBoxInfoPetInternal" stylesheets="@../css/view.css">
+               <children>
+                  <Label fx:id="nomeAnimal" prefHeight="48.0" prefWidth="90.0" styleClass="nameButtonPet" stylesheets="@../css/view.css" text="Nome">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Circle fill="DODGERBLUE" radius="2.0" stroke="BLACK" strokeType="INSIDE" styleClass="pointButtonPet" />
+                  <Label fx:id="idadeAnimal" graphicTextGap="0.0" prefHeight="48.0" prefWidth="67.0" styleClass="monthButtonPet" stylesheets="@../css/view.css" text="48 meses" textOverrun="CLIP">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <ImageView fx:id="sexoAnimal" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/images/femea.png" />
+               </image>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</VBox>

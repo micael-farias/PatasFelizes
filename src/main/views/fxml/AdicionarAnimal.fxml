@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="adicionarPet" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AdicionarAnimalController">
+   <children>
+      <ImageView fitHeight="87.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../assets/images/plus.png" />
+         </image>
+         <VBox.margin>
+            <Insets left="47.0" top="56.0" />
+         </VBox.margin>
+      </ImageView>
+      <Label alignment="CENTER" prefHeight="36.0" prefWidth="180.0" text="Novo Pet" textFill="#818181" VBox.vgrow="SOMETIMES">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>

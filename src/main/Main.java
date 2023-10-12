@@ -7,13 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import static main.utils.Constantes.FORM_BASE;
 
 public class Main extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/main/views/fxml/View.fxml"));
+            var resource = getClass().getResource(FORM_BASE);
+            Parent root = FXMLLoader.load(resource);
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/main/views/css/view.css").toExternalForm());
             primaryStage.setScene(scene);
@@ -22,7 +24,7 @@ public class Main extends Application {
             primaryStage.setResizable(false);
             primaryStage.show();
         } catch(IOException e) {
-            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

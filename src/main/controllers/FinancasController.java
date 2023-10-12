@@ -1,14 +1,14 @@
 package main.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
+import main.interfaces.Inicializador;
 
-public class FinancasController implements Initializable {
+public class FinancasController implements Inicializador {  
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    public void Inicializar(Pane contentFather) {
+    }
+
+
     
 }
