@@ -78,7 +78,7 @@
       </Button>
       <ScrollPane layoutX="64.0" layoutY="184.0" prefHeight="475.0" prefWidth="1042.0" styleClass="scrollPanePet" stylesheets="@../css/view.css">
          <content>
-            <GridPane fx:id="despesasGrid" prefHeight="0.0" prefWidth="0.0">
+            <GridPane fx:id="despesasGrid" gridLinesVisible="true" prefHeight="0.0" prefWidth="0.0">
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>

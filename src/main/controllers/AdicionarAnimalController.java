@@ -1,9 +1,18 @@
 package main.controllers;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import static main.utils.Constantes.FORM_BASE;
 
 public class AdicionarAnimalController {
 
@@ -14,10 +23,17 @@ public class AdicionarAnimalController {
       
         adicionarPet.setOnMouseClicked(e ->{
         
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initModality(Modality.APPLICATION_MODAL);
-            alert.setContentText("Oi eu sou  me adote");
-            alert.showAndWait();   
+            try {
+                Stage dialog = new Stage();
+                dialog.initStyle(StageStyle.UTILITY);
+                var resource2 = getClass().getResource("../views/fxml/CadastrarAnimal.fxml");
+                Parent root2 = FXMLLoader.load(resource2);
+                Scene scene2 = new Scene(root2);
+                dialog.setScene(scene2);  
+                dialog.show();
+            } catch (IOException ex) {
+                Logger.getLogger(AdicionarAnimalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
      
     }
