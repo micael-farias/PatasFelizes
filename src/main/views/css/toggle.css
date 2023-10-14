@@ -1,0 +1,16 @@
+.card{
+    -fx-background-radius: 10; 
+    -fx-background-color : #FFFFFF; 
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+}
+
+.card_direito{
+    -fx-background-radius: 10; 
+    -fx-background-color : #A8C4F8;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+}
+
+.card_esquerdo{
+    -fx-background-radius: 10; 
+    -fx-background-color : #FFFFFF;
+}

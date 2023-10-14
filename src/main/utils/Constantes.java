@@ -10,4 +10,5 @@ public class Constantes {
     public static String CARD_ADICIONAR_ANIMAL = PATH_VIEWS_FXML + "AdicionarAnimal.fxml";
     public static String FORM_ANIMAL_DETALHES = PATH_VIEWS_FXML + "AnimalDetalhes.fxml";
     public static String CARD_DESPESA = PATH_VIEWS_FXML + "Despesa.fxml";
+    public static String TOOGLE_BUTTON = PATH_VIEWS_FXML + "ToogleButton.fxml";
 }

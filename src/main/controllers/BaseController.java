@@ -1,19 +1,27 @@
 package main.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import main.interfaces.Inicializador;
 import static main.utils.Constantes.FORM_EQUIPE;
 import static main.utils.Constantes.FORM_FINANCAS;
 import static main.utils.Constantes.FORM_HOME;
+import static main.utils.Constantes.TOOGLE_BUTTON;
 import main.utils.InicializarFormulario;
 
 public class BaseController implements Initializable{
@@ -40,7 +48,7 @@ public class BaseController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         inicializar.EntrarTela(FORM_HOME, content);
-        setActive(menuButtonPets);
+        setActive(menuButtonPets); 
     }    
     
         @FXML
