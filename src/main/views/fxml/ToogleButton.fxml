@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="160.0" styleClass="card" stylesheets="@../css/toggle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.ToogleButtonController">
+   <children>
+      <HBox fx:id="esquerdo" alignment="CENTER" prefHeight="100.0" prefWidth="80.0" styleClass="card_direito" stylesheets="@../css/toggle.css">
+         <children>
+            <ImageView fx:id="imagemEsquerda" fitHeight="20.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/images/femea.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </HBox>
+      <HBox fx:id="direito" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="80.0" styleClass="card_esquerdo" stylesheets="@../css/toggle.css">
+         <children>
+            <ImageView fx:id="imagemDireita" fitHeight="20.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/images/femea.png" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <HBox.margin>
+            <Insets left="3.0" />
+         </HBox.margin>
+      </HBox>
+   </children>
+</HBox>
