@@ -11,9 +11,10 @@ import javafx.scene.layout.Pane;
 import main.controllers.BaseController;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
+import static main.utils.Constantes.FORM_HOME;
 
 public class InicializarFormulario {
-
+    
     public <T> FXMLLoadResult<T> RealizarLoadFXML(String arquivo, Class<T> type) {
         try {
             var resource = getClass().getResource(arquivo);
@@ -35,7 +36,7 @@ public class InicializarFormulario {
             controlador.Inicializar(content);
             content.getChildren().clear();
             ObservableList<Node> children = content.getChildren();
-            children.addAll(menu);          
+            children.addAll(menu);    
         } catch (IOException ex) {
             Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
         }     
@@ -49,9 +50,14 @@ public class InicializarFormulario {
             controlador.Inicializar(content, dado);
             content.getChildren().clear();
             ObservableList<Node> children = content.getChildren();
-            children.addAll(menu);          
+            children.addAll(menu);   
         } catch (IOException ex) {
             Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
         }     
     }
+    
+    public void EntrarTelaInicial(Pane content){
+          EntrarTela(FORM_HOME, content);
+    }
+            
 }

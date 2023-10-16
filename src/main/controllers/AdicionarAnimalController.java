@@ -12,28 +12,30 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import main.repositories.AnimalRepository;
 import static main.utils.Constantes.FORM_BASE;
 
 public class AdicionarAnimalController {
 
     @FXML
     private VBox adicionarPet;
+    AnimalRepository animalRepository = new AnimalRepository();
             
     public void setOnClick() {
       
         adicionarPet.setOnMouseClicked(e ->{
-        
-            try {
-                Stage dialog = new Stage();
-                dialog.initStyle(StageStyle.UTILITY);
-                var resource2 = getClass().getResource("../views/fxml/CadastrarAnimal.fxml");
-                Parent root2 = FXMLLoader.load(resource2);
-                Scene scene2 = new Scene(root2);
-                dialog.setScene(scene2);  
-                dialog.show();
-            } catch (IOException ex) {
-                Logger.getLogger(AdicionarAnimalController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                animalRepository.adicionarAnimal();
+//            try {
+//                Stage dialog = new Stage();
+//                dialog.initStyle(StageStyle.UTILITY);
+//                var resource2 = getClass().getResource("../views/fxml/CadastrarAnimal.fxml");
+//                Parent root2 = FXMLLoader.load(resource2);
+//                Scene scene2 = new Scene(root2);
+//                dialog.setScene(scene2);  
+//                dialog.show();
+//            } catch (IOException ex) {
+//                Logger.getLogger(AdicionarAnimalController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         });
      
     }

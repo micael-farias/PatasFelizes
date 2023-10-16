@@ -1,5 +1,6 @@
 package main.controllers;
 
+import main.App;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,6 +11,7 @@ import javafx.scene.shape.Rectangle;
 import main.interfaces.InicializadorComDado;
 import main.model.Animal;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
+import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.ImageCache;
 import main.utils.InicializarFormulario;
 
@@ -23,7 +25,6 @@ public class AnimalCardController implements InicializadorComDado{
     private Label nomeAnimal;
     @FXML
     private ImageView sexoAnimal;
-    InicializarFormulario inicializar = new InicializarFormulario();  
 
     @Override
     public void Inicializar(Pane contentFather, Object dado) {
@@ -32,9 +33,14 @@ public class AnimalCardController implements InicializadorComDado{
 
         idadeAnimal.setText(String.valueOf(animal.getIdade()) + " meses");
         nomeAnimal.setText(animal.getNome());
+        if(animal.getSexo() == 'M'){
+            sexoAnimal.setImage(new Image(PATH_IMAGES + "marte-azul.png"));
+        }else{
+            sexoAnimal.setImage(new Image(PATH_IMAGES + "femea.png"));
+        }
         carregarImagem(animal.getFoto());
         imagemAnimal.setOnMouseClicked(e -> {
-            inicializar.EntrarTela(FORM_ANIMAL_DETALHES, contentFather, nomeAnimal);
+            App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, animal);
         }); 
     }
 

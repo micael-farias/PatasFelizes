@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import main.App;
 import main.controllers.AnimalCardController;
 import main.controllers.DespesaController;
 import main.model.Animal;
@@ -16,7 +17,6 @@ import main.utils.InicializarFormulario;
 
 public class DespesasGridView extends GridView<Animal> {
     
-    InicializarFormulario inicializar = new InicializarFormulario();
     Pane contentFather;
             
     public DespesasGridView(GridPane animaisGrid, int numColumns, List<Animal> items, Pane contentFather) {
@@ -27,7 +27,7 @@ public class DespesasGridView extends GridView<Animal> {
 
     @Override
     public Node createGridItem(Animal animal, int column, int row) {
-        var fxmlLoader = inicializar.RealizarLoadFXML(CARD_DESPESA, HBox.class);
+        var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_DESPESA, HBox.class);
         DespesaController controller = fxmlLoader.getLoader().getController();
         controller.setData(row);     
         return fxmlLoader.getResult();

@@ -21,18 +21,7 @@ public class FinancasController implements Inicializador {
     public static List<Animal> getListaDeAnimais() {
         List<Animal> animais = new ArrayList<>();
 
-        animais.add(new Animal("Inacio", 3, "https://www.petz.com.br/blog//wp-content/uploads/2021/11/enxoval-para-gato-Copia.jpg"));
-        animais.add(new Animal("Juninho", 5, "https://static.poder360.com.br/2020/10/gato-animal-covid-19-scaled.jpg"));
-        animais.add(new Animal("Juquinha", 1, "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info"));
-        
-        animais.add(new Animal("Inacio", 3, "https://www.petz.com.br/blog//wp-content/uploads/2021/11/enxoval-para-gato-Copia.jpg"));
-        animais.add(new Animal("Juninho", 5, "https://static.poder360.com.br/2020/10/gato-animal-covid-19-scaled.jpg"));
-        animais.add(new Animal("Juquinha", 1, "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info"));
-        
-        animais.add(new Animal("Inacio", 3, "https://www.petz.com.br/blog//wp-content/uploads/2021/11/enxoval-para-gato-Copia.jpg"));
-        animais.add(new Animal("Juninho", 5, "https://static.poder360.com.br/2020/10/gato-animal-covid-19-scaled.jpg"));
-        animais.add(new Animal("Juquinha", 1, "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info"));
-
+    
         return FXCollections.observableArrayList(animais);
     } 
 

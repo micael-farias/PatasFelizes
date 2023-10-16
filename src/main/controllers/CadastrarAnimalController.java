@@ -26,7 +26,7 @@ public class CadastrarAnimalController implements Initializable {
         ToggleView tglSexo = new ToggleView();
         tglSexo.CriarToogle(toggleSexo);
         tglSexo.onClickImagemDireita(e ->{
-            System.out.println("    Masculino   ");
+            System.out.println("Masculino");
         });
     }    
     
