@@ -1,11 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AnimalDetalhesController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AnimalDetalhesController">
    <children>
-      <Label fx:id="nomeAnimal" layoutX="515.0" layoutY="300.0" text="Label" />
+      <Pane layoutX="30.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1076.0" styleClass="pane" stylesheets="@../css/detalhesanimal.css">
+         <children>
+            <Label layoutX="265.0" layoutY="55.0" stylesheets="@../css/cadastraranimal.css" text="Nome" />
+            <TextField fx:id="nomeAnimalTextField" layoutX="265.0" layoutY="79.0" prefHeight="25.0" prefWidth="557.0" stylesheets="@../css/cadastraranimal.css" />
+            <Label layoutX="265.0" layoutY="121.0" stylesheets="@../css/cadastraranimal.css" text="Sobre" />
+            <Label layoutX="837.0" layoutY="55.0" stylesheets="@../css/cadastraranimal.css" text="Idade (meses)" />
+            <TextField fx:id="idadeAnimalTextField" layoutX="837.0" layoutY="79.0" prefHeight="24.0" prefWidth="167.0" stylesheets="@../css/cadastraranimal.css" />
+            <TextArea fx:id="descricaoAnimalTextField" layoutX="265.0" layoutY="151.0" prefHeight="132.0" prefWidth="740.0" stylesheets="@../css/cadastraranimal.css" text="Adicionar descrição" wrapText="true" />
+            <Label layoutX="53.0" layoutY="298.0" stylesheets="@../css/cadastraranimal.css" text="Sexo" />
+            <Label layoutX="53.0" layoutY="355.0" stylesheets="@../css/cadastraranimal.css" text="Castrado" />
+            <Label layoutX="53.0" layoutY="410.0" stylesheets="@../css/cadastraranimal.css" text="Vermifugado" />
+            <Label layoutX="53.0" layoutY="463.0" stylesheets="@../css/cadastraranimal.css" text="Status" />
+            <Label layoutX="266.0" layoutY="294.0" stylesheets="@../css/cadastraranimal.css" text="Vacinas e consultas" />
+            <Button id="button" layoutX="266.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="33.0" stylesheets="@../css/detalhesanimal.css">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/plus.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Label layoutX="304.0" layoutY="328.0" stylesheets="@../css/cadastraranimal.css" text="Adicionar" />
+            <Button id="button" layoutX="902.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
+            <Button id="button" layoutX="788.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+            <HBox fx:id="toggleSexo" layoutX="53.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
+            <HBox fx:id="toogleCastrado" layoutX="52.0" layoutY="379.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
+            <HBox fx:id="toogleVermifugado" layoutX="53.0" layoutY="433.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
+            <MenuButton id="button" layoutX="52.0" layoutY="488.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="162.0" stylesheets="@../css/detalhesanimal.css" text="Para adoção">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+            </MenuButton>
+            <ScrollPane layoutX="268.0" layoutY="365.0" prefHeight="153.0" prefWidth="740.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </ScrollPane>
+            <Button fx:id="voltarButton" alignment="CENTER" layoutX="14.0" layoutY="14.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="31.0" styleClass="buttonVoltar" stylesheets="@../css/detalhesanimal.css" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/seta-circulo-esquerda.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <VBox alignment="CENTER" layoutX="1012.0" layoutY="17.0" prefHeight="55.0" prefWidth="50.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/coracao-de-casa(1).png" />
+                     </image>
+                  </ImageView>
+                  <Label stylesheets="@../css/cadastraranimal.css" text="Adotar" />
+               </children>
+            </VBox>
+            <Button layoutX="674.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="removerButton" stylesheets="@../css/detalhesanimal.css" text="Remover" textFill="WHITE" />
+            <VBox layoutX="52.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css">
+               <children>
+                  <ImageView fx:id="imagemAnimal" cache="true" fitHeight="230.0" fitWidth="180.0" pickOnBounds="true" smooth="false" />
+               </children>
+            </VBox>
+         </children>
+      </Pane>
    </children>
-</AnchorPane>
+</Pane>

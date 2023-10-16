@@ -2,6 +2,7 @@ package main.utils;
 
 public class Constantes {
     public static String PATH_VIEWS_FXML = "/main/views/fxml/";
+    public static String PATH_IMAGES = "/assets/images/";
     public static String FORM_HOME = PATH_VIEWS_FXML + "Home.fxml";
     public static String FORM_BASE = PATH_VIEWS_FXML + "Base.fxml";
     public static String FORM_FINANCAS = PATH_VIEWS_FXML + "Financas.fxml";
