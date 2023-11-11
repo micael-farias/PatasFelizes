@@ -5,10 +5,10 @@ public class Animal {
     private String Nome;
     private int Idade;
     private String Foto;
+    private String Descricao; 
     private char Sexo;
     private boolean Castrado;
     private boolean Vermifugado;
-    private String Descricao; 
 
     public Animal( char Sexo, String Nome, int Idade, String Foto, boolean Castrado, boolean Vermifugado, String Descricao) {
         this.Nome = Nome;

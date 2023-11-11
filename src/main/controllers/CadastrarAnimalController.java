@@ -4,11 +4,13 @@
  */
 package main.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import main.App;
+import main.interfaces.Inicializador;
 import main.views.toggle.ToggleView;
 
 /**
@@ -16,18 +18,60 @@ import main.views.toggle.ToggleView;
  *
  * @author pedro
  */
-public class CadastrarAnimalController implements Initializable {
+public class CadastrarAnimalController implements Inicializador {
+
+
+    @FXML
+    private Button salvarAnimal;
+
+    @FXML
+    private HBox toggleCastrado;
 
     @FXML
     private HBox toggleSexo;
+
+    @FXML
+    private HBox toogleVermifugado;
+
+ 
+    ToggleView toggleViewSexo;
+    ToggleView toogleViewCastrado;
+    ToggleView toogleViewVermifugado;
+    
+    private Stage stage;
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        ToggleView tglSexo = new ToggleView();
-        tglSexo.CriarToogle(toggleSexo);
-        tglSexo.onClickImagemDireita(e ->{
-            System.out.println("Masculino");
+    public void Inicializar(Pane contentFather, Pane blackShadow) {
+        
+        toggleViewSexo = new ToggleView();
+        toogleViewCastrado = new ToggleView();
+        toogleViewVermifugado = new ToggleView();
+        
+        toggleViewSexo.CriarToogle(toggleSexo);
+        toogleViewCastrado.CriarToogle(toggleCastrado);
+        toogleViewVermifugado.CriarToogle(toogleVermifugado);
+        
+        toggleViewSexo.setImagemDireita("marte-cinza.png");
+        toggleViewSexo.setImagemEsquerda("venus-cinza.png");
+        
+        toogleViewCastrado.setTextoDireito("SIM");
+        toogleViewCastrado.setTextoEsquerdo("NAO");
+          
+        toogleViewVermifugado.setTextoDireito("SIM");
+        toogleViewVermifugado.setTextoEsquerdo("NAO");
+        
+        salvarAnimal.setOnMouseClicked(e->{
+            if(stage !=null){
+                stage.close();
+                App.getInstance().EntrarTelaInicial(contentFather, blackShadow);
+           }
+              
         });
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }    
+
     
 }

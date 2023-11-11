@@ -6,7 +6,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -31,9 +30,7 @@
       <TextArea layoutX="255.0" layoutY="141.0" prefHeight="132.0" prefWidth="573.0" stylesheets="@../css/cadastraranimal.css" text="Adicionar descrição" />
       <Label layoutX="43.0" layoutY="288.0" stylesheets="@../css/cadastraranimal.css" text="Sexo" />
       <Label layoutX="43.0" layoutY="345.0" stylesheets="@../css/cadastraranimal.css" text="Castrado" />
-      <ToggleButton id="button" layoutX="43.0" layoutY="367.0" mnemonicParsing="false" stylesheets="@../css/cadastraranimal.css" text="ToggleButton" />
       <Label layoutX="43.0" layoutY="400.0" stylesheets="@../css/cadastraranimal.css" text="Vermifugado" />
-      <ToggleButton id="button" layoutX="43.0" layoutY="422.0" mnemonicParsing="false" stylesheets="@../css/cadastraranimal.css" text="ToggleButton" />
       <MenuButton id="button" layoutX="43.0" layoutY="475.0" mnemonicParsing="false" stylesheets="@../css/cadastraranimal.css" text="Para adoção">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
@@ -44,8 +41,10 @@
       <Label layoutX="256.0" layoutY="300.0" stylesheets="@../css/cadastraranimal.css" text="Vacinas e consultas" />
       <Button id="button" layoutX="256.0" layoutY="339.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" stylesheets="@../css/cadastraranimal.css" />
       <Label layoutX="294.0" layoutY="345.0" stylesheets="@../css/cadastraranimal.css" text="Adicionar" />
-      <Button id="button" layoutX="758.0" layoutY="532.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
+      <Button id="button" fx:id="salvarAnimal" layoutX="758.0" layoutY="532.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
       <Button id="button" layoutX="644.0" layoutY="532.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
-      <HBox fx:id="toggleSexo" layoutX="43.0" layoutY="312.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
+      <HBox fx:id="toggleCastrado" layoutX="43.0" layoutY="365.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
+      <HBox fx:id="toogleVermifugado" layoutX="43.0" layoutY="425.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
+      <HBox fx:id="toggleSexo" layoutX="43.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
    </children>
 </AnchorPane>

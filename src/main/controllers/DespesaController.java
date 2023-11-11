@@ -1,13 +1,8 @@
 package main.controllers;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import main.interfaces.Inicializador;
 
 public class DespesaController implements Inicializador{
@@ -22,9 +17,7 @@ public class DespesaController implements Inicializador{
     }
 
     @Override
-    public void Inicializar(Pane contentFather) {
+    public void Inicializar(Pane contentFather, Pane blackShadow) {
 
-    }
-  
-    
+    }  
 }

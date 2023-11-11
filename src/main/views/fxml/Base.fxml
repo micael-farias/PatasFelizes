@@ -137,5 +137,6 @@
             <Pane fx:id="content" prefHeight="768.0" prefWidth="1166.0" />
          </children>
       </Pane>
+      <Pane fx:id="blackShadow" prefHeight="774.0" prefWidth="1366.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" />
    </children>
 </AnchorPane>

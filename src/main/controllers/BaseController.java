@@ -21,11 +21,13 @@ public class BaseController implements Initializable{
     @FXML
     private Button menuButtonPets;
     @FXML
-    protected Pane content;
+    protected Pane content;   
+    @FXML
+    private Pane blackShadow;
                 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        App.getInstance().EntrarTelaInicial(content);
+        App.getInstance().EntrarTelaInicial(content,blackShadow);
         setActive(menuButtonPets); 
     }    
     
@@ -44,7 +46,7 @@ public class BaseController implements Initializable{
     @FXML
     private void menuButtonPetsClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
-        App.getInstance().EntrarTelaInicial(content);
+        App.getInstance().EntrarTelaInicial(content, blackShadow);
         setActive(button);  
     }
 
@@ -63,7 +65,7 @@ public class BaseController implements Initializable{
     @FXML
     private void menuButtonFinancasClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
-        App.getInstance().EntrarTela(FORM_FINANCAS, content);
+        App.getInstance().EntrarTela(FORM_FINANCAS, content, blackShadow);
         setActive(button);
     }
 
@@ -100,7 +102,7 @@ public class BaseController implements Initializable{
     @FXML
     private void menuButtonEquipeClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
-        App.getInstance().EntrarTela(FORM_EQUIPE, content);
+        App.getInstance().EntrarTela(FORM_EQUIPE, content, blackShadow);
         setActive(button);
     }
    

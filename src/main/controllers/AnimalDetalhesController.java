@@ -1,5 +1,8 @@
 package main.controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import main.App;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -8,15 +11,17 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import main.interfaces.InicializadorComDado;
 import main.model.Animal;
+import main.model.Procedimento;
 import main.utils.ImageCache;
-import main.utils.InicializarFormulario;
 import static main.utils.ToogleEnum.DIREITO;
 import static main.utils.ToogleEnum.ESQUERDO;
+import main.views.gridview.ProcedimentoGridView;
 import main.views.toggle.ToggleView;
 
 public class AnimalDetalhesController implements InicializadorComDado{
@@ -44,13 +49,16 @@ public class AnimalDetalhesController implements InicializadorComDado{
         
     @FXML
     private Button voltarButton;
+    
+    @FXML
+    private GridPane procedimentosGridView;
 
     ToggleView toggleViewSexo;
     ToggleView toogleViewCastrado;
     ToggleView toogleViewVermifugado;
     
     @Override
-    public void Inicializar(Pane contentFather, Object dado) {
+    public void Inicializar(Pane contentFather, Pane blackShadow, Object dado) {
         Animal animal = (Animal) dado;
         
         toggleViewSexo = new ToggleView();
@@ -71,10 +79,24 @@ public class AnimalDetalhesController implements InicializadorComDado{
         toogleViewVermifugado.setTextoEsquerdo("NAO");
         
         voltarButton.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaInicial(contentFather);
+            App.getInstance().EntrarTelaInicial(contentFather, blackShadow);
         });
         
         setData(animal);
+        
+        List<Procedimento> procedimentos = new ArrayList<>();
+        procedimentos.add(new Procedimento("Procedimento 1", new Date()));
+        procedimentos.add(new Procedimento("Procedimento 2", new Date()));
+        procedimentos.add(new Procedimento("Procedimento 3", new Date()));
+        procedimentos.add(new Procedimento("Procedimento 1", new Date()));
+        procedimentos.add(new Procedimento("Procedimento 2", new Date()));
+        procedimentos.add(new Procedimento("Procedimento 3", new Date()));
+        procedimentos.add(new Procedimento("Procedimento 1", new Date()));
+        procedimentos.add(new Procedimento("Procedimento 2", new Date()));
+        procedimentos.add(new Procedimento("Procedimento 3", new Date()));
+        
+        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(procedimentosGridView, 1, procedimentos, contentFather);
+        procedimentosGrid.createGrid();
     }
     
     public void carregarImagem(String foto){
