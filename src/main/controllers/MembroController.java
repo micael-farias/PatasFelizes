@@ -12,7 +12,7 @@ import main.model.Procedimento;
 import static main.utils.Constantes.PATH_IMAGES;
 import static main.utils.DateToString.DataParaString;
 
-public class DespesaController implements Inicializador{
+public class MembroController implements Inicializador{
 
     @FXML
     private HBox layoutDespesa;

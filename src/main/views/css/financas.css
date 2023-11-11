@@ -2,6 +2,25 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-
+.buttonDespesa {
+  
+    -fx-cursor: hand;
 }
+
+.buttonReceita{
+    -fx-cursor: hand;
+}
+
+.buttonDespesa:hover {
+    -fx-background-color: #4CAF50; /* Cor de fundo quando o mouse está sobre o botão */
+    -fx-background-color: brightness(-20%); /* Escurece a cor de fundo */
+   -fx-text-fill: #FFFFFF; /* Cor do texto quando o mouse está sobre o botão */
+}
+
+.buttonReceita:hover {
+    -fx-background-color: #4CAF50; /* Cor de fundo quando o mouse está sobre o botão */
+    -fx-background-color: brightness(-20%); /* Escurece a cor de fundo */
+    -fx-text-fill: #FFFFFF; /* Cor do texto quando o mouse está sobre o botão */
+}
+
+

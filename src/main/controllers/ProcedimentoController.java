@@ -16,6 +16,7 @@ import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.model.Procedimento;
 import static main.utils.Constantes.PATH_IMAGES;
+import static main.utils.DateToString.DataParaString;
 
 public class ProcedimentoController {
 
@@ -52,10 +53,6 @@ public class ProcedimentoController {
         }      
     }
 
-    
-    public String DataParaString(Date data){
-        SimpleDateFormat formatoFechaSalida = new SimpleDateFormat("dd-MM-yyyy");
-        return formatoFechaSalida.format(data);        
-    }
+ 
 
 }

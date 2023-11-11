@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="despesaLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
+<VBox fx:id="membroLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.MembroController">
    <children>
-      <HBox fx:id="layoutDespesa" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/procedimento.css">
+      <HBox fx:id="layoutMembro" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/procedimento.css">
          <children>
-            <Label fx:id="dataDespesa" alignment="CENTER" prefHeight="44.0" prefWidth="217.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+            <Label fx:id="dataMembro" alignment="CENTER" prefHeight="44.0" prefWidth="217.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Label>
-            <Label fx:id="descricaoDespesa" alignment="CENTER" prefHeight="44.0" prefWidth="326.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="Despesa">
+            <Label fx:id="descricaoMembro" alignment="CENTER" prefHeight="44.0" prefWidth="326.0" styleClass="labelMembro" stylesheets="@../css/procedimento.css" text="Membro">
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Label fx:id="descricaoDespesa1" alignment="CENTER" prefHeight="44.0" prefWidth="183.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="R$ 18,00">
+            <Label fx:id="descricaoMembro1" alignment="CENTER" prefHeight="44.0" prefWidth="183.0" styleClass="labelMembro" stylesheets="@../css/procedimento.css" text="R$ 18,00">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
                <children>
-                  <ImageView fx:id="editarDespesa" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="editarMembro" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../assets/images/editar-branco.png" />
                      </image>
@@ -35,7 +35,7 @@
             </HBox>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
                <children>
-                  <ImageView fx:id="excluirDespesa" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="excluirMembro" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../assets/images/remover-branco.png" />
                      </image>
