@@ -66,22 +66,22 @@
             <Image url="@../../../assets/images/despesas.png" />
          </image>
       </ImageView>
-      <Button layoutX="540.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #F0F0F0;" text="Doações" textFill="#515151">
+      <Button layoutX="540.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #F0F0F0;" styleClass="buttonReceita" stylesheets="@../css/financas.css" text="Doações" textFill="#515151">
          <font>
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="448.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #C2D5FA;" text="Despesas" textFill="#515151">
+      <Button layoutX="448.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #C2D5FA;" styleClass="buttonDespesa" stylesheets="@../css/financas.css" text="Despesas" textFill="#515151">
          <font>
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
       </Button>
-      <ScrollPane layoutX="64.0" layoutY="184.0" prefHeight="475.0" prefWidth="1042.0" styleClass="scrollPanePet" stylesheets="@../css/view.css">
+      <ScrollPane hbarPolicy="NEVER" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="811.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
          <content>
-            <GridPane fx:id="despesasGrid" gridLinesVisible="true" prefHeight="0.0" prefWidth="0.0">
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <GridPane fx:id="despesasGrid" prefHeight="0.0" prefWidth="3.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
             </GridPane>
          </content>
       </ScrollPane>
