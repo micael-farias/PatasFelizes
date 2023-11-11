@@ -20,16 +20,16 @@ public class HomeController implements Inicializador, Resumidor{
 
  
     @Override
-    public void Inicializar(Pane contentFather) {
+    public void Inicializar(Pane contentFather, Pane blackShadow) {
         repository.adicionarAnimais();
         List<Animal> animais = repository.getAnimais();
-        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather);
+        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, blackShadow);
         animalGridView.createGrid();
     }
     
     @Override
-    public void onResume(Pane contentFather){
+    public void onResume(Pane contentFather, Pane blackShadow){
         List<Animal> animais = repository.getAnimais();
-        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather);
+        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, blackShadow);
     }
 }

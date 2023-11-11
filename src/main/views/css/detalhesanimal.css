@@ -66,3 +66,10 @@
     -fx-cursor: hand;
 }
 
+.scrollPaneProcedimentos {
+    -fx-padding: 0px;
+    -fx-hbar-policy: never;
+    -fx-font-size: 10px;
+    -fx-background: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+}

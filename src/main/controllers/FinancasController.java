@@ -26,7 +26,7 @@ public class FinancasController implements Inicializador {
     } 
 
     @Override
-    public void Inicializar(Pane contentFather) {
+    public void Inicializar(Pane contentFather, Pane blackShadow) {
         List<Animal> animais = getListaDeAnimais();
         DespesasGridView animalGridView = new DespesasGridView(despesasGrid, 1, animais, contentFather);
         animalGridView.createGrid();

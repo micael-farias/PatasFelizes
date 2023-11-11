@@ -6,6 +6,6 @@ import main.interfaces.Inicializador;
 public class EquipeController implements Inicializador {
 
     @Override
-    public void Inicializar(Pane contentFather) {
+    public void Inicializar(Pane contentFather, Pane blackShadow) {
     }
 }

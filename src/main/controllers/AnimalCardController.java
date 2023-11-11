@@ -13,7 +13,6 @@ import main.model.Animal;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.ImageCache;
-import main.utils.InicializarFormulario;
 
 public class AnimalCardController implements InicializadorComDado{
 
@@ -27,7 +26,7 @@ public class AnimalCardController implements InicializadorComDado{
     private ImageView sexoAnimal;
 
     @Override
-    public void Inicializar(Pane contentFather, Object dado) {
+    public void Inicializar(Pane contentFather, Pane blackShadow, Object dado) {
 
         Animal animal = (Animal) dado;
 
@@ -40,7 +39,7 @@ public class AnimalCardController implements InicializadorComDado{
         }
         carregarImagem(animal.getFoto());
         imagemAnimal.setOnMouseClicked(e -> {
-            App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, animal);
+            App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, animal, blackShadow);
         }); 
     }
 

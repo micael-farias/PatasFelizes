@@ -1,0 +1,18 @@
+.box {
+    -fx-background-color: #E7EDEE;
+    -fx-background-radius: 5pt;
+}
+
+.editar{
+    -fx-background-color: #00F00F;
+    -fx-background-radius: 20pt;
+}
+
+.labelData{
+    -fx-text-fill: #6E6E6E;
+    -fx-font-weight: bold;
+}
+
+.labelProcedimento{
+    -fx-text-fill: #404040;
+}
