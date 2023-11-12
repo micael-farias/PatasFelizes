@@ -50,7 +50,7 @@
                   <MenuItem mnemonicParsing="false" text="Action 2" />
                </items>
             </MenuButton>
-            <ScrollPane hbarPolicy="NEVER" layoutX="268.0" layoutY="365.0" prefHeight="153.0" prefWidth="520.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
+            <ScrollPane hbarPolicy="NEVER" layoutX="268.0" layoutY="365.0" prefHeight="153.0" prefWidth="610.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
                <content>
                   <GridPane fx:id="procedimentosGridView" prefHeight="0.0" prefWidth="3.0">
                     <rowConstraints>
@@ -68,7 +68,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <VBox alignment="CENTER" layoutX="1012.0" layoutY="17.0" prefHeight="55.0" prefWidth="50.0">
+            <VBox fx:id="adotarButton" alignment="CENTER" layoutX="1012.0" layoutY="17.0" prefHeight="55.0" prefWidth="50.0">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>

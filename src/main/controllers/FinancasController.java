@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.model.Despesa;
 
@@ -21,7 +22,7 @@ public class FinancasController implements Inicializador {
     
 
     @Override
-    public void Inicializar(Pane contentFather, Pane blackShadow) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         List<Despesa> despesas = new ArrayList<>();
         despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
         despesas.add(new Despesa("Despesa 2", 100.0, new Date()));

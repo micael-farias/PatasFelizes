@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.model.Despesa;
 import main.model.Procedimento;
@@ -47,7 +48,7 @@ public class DespesaController implements Inicializador{
     }
 
     @Override
-    public void Inicializar(Pane contentFather, Pane blackShadow) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
 
     }  
 }

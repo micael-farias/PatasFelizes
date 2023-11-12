@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.model.Voluntario;
 import static main.utils.Constantes.PATH_IMAGES;
@@ -17,7 +18,7 @@ public class EquipeController implements Inicializador {
     private GridPane membrosGrid;
     
     @Override
-    public void Inicializar(Pane contentFather, Pane blackShadow) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
           List<Voluntario> voluntarios = new ArrayList<>();
         voluntarios.add(new Voluntario("Alexandre Toledo", PATH_IMAGES +"alexandre.jpeg", "alexandre@toledo.com.br","85997654398"));
         voluntarios.add(new Voluntario("Dinah Toledo", PATH_IMAGES +"dina.jpeg", "dinah@toledo.com.br","85997654398"));

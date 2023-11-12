@@ -1,20 +1,18 @@
 package main.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import main.App;
+import main.interfaces.InicializadorBase;
 import static main.utils.Constantes.FORM_EQUIPE;
 import static main.utils.Constantes.FORM_FINANCAS;
-import main.utils.InicializarFormulario;
 
-public class BaseController implements Initializable{
+public class BaseController implements InicializadorBase{
     
     @FXML
     private Button menuButtonActive;
@@ -24,14 +22,17 @@ public class BaseController implements Initializable{
     protected Pane content;   
     @FXML
     private Pane blackShadow;
-                
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        App.getInstance().EntrarTelaInicial(content,blackShadow);
-        setActive(menuButtonPets); 
-    }    
     
-        @FXML
+    private Stage primmaryStage;
+         
+    
+    @Override
+    public void Inicializar(Stage primmaryStage) {
+        App.getInstance().EntrarTelaInicial(content, primmaryStage, blackShadow);
+        setActive(menuButtonPets);     
+    }
+   
+    @FXML
     private void menuButtonPetsExited(MouseEvent event) {
         Button button = (Button) event.getSource();
         toExitedStyle(button);
@@ -46,7 +47,7 @@ public class BaseController implements Initializable{
     @FXML
     private void menuButtonPetsClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
-        App.getInstance().EntrarTelaInicial(content, blackShadow);
+        App.getInstance().EntrarTelaInicial(content, primmaryStage, blackShadow);
         setActive(button);  
     }
 
@@ -65,7 +66,7 @@ public class BaseController implements Initializable{
     @FXML
     private void menuButtonFinancasClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
-        App.getInstance().EntrarTela(FORM_FINANCAS, content, blackShadow);
+        App.getInstance().EntrarTela(FORM_FINANCAS, content, primmaryStage, blackShadow);
         setActive(button);
     }
 
@@ -102,7 +103,7 @@ public class BaseController implements Initializable{
     @FXML
     private void menuButtonEquipeClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
-        App.getInstance().EntrarTela(FORM_EQUIPE, content, blackShadow);
+        App.getInstance().EntrarTela(FORM_EQUIPE, content, primmaryStage, blackShadow);
         setActive(button);
     }
    

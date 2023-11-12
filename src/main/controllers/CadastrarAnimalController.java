@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
 import main.interfaces.Inicializador;
-import main.interfaces.InicializadorDialog;
 import main.views.toggle.ToggleView;
 
 /**
@@ -19,7 +18,7 @@ import main.views.toggle.ToggleView;
  *
  * @author pedro
  */
-public class CadastrarAnimalController implements InicializadorDialog {
+public class CadastrarAnimalController implements Inicializador {
 
 
     @FXML
@@ -39,10 +38,9 @@ public class CadastrarAnimalController implements InicializadorDialog {
     ToggleView toogleViewCastrado;
     ToggleView toogleViewVermifugado;
     
-    private Stage stage;
     
     @Override
-    public void Inicializar(Pane contentFather, Pane blackShadow) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         
         toggleViewSexo = new ToggleView();
         toogleViewCastrado = new ToggleView();
@@ -62,16 +60,10 @@ public class CadastrarAnimalController implements InicializadorDialog {
         toogleViewVermifugado.setTextoEsquerdo("NAO");
         
         salvarAnimal.setOnMouseClicked(e->{
-            if(stage !=null){
-                stage.close();
-                App.getInstance().EntrarTelaInicial(contentFather, blackShadow);
-           }             
+     
+                App.getInstance().EntrarTelaInicial(contentFather, primmaryStage, blackShadow);
+                 
         });
     }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }    
-
     
 }

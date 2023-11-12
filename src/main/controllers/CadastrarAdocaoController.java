@@ -17,33 +17,19 @@ import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
  *
  * @author micha
  */
-public class CadastrarProcedimentoController implements Inicializador{
-    @FXML
-    private TextField dataProcedimento;
+public class CadastrarAdocaoController implements Inicializador{
 
     @FXML
-    private TextField descricaoProcedimento;
-
-    @FXML
-    private Button salvarProcedimento;
-
-    @FXML
-    private TextField tipoProcedimento;
-
-    @FXML
-    private TextField valorProcedimento;
-
-    @FXML
-    private TextField voluntárioProcedimento;
+    private Button salvarAdocao;
     
     
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-       salvarProcedimento.setOnMouseClicked(e->{
- 
+       salvarAdocao.setOnMouseClicked(e->{
                 App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES ,contentFather, primmaryStage, null, blackShadow);
-                        
+                    
         });
     }
+
     
 }

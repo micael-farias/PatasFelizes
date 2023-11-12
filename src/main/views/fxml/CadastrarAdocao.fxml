@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" stylesheets="@../css/cadastraradocao.css" prefHeight="356.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarAdocaoController">
+   <children>
+      <Button id="button" fx:id="salvarAdocao" layoutX="502.0" layoutY="293.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
+      <Button id="button" layoutX="386.0" layoutY="293.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+      <VBox layoutX="55.0" layoutY="19.0" prefHeight="122.0" prefWidth="572.0">
+         <children>
+            <Label prefHeight="32.0" prefWidth="214.0" text="Dados gerais do tutor">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="46.0" text="Tutor">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="23.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="494.0">
+                     <children>
+                        <TextField fx:id="descricaoProcedimento" prefHeight="30.0" prefWidth="491.0" stylesheets="@../css/cadastraranimal.css" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="54.0" text="Telefone">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="8.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="510.0">
+                     <children>
+                        <TextField fx:id="descricaoProcedimento1" prefHeight="30.0" prefWidth="492.0" stylesheets="@../css/cadastraranimal.css" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="55.0" layoutY="133.0" prefHeight="163.0" prefWidth="277.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="254.0" text="Dados de localização do tutor">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="29.0" text="CEP">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="41.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="205.0">
+                     <children>
+                        <TextField fx:id="descricaoProcedimento1" prefHeight="30.0" prefWidth="217.0" stylesheets="@../css/cadastraranimal.css" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="28.0" text="Rua">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="42.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="205.0">
+                     <children>
+                        <TextField fx:id="descricaoProcedimento11" prefHeight="30.0" prefWidth="218.0" stylesheets="@../css/cadastraranimal.css" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="38.0" prefWidth="289.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="47.0" text="Compl.">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="23.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="206.0">
+                     <children>
+                        <TextField fx:id="descricaoProcedimento111" prefHeight="30.0" prefWidth="226.0" stylesheets="@../css/cadastraranimal.css" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="340.0" layoutY="133.0" prefHeight="163.0" prefWidth="277.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="254.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="46.0" text="Cidade">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="12.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="218.0">
+                     <children>
+                        <TextField fx:id="descricaoProcedimento11" prefHeight="30.0" prefWidth="217.0" stylesheets="@../css/cadastraranimal.css" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <HBox prefHeight="38.0" prefWidth="191.0">
+                     <children>
+                        <Label prefHeight="45.0" prefWidth="42.0" text="Bairro">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="38.0" prefWidth="17.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="126.0">
+                           <children>
+                              <TextField fx:id="descricaoProcedimento1111" prefHeight="30.0" prefWidth="145.0" stylesheets="@../css/cadastraranimal.css" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="38.0" prefWidth="86.0">
+                     <children>
+                        <Label prefHeight="38.0" prefWidth="50.0" text="N.º">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="49.0" prefWidth="11.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="80.0">
+                           <children>
+                              <TextField fx:id="descricaoProcedimento11111" prefHeight="30.0" prefWidth="61.0" stylesheets="@../css/cadastraranimal.css" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
