@@ -78,7 +78,7 @@
                   <Label stylesheets="@../css/cadastraranimal.css" text="Adotar" />
                </children>
             </VBox>
-            <Button layoutX="674.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="removerButton" stylesheets="@../css/detalhesanimal.css" text="Remover" textFill="WHITE" />
+            <Button fx:id="removerButton" layoutX="674.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="removerButton" stylesheets="@../css/detalhesanimal.css" text="Remover" textFill="WHITE" />
             <VBox layoutX="52.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css">
                <children>
                   <ImageView fx:id="imagemAnimal" cache="true" fitHeight="230.0" fitWidth="180.0" pickOnBounds="true" smooth="false" />

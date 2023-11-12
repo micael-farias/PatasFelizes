@@ -20,4 +20,5 @@ public class Constantes {
     public static String DIALOG_CADASTRAR_PROCEDIMENTO = PATH_VIEWS_FXML + "CadastrarProcedimento.fxml";
     public static String DIALOG_CADASTRAR_ADOCAO = PATH_VIEWS_FXML + "CadastrarAdocao.fxml";
     public static String DIALOG_FILTRAR_ANIMAL = PATH_VIEWS_FXML + "FiltrarAnimal.fxml";
+    public static String DIALOG_REMOVER = PATH_VIEWS_FXML + "Remover.fxml";
 }

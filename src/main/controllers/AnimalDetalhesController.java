@@ -23,6 +23,8 @@ import main.model.Animal;
 import main.model.Procedimento;
 import static main.utils.Constantes.DIALOG_CADASTRAR_ADOCAO;
 import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
+import static main.utils.Constantes.DIALOG_REMOVER;
+import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import main.utils.ImageCache;
 import static main.utils.ToogleEnum.DIREITO;
 import static main.utils.ToogleEnum.ESQUERDO;
@@ -33,6 +35,9 @@ public class AnimalDetalhesController implements InicializadorComDado{
     
     @FXML
     private Button adicionarProcedimentoButton;
+    
+    @FXML
+    private Button removerButton;
     
     @FXML
     private TextArea descricaoAnimalTextField;
@@ -102,6 +107,10 @@ public class AnimalDetalhesController implements InicializadorComDado{
         
         adotarButton.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialog(DIALOG_CADASTRAR_ADOCAO, contentFather, primmaryStage, blackShadow);
+        });
+        
+        removerButton.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialogComOrigem(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primmaryStage, blackShadow);
         });
         
         setData(animal);

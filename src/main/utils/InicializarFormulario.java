@@ -17,6 +17,7 @@ import javafx.stage.Window;
 import main.controllers.BaseController;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
+import main.interfaces.InicializadorComOrigem;
 import main.interfaces.InicializadorMiniDialog;
 import static main.utils.Constantes.FORM_HOME;
 
@@ -103,6 +104,35 @@ public class InicializarFormulario {
         } catch(IOException e) {
         }        
     }
+    
+      public <T> void AbrirDialogComOrigem(String telaDestino, String telaOrigem, Pane contentFather, Stage primaryStage, Pane blackShadow) {   
+        try {
+
+            Stage dialog = new Stage();
+            dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(primaryStage);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(telaDestino));
+            Parent root2 = loader.load();
+            InicializadorComOrigem cam = loader.getController();                      
+            cam.Inicializar(contentFather, primaryStage, blackShadow, telaOrigem);
+
+            AnchorPane pane = CentralizarDialogo(root2, primaryStage);
+            
+            if(pane.getChildren().contains(blackShadow)){
+                pane.getChildren().remove(blackShadow);
+            }
+            
+            blackShadow.setVisible(true);
+            pane.getChildren().addAll(blackShadow, root2);
+            
+            dialogoAberto = root2;
+        } catch(IOException e) {
+        }        
+    }
+    
+    
     
     public <T> void AbrirDialogAlinhado(String tela, Pane contentFather, Parent reference, Pane blackShadow) {   
     try {
