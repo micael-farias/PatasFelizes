@@ -15,9 +15,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.model.Animal;
 import main.model.Procedimento;
+import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import main.utils.ImageCache;
 import static main.utils.ToogleEnum.DIREITO;
 import static main.utils.ToogleEnum.ESQUERDO;
@@ -26,7 +28,10 @@ import main.views.toggle.ToggleView;
 
 public class AnimalDetalhesController implements InicializadorComDado{
     
-   @FXML
+    @FXML
+    private Button adicionarProcedimentoButton;
+    
+    @FXML
     private TextArea descricaoAnimalTextField;
 
     @FXML
@@ -57,9 +62,12 @@ public class AnimalDetalhesController implements InicializadorComDado{
     ToggleView toogleViewCastrado;
     ToggleView toogleViewVermifugado;
     
+    private static Animal ultimoAnimal;
+    
     @Override
     public void Inicializar(Pane contentFather, Pane blackShadow, Object dado) {
-        Animal animal = (Animal) dado;
+        
+        Animal animal = (dado != null) ? (Animal) dado : ultimoAnimal;
         
         toggleViewSexo = new ToggleView();
         toogleViewCastrado = new ToggleView();
@@ -80,6 +88,10 @@ public class AnimalDetalhesController implements InicializadorComDado{
         
         voltarButton.setOnMouseClicked(e ->{
             App.getInstance().EntrarTelaInicial(contentFather, blackShadow);
+        });
+        
+        adicionarProcedimentoButton.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialog(DIALOG_CADASTRAR_PROCEDIMENTO, contentFather, blackShadow);
         });
         
         setData(animal);
@@ -125,13 +137,14 @@ public class AnimalDetalhesController implements InicializadorComDado{
     }
     
     public void setData(Animal animal){
+        ultimoAnimal = animal;
         carregarImagem(animal.getFoto());
         nomeAnimalTextField.setText(animal.getNome());
         idadeAnimalTextField.setText(String.valueOf(animal.getIdade()));
         descricaoAnimalTextField.setText(animal.getDescricao());
         toggleViewSexo.ativarBotao((animal.getSexo() == 'M') ? DIREITO : ESQUERDO);
         toogleViewCastrado.ativarBotao((animal.isCastrado()) ? DIREITO : ESQUERDO);
-        toogleViewVermifugado.ativarBotao((animal.isVermifugado()) ? DIREITO : ESQUERDO);    
+        toogleViewVermifugado.ativarBotao((animal.isVermifugado()) ? DIREITO : ESQUERDO);           
     }
     
 

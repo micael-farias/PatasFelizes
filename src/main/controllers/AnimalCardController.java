@@ -13,6 +13,7 @@ import main.model.Animal;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.ImageCache;
+import static main.utils.ImageLoader.CarregarImagem;
 
 public class AnimalCardController implements InicializadorComDado{
 
@@ -37,35 +38,15 @@ public class AnimalCardController implements InicializadorComDado{
         }else{
             sexoAnimal.setImage(new Image(PATH_IMAGES + "femea.png"));
         }
-        carregarImagem(animal.getFoto());
+        
+        Rectangle clip = new Rectangle(180, 200);
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        CarregarImagem(imagemAnimal, animal.getFoto(), clip);
         imagemAnimal.setOnMouseClicked(e -> {
             App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, animal, blackShadow);
         }); 
     }
 
-     public void carregarImagem(String foto){
-        Task<Image> loadImageTask = new Task<Image>() {
-            @Override
-            protected Image call() throws Exception {
-                return ImageCache.loadImage(foto);
-            }
-        };
-
-        loadImageTask.setOnSucceeded(event -> {
-            Image loadedImage = loadImageTask.getValue();
-            imagemAnimal.setImage(loadedImage);
-
-            Rectangle clip = new Rectangle(180, 200);
-            clip.setArcWidth(20);
-            clip.setArcHeight(20);
-            imagemAnimal.setClip(clip);
-        });
-
-        loadImageTask.setOnFailed(event -> {
-           //TODO: COLOCAR UMA IMAGEM PADRÃO
-        });
-
-        new Thread(loadImageTask).start();
-    }
 
 }
