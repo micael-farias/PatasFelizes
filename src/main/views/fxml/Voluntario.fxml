@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="voluntarioLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.VoluntarioController">
+   <children>
+      <HBox fx:id="layoutVoluntario" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/procedimento.css">
+         <children>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="50.0">
+               <children>
+                  <ImageView fx:id="fotoVoluntario" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/pedro.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label fx:id="nomeVoluntario" alignment="CENTER" prefHeight="44.0" prefWidth="229.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Dinah Totedo Alves">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Label>
+            <Label fx:id="emailVoluntario" alignment="CENTER" prefHeight="44.0" prefWidth="271.0" styleClass="labelVoluntario" stylesheets="@../css/procedimento.css" text="dinah@toledo.com.br">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label fx:id="telefoneVoluntario" alignment="CENTER" prefHeight="44.0" prefWidth="183.0" styleClass="labelVoluntario" stylesheets="@../css/procedimento.css" text="(85) 99999-9999">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+               <children>
+                  <ImageView fx:id="editarVoluntario" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/editar-branco.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+               <children>
+                  <ImageView fx:id="excluirVoluntario" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/remover-branco.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

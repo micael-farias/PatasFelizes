@@ -30,7 +30,7 @@
             <Label layoutX="53.0" layoutY="410.0" stylesheets="@../css/cadastraranimal.css" text="Vermifugado" />
             <Label layoutX="53.0" layoutY="463.0" stylesheets="@../css/cadastraranimal.css" text="Status" />
             <Label layoutX="266.0" layoutY="294.0" stylesheets="@../css/cadastraranimal.css" text="Vacinas e consultas" />
-            <Button id="button" layoutX="266.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="33.0" stylesheets="@../css/detalhesanimal.css">
+            <Button id="button" fx:id="adicionarProcedimentoButton" layoutX="266.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="33.0" stylesheets="@../css/detalhesanimal.css">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

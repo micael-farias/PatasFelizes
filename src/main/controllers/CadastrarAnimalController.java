@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
 import main.interfaces.Inicializador;
+import main.interfaces.InicializadorDialog;
 import main.views.toggle.ToggleView;
 
 /**
@@ -18,7 +19,7 @@ import main.views.toggle.ToggleView;
  *
  * @author pedro
  */
-public class CadastrarAnimalController implements Inicializador {
+public class CadastrarAnimalController implements InicializadorDialog {
 
 
     @FXML
@@ -64,8 +65,7 @@ public class CadastrarAnimalController implements Inicializador {
             if(stage !=null){
                 stage.close();
                 App.getInstance().EntrarTelaInicial(contentFather, blackShadow);
-           }
-              
+           }             
         });
     }
 

@@ -18,6 +18,7 @@ import main.controllers.BaseController;
 import main.controllers.CadastrarAnimalController;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
+import main.interfaces.InicializadorDialog;
 import static main.utils.Constantes.FORM_HOME;
 
 public class InicializarFormulario {
@@ -36,9 +37,7 @@ public class InicializarFormulario {
     }
     
     public void EntrarTela(String tela, Pane content, Pane blackShadow){   
-        try {
-            if(blackShadow.isVisible()) blackShadow.setVisible(false);
-           
+        try {          
             FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
             Pane menu = loader.load();
             Inicializador controlador = loader.getController();
@@ -46,14 +45,14 @@ public class InicializarFormulario {
             content.getChildren().clear();
             ObservableList<Node> children = content.getChildren();
             children.addAll(menu);    
-        } catch (IOException ex) {
+            if(blackShadow.isVisible()) blackShadow.setVisible(false);
+       } catch (IOException ex) {
             Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
         }     
     }
     
     public <T> void EntrarTela(String tela, Pane content, T dado, Pane blackShadow){   
         try {
-            if(blackShadow.isVisible()) blackShadow.setVisible(false);
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
             Pane menu = loader.load();
@@ -62,7 +61,8 @@ public class InicializarFormulario {
             content.getChildren().clear();
             ObservableList<Node> children = content.getChildren();
             children.addAll(menu);   
-        } catch (IOException ex) {
+            if(blackShadow.isVisible()) blackShadow.setVisible(false);
+       } catch (IOException ex) {
             Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
         }     
     }
@@ -72,10 +72,10 @@ public class InicializarFormulario {
             blackShadow.setVisible(true);
             Stage dialog = new Stage();
             dialog.setOnCloseRequest(event -> {  EntrarTelaInicial(contentFather, blackShadow); });
-            dialog.initStyle(StageStyle.UTILITY);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/fxml/CadastrarAnimal.fxml"));
+            dialog.initStyle(StageStyle.UNDECORATED);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
             Parent root2 = loader.load();
-            CadastrarAnimalController cam = loader.getController();
+            InicializadorDialog cam = loader.getController();
             cam.Inicializar(contentFather, blackShadow);
             cam.setStage(dialog);
             Scene scene2 = new Scene(root2);
