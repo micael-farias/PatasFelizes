@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import main.interfaces.InicializadorComDado;
 import main.model.Animal;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
@@ -27,7 +28,7 @@ public class AnimalCardController implements InicializadorComDado{
     private ImageView sexoAnimal;
 
     @Override
-    public void Inicializar(Pane contentFather, Pane blackShadow, Object dado) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object dado) {
 
         Animal animal = (Animal) dado;
 
@@ -44,7 +45,7 @@ public class AnimalCardController implements InicializadorComDado{
         clip.setArcHeight(20);
         CarregarImagem(imagemAnimal, animal.getFoto(), clip);
         imagemAnimal.setOnMouseClicked(e -> {
-            App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, animal, blackShadow);
+            App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, primmaryStage, animal, blackShadow);
         }); 
     }
 

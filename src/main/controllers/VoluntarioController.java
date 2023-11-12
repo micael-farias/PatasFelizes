@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.model.Voluntario;
 import main.model.Procedimento;
@@ -60,7 +61,7 @@ public class VoluntarioController implements Inicializador{
     }
 
     @Override
-    public void Inicializar(Pane contentFather, Pane blackShadow) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
 
     }  
 }

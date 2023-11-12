@@ -14,11 +14,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.model.Animal;
 import main.model.Procedimento;
+import static main.utils.Constantes.DIALOG_CADASTRAR_ADOCAO;
 import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import main.utils.ImageCache;
 import static main.utils.ToogleEnum.DIREITO;
@@ -57,6 +60,9 @@ public class AnimalDetalhesController implements InicializadorComDado{
     
     @FXML
     private GridPane procedimentosGridView;
+    
+    @FXML
+    private VBox adotarButton;   
 
     ToggleView toggleViewSexo;
     ToggleView toogleViewCastrado;
@@ -65,7 +71,7 @@ public class AnimalDetalhesController implements InicializadorComDado{
     private static Animal ultimoAnimal;
     
     @Override
-    public void Inicializar(Pane contentFather, Pane blackShadow, Object dado) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object dado) {
         
         Animal animal = (dado != null) ? (Animal) dado : ultimoAnimal;
         
@@ -87,11 +93,15 @@ public class AnimalDetalhesController implements InicializadorComDado{
         toogleViewVermifugado.setTextoEsquerdo("NAO");
         
         voltarButton.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaInicial(contentFather, blackShadow);
+            App.getInstance().EntrarTelaInicial(contentFather, primmaryStage, blackShadow);
         });
         
         adicionarProcedimentoButton.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialog(DIALOG_CADASTRAR_PROCEDIMENTO, contentFather, blackShadow);
+            App.getInstance().AbrirDialog(DIALOG_CADASTRAR_PROCEDIMENTO, contentFather, primmaryStage, blackShadow);
+        });
+        
+        adotarButton.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialog(DIALOG_CADASTRAR_ADOCAO, contentFather, primmaryStage, blackShadow);
         });
         
         setData(animal);
