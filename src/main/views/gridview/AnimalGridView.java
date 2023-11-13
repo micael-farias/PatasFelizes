@@ -29,7 +29,7 @@ public class AnimalGridView extends GridView<Animal> {
     }
 
     @Override
-    public Node createGridItem(Animal animal, int column, int row) {
+    public Node createGridAsyncItem(Animal animal, int column, int row) {
         var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_ANIMAL, VBox.class);
         AnimalCardController controller = fxmlLoader.getLoader().getController();
         controller.Inicializar(contentFather, primmaryStage, blackShadow, animal);              

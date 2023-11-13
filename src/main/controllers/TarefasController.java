@@ -58,7 +58,7 @@ public class TarefasController implements Inicializador {
         
         
         TarefasGridView animalGridView = new TarefasGridView(tarefasGrid, 1, despesas, contentFather);
-        animalGridView.createGrid();
+        animalGridView.createGridAsync();
     }
   
 }

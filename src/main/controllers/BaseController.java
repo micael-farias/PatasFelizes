@@ -29,6 +29,7 @@ public class BaseController implements InicializadorBase{
     
     @Override
     public void Inicializar(Stage primmaryStage) {
+        this.primmaryStage = primmaryStage;
         App.getInstance().EntrarTelaInicial(content, primmaryStage, blackShadow);
         setActive(menuButtonPets);     
     }

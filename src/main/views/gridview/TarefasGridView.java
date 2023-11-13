@@ -24,7 +24,7 @@ public class TarefasGridView extends GridView<Tarefa> {
     }
 
     @Override
-    public Node createGridItem(Tarefa tarefa, int column, int row) {
+    public Node createGridAsyncItem(Tarefa tarefa, int column, int row) {
         var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_TAREFA, VBox.class);
         TarefaController controller = fxmlLoader.getLoader().getController();
         controller.setData(row, tarefa);     

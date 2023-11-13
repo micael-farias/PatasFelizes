@@ -33,6 +33,7 @@ public class CadastrarAnimalController implements Inicializador {
     @FXML
     private HBox toogleVermifugado;
 
+   
  
     ToggleView toggleViewSexo;
     ToggleView toogleViewCastrado;
@@ -46,9 +47,9 @@ public class CadastrarAnimalController implements Inicializador {
         toogleViewCastrado = new ToggleView();
         toogleViewVermifugado = new ToggleView();
         
-        toggleViewSexo.CriarToogle(toggleSexo);
-        toogleViewCastrado.CriarToogle(toggleCastrado);
-        toogleViewVermifugado.CriarToogle(toogleVermifugado);
+        toggleViewSexo.CriarToggle(toggleSexo, null, null);
+        toogleViewCastrado.CriarToggle(toggleCastrado, null, null);
+        toogleViewVermifugado.CriarToggle(toogleVermifugado, null, null);
         
         toggleViewSexo.setImagemDireita("marte-cinza.png");
         toggleViewSexo.setImagemEsquerda("venus-cinza.png");

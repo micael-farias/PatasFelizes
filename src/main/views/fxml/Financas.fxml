@@ -9,7 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FinancasController">
@@ -17,7 +19,7 @@
         <URL value="@/main/views/css/financas.css" />
     </stylesheets>
    <children>
-      <Button layoutX="64.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #C2D5FA;" text="Nova despesa" textFill="#515151">
+      <Button fx:id="novaDespesaButton" layoutX="64.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #C2D5FA;" text="Nova despesa" textFill="#515151">
          <font>
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
@@ -66,24 +68,19 @@
             <Image url="@../../../assets/images/despesas.png" />
          </image>
       </ImageView>
-      <Button layoutX="540.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #F0F0F0;" styleClass="buttonReceita" stylesheets="@../css/financas.css" text="Doações" textFill="#515151">
-         <font>
-            <Font name="Noto Sans Mono Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="448.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" style="-fx-background-color: #C2D5FA;" styleClass="buttonDespesa" stylesheets="@../css/financas.css" text="Despesas" textFill="#515151">
-         <font>
-            <Font name="Noto Sans Mono Bold" size="14.0" />
-         </font>
-      </Button>
-      <ScrollPane hbarPolicy="NEVER" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="811.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
-         <content>
-            <GridPane fx:id="despesasGrid" prefHeight="0.0" prefWidth="3.0">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
+      <StackPane fx:id="stackPaneScroll" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="896.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="896.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
+               <content>
+                  <GridPane fx:id="despesasGrid" prefHeight="0.0" prefWidth="3.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
+      <HBox fx:id="toogleFinancas" layoutX="448.0" layoutY="64.0" prefHeight="32.0" prefWidth="184.0" />
    </children>
 </AnchorPane>
