@@ -18,38 +18,42 @@ import static main.utils.TelefoneFormatter.FormatarTelefone;
 
 public class VoluntarioController implements Inicializador{
 
-  @FXML
-    private ImageView editarVoluntario;
+   // @FXML
+    //private ImageView editarVoluntario;
 
-    @FXML
-    private Label emailVoluntario;
+ //   @FXML
+   // private Label emailVoluntario;
 
-    @FXML
-    private ImageView excluirVoluntario;
+    //@FXML
+    //private ImageView excluirVoluntario;
 
     @FXML
     private ImageView fotoVoluntario;
 
-    @FXML
-    private HBox layoutVoluntario;
+   // @FXML
+    //private HBox layoutVoluntario;
 
     @FXML
     private Label nomeVoluntario;
 
-    @FXML
-    private Label telefoneVoluntario;
+    //@FXML
+    //private Label telefoneVoluntario;
 
     public void setData(int posicao, Object dado) {
         Voluntario voluntario = (Voluntario) dado;
         
-         Rectangle clip = new Rectangle(35, 35);
-            clip.setArcWidth(10);
-            clip.setArcHeight(10);
+       
+        Rectangle clip = new Rectangle(180, 200);
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
 
         CarregarImagem(fotoVoluntario, voluntario.getFoto(), clip);
-
-        nomeVoluntario.setText(voluntario.getNome());
-        emailVoluntario.setText(voluntario.getEmail());       
+        String nome = voluntario.getNome();
+        if(nome.length() > 10){
+            nome = nome.substring(0,10);
+        }
+        nomeVoluntario.setText(nome);
+       /* emailVoluntario.setText(voluntario.getEmail());       
         telefoneVoluntario.setText(FormatarTelefone(voluntario.getTelefone()));
 
         
@@ -57,7 +61,7 @@ public class VoluntarioController implements Inicializador{
             layoutVoluntario.setStyle("-fx-background-color: white;");
             editarVoluntario.setImage(new Image(PATH_IMAGES +"editar-colorido.png"));
             excluirVoluntario.setImage(new Image(PATH_IMAGES + "remover-colorido.png"));
-        }           
+        }     */      
     }
 
     @Override
