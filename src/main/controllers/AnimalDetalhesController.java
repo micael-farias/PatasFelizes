@@ -84,9 +84,9 @@ public class AnimalDetalhesController implements InicializadorComDado{
         toogleViewCastrado = new ToggleView();
         toogleViewVermifugado = new ToggleView();
         
-        toggleViewSexo.CriarToogle(toggleSexo);
-        toogleViewCastrado.CriarToogle(toogleCastrado);
-        toogleViewVermifugado.CriarToogle(toogleVermifugado);
+        toggleViewSexo.CriarToggle(toggleSexo, null, null);
+        toogleViewCastrado.CriarToggle(toogleCastrado, null, null);
+        toogleViewVermifugado.CriarToggle(toogleVermifugado, null, null);
         
         toggleViewSexo.setImagemDireita("marte-cinza.png");
         toggleViewSexo.setImagemEsquerda("venus-cinza.png");
@@ -127,7 +127,7 @@ public class AnimalDetalhesController implements InicializadorComDado{
         procedimentos.add(new Procedimento("Procedimento 3", new Date()));
         
         ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(procedimentosGridView, 1, procedimentos, contentFather);
-        procedimentosGrid.createGrid();
+        procedimentosGrid.createGridAsync();
     }
     
     public void carregarImagem(String foto){

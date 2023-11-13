@@ -32,7 +32,7 @@ public class HomeController implements Inicializador, Resumidor{
         repository.adicionarAnimais();
         List<Animal> animais = repository.getAnimais();
         AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, primmaryStage,blackShadow);
-        animalGridView.createGrid();
+        animalGridView.createGridAsync();
         
         filtrarAnimaisButton.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialogAlinhado(DIALOG_FILTRAR_ANIMAL, contentFather, filtrarAnimaisButton, blackShadow);

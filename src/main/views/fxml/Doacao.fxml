@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="doacaoLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DoacaoController">
+   <children>
+      <Accordion />
+      <HBox fx:id="layoutDoacao" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/procedimento.css">
+         <children>
+            <Label fx:id="dataDoacao" alignment="CENTER" prefHeight="44.0" prefWidth="217.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font></Label>
+            <Label fx:id="nomeDoador" alignment="CENTER" prefHeight="44.0" prefWidth="211.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="Diogo Marques">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="idDoacao" alignment="CENTER" prefHeight="44.0" prefWidth="186.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="Doação 1">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <Label fx:id="valorDoacao" alignment="CENTER" prefHeight="44.0" prefWidth="183.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="R$ 18,00">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+               <children>
+                  <ImageView fx:id="editarDoacao" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/editar-branco.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+               <children>
+                  <ImageView fx:id="excluirDoacao" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/remover-branco.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

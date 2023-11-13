@@ -40,6 +40,6 @@ public class EquipeController implements Inicializador {
         voluntarios.add(new Voluntario("Wania Kelly", PATH_IMAGES+"wania.png", "wania@patasfelizes.com.br","85997654398"));
         
         EquipeGridView animalGridView = new EquipeGridView(membrosGrid, 1, voluntarios, contentFather);
-        animalGridView.createGrid();
+        animalGridView.createGridAsync();
     }
 }

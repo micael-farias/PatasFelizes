@@ -23,7 +23,7 @@ public class ProcedimentoGridView extends GridView<Procedimento> {
     }
 
     @Override
-    public Node createGridItem(Procedimento procedimento, int column, int row) {
+    public Node createGridAsyncItem(Procedimento procedimento, int column, int row) {
         var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_PROCEDIMENTO, VBox.class);
         ProcedimentoController controller = fxmlLoader.getLoader().getController();
         controller.setData(row, procedimento);     

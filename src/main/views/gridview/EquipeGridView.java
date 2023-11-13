@@ -23,7 +23,7 @@ public class EquipeGridView extends GridView<Voluntario> {
     }
 
     @Override
-    public Node createGridItem(Voluntario despesa, int column, int row) {
+    public Node createGridAsyncItem(Voluntario despesa, int column, int row) {
         var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_VOLUNTARIO, VBox.class);
         VoluntarioController controller = fxmlLoader.getLoader().getController();
         controller.setData(row, despesa);     

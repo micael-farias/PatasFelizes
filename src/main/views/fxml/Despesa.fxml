@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="despesaLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
+<VBox fx:id="despesaLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
    <children>
       <HBox fx:id="layoutDespesa" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/procedimento.css">
          <children>
@@ -15,7 +15,7 @@
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Label>
-            <Label fx:id="descricaoDespesa" alignment="CENTER" prefHeight="44.0" prefWidth="326.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="Despesa">
+            <Label fx:id="descricaoDespesa" alignment="CENTER" prefHeight="44.0" prefWidth="358.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="Despesa">
                <font>
                   <Font size="16.0" />
                </font></Label>

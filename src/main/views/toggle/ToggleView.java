@@ -14,22 +14,16 @@ import main.utils.ToogleEnum;
 public class ToggleView {
     
    ToogleButtonController controlador;
+   EventHandler<MouseEvent> clickDireita;
+   EventHandler<MouseEvent> clickEsquerda;
     
-   public void CriarToogle(Pane contentFather){
-        var fxmlLoader = App.getInstance().RealizarLoadFXML(TOOGLE_BUTTON, HBox.class);
-        controlador = fxmlLoader.getLoader().getController();
-        controlador.setListeneres();
-        ObservableList<Node> children = contentFather.getChildren();
-        children.add(fxmlLoader.getResult());          
-   }
-    
-   public void onClickImagemDireita(EventHandler<MouseEvent> click){
-        controlador.onClickImagemDireita(click);
-   }
-       
-   public void onClickImagemEsquerda(EventHandler<MouseEvent> click){
-        controlador.onClickImagemEsquerda(click);
-   }     
+    public void CriarToggle(Pane contentFather, EventHandler<MouseEvent> clickDireita, EventHandler<MouseEvent> clickEsquerda) {
+       var fxmlLoader = App.getInstance().RealizarLoadFXML(TOOGLE_BUTTON, HBox.class);
+       controlador = fxmlLoader.getLoader().getController();
+       controlador.setListeneres(clickDireita, clickEsquerda);
+       ObservableList<Node> children = contentFather.getChildren();
+       children.add(fxmlLoader.getResult());
+    }    
     
    public void ativarBotao(ToogleEnum opcao){
         controlador.ativarBotao(opcao);

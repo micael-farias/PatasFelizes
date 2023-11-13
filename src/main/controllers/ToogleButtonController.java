@@ -5,10 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import main.utils.ToogleEnum;
+import main.utils.ToogleLado;
 
 public class ToogleButtonController {
 
@@ -29,19 +31,32 @@ public class ToogleButtonController {
 
     @FXML
     private Label labelEsquerda;
+    
+    public ToogleLado lado;
 
     String shadow = "-fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 0, 1, 2, 0);";
     
-    public void setListeneres(){
+    public void setListeneres(EventHandler<MouseEvent> clickDireita, EventHandler<MouseEvent> clickEsquerda){
       
         direito.setOnMousePressed(e -> {
+            
+            lado = ToogleLado.DIREITO;
             direito.setStyle("-fx-background-color: #A8C4F8;" + shadow);
             esquerdo.setStyle("-fx-background-color: #FFFFFF; -fx-effect: none;");
+            if (clickDireita != null) {
+                MouseEvent event = new MouseEvent(direito, direito, MouseEvent.MOUSE_PRESSED, 0, 0, 0, 0, MouseButton.PRIMARY, 1, false, false, false, false, true, false, false, false, false, false, null);
+                clickDireita.handle(event);
+            } 
         });
 
         esquerdo.setOnMousePressed(e -> {
+            lado = ToogleLado.ESQUEDO;
             esquerdo.setStyle("-fx-background-color: #A8C4F8;"  + shadow);
             direito.setStyle("-fx-background-color: #FFFFFF; -fx-effect: none;");
+            if (clickDireita != null) {
+                MouseEvent event = new MouseEvent(esquerdo, esquerdo, MouseEvent.MOUSE_PRESSED, 0, 0, 0, 0, MouseButton.PRIMARY, 1, false, false, false, false, true, false, false, false, false, false, null);
+                clickEsquerda.handle(event);
+            } 
         });
         
     }
@@ -83,13 +98,5 @@ public class ToogleButtonController {
         labelEsquerda.setText(texto);
         imagemEsquerda.setVisible(false);
         labelEsquerda.setVisible(true);
-    }
-    
-    public void onClickImagemDireita(EventHandler<MouseEvent> click){
-        imagemDireita.setOnMouseClicked(click);
-    }
-       
-    public void onClickImagemEsquerda(EventHandler<MouseEvent> click){
-        imagemEsquerda.setOnMouseClicked(click);
-    }   
+    } 
 }
