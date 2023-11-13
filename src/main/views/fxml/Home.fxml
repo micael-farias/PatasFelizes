@@ -26,7 +26,7 @@
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
       </TextField>
-      <Button contentDisplay="TOP" layoutX="1054.0" layoutY="63.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
+      <Button fx:id="filtrarAnimaisButton" contentDisplay="TOP" layoutX="1054.0" layoutY="63.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
                <image>

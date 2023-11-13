@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" stylesheets="@../css/cadastraradocao.css" prefHeight="356.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarAdocaoController">
+<AnchorPane id="AnchorPane" prefHeight="356.0" prefWidth="680.0" stylesheets="@../css/cadastraradocao.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarAdocaoController">
    <children>
       <Button id="button" fx:id="salvarAdocao" layoutX="502.0" layoutY="293.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
       <Button id="button" layoutX="386.0" layoutY="293.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />

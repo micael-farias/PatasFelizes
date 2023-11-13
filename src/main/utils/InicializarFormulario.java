@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -12,9 +13,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import main.controllers.BaseController;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
+import main.interfaces.InicializadorComOrigem;
+import main.interfaces.InicializadorMiniDialog;
 import static main.utils.Constantes.FORM_HOME;
 
 public class InicializarFormulario {
@@ -36,7 +40,7 @@ public class InicializarFormulario {
     
     public void removerDialogoAberto(Pane blackShadow, Stage primmaryStage){    
         if(blackShadow.isVisible()) blackShadow.setVisible(false);
-        if(primmaryStage.getScene() != null && primmaryStage.getScene().getRoot() != null){
+        if(primmaryStage != null && primmaryStage.getScene() != null && primmaryStage.getScene().getRoot() != null){
             AnchorPane pane = (AnchorPane) primmaryStage.getScene().getRoot();
             if(pane.getChildren().contains(dialogoAberto)){
                 pane.getChildren().remove(dialogoAberto);
@@ -101,11 +105,88 @@ public class InicializarFormulario {
         }        
     }
     
-    public AnchorPane CentralizarDialogo(Parent root, Stage primaryStage){    
-        AnchorPane pane = (AnchorPane) primaryStage.getScene().getRoot();
-        AnchorPane.setTopAnchor(root, (pane.getHeight() - root.prefHeight(-1)) / 2);
-        AnchorPane.setLeftAnchor(root, (pane.getWidth() - root.prefWidth(-1)) / 2);
-        return pane;
+      public <T> void AbrirDialogComOrigem(String telaDestino, String telaOrigem, Pane contentFather, Stage primaryStage, Pane blackShadow) {   
+        try {
+
+            Stage dialog = new Stage();
+            dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(primaryStage);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(telaDestino));
+            Parent root2 = loader.load();
+            InicializadorComOrigem cam = loader.getController();                      
+            cam.Inicializar(contentFather, primaryStage, blackShadow, telaOrigem);
+
+            AnchorPane pane = CentralizarDialogo(root2, primaryStage);
+            
+            if(pane.getChildren().contains(blackShadow)){
+                pane.getChildren().remove(blackShadow);
+            }
+            
+            blackShadow.setVisible(true);
+            pane.getChildren().addAll(blackShadow, root2);
+            
+            dialogoAberto = root2;
+        } catch(IOException e) {
+        }        
+    }
+    
+    
+    
+    public <T> void AbrirDialogAlinhado(String tela, Pane contentFather, Parent reference, Pane blackShadow) {   
+    try {
+        Stage dialog = new Stage();
+        dialog.initStyle(StageStyle.UNDECORATED);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
+        Parent root2 = loader.load();
+        Inicializador cam = loader.getController();
+        cam.Inicializar(contentFather, (Stage) contentFather.getScene().getWindow(), blackShadow);
+
+        AnchorPane pane = (AnchorPane) contentFather.getScene().getRoot();
+
+        double topOffset = reference.getBoundsInParent().getMaxY();
+        double leftOffset = reference.getBoundsInParent().getMaxX()-calcularDistanciaDireita(reference);
+
+        AnchorPane.setTopAnchor(root2, topOffset);
+        AnchorPane.setLeftAnchor(root2, leftOffset);
+
+        pane.getChildren().addAll(root2);
+
+        // Configurar a posição do dialog
+        dialog.setY(contentFather.getScene().getWindow().getY() + topOffset);
+        dialog.setX(contentFather.getScene().getWindow().getX() + leftOffset);
+        
+        dialogoAberto = root2;
+    } catch(IOException e) {
+        e.printStackTrace();
+    }        
+}
+     public  double calcularDistanciaDireita(Node node) {
+        // Obtém a Scene associada à Node
+        Window janela = node.getScene().getWindow();
+
+        // Obtém as coordenadas locais da Node
+        Bounds boundsInLocal = node.getBoundsInLocal();
+
+        // Converte as coordenadas locais para as coordenadas da tela
+        Bounds boundsInScreen = node.localToScreen(boundsInLocal);
+
+        // Calcula a distância da extremidade direita da Node até a extremidade direita da janela
+        double distanciaDireita = janela.getX() + janela.getWidth() - boundsInScreen.getMaxX();
+
+        return distanciaDireita;
+    }
+    
+    public AnchorPane CentralizarDialogo(Parent root, Stage primmaryStage){    
+        if(primmaryStage != null && primmaryStage.getScene() != null && primmaryStage.getScene().getRoot() != null){
+            AnchorPane pane = (AnchorPane) primmaryStage.getScene().getRoot();
+            AnchorPane.setTopAnchor(root, (pane.getHeight() - root.prefHeight(-1)) / 2);
+            AnchorPane.setLeftAnchor(root, (pane.getWidth() - root.prefWidth(-1)) / 2);
+            return pane;
+        }
+        return null;
     }
     
     public void EntrarTelaInicial(Pane content, Stage primmaryStage, Pane blackShadow){

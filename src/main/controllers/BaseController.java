@@ -11,6 +11,7 @@ import main.App;
 import main.interfaces.InicializadorBase;
 import static main.utils.Constantes.FORM_EQUIPE;
 import static main.utils.Constantes.FORM_FINANCAS;
+import static main.utils.Constantes.FORM_TAREFAS;
 
 public class BaseController implements InicializadorBase{
     
@@ -85,6 +86,7 @@ public class BaseController implements InicializadorBase{
     @FXML
     private void menuButtonAgendaClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
+        App.getInstance().EntrarTela(FORM_TAREFAS, content, primmaryStage, blackShadow);
         setActive(button);
     }
 

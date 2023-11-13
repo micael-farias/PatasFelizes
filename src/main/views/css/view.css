@@ -36,6 +36,19 @@
     -fx-pref-height: 224;
 }
 
+
+.layoutFilter{
+    -fx-background-color: #DEE8FD;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-content-display: top;
+    -fx-font: 10pt "Noto Sans Mono Bold";
+    -fx-text-fill: #9e9e9e;
+    -fx-cursor: hand;
+    -fx-pref-width: 182;
+    -fx-pref-height: 224;
+}
+
 .buttonPet {
     -fx-background-color: #DEE8FD;
     -fx-background-radius: 10px;
