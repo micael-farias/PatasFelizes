@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.App;
@@ -20,11 +21,13 @@ public class AnimalGridView extends GridView<Animal> {
     Stage primmaryStage;
     Pane blackShadow;
     
-    public AnimalGridView(GridPane animaisGrid, int numColumns, List<Animal> items, Pane contentFather, Stage primmaryStage, Pane blackShadow) {
+    
+    public AnimalGridView(GridPane animaisGrid, int numColumns, List<Animal> items, Pane contentFather, Stage primmaryStage, Pane blackShadow, StackPane stackPaneScroll) {
         super(animaisGrid, numColumns, items);
         this.contentFather = contentFather;
         this.blackShadow = blackShadow;
         this.primmaryStage = primmaryStage;
+        set(stackPaneScroll);
         setInsets(new Insets(10));
     }
 

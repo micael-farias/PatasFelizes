@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.EquipeController">
@@ -16,17 +17,12 @@
         <URL value="@/main/views/css/financas.css" />
     </stylesheets>
    <children>
-      <Button layoutX="64.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #C2D5FA;" text="Novo membro" textFill="#515151">
-         <font>
-            <Font name="Noto Sans Mono Bold" size="14.0" />
-         </font>
-      </Button>
-      <TextField layoutX="64.0" layoutY="128.0" prefHeight="48.0" prefWidth="974.0">
+      <TextField layoutX="64.0" layoutY="64.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
       </TextField>
-      <Button contentDisplay="TOP" layoutX="1054.0" layoutY="126.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
+      <Button contentDisplay="TOP" layoutX="1054.0" layoutY="64.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
                <image>
@@ -35,14 +31,18 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane hbarPolicy="NEVER" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="811.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
-         <content>
-            <GridPane fx:id="membrosGrid" prefHeight="0.0" prefWidth="3.0">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
+      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1038.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="578.0" prefWidth="1038.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
+               <content>
+                  <GridPane fx:id="membrosGrid" prefHeight="0.0" prefWidth="3.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

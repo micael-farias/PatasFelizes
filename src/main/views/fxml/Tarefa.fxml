@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="tarefaLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="887.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.TarefaController">
+<VBox fx:id="tarefaLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.TarefaController">
    <children>
       <HBox fx:id="layoutTarefa" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="886.0" styleClass="box" stylesheets="@../css/procedimento.css">
          <children>
@@ -25,16 +25,16 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="descricaoTarefa" alignment="CENTER" prefHeight="44.0" prefWidth="212.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Alimentação">
+            <Label fx:id="descricaoTarefa" alignment="CENTER" prefHeight="44.0" prefWidth="237.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Alimentação">
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Label fx:id="nomeAnimal" alignment="CENTER" prefHeight="44.0" prefWidth="166.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Nazaré">
+            <Label fx:id="nomeAnimal" alignment="CENTER" prefHeight="44.0" prefWidth="181.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Nazaré">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="dataTarefa" alignment="CENTER" prefHeight="44.0" prefWidth="217.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+            <Label fx:id="dataTarefa" alignment="CENTER" prefHeight="44.0" prefWidth="278.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Label>

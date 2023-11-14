@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.App;
 import main.interfaces.Inicializador;
@@ -18,6 +19,10 @@ import main.views.gridview.AnimalGridView;
 
 public class HomeController implements Inicializador, Resumidor{
     
+    
+
+    @FXML
+    private StackPane stackPaneScroll;
     
     @FXML
     private Button filtrarAnimaisButton;
@@ -31,7 +36,7 @@ public class HomeController implements Inicializador, Resumidor{
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         repository.adicionarAnimais();
         List<Animal> animais = repository.getAnimais();
-        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, primmaryStage,blackShadow);
+        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, primmaryStage,blackShadow, stackPaneScroll);
         animalGridView.createGridAsync();
         
         filtrarAnimaisButton.setOnMouseClicked(e ->{
@@ -42,6 +47,6 @@ public class HomeController implements Inicializador, Resumidor{
     @Override
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         List<Animal> animais = repository.getAnimais();
-        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, primmaryStage, blackShadow);
+        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, primmaryStage, blackShadow, stackPaneScroll);
     }
 }

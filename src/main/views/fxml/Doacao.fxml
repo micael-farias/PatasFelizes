@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="doacaoLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="836.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DoacaoController">
+<VBox fx:id="doacaoLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DoacaoController">
    <children>
       <Accordion />
       <HBox fx:id="layoutDoacao" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/procedimento.css">
          <children>
-            <Label fx:id="dataDoacao" alignment="CENTER" prefHeight="44.0" prefWidth="217.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+            <Label fx:id="dataDoacao" alignment="CENTER" prefHeight="44.0" prefWidth="283.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Label>
-            <Label fx:id="nomeDoador" alignment="CENTER" prefHeight="44.0" prefWidth="211.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="Diogo Marques">
+            <Label fx:id="nomeDoador" alignment="CENTER" prefHeight="44.0" prefWidth="231.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="Diogo Marques">
                <font>
                   <Font size="16.0" />
                </font>

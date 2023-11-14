@@ -2,36 +2,21 @@ package main.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.model.Voluntario;
-import main.model.Procedimento;
-import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateToString.DataParaString;
 import static main.utils.ImageLoader.CarregarImagem;
-import static main.utils.TelefoneFormatter.FormatarTelefone;
 
 public class VoluntarioController implements Inicializador{
-
-  @FXML
-    private ImageView editarVoluntario;
-
-    @FXML
-    private Label emailVoluntario;
-
-    @FXML
-    private ImageView excluirVoluntario;
 
     @FXML
     private ImageView fotoVoluntario;
 
-    @FXML
-    private HBox layoutVoluntario;
+   // @FXML
+    //private HBox layoutVoluntario;
 
     @FXML
     private Label nomeVoluntario;
@@ -42,14 +27,20 @@ public class VoluntarioController implements Inicializador{
     public void setData(int posicao, Object dado) {
         Voluntario voluntario = (Voluntario) dado;
         
-         Rectangle clip = new Rectangle(35, 35);
-            clip.setArcWidth(10);
-            clip.setArcHeight(10);
+       
+        Rectangle clip = new Rectangle(170, 170);
+        clip.setArcWidth(180);
+        clip.setArcHeight(180);
 
         CarregarImagem(fotoVoluntario, voluntario.getFoto(), clip);
-
-        nomeVoluntario.setText(voluntario.getNome());
-        emailVoluntario.setText(voluntario.getEmail());       
+        String nome = voluntario.getNome();
+        /*if(nome.length() > 10){
+            nome = nome.substring(0,10);
+        }*/
+        nomeVoluntario.setText(nome);
+        nomeVoluntario.setStyle("-fx-font-weight: bold; -fx-font: 14pt \"Helvetica\";-fx-text-fill: #000000;");
+        telefoneVoluntario.setStyle("    -fx-font-weight: bold;   -fx-font: 10pt \"Noto Sans Mono Bold\"; -fx-text-fill: #888888;");
+       /* emailVoluntario.setText(voluntario.getEmail());       
         telefoneVoluntario.setText(FormatarTelefone(voluntario.getTelefone()));
 
         
@@ -57,7 +48,7 @@ public class VoluntarioController implements Inicializador{
             layoutVoluntario.setStyle("-fx-background-color: white;");
             editarVoluntario.setImage(new Image(PATH_IMAGES +"editar-colorido.png"));
             excluirVoluntario.setImage(new Image(PATH_IMAGES + "remover-colorido.png"));
-        }           
+        }     */      
     }
 
     @Override
