@@ -68,9 +68,9 @@
             <Image url="@../../../assets/images/despesas.png" />
          </image>
       </ImageView>
-      <StackPane fx:id="stackPaneScroll" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="896.0">
+      <StackPane fx:id="stackPaneScroll" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="1038.0">
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="896.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="1038.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
                <content>
                   <GridPane fx:id="despesasGrid" prefHeight="0.0" prefWidth="3.0">
                      <rowConstraints>

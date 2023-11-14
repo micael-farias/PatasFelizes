@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.model.Animal;
@@ -24,7 +26,8 @@ public class TarefasController implements Inicializador {
     @FXML
     private GridPane tarefasGrid;
     
-    
+    @FXML
+    private StackPane stackPaneScroll;
 
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
@@ -57,7 +60,7 @@ public class TarefasController implements Inicializador {
             
         
         
-        TarefasGridView animalGridView = new TarefasGridView(tarefasGrid, 1, despesas, contentFather);
+        TarefasGridView animalGridView = new TarefasGridView(tarefasGrid, 1, despesas, contentFather, stackPaneScroll);
         animalGridView.createGridAsync();
     }
   

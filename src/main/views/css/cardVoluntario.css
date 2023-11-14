@@ -1,0 +1,23 @@
+
+.layoutPet {
+    -fx-background-color: #DEE8FD;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-cursor: hand;
+}
+.labeNomeVoluntario {
+    -fx-font-weight: bold;
+    -fx-font: 16pt "Helvetica";
+    -fx-text-fill: #000000;}
+
+.labelTelefoneVoluntario {
+    -fx-font-weight: bold;   -fx-font: 10pt "Noto Sans Mono Bold"; -fx-text-fill: #888888;
+}
+
+.layoutInformacoes{
+    -fx-background-color: #D1D6E0;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10px;
+    -fx-cursor: hand;
+}

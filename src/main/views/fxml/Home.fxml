@@ -8,19 +8,24 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="content" prefHeight="768.0" prefWidth="1166.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.HomeController">
    <children>
-      <ScrollPane hbarPolicy="NEVER" layoutX="64.0" layoutY="134.0" prefHeight="579.0" prefWidth="1038.0" styleClass="scrollPanePet" stylesheets="@../css/view.css" vbarPolicy="ALWAYS">
-         <content>
-            <GridPane fx:id="animaisGrid" prefHeight="206.0" prefWidth="1028.0">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
+      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1038.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="579.0" prefWidth="1038.0" styleClass="scrollPanePet" stylesheets="@../css/view.css" vbarPolicy="ALWAYS">
+               <content>
+                  <GridPane fx:id="animaisGrid" prefHeight="206.0" prefWidth="1028.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
       <TextField layoutX="64.0" layoutY="64.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />

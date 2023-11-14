@@ -5,12 +5,14 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import main.App;
 import main.controllers.AdicionarAnimalController;
 import main.controllers.VoluntarioController;
 import main.model.Voluntario;
 import static main.utils.Constantes.CARD_ADICIONAR_ANIMAL;
+import static main.utils.Constantes.CARD_ADICIONAR_VOLUNTARIO;
 import static main.utils.Constantes.CARD_VOLUNTARIO;
 
 
@@ -18,9 +20,10 @@ public class EquipeGridView extends GridView<Voluntario> {
     
     Pane contentFather;
             
-    public EquipeGridView(GridPane animaisGrid, int numColumns, List<Voluntario> items, Pane contentFather) {
+    public EquipeGridView(GridPane animaisGrid, int numColumns, List<Voluntario> items, Pane contentFather, StackPane stackPaneScroll) {
         super(animaisGrid, numColumns, items);
         this.contentFather = contentFather;
+        set(stackPaneScroll);
         setInsets(new Insets(10));
     }
 
@@ -34,7 +37,7 @@ public class EquipeGridView extends GridView<Voluntario> {
     
      @Override
     public Node itemInicial() {
-        var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_ADICIONAR_ANIMAL, VBox.class);    
+        var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_ADICIONAR_VOLUNTARIO, VBox.class);    
         AdicionarAnimalController controller = fxmlLoader.getLoader().getController();
         //controller.setOnClick(contentFather, primmaryStage, blackShadow);              
         return fxmlLoader.getResult();

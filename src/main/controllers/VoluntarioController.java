@@ -2,30 +2,15 @@ package main.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.model.Voluntario;
-import main.model.Procedimento;
-import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateToString.DataParaString;
 import static main.utils.ImageLoader.CarregarImagem;
-import static main.utils.TelefoneFormatter.FormatarTelefone;
 
 public class VoluntarioController implements Inicializador{
-
-   // @FXML
-    //private ImageView editarVoluntario;
-
- //   @FXML
-   // private Label emailVoluntario;
-
-    //@FXML
-    //private ImageView excluirVoluntario;
 
     @FXML
     private ImageView fotoVoluntario;
@@ -36,23 +21,25 @@ public class VoluntarioController implements Inicializador{
     @FXML
     private Label nomeVoluntario;
 
-    //@FXML
-    //private Label telefoneVoluntario;
+    @FXML
+    private Label telefoneVoluntario;
 
     public void setData(int posicao, Object dado) {
         Voluntario voluntario = (Voluntario) dado;
         
        
-        Rectangle clip = new Rectangle(180, 200);
-        clip.setArcWidth(20);
-        clip.setArcHeight(20);
+        Rectangle clip = new Rectangle(170, 170);
+        clip.setArcWidth(180);
+        clip.setArcHeight(180);
 
         CarregarImagem(fotoVoluntario, voluntario.getFoto(), clip);
         String nome = voluntario.getNome();
-        if(nome.length() > 10){
+        /*if(nome.length() > 10){
             nome = nome.substring(0,10);
-        }
+        }*/
         nomeVoluntario.setText(nome);
+        nomeVoluntario.setStyle("-fx-font-weight: bold; -fx-font: 14pt \"Helvetica\";-fx-text-fill: #000000;");
+        telefoneVoluntario.setStyle("    -fx-font-weight: bold;   -fx-font: 10pt \"Noto Sans Mono Bold\"; -fx-text-fill: #888888;");
        /* emailVoluntario.setText(voluntario.getEmail());       
         telefoneVoluntario.setText(FormatarTelefone(voluntario.getTelefone()));
 

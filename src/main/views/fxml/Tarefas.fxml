@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.TarefasController">
@@ -35,14 +36,18 @@
             </ImageView>
          </graphic>
       </Button>
-      <ScrollPane hbarPolicy="NEVER" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="962.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
-         <content>
-            <GridPane fx:id="tarefasGrid" prefHeight="0.0" prefWidth="3.0">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
+      <StackPane fx:id="stackPaneScroll" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="1038.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="1038.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
+               <content>
+                  <GridPane fx:id="tarefasGrid" prefHeight="0.0" prefWidth="3.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
