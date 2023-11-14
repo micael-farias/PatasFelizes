@@ -1,0 +1,120 @@
+######## 1. |- A|(A&B)->A
+1. {	A|(A&B)		hip
+2.	{	A	hip
+3.		A	copie 2
+	}
+4.	{	A&B	hip
+5.		A	&e 4
+	}
+6.	A		|e 1, 2-3, 4-5		// 2. olhar para A|(A&B) e perceber que A deve ser a eliminação da disjunção e abrir os dois escopos
+   }
+7. A|(A&B)->A		->i 1-6			// 1. introdução da implicação (hipotese com antecedente e para chegar no consequente)
+
+
+
+######## 2. |- A&(A|B)->A
+1. {	A&(A|B)		hip
+2. 	A		&e 1			// 2. a eliminação da conjunção chega em A e prova a implicação
+   }
+3. A&(A|B)->A		->i 1-2			// 1. introdução da implicação
+
+
+
+######## 3. (A->(B->C))->(B->(A->C))
+1. {	A->(B->C)		hip
+2. 	{	B		hip
+3.		{	A	hip
+4.			B->C	->e 1,3		// 1. a eliminação da implicação necessita das fórmulas A->(B->C) e A >>>> para que chegue em B->C
+5.			C	->e 2,4		// 2. C devido a eliminação da implicação com as fórmulas B e B->C
+		}
+6. 		A->C		->i 3-5
+	}
+7.	B->(A->C)		->i 2-6
+   }
+8. (A->(B->C))->(B->(A->C))	->i 1-7
+
+
+
+######## 4. |- (A->(A->B))->(A->B)
+1. {	A->(A->B)		hip
+2.	{	A		hip
+3.		A->B		->e 2,1
+4. 		B		->e 3,2	
+	}
+5.	A->B			->i 2-4
+   }
+6. (A->(A->B))->(A->B)		->i 1-5
+
+
+
+######## 5. |- (~A->B)->((~A->~B)->A)
+1. {	~A->B			hip
+2.	{	~A->~B		hip
+3.		{	~A	hip
+4.			B	->e 1,3
+5.			~B	->e 2,3
+6.			@	~e 4,5
+		}
+7. 		A		raa 3-6
+	}
+8. 	(~A->~B)->A		->i 2-7
+   }
+9. (~A->B)->((~A->~B)->A)	->i 1-8
+
+
+
+######## |- ((A->B)->A)->A
+
+1. {	(A->B)->A		hip
+2.	{	~A		hip
+3.		{	A	hip
+4.			@	~e 2,3
+5.			B	@4			
+		}
+6. 		A->B		->i 3-5	
+7. 		A		->e 6,5
+8.		@		~e 2,7
+	}
+9. 	A			raa 2-8
+   }
+10. ((A->B)->A)->A 		->i 1-9
+
+
+
+######## A->B |- ~(A&~B)
+1. A->B			pre
+2. {	A&~B		hip			// 2. supor o contrário da fórmula para chegar a uma contradição (objetivo: demonstrar a contradição)
+3. 	A		&e 2			// 4. eliminar a conjunção da linha 2
+4.	B		->e 1,3			// 5. eliminação da implicação entre as linhas 1,2
+5.	~B		&e 2			// 6. eliminar a conjunção da linha 2
+6. 	@		~e 4,5			// 3. eliminação da negação de 4,5 (contradição B e ~B)	
+   }
+7. ~(A&~B)		~i 2-6			// 1. introdução da negação (declarar uma hipótese para provar uma contradição)
+
+######## A&B |- ~(~A|~B)
+1. A&B			pre
+2. {	~A|~B		hip
+3. 	{	~A	hip
+4.		~A	copie 3
+	}
+5.	{	~B	hip
+6. 		B	&e 1
+7.		@	~e 5,6			// 4. eliminação da negação de 5,6 (contradição B e ~B)	
+8.		~A	@e 7			// 5. aparir da contradição posso considerar qualquer fórmula 
+	}
+9.	~A		|e 2, 3-4, 5-8		// 3. chegar em ~A com a eliminação da disjunção da linha 2, abrindo dois escopos para provar ~A ao final
+10.	A		&e 1			// 2. conseguir um ~A para provar uma contradição com A da eliminação da introdução 
+11. 	@		~e 9,10
+   }
+12. ~(~A|~B)		~i 2-11			// 1. introdução da negação (declarar uma hipótese para provar uma contradição)
+
+######## ~(A&~B) |- A->B
+1. ~(A&~B)		pre
+2. {	A		hip
+3. 	{	~B	hip
+4.		A&~B	&i 3,2
+5.		@	~e 1,4
+	}
+6.	B		raa 3-5			//
+   }
+7. A->B			->i 2-6
