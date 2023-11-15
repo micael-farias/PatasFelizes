@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="adicionarPet" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="301.0" style="-fx-background-color: #FFFFFF;" styleClass="layoutPet" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AdicionarAnimalController">
+<VBox fx:id="cadastrarVoluntario" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="301.0" style="-fx-background-color: #FFFFFF;" styleClass="layoutPet" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AdicionarVoluntarioController">
    <children>
       <ImageView fitHeight="87.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
          <image>
