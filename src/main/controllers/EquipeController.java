@@ -9,43 +9,40 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.interfaces.Inicializador;
+import main.interfaces.Resumidor;
 import main.model.Voluntario;
+import main.services.VoluntarioService;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.views.gridview.EquipeGridView;
 
-public class EquipeController implements Inicializador {
+public class EquipeController implements Inicializador, Resumidor {
 
     @FXML
     private GridPane membrosGrid;
     
     @FXML
     private StackPane stackPaneScroll;
+    
+    private VoluntarioService voluntarioService;
+    
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-          List<Voluntario> voluntarios = new ArrayList<>();
-          
-        voluntarios.add(new Voluntario("Alexandre Toledo", PATH_IMAGES +"alexandre.jpeg", "alexandre@toledo.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Dinah Toledo", PATH_IMAGES +"dina.jpeg", "dinah@toledo.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Emanoela Maciel", PATH_IMAGES + "manu.jpeg", "manu@patasfelises.com.br", "88997652491"));
-        voluntarios.add(new Voluntario("Graziella Rodrigues", PATH_IMAGES+"grazi.jpg", "grazi@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Michael Farias", PATH_IMAGES+"michael.png", "michael@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Pedro Emanuel", PATH_IMAGES+"pedro.png", "pedro@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Wania Kelly", PATH_IMAGES+"wania.png", "wania@patasfelizes.com.br","85997654398"));
-         voluntarios.add(new Voluntario("Alexandre Toledo", PATH_IMAGES +"alexandre.jpeg", "alexandre@toledo.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Dinah Toledo", PATH_IMAGES +"dina.jpeg", "dinah@toledo.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Graziella Rodrigues", PATH_IMAGES+"grazi.jpg", "grazi@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Michael Farias", PATH_IMAGES+"michael.png", "michael@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Pedro Emanuel", PATH_IMAGES+"pedro.png", "pedro@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Wania Kelly", PATH_IMAGES+"wania.png", "wania@patasfelizes.com.br","85997654398"));
-         voluntarios.add(new Voluntario("Alexandre Toledo", PATH_IMAGES +"alexandre.jpeg", "alexandre@toledo.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Dinah Toledo", PATH_IMAGES +"dina.jpeg", "dinah@toledo.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Graziella Rodrigues", PATH_IMAGES+"grazi.jpg", "grazi@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Michael Farias", PATH_IMAGES+"michael.png", "michael@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Pedro Emanuel", PATH_IMAGES+"pedro.png", "pedro@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Wania Kelly", PATH_IMAGES+"wania.png", "wania@patasfelizes.com.br","85997654398"));
-        
-        
+        initialize();
+        criarGridVoluntarios(contentFather, primmaryStage, blackShadow);
+    }
+
+    @Override
+    public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
+
+    }
+    
+    public void initialize(){
+        voluntarioService = new VoluntarioService();
+    }
+    
+    public void criarGridVoluntarios(Pane contentFather, Stage primmaryStage, Pane blackShadow){
+        List<Voluntario> voluntarios = voluntarioService.ObterVoluntarios();         
         EquipeGridView animalGridView = new EquipeGridView(membrosGrid, 3, voluntarios, contentFather, stackPaneScroll, primmaryStage, blackShadow);
-        animalGridView.createGridAsync();
+        animalGridView.createGridAsync();   
     }
 }

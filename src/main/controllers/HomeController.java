@@ -29,24 +29,34 @@ public class HomeController implements Inicializador, Resumidor{
     
     @FXML
     private GridPane animaisGrid;
-    AnimalRepository repository = new AnimalRepository();
-
+    
+    private AnimalRepository repository;
  
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-        repository.adicionarAnimais();
-        List<Animal> animais = repository.getAnimais();
-        AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, primmaryStage,blackShadow, stackPaneScroll);
-        animalGridView.createGridAsync();
-        
+        initialize();
+        criarGridAnimais(contentFather, primmaryStage, blackShadow);
+        setListeners(contentFather, blackShadow);
+    }
+    
+    @Override
+    public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados){
+        criarGridAnimais(contentFather, primmaryStage, blackShadow);
+    }
+    
+    public void initialize(){
+        this.repository = new AnimalRepository();
+    }
+    
+    public void setListeners(Pane contentFather, Pane blackShadow){
         filtrarAnimaisButton.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialogAlinhado(DIALOG_FILTRAR_ANIMAL, contentFather, filtrarAnimaisButton, blackShadow);
         });
     }
     
-    @Override
-    public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow){
-        List<Animal> animais = repository.getAnimais();
+    public void criarGridAnimais(Pane contentFather, Stage primmaryStage, Pane blackShadow){       
+        List<Animal> animais = repository.EncontrarAnimais();
         AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 5, animais, contentFather, primmaryStage, blackShadow, stackPaneScroll);
+        animalGridView.createGridAsync();
     }
 }

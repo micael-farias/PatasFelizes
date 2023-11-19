@@ -11,7 +11,7 @@ import main.interfaces.Inicializador;
 import main.model.Despesa;
 import main.model.Procedimento;
 import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateToString.DataParaString;
+import static main.utils.DateHelper.DataParaString;
 
 public class DespesaController implements Inicializador{
 

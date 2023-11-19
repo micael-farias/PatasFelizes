@@ -6,15 +6,24 @@ import javafx.scene.image.Image;
 
 public class ImageCache {
     
-    private static final Map<String, Image> imageCache = new HashMap<>();
+    private static final Map<String, ImageData> imageCacheBytes = new HashMap<>();
 
-    public static Image loadImage(String imageUrl) {
-        if (imageCache.containsKey(imageUrl)) {
-            return imageCache.get(imageUrl);
+     public static Image loadImageByte(byte[] imagebytes, String idFoto) {
+        if (imageCacheBytes.containsKey(idFoto)) {
+            ImageData data = imageCacheBytes.get(idFoto);
+            if(data.getTamanhoEmBytes() != imagebytes.length){
+                return Load(imagebytes, idFoto);
+            }
+            return data.getImagem();
         } else {
-            Image image = new Image(imageUrl);
-            imageCache.put(imageUrl, image);
-            return image;
+            return Load(imagebytes, idFoto);
         }
+    } 
+     
+    public static Image Load(byte[] imageBytes, String idFoto){
+        Image image = ImageLoader.loadImageFromBytes(imageBytes);
+        ImageData imageData = new ImageData(image, imageBytes.length);
+        imageCacheBytes.put(idFoto, imageData);
+        return image;
     }
 }

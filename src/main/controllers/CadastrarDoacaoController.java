@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main.controllers;
 
 import javafx.fxml.FXML;
@@ -10,15 +6,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
-import main.interfaces.Inicializador;
-import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
+import main.interfaces.InicializadorComDado;
 import static main.utils.Constantes.FORM_FINANCAS;
 
-/**
- *
- * @author micha
- */
-public class CadastrarDoacaoController implements Inicializador{
+public class CadastrarDoacaoController implements InicializadorComDado{
+    
     @FXML
     private TextField dataDoacao;
 
@@ -37,14 +29,21 @@ public class CadastrarDoacaoController implements Inicializador{
     @FXML
     private TextField voluntárioDoacao;
     
+    @FXML
+    private Button cancelarCadastro;
     
     @Override
-    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-       salvarDoacao.setOnMouseClicked(e->{
- 
-                App.getInstance().EntrarTela(FORM_FINANCAS ,contentFather, primmaryStage, blackShadow);
-                        
-        });
-    }
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object dado) {
+        setListeners(contentFather, primmaryStage, blackShadow);
+    }   
     
+    public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
+        cancelarCadastro.setOnMouseClicked(e ->{
+            App.getInstance().EntrarTelaOnResume(FORM_FINANCAS, contentFather, primmaryStage, blackShadow, null);
+        });
+        
+        salvarDoacao.setOnMouseClicked(e->{
+            App.getInstance().EntrarTelaOnResume(FORM_FINANCAS ,contentFather, primmaryStage, blackShadow, null);                      
+        });       
+    }
 }

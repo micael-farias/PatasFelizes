@@ -14,7 +14,7 @@ import javafx.scene.shape.Rectangle;
 import main.model.Despesa;
 import main.model.Tarefa;
 import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateToString.DataParaString;
+import static main.utils.DateHelper.DataParaString;
 import main.utils.ImageLoader;
 import static main.utils.ImageLoader.CarregarImagem;
 
@@ -54,8 +54,8 @@ public class TarefaController {
             clip.setArcWidth(10);
             clip.setArcHeight(10);
 
-        CarregarImagem(fotoVoluntario, tarefa.getVoluntário().getFoto(), clip);
-        descricaoTarefa.setText(tarefa.getDescricaoTarefa());
+        CarregarImagem(fotoVoluntario, tarefa.getVoluntário().getFoto(), tarefa.getVoluntário().idFoto(), clip);
+        descricaoTarefa.setText(tarefa.getDescricao());
         nomeAnimal.setText(tarefa.getAnimal().getNome());
         nomeVoluntario.setText(tarefa.getVoluntário().getNome());
         dataTarefa.setText(DataParaString(tarefa.getData()));

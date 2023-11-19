@@ -4,21 +4,16 @@ import java.util.List;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import main.App;
 import main.controllers.ProcedimentoController;
 import main.model.Procedimento;
 import static main.utils.Constantes.CARD_PROCEDIMENTO;
 
-
-public class ProcedimentoGridView extends GridView<Procedimento> {
-       
-    Pane contentFather;
+public class ProcedimentoGridView extends GridView<Procedimento> {     
             
-    public ProcedimentoGridView(GridPane animaisGrid, int numColumns, List<Procedimento> items, Pane contentFather) {
+    public ProcedimentoGridView(GridPane animaisGrid, int numColumns, List<Procedimento> items) {
         super(animaisGrid, numColumns, items);
-        this.contentFather = contentFather;
         setInsets(new Insets(0,10,0,10));
     }
 

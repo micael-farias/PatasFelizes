@@ -5,26 +5,39 @@
 package main.model;
 
 import java.util.Date;
+import main.interfaces.PossuiIdFoto;
 
 /**
  *
  * @author micha
  */
-public class Tarefa {
+public class Tarefa{
+    private static int nextId = 1;
     private int Id;
     private Voluntario Voluntário;
     private Animal Animal; 
-    private String DescricaoTarefa;
+    private String Descricao;
     private Date Data;
+    private Date DataCadastro;
 
-    public Tarefa(int Id, Voluntario Voluntário, Animal Animal, String DescricaoTarefa, Date Data) {
-        this.Id = Id;
+    public Tarefa(Voluntario Voluntário, Animal Animal, String DescricaoTarefa, Date Data) {
+        this.Id = nextId++;
         this.Voluntário = Voluntário;
         this.Animal = Animal;
-        this.DescricaoTarefa = DescricaoTarefa;
+        this.Descricao = DescricaoTarefa;
         this.Data = Data;
+        this.DataCadastro = new Date();
     }
 
+    public Date getDataCadastro() {
+        return DataCadastro;
+    }     
+
+    public Tarefa(){
+        this.Id = nextId++;
+        this.DataCadastro = new Date();
+    }
+    
     public int getId() {
         return Id;
     }
@@ -49,12 +62,12 @@ public class Tarefa {
         this.Animal = Animal;
     }
 
-    public String getDescricaoTarefa() {
-        return DescricaoTarefa;
+    public String getDescricao() {
+        return Descricao;
     }
 
-    public void setDescricaoTarefa(String DescricaoTarefa) {
-        this.DescricaoTarefa = DescricaoTarefa;
+    public void setDescricao(String Descricao) {
+        this.Descricao = Descricao;
     }
 
     public Date getData() {
@@ -64,11 +77,4 @@ public class Tarefa {
     public void setData(Date Data) {
         this.Data = Data;
     }
-
-    
-  
-
-
-   
-    
 }

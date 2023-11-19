@@ -12,7 +12,7 @@ import main.interfaces.Inicializador;
 import main.model.Doacao;
 import main.model.Procedimento;
 import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateToString.DataParaString;
+import static main.utils.DateHelper.DataParaString;
 
 public class DoacaoController implements Inicializador{
 
