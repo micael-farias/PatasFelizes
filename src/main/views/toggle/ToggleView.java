@@ -23,10 +23,19 @@ public class ToggleView {
        controlador.setListeneres(clickDireita, clickEsquerda);
        ObservableList<Node> children = contentFather.getChildren();
        children.add(fxmlLoader.getResult());
+       ativarBotao(ToogleEnum.DIREITO);
     }    
     
    public void ativarBotao(ToogleEnum opcao){
         controlador.ativarBotao(opcao);
+   }
+   
+   public void ativarToogle(){
+       controlador.ativarToogle();
+   }
+   
+   public void desativarToogle(){
+       controlador.desativarToogle();
    }
    
    public void setImagemDireita(String imagem){
@@ -43,5 +52,9 @@ public class ToggleView {
     
    public void setTextoEsquerdo(String texto){
         controlador.setTextoEsquerdo(texto);
+   }
+   
+   public ToogleEnum getSelectedItem(){
+       return controlador.getSelectedItem(); 
    }
 }

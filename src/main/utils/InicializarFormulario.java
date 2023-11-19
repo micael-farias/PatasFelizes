@@ -1,6 +1,7 @@
 package main.utils;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
@@ -18,12 +19,15 @@ import main.controllers.BaseController;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.interfaces.InicializadorComOrigem;
+import main.interfaces.InicializadorComOrigemEDado;
 import main.interfaces.InicializadorMiniDialog;
+import main.interfaces.Resumidor;
 import static main.utils.Constantes.FORM_HOME;
 
 public class InicializarFormulario {
     
     private Parent dialogoAberto;
+    private static HashMap<String,FXMLLoadResult> mapping = new HashMap<>();
     
     public <T> FXMLLoadResult<T> RealizarLoadFXML(String arquivo, Class<T> type) {
         try {
@@ -57,7 +61,8 @@ public class InicializarFormulario {
             controlador.Inicializar(content, primmaryStage, blackShadow);
             content.getChildren().clear();
             ObservableList<Node> children = content.getChildren();
-            children.addAll(menu);    
+            children.addAll(menu); 
+            mapping.put(tela, new FXMLLoadResult<Pane>(menu,loader));
        } catch (IOException ex) {
             Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
         }     
@@ -72,10 +77,21 @@ public class InicializarFormulario {
             controlador.Inicializar(content,primmaryStage, blackShadow, dado);
             content.getChildren().clear();
             ObservableList<Node> children = content.getChildren();
-            children.addAll(menu);   
+            children.addAll(menu);
+            mapping.put(tela, new FXMLLoadResult<Pane>(menu,loader));
        } catch (IOException ex) {
             Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
         }     
+    }
+    
+    public <T> void EntrarTelaOnResume(String tela, Pane content, Stage primmaryStage, Pane blackShadow, T[] dados){   
+        removerDialogoAberto(blackShadow, primmaryStage);
+        FXMLLoadResult<Pane> result = mapping.get(tela);
+        Resumidor<T> controlador = result.getLoader().getController();
+        controlador.onResume(content,primmaryStage, blackShadow, dados);
+        content.getChildren().clear();
+        ObservableList<Node> children = content.getChildren();
+        children.addAll(result.getResult());     
     }
     
     public <T> void AbrirDialog(String tela, Pane contentFather, Stage primaryStage, Pane blackShadow) {   
@@ -102,6 +118,35 @@ public class InicializarFormulario {
             
             dialogoAberto = root2;
         } catch(IOException e) {
+        }        
+    }
+    
+    public <T> void AbrirDialogComDado(String tela, Pane contentFather, Stage primaryStage, Pane blackShadow, T dado) {   
+        try {
+
+            Stage dialog = new Stage();
+            dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(primaryStage);
+
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
+            Parent root2 = loader.load();
+            InicializadorComDado cam = loader.getController();
+            cam.Inicializar(contentFather, primaryStage, blackShadow, dado);
+
+            AnchorPane pane = CentralizarDialogo(root2, primaryStage);
+            
+            if(pane.getChildren().contains(blackShadow)){
+                pane.getChildren().remove(blackShadow);
+            }
+            
+            blackShadow.setVisible(true);
+            pane.getChildren().addAll(blackShadow, root2);
+            
+            dialogoAberto = root2;
+        } catch(IOException e) {
+            e.printStackTrace();
         }        
     }
     
@@ -132,7 +177,31 @@ public class InicializarFormulario {
         }        
     }
     
-    
+    public <T> void AbrirDialogComOrigemEDado(String telaDestino, String telaOrigem, Pane contentFather, Stage primaryStage, Pane blackShadow, T[] dado) {   
+        try {
+            Stage dialog = new Stage();
+            dialog.initStyle(StageStyle.UNDECORATED);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(primaryStage);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(telaDestino));
+            Parent root2 = loader.load();
+            InicializadorComOrigemEDado cam = loader.getController();                      
+            cam.Inicializar(contentFather, primaryStage, blackShadow, telaOrigem, dado);
+
+            AnchorPane pane = CentralizarDialogo(root2, primaryStage);
+            
+            if(pane.getChildren().contains(blackShadow)){
+                pane.getChildren().remove(blackShadow);
+            }
+            
+            blackShadow.setVisible(true);
+            pane.getChildren().addAll(blackShadow, root2);
+            
+            dialogoAberto = root2;
+        } catch(IOException e) {
+        }        
+    }
     
     public <T> void AbrirDialogAlinhado(String tela, Pane contentFather, Parent reference, Pane blackShadow) {   
     try {

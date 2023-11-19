@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="162.0" styleClass="card" stylesheets="@../css/toggle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.ToogleButtonController">
+<HBox fx:id="layoutCheckBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="162.0" styleClass="card" stylesheets="@../css/toggle.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.ToogleButtonController">
    <children>
       <StackPane fx:id="esquerdo" prefHeight="100.0" prefWidth="80.0" styleClass="card_esquerdo" stylesheets="@../css/toggle.css">
          <children>

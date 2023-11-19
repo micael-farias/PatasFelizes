@@ -1,13 +1,6 @@
 package main.controllers;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -17,18 +10,19 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.App;
 import main.interfaces.Inicializador;
+import main.interfaces.Resumidor;
 import main.model.Despesa;
 import main.model.Doacao;
+import main.services.DoacaoServices;
+import main.services.DespesaServices;
+import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
-import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
-import main.views.gridview.AnimalGridView;
-
+import main.utils.ToogleEnum;
 import main.views.gridview.DespesasGridView;
 import main.views.gridview.DoacoesGridView;
-import main.views.gridview.GridView;
 import main.views.toggle.ToggleView;
 
-public class FinancasController implements Inicializador {  
+public class FinancasController implements Inicializador, Resumidor {  
     
     @FXML
     private HBox toogleFinancas;
@@ -41,75 +35,54 @@ public class FinancasController implements Inicializador {
     
     @FXML
     private StackPane stackPaneScroll;
+    
+    private DespesaServices despesaServices;
+    private DoacaoServices doacaoServices;
+    private ToggleView toggleViewFinancas;
 
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-        List<Despesa> despesas = new ArrayList<>();
-        despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 3", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-         despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 3", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-         despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 3", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-         despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 3", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 3", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 1", 100.0, new Date()));
-        despesas.add(new Despesa("Despesa 2", 100.0, new Date()));
-        
-        List<Doacao> doacoes = new ArrayList<>();
-        doacoes.add(new Doacao(1, "Fulano da Silva", 100.0, new Date()));
-        doacoes.add(new Doacao(1, "Fulano da Silva", 100.0, new Date()));
-        doacoes.add(new Doacao(1, "Fulano da Silva", 100.0, new Date()));
-        doacoes.add(new Doacao(1, "Fulano da Silva", 100.0, new Date()));
-        doacoes.add(new Doacao(1, "Fulano da Silva", 100.0, new Date()));
-        doacoes.add(new Doacao(1, "Fulano da Silva", 100.0, new Date()));
-        
-        EventHandler<WorkerStateEvent> onFinish = event -> {
-            // O código a ser executado após a criação da GridPane
-            System.out.println("GridPane criada com sucesso!");
-        };
-        ToggleView toggleViewFinancas = new ToggleView();
+        initialize(contentFather);
+        initalizeViews(contentFather);
+        setListeners(contentFather, primmaryStage, blackShadow);      
+    }
+    public void initialize(Pane contentFather){
+        despesaServices = new DespesaServices();
+        doacaoServices = new DoacaoServices();
+        criarDespesas(contentFather);
+    }
+    
+    public void initalizeViews(Pane contentFather){
+        toggleViewFinancas = new ToggleView();
         toggleViewFinancas.CriarToggle(toogleFinancas,
-            e -> {
-                System.out.println("Chamado 1");
-                DespesasGridView despesasGridView = new DespesasGridView(despesasGrid, 1, despesas, contentFather, stackPaneScroll);
-                despesasGridView.createGridAsync();
-           },
-            e -> {
-                System.out.println("Chamado 2");
-                DoacoesGridView doacoesGridView = new DoacoesGridView(despesasGrid, 1, doacoes, contentFather, stackPaneScroll);
-                doacoesGridView.createGridAsync();
-            }
-        );
+                e -> criarDespesas(contentFather),
+                e -> criarDoacoes(contentFather));
         
         toggleViewFinancas.setTextoDireito("Despesas");
         toggleViewFinancas.setTextoEsquerdo("Doações");
-  
-        DespesasGridView animalGridView = new DespesasGridView(despesasGrid, 1, despesas, contentFather, stackPaneScroll);
-        animalGridView.createGridAsync();
-        
-        novaDespesaButton.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialog(DIALOG_CADASTRAR_DOACAO, contentFather, primmaryStage, blackShadow);
-        });
     
-}
+    }
+    
+    public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
+        novaDespesaButton.setOnMouseClicked(e ->{
+            String dialog = (toggleViewFinancas.getSelectedItem() == ToogleEnum.DIREITO ) ? DIALOG_CADASTRAR_DESPESA : DIALOG_CADASTRAR_DOACAO;
+            App.getInstance().AbrirDialogComDado(dialog, contentFather, primmaryStage, blackShadow, null);
+        });
+    }
+    
+    public void criarDoacoes(Pane contentFather){
+        List<Doacao> doacoes = doacaoServices.ObterDoacoes();
+        DoacoesGridView doacoesGridView = new DoacoesGridView(despesasGrid, 1, doacoes, contentFather, stackPaneScroll);
+        doacoesGridView.createGridAsync();
+    }
 
+    private void criarDespesas(Pane contentFather) {
+        List<Despesa> despesas = despesaServices.ObterDespesas();
+        DespesasGridView despesasGridView = new DespesasGridView(despesasGrid, 1, despesas, contentFather, stackPaneScroll);
+        despesasGridView.createGridAsync();    
+    }
 
-
- 
+    @Override
+    public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
+    }
 }

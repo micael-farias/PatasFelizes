@@ -4,22 +4,56 @@
  */
 package main.model;
 
+import java.util.Date;
+import main.interfaces.PossuiIdFoto;
+import static main.utils.UrlToByteArrayConverter.ConvertUrlToByteArray;
+
 /**
  *
  * @author micha
  */
-public class Voluntario {
+public class Voluntario implements PossuiIdFoto{
+    private static int nextId = 1;
+    private int Id;
     private String nome;
-    private String foto;
+    private byte[] foto;
     private String email;
     private String telefone;
-
+    private Date DataCadastro;
+    
     public Voluntario(String nome, String foto, String email, String telefone) {
+        this.Id = nextId++;
         this.nome = nome;
-        this.foto = foto;
+        this.foto = ConvertUrlToByteArray(foto);
         this.email = email;
         this.telefone = telefone;
+        this.DataCadastro = new Date();
     } 
+    
+    public Voluntario(){
+        this.Id = nextId++;
+        this.DataCadastro = new Date();
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
+    
+    
+    public Date getDataCadastro() {
+        return DataCadastro;
+    }
+
+    public void setDataCadastro(Date DataCadastro) {
+        this.DataCadastro = DataCadastro;
+    }
+    
+    
     
     public String getNome() {
         return nome;
@@ -29,11 +63,11 @@ public class Voluntario {
         this.nome = nome;
     }
 
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 
@@ -53,5 +87,11 @@ public class Voluntario {
         this.telefone = telefone;
     }
     
+
+    @Override
+    public String idFoto() {
+        return "Voluntario" + getId();
+    }
+
     
 }

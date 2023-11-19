@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -22,13 +23,10 @@
             <Label layoutX="265.0" layoutY="55.0" stylesheets="@../css/cadastraranimal.css" text="Nome" />
             <TextField fx:id="nomeAnimalTextField" layoutX="265.0" layoutY="79.0" prefHeight="25.0" prefWidth="557.0" stylesheets="@../css/cadastraranimal.css" />
             <Label layoutX="265.0" layoutY="121.0" stylesheets="@../css/cadastraranimal.css" text="Sobre" />
-            <Label layoutX="837.0" layoutY="55.0" stylesheets="@../css/cadastraranimal.css" text="Idade (meses)" />
-            <TextField fx:id="idadeAnimalTextField" layoutX="837.0" layoutY="79.0" prefHeight="24.0" prefWidth="167.0" stylesheets="@../css/cadastraranimal.css" />
             <TextArea fx:id="descricaoAnimalTextField" layoutX="265.0" layoutY="151.0" prefHeight="132.0" prefWidth="740.0" stylesheets="@../css/cadastraranimal.css" text="Adicionar descrição" wrapText="true" />
             <Label layoutX="53.0" layoutY="298.0" stylesheets="@../css/cadastraranimal.css" text="Sexo" />
-            <Label layoutX="53.0" layoutY="355.0" stylesheets="@../css/cadastraranimal.css" text="Castrado" />
-            <Label layoutX="53.0" layoutY="410.0" stylesheets="@../css/cadastraranimal.css" text="Vermifugado" />
-            <Label layoutX="53.0" layoutY="463.0" stylesheets="@../css/cadastraranimal.css" text="Status" />
+            <Label layoutX="53.0" layoutY="383.0" stylesheets="@../css/cadastraranimal.css" text="Castrado" />
+            <Label layoutX="53.0" layoutY="442.0" stylesheets="@../css/cadastraranimal.css" text="Status" />
             <Label layoutX="266.0" layoutY="294.0" stylesheets="@../css/cadastraranimal.css" text="Vacinas e consultas" />
             <Button id="button" fx:id="adicionarProcedimentoButton" layoutX="266.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="33.0" stylesheets="@../css/detalhesanimal.css">
                <graphic>
@@ -39,17 +37,10 @@
                   </ImageView>
                </graphic></Button>
             <Label layoutX="304.0" layoutY="328.0" stylesheets="@../css/cadastraranimal.css" text="Adicionar" />
-            <Button id="button" layoutX="902.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
+            <Button id="button" fx:id="salvarAnimal" layoutX="902.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
             <Button id="button" layoutX="788.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
-            <HBox fx:id="toggleSexo" layoutX="53.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
-            <HBox fx:id="toogleCastrado" layoutX="52.0" layoutY="379.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
-            <HBox fx:id="toogleVermifugado" layoutX="53.0" layoutY="433.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="140.0" styleClass="card" stylesheets="@../css/toggle.css" />
-            <MenuButton id="button" layoutX="52.0" layoutY="488.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="162.0" stylesheets="@../css/detalhesanimal.css" text="Para adoção">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </MenuButton>
+            <HBox fx:id="toggleSexo" layoutX="53.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="162.0" styleClass="card" stylesheets="@../css/toggle.css" />
+            <HBox fx:id="toogleCastrado" layoutX="53.0" layoutY="407.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="162.0" styleClass="card" stylesheets="@../css/toggle.css" />
             <ScrollPane hbarPolicy="NEVER" layoutX="268.0" layoutY="365.0" prefHeight="153.0" prefWidth="740.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
                <content>
                   <GridPane fx:id="procedimentosGridView" prefHeight="0.0" prefWidth="3.0">
@@ -79,11 +70,23 @@
                </children>
             </VBox>
             <Button fx:id="removerButton" layoutX="674.0" layoutY="538.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="removerButton" stylesheets="@../css/detalhesanimal.css" text="Remover" textFill="WHITE" />
-            <VBox layoutX="52.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css">
+            <VBox fx:id="layoutImageViewAnimal" layoutX="52.0" layoutY="64.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css">
                <children>
                   <ImageView fx:id="imagemAnimal" cache="true" fitHeight="230.0" fitWidth="180.0" pickOnBounds="true" smooth="false" />
                </children>
             </VBox>
+            <Label layoutX="837.0" layoutY="54.0" stylesheets="@../css/cadastraranimal.css" text="Anos               Meses" />
+            <TextField fx:id="anosAnimalTextField" layoutX="837.0" layoutY="78.0" onKeyTyped="#handleKeyTypedAnos" prefHeight="24.0" prefWidth="80.0" stylesheets="@../css/cadastraranimal.css" />
+            <TextField fx:id="mesesAnimalTextField" layoutX="925.0" layoutY="78.0" onKeyTyped="#handleKeyTypedMeses" prefHeight="24.0" prefWidth="80.0" stylesheets="@../css/cadastraranimal.css" />
+            <MenuButton id="button" fx:id="statusAnimal" layoutX="53.0" layoutY="470.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="162.0" stylesheets="@../css/detalhesanimal.css" text="Selecione">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Para a adoção" />
+                  <MenuItem mnemonicParsing="false" text="Adotado" />
+                  <MenuItem mnemonicParsing="false" text="Desaparecido" />
+                  <MenuItem mnemonicParsing="false" text="Falecido" />
+               </items>
+            </MenuButton>
+            <CheckBox fx:id="sexoDesconhecidoCheckBox" layoutX="53.0" layoutY="357.0" mnemonicParsing="false" text="Sexo desconhecido" />
          </children>
       </Pane>
    </children>

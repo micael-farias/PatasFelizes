@@ -21,7 +21,7 @@ import main.model.Despesa;
 import main.model.Tarefa;
 import static main.utils.Constantes.FORM_HOME;
 import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateToString.DataParaString;
+import static main.utils.DateHelper.DataParaString;
 import main.utils.ImageLoader;
 import static main.utils.ImageLoader.CarregarImagem;
 

@@ -16,7 +16,7 @@ import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.model.Procedimento;
 import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateToString.DataParaString;
+import static main.utils.DateHelper.DataParaString;
 
 public class ProcedimentoController {
 
@@ -44,6 +44,7 @@ public class ProcedimentoController {
         descricaoProcedimento.setText(procedimento.getDescricao());
         dataProcedimento.setText(DataParaString(procedimento.getData()));
         dataProcedimento.setStyle("-fx-font-weight: bold;");
+       
 
         
         if(posicao % 2 == 0){

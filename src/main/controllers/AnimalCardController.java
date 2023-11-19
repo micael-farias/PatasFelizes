@@ -1,20 +1,20 @@
 package main.controllers;
 
 import main.App;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.interfaces.InicializadorComDado;
 import main.model.Animal;
+import main.model.Idade;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.PATH_IMAGES;
-import main.utils.ImageCache;
+import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
 import static main.utils.ImageLoader.CarregarImagem;
+import main.utils.Rectangles;
 
 public class AnimalCardController implements InicializadorComDado{
 
@@ -32,7 +32,10 @@ public class AnimalCardController implements InicializadorComDado{
 
         Animal animal = (Animal) dado;
 
-        idadeAnimal.setText(String.valueOf(animal.getIdade()) + " meses");
+        Idade idadeAnimalMesesAnos = CalculaAnosEMesesPorDt(animal.getDataNascimento());
+        String textoIdadeAnimal = idadeAnimalMesesAnos.getAnos() + " anos e " + idadeAnimalMesesAnos.getMeses() + " meses";
+        
+        idadeAnimal.setText(textoIdadeAnimal);
         nomeAnimal.setText(animal.getNome());
         if(animal.getSexo() == 'M'){
             sexoAnimal.setImage(new Image(PATH_IMAGES + "marte-azul.png"));
@@ -40,10 +43,8 @@ public class AnimalCardController implements InicializadorComDado{
             sexoAnimal.setImage(new Image(PATH_IMAGES + "femea.png"));
         }
         
-        Rectangle clip = new Rectangle(180, 200);
-        clip.setArcWidth(20);
-        clip.setArcHeight(20);
-        CarregarImagem(imagemAnimal, animal.getFoto(), clip);
+        
+        CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimais());
         imagemAnimal.setOnMouseClicked(e -> {
             App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, primmaryStage, animal, blackShadow);
         }); 
