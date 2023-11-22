@@ -1,60 +1,59 @@
 package main.repositories;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import main.model.Despesa;
-public class DespesaRepository {
-    
-    private static List<Despesa> despesas = new ArrayList<>();
 
-    public DespesaRepository(){
-        if(despesas.size() == 0) a();
+public class DespesaRepository extends BaseRepository<Despesa> {
+
+    public DespesaRepository() {
+        super(Despesa.class);
     }
-    
-    public Despesa Cadastrar(String descricao, double valor, Date data){
-        Despesa despesa = new Despesa();
-        despesa.setDescricao(descricao);
-        despesa.setData(data);
-        despesa.setValor(valor);
-        
-        despesas.add(despesa);
-        
+
+
+    public Despesa Salvar(int idDespesa, String descricao, Double valor, Calendar data, String tipo, boolean realizado) {
+        Despesa despesa;
+
+        if (idDespesa == -1) {
+            despesa = new Despesa();
+            despesa.setDescricao(descricao);
+            despesa.setData(data);
+            despesa.setValor(valor);
+            despesa.setTipo(tipo);
+            despesa.setRealizada(realizado);
+            idDespesa = Inserir(despesa);
+            despesa.setId(idDespesa);
+        } else {
+            despesa = EncontrarDespesaPor(idDespesa);
+            despesa.setDescricao(descricao);
+            despesa.setData(data);
+            despesa.setValor(valor);
+            despesa.setTipo(tipo);
+            despesa.setRealizada(realizado);
+            Atualizar(despesa);
+        }
+
         return despesa;
     }
-    
-    public List<Despesa> ObterDespesas(){
-        List<Despesa> despesasRetornadas = new ArrayList<>(despesas);
-        Collections.sort(despesasRetornadas, Comparator.comparing(Despesa::getDataCadastro).reversed());
-        return despesasRetornadas;
-    }
-    
-    public void a(){
-        despesas.add(new Despesa("Alimentação", 50.0, new Date(), "Comida"));
-        despesas.add(new Despesa("Transporte", 30.0, new Date(), "Transporte"));
-        despesas.add(new Despesa("Moradia", 1000.0, new Date(), "Habitação"));
-        despesas.add(new Despesa("Educação", 200.0, new Date(), "Educação"));
-        despesas.add(new Despesa("Lazer", 80.0, new Date(), "Entretenimento"));
-        despesas.add(new Despesa("Saúde", 120.0, new Date(), "Saúde"));
-        despesas.add(new Despesa("Contas", 150.0, new Date(), "Serviços Públicos"));
-        despesas.add(new Despesa("Roupas", 60.0, new Date(), "Vestuário"));
-        despesas.add(new Despesa("Presentes", 50.0, new Date(), "Presentes"));
-        despesas.add(new Despesa("Outros", 70.0, new Date(), "Outros"));
 
-                   
+    public List<Despesa> ObterDespesas() {
+        return new ArrayList<>(SelecionarTodos("*", null,"Data desc", Despesa.class));
     }
 
     public Set<String> ObterTiposDespesa() {
-        Set<String> tiposDespesa = new HashSet<>();
-        for(Despesa d : despesas){
-            tiposDespesa.add(d.getTipo());
-        }
-        
-        return tiposDespesa;
+        return new HashSet<>( SelecionarTodos("TIPO", null,null, String.class));
     }
-    
+
+    public void Deletar(Despesa despesa) {
+        Excluir(despesa);
+    }
+
+    public Despesa EncontrarDespesaPor(int idDespesa) {
+        var despesas = SelecionarTodos("*", "ID = " + idDespesa, null, Despesa.class);
+        if ( despesas != null ) return despesas.get(0);
+        return null;
+    }
 }

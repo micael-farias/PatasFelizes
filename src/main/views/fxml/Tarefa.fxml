@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -7,56 +9,68 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="tarefaLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.TarefaController">
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.TarefaController">
    <children>
-      <HBox fx:id="layoutTarefa" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="886.0" styleClass="box" stylesheets="@../css/procedimento.css">
+      <CheckBox fx:id="checkBoxRealizado" mnemonicParsing="false" stylesheets="@../css/checkbox.css">
+         <HBox.margin>
+            <Insets left="20.0" />
+         </HBox.margin>
+      </CheckBox>
+      <VBox fx:id="tarefaLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="961.0">
          <children>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="50.0">
+            <HBox fx:id="layoutTarefa" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="886.0" styleClass="box" stylesheets="@../css/procedimento.css">
                <children>
-                  <ImageView fx:id="fotoVoluntario" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../assets/images/pedro.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-            <Label fx:id="nomeVoluntario" alignment="CENTER" prefHeight="44.0" prefWidth="183.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Pedro Emanuel">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="descricaoTarefa" alignment="CENTER" prefHeight="44.0" prefWidth="237.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Alimentação">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-            <Label fx:id="nomeAnimal" alignment="CENTER" prefHeight="44.0" prefWidth="181.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Nazaré">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="dataTarefa" alignment="CENTER" prefHeight="44.0" prefWidth="278.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font></Label>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
-               <children>
-                  <ImageView fx:id="editarTarefa" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../assets/images/editar-branco.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
-               <children>
-                  <ImageView fx:id="excluirTarefa" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../assets/images/remover-branco.png" />
-                     </image>
-                  </ImageView>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="50.0">
+                     <children>
+                        <ImageView fx:id="fotoVoluntario" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/pedro.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Label fx:id="nomeVoluntario" alignment="CENTER" prefHeight="44.0" prefWidth="183.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Pedro Emanuel">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="descricaoTarefa" alignment="CENTER" prefHeight="44.0" prefWidth="237.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Alimentação">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nomeAnimal" alignment="CENTER" prefHeight="44.0" prefWidth="181.0" styleClass="labelTarefa" stylesheets="@../css/procedimento.css" text="Nazaré">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dataTarefa" alignment="CENTER" prefHeight="44.0" prefWidth="278.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+                     <children>
+                        <ImageView fx:id="editarTarefa" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/editar-branco.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+                     <children>
+                        <ImageView fx:id="excluirTarefa" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/remover-branco.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
-      </HBox>
+      </VBox>
    </children>
-</VBox>
+</HBox>

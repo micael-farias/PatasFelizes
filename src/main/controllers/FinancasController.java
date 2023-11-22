@@ -42,21 +42,27 @@ public class FinancasController implements Inicializador, Resumidor {
 
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-        initialize(contentFather);
-        initalizeViews(contentFather);
+        initialize(contentFather, primmaryStage, blackShadow);
+        initalizeViews(contentFather, primmaryStage, blackShadow);
         setListeners(contentFather, primmaryStage, blackShadow);      
     }
-    public void initialize(Pane contentFather){
+    public void initialize(Pane contentFather, Stage primaryStage, Pane blackShadow){
         despesaServices = new DespesaServices();
         doacaoServices = new DoacaoServices();
-        criarDespesas(contentFather);
+        criarDespesas(contentFather, primaryStage, blackShadow);
     }
     
-    public void initalizeViews(Pane contentFather){
+    public void initalizeViews(Pane contentFather, Stage primaryStage, Pane blackShadow){
         toggleViewFinancas = new ToggleView();
         toggleViewFinancas.CriarToggle(toogleFinancas,
-                e -> criarDespesas(contentFather),
-                e -> criarDoacoes(contentFather));
+                e -> {
+                    criarDespesas(contentFather, primaryStage, blackShadow);
+                    novaDespesaButton.setText("Nova despesa");
+                },
+                e -> {                              
+                    criarDoacoes(contentFather, primaryStage, blackShadow);
+                    novaDespesaButton.setText("Nova doação");
+                });
         
         toggleViewFinancas.setTextoDireito("Despesas");
         toggleViewFinancas.setTextoEsquerdo("Doações");
@@ -70,19 +76,24 @@ public class FinancasController implements Inicializador, Resumidor {
         });
     }
     
-    public void criarDoacoes(Pane contentFather){
+    public void criarDoacoes(Pane contentFather, Stage primaryStage, Pane blackShadow){
         List<Doacao> doacoes = doacaoServices.ObterDoacoes();
-        DoacoesGridView doacoesGridView = new DoacoesGridView(despesasGrid, 1, doacoes, contentFather, stackPaneScroll);
+        DoacoesGridView doacoesGridView = new DoacoesGridView(despesasGrid, 1, doacoes, contentFather, stackPaneScroll, primaryStage, blackShadow);
         doacoesGridView.createGridAsync();
     }
 
-    private void criarDespesas(Pane contentFather) {
+    private void criarDespesas(Pane contentFather, Stage primaryStage, Pane blackShadow) {
         List<Despesa> despesas = despesaServices.ObterDespesas();
-        DespesasGridView despesasGridView = new DespesasGridView(despesasGrid, 1, despesas, contentFather, stackPaneScroll);
+        DespesasGridView despesasGridView = new DespesasGridView(despesasGrid, 1, despesas, contentFather, stackPaneScroll, primaryStage, blackShadow);
         despesasGridView.createGridAsync();    
     }
 
     @Override
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
+        if(toggleViewFinancas.getSelectedItem() == ToogleEnum.DIREITO){
+            criarDespesas(contentFather, primmaryStage, blackShadow);
+        }else{
+            criarDoacoes(contentFather, primmaryStage, blackShadow);
+        }
     }
 }

@@ -4,6 +4,7 @@
  */
 package main.model;
 
+import java.util.Calendar;
 import java.util.Date;
 import main.interfaces.PossuiIdFoto;
 
@@ -12,31 +13,32 @@ import main.interfaces.PossuiIdFoto;
  * @author micha
  */
 public class Tarefa{
-    private static int nextId = 1;
+
     private int Id;
     private Voluntario Voluntário;
     private Animal Animal; 
     private String Descricao;
-    private Date Data;
-    private Date DataCadastro;
-
-    public Tarefa(Voluntario Voluntário, Animal Animal, String DescricaoTarefa, Date Data) {
-        this.Id = nextId++;
-        this.Voluntário = Voluntário;
-        this.Animal = Animal;
-        this.Descricao = DescricaoTarefa;
-        this.Data = Data;
-        this.DataCadastro = new Date();
-    }
-
-    public Date getDataCadastro() {
+    private Calendar Data;
+    private Calendar DataCadastro;
+    private String tipo;
+    private boolean Realizado;
+ 
+    public Calendar getDataCadastro() {
         return DataCadastro;
     }     
 
     public Tarefa(){
-        this.Id = nextId++;
-        this.DataCadastro = new Date();
+        this.DataCadastro = Calendar.getInstance();
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     
     public int getId() {
         return Id;
@@ -46,11 +48,11 @@ public class Tarefa{
         this.Id = Id;
     }
 
-    public Voluntario getVoluntário() {
+    public Voluntario getVoluntario() {
         return Voluntário;
     }
 
-    public void setVoluntário(Voluntario Voluntário) {
+    public void setVoluntario(Voluntario Voluntário) {
         this.Voluntário = Voluntário;
     }
 
@@ -70,11 +72,19 @@ public class Tarefa{
         this.Descricao = Descricao;
     }
 
-    public Date getData() {
+    public Calendar getData() {
         return Data;
     }
 
-    public void setData(Date Data) {
+    public void setData(Calendar Data) {
         this.Data = Data;
     }
+    public boolean isRealizado() {
+        return Realizado;
+    }
+
+    public void setRealizado(boolean Realizado) {
+        this.Realizado = Realizado;
+    }
+    
 }

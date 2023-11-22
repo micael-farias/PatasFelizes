@@ -32,8 +32,12 @@ public class ImageLoader {
         
         loadImageTask.setOnSucceeded(event -> {
             Image loadedImage = loadImageTask.getValue();
-            imageView.setImage(loadedImage);        
+            imageView.setImage(loadedImage);   
+            if(clip != null){
+                
+            
             imageView.setClip(clip);
+            }
         });
 
         loadImageTask.setOnFailed(event -> {

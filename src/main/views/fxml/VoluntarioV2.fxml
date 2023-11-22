@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="301.0" styleClass="layoutPet" stylesheets="@../css/cardVoluntario.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.VoluntarioController">
+<VBox fx:id="layoutVoluntario" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="301.0" styleClass="layoutPet" stylesheets="@../css/cardVoluntario.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.VoluntarioController">
    <children>
       <ImageView fx:id="fotoVoluntario" cache="true" fitHeight="176.0" fitWidth="180.0" pickOnBounds="true" smooth="false">
          <image>

@@ -1,45 +1,39 @@
 package main.model;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
+import main.annotations.TableName;
 import main.interfaces.PossuiIdFoto;
-import static main.utils.UrlToByteArrayConverter.ConvertUrlToByteArray;
+import static main.utils.ImageConverter.ConvertUrlToByteArray;
 
+
+@TableName("Animais")
 public class Animal implements PossuiIdFoto{
-    
-    public static int next = 1;
-    
+        
     private int Id;
     private String Nome;
-    private Date DataNascimento;
+    private Calendar DataNascimento;
     private byte[] Foto;
     private String Descricao; 
     private char Sexo;
     private boolean Castrado;
-    private Date DataCadastro;
     private String Status;
+    private Calendar DataCadastro;
 
-    public Animal(char Sexo, String Nome, Date DataNascimento, String Foto, boolean Castrado, boolean Vermifugado, String Descricao) {
-        this.Id = next++;
+    public Animal(char Sexo, String Nome, Calendar DataNascimento, String Foto, boolean Castrado, boolean Vermifugado, String Descricao) {
         this.Nome = Nome;
         this.DataNascimento = DataNascimento;
         this.Foto = ConvertUrlToByteArray(Foto);
         this.Castrado = Castrado;
         this.Descricao = Descricao;
+        this.Status = "A";
+        this.DataCadastro = Calendar.getInstance();
         this.Sexo = Sexo;
-        this.DataCadastro = new Date();
     }
     
     public Animal(){
-        this.Id = next++;
-        this.DataCadastro = new Date();
-    }
-
-    public static int getNext() {
-        return next;
-    }
-
-    public static void setNext(int next) {
-        Animal.next = next;
+        this.DataCadastro = Calendar.getInstance();
     }
 
     public String getStatus() {
@@ -54,13 +48,15 @@ public class Animal implements PossuiIdFoto{
         return Sexo;
     }
 
-    public Date getDataCadastro() {
+    public Calendar getDataCadastro() {
         return DataCadastro;
     }
 
-    public void setDataCadastro(Date DataCadastro) {
-        this.DataCadastro = DataCadastro;
+    public void setSexo(char Sexo) {
+        this.Sexo = Sexo;
     }
+    
+    
        
     public int getId() {
         return Id;
@@ -96,11 +92,11 @@ public class Animal implements PossuiIdFoto{
         this.Nome = Nome;
     }
 
-    public Date getDataNascimento() {
+    public Calendar getDataNascimento() {
         return DataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(Calendar dataNascimento) {
         this.DataNascimento = dataNascimento;
     }
 

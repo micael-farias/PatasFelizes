@@ -8,13 +8,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import main.interfaces.Inicializador;
+import main.App;
+import main.interfaces.InicializadorComDado;
 import main.model.Doacao;
-import main.model.Procedimento;
+import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
+import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.PATH_IMAGES;
+import static main.utils.DateHelper.CalendarParaString;
 import static main.utils.DateHelper.DataParaString;
+import main.utils.RealFormatter;
 
-public class DoacaoController implements Inicializador{
+public class DoacaoController extends CustomController implements InicializadorComDado{
 
     @FXML
     private Label dataDoacao;
@@ -39,14 +43,19 @@ public class DoacaoController implements Inicializador{
 
     @FXML
     private Label valorDoacao;
+    
+    private Doacao doacao;
 
-    public void setData(int posicao, Object dado) {
-        Doacao doacao = (Doacao) dado;
 
+    public void setData(Object[] dados) {
+        doacao = (Doacao) ObterDadoArray(dados, 0);
+        int posicao = (int) ObterDadoArray(dados, 1);
+        
         nomeDoador.setText(doacao.getDoador());
         idDoacao.setText("Doação "+ doacao.getId());
-        dataDoacao.setText(DataParaString(doacao.getData()));
+        dataDoacao.setText(CalendarParaString(doacao.getData()));
         dataDoacao.setStyle("-fx-font-weight: bold;");
+        valorDoacao.setText(RealFormatter.formatarComoReal(doacao.getValor()));
 
         
         if(posicao % 2 == 0){
@@ -56,8 +65,16 @@ public class DoacaoController implements Inicializador{
         }           
     }
 
+      public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow){
+        layoutDoacao.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_DOACAO, contentFather, primaryStage, blackShadow,
+                    new Object[]{ doacao.getId(), doacao});        
+            });
+    }
+      
     @Override
-    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-
-    }  
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
+        setData(dados);
+        setListeners(contentFather, primmaryStage, blackShadow);    
+    }
 }

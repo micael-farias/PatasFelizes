@@ -4,35 +4,28 @@
  */
 package main.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import main.annotations.TableName;
 import main.interfaces.PossuiIdFoto;
-import static main.utils.UrlToByteArrayConverter.ConvertUrlToByteArray;
+import static main.utils.ImageConverter.ImageFileToByteArray;
 
 /**
  *
  * @author micha
  */
+@TableName("Voluntarios")
 public class Voluntario implements PossuiIdFoto{
-    private static int nextId = 1;
+
     private int Id;
-    private String nome;
-    private byte[] foto;
-    private String email;
-    private String telefone;
-    private Date DataCadastro;
-    
-    public Voluntario(String nome, String foto, String email, String telefone) {
-        this.Id = nextId++;
-        this.nome = nome;
-        this.foto = ConvertUrlToByteArray(foto);
-        this.email = email;
-        this.telefone = telefone;
-        this.DataCadastro = new Date();
-    } 
+    private String Nome;
+    private byte[] Foto;
+    private String Email;
+    private String Telefone;
+    private Calendar DataCadastro;
     
     public Voluntario(){
-        this.Id = nextId++;
-        this.DataCadastro = new Date();
+        this.DataCadastro = Calendar.getInstance();
     }
 
     public int getId() {
@@ -45,46 +38,46 @@ public class Voluntario implements PossuiIdFoto{
 
     
     
-    public Date getDataCadastro() {
+    public Calendar getDataCadastro() {
         return DataCadastro;
     }
 
-    public void setDataCadastro(Date DataCadastro) {
+    public void setDataCadastro(Calendar DataCadastro) {
         this.DataCadastro = DataCadastro;
     }
     
     
     
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.Nome = nome;
     }
 
     public byte[] getFoto() {
-        return foto;
+        return Foto;
     }
 
     public void setFoto(byte[] foto) {
-        this.foto = foto;
+        this.Foto = foto;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.Email = email;
     }
 
     public String getTelefone() {
-        return telefone;
+        return Telefone;
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        this.Telefone = telefone;
     }
     
 
