@@ -60,13 +60,13 @@ public class DoacaoRepository extends BaseRepository<Doacao>{
 
     public double[] BuscarValoresDoacoesEDespesa() {
         double[] valores = new double[2]; 
-
+        int pos = 0;
+        
         try (Statement statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery("SELECT COALESCE(SUM(DE.VALOR), 0) AS DESPESAS, COALESCE(SUM(DO.VALOR), 0) AS DOACOES FROM DESPESAS DE, DOACOES DO")) {
+             ResultSet rs = statement.executeQuery("SELECT COALESCE(SUM(DE.VALOR), 0) as DES FROM DESPESAS DE UNION ALL SELECT COALESCE(SUM(DO.VALOR), 0) as DOA FROM DOACOES DO")) {
 
-            if (rs.next()) {
-                valores[0] = rs.getDouble("DESPESAS"); 
-                valores[1] = rs.getDouble("DOACOES");  
+            while(rs.next()) {
+                valores[pos++] = rs.getDouble("DES"); 
             }
 
         } catch (SQLException e) {

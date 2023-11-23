@@ -150,8 +150,8 @@ public class FinancasController implements Inicializador, Resumidor {
     private void setarValores(){
         double[] valores = doacaoServices.ObterTotalReceitaEDespesa();
 
-        labelTotalReceita.setText(RealFormatter.formatarComoReal(valores[0]));
-        labelTotalDespesa.setText(RealFormatter.formatarComoReal(valores[1]));    
+        labelTotalReceita.setText(RealFormatter.formatarComoReal(valores[1]));
+        labelTotalDespesa.setText(RealFormatter.formatarComoReal(valores[0]));    
    }
 
     private void criarGridDespesaComResultados(List<Despesa> despesas, Pane contentFather, Stage primmaryStage, Pane blackShadow) {
