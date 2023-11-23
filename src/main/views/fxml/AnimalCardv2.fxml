@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="232.0" styleClass="layoutPet" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AnimalCardController">
+   <children>
+      <StackPane fx:id="stackPane" prefHeight="250.0" prefWidth="238.0">
+         <children>
+            <ImageView fx:id="imagemAnimal" cache="true" fitHeight="245.0" fitWidth="232.0" pickOnBounds="true" smooth="false" />
+            <Pane fx:id="pane" prefHeight="225.0" prefWidth="232.0" styleClass="cardAnimal" stylesheets="@../css/view.css" />
+            <VBox alignment="BOTTOM_LEFT" prefHeight="246.0" prefWidth="241.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="232.0" styleClass="hBoxInfoPetInternal" stylesheets="@../css/view.css">
+                     <children>
+                        <VBox prefHeight="61.0" prefWidth="14.0">
+                           <children>
+                              <Circle fill="#11ff00" radius="5.0" stroke="#0bff58" strokeType="INSIDE" strokeWidth="0.0">
+                                 <VBox.margin>
+                                    <Insets top="14.0" />
+                                 </VBox.margin>
+                              </Circle>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="76.0" prefWidth="216.0">
+                           <children>
+                              <Label fx:id="nomeAnimal" minHeight="-Infinity" prefHeight="28.0" prefWidth="198.0" styleClass="labelNomeAnimal" stylesheets="@../css/view.css" text="Nazaré" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="23.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sexoAnimal" styleClass="labelSexoAnimal" stylesheets="@../css/view.css" text="Femea" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold Italic" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="idadeAnimal" styleClass="labelSexoAnimal" text="6 anos e 12 meses" textFill="WHITE">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="25.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</VBox>

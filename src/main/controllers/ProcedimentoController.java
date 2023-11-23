@@ -70,7 +70,7 @@ public class ProcedimentoController extends CustomController implements Iniciali
                         procedimento.getDescricao(), 
                         DateHelper.CalendarParaLocalDate(procedimento.getData()),
                         procedimento.getTipo(),
-                        procedimento.getDespesa() == null ? " " : String.valueOf(procedimento.getDespesa().getValor()),
+                        procedimento.getDespesa() == null ? 0.0 : procedimento.getDespesa().getValor(),
                         procedimento.getVoluntario().getNome(),
                         procedimento.getAnimal().getId(), true);
             }else{
@@ -78,7 +78,7 @@ public class ProcedimentoController extends CustomController implements Iniciali
                         procedimento.getDescricao(), 
                         DateHelper.CalendarParaLocalDate(procedimento.getData()),
                         procedimento.getTipo(),
-                        procedimento.getDespesa() == null ? " " : String.valueOf(procedimento.getDespesa().getValor()),
+                        procedimento.getDespesa() == null ? 0.0 : procedimento.getDespesa().getValor(),
                         procedimento.getVoluntario().getNome(),
                         procedimento.getAnimal().getId(), false);
             }

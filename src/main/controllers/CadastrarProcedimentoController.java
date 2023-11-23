@@ -87,6 +87,8 @@ public class CadastrarProcedimentoController extends CustomController implements
         voluntarioService = new VoluntarioService();
         configurarVoluntarios();
         configurarTiposProcedimento();
+        TextFieldUtils.setupCurrencyTextField(valorProcedimento);
+
         if(procedimento != null) setData();
     }
     
@@ -111,12 +113,7 @@ public class CadastrarProcedimentoController extends CustomController implements
             } else {
                 checkBoxJaRealizado.setVisible(false);
             }
-        });
-
-            TextFieldUtils.setupCurrencyTextField(valorProcedimento);
-
-        
-        
+        });     
     }
     
     public Procedimento cadastrarNovoProcedimento(Stage primaryStage) {
@@ -124,7 +121,7 @@ public class CadastrarProcedimentoController extends CustomController implements
         LocalDate data = dataProcedimento.getValue();
         String tipo = tipoProcedimento.getText();
         String voluntario = voluntarioProcedimento.getText();
-        String valor = valorProcedimento.getText().replaceAll("[^0-9]", "");;
+        double valor = RealFormatter.unformatarReal(valorProcedimento.getText());
 
         return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, valor, voluntario, idAnimal, jaRealizado);      
     }

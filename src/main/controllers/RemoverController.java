@@ -7,25 +7,12 @@ package main.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.App;
-import main.interfaces.Inicializador;
-import main.interfaces.InicializadorComOrigem;
-import main.model.Despesa;
-import main.model.Tarefa;
-import static main.utils.Constantes.FORM_HOME;
-import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateHelper.DataParaString;
-import main.utils.ImageLoader;
-import static main.utils.ImageLoader.CarregarImagem;
+import main.interfaces.InicializadorComOrigemEDado;
 
-public class RemoverController implements InicializadorComOrigem{
+public class RemoverController extends CustomController implements InicializadorComOrigemEDado{
     
      @FXML
     private Label mensagem;
@@ -33,14 +20,23 @@ public class RemoverController implements InicializadorComOrigem{
     @FXML
     private Button confirmar;
     
+    @FXML
+    private Button cancelar;
 
     @Override
-    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, String origem) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, String origem, Object[] dados) {
+       String msg = ObterDadoArray(dados, 0).toString();
+       mensagem.setText(msg);
+        
         confirmar.setOnMouseClicked(e->{
-                App.getInstance().EntrarTela(origem, contentFather, primmaryStage, null, blackShadow);
-                    
+           App.getInstance().EntrarTelaOnResume(origem, contentFather, primmaryStage, blackShadow, null);                  
+        });  
+        
+        cancelar.setOnMouseClicked(e->{
+            App.getInstance().EntrarTelaNoAction(origem, contentFather, primmaryStage, blackShadow);
         });
-
     }
+    
+
 }
 

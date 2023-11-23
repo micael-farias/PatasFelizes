@@ -10,7 +10,7 @@
 <AnchorPane id="AnchorPane" prefHeight="326.0" prefWidth="680.0" stylesheets="@../css/remover.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.RemoverController">
    <children>
       <Button id="button" fx:id="confirmar" layoutX="502.0" layoutY="256.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Confirmar" />
-      <Button id="button" layoutX="386.0" layoutY="256.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+      <Button id="button" fx:id="cancelar" layoutX="386.0" layoutY="256.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
       <ImageView fitHeight="106.0" fitWidth="106.0" layoutX="287.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../assets/images/aviso-exclamacao.png" />

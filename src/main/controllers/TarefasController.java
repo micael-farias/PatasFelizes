@@ -3,6 +3,9 @@ package main.controllers;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import static javafx.scene.input.KeyCode.BACK_SPACE;
+import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -10,6 +13,7 @@ import javafx.stage.Stage;
 import main.App;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
+import main.model.Animal;
 import main.model.Tarefa;
 import main.services.TarefaServices;
 import static main.utils.Constantes.DIALOG_CADASTRAR_TAREFA;
@@ -26,6 +30,9 @@ public class TarefasController implements Inicializador , Resumidor{
     @FXML
     private StackPane stackPaneScroll;
 
+    @FXML
+    private TextField textFieldBuscarTarefa;
+
     private TarefaServices tarefaService;
     
     @Override
@@ -37,22 +44,41 @@ public class TarefasController implements Inicializador , Resumidor{
     
     public void initialize(){
         tarefaService = new TarefaServices();
+       hintBuscarTarefas();
+    }
+    
+    public void hintBuscarTarefas(){
+        textFieldBuscarTarefa.setPromptText("Procurar tarefa por descrição");
     }
     
     public void initializeViews(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         List<Tarefa> tarefas = tarefaService.ObterTarefas();
-        TarefasGridView animalGridView = new TarefasGridView(contentFather, primmaryStage, blackShadow, tarefasGrid, 1, tarefas, stackPaneScroll);
-        animalGridView.createGridAsync();        
+        criarGridComResultados(tarefas, contentFather, primmaryStage, blackShadow);
     }
   
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
-         novaTarefa.setOnMouseClicked(e->{
+        novaTarefa.setOnMouseClicked(e->{
             App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA, contentFather, primmaryStage, blackShadow, null);
-        });   
+        });  
+        
+        textFieldBuscarTarefa.setOnKeyPressed(e ->{
+            String tarefa = textFieldBuscarTarefa.getText();
+            if(e.getCode().equals(ENTER)){
+                  List<Tarefa> tarefas = tarefaService.EncontrarTarefasPorDescricao(tarefa);
+                  criarGridComResultados(tarefas, contentFather, primmaryStage, blackShadow);
+            }else if(e.getCode().equals(BACK_SPACE)){
+                if(tarefa.length() == 0) hintBuscarTarefas();
+            }
+        });        
     }
 
     @Override
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
         initializeViews(contentFather,primmaryStage, blackShadow);
+    }
+
+    private void criarGridComResultados(List<Tarefa> tarefas, Pane contentFather, Stage primmaryStage, Pane blackShadow) {
+        TarefasGridView animalGridView = new TarefasGridView(contentFather, primmaryStage, blackShadow, tarefasGrid, 1, tarefas, stackPaneScroll);
+        animalGridView.createGridAsync();  
     }
 }

@@ -42,9 +42,8 @@ public class DespesaServices {
         return despesaRepository.ObterTiposDespesa();
     }    
     
-    public Despesa Cadastrar(int idDespesa, String descricao, String valorString, LocalDate dataLocal, String animalString, String tipo, Boolean foiRealizado) {
+    public Despesa Cadastrar(int idDespesa, String descricao, double valor, LocalDate dataLocal, String animalString, String tipo, Boolean foiRealizado) {
         Calendar data = LocalDateParaCalendar(dataLocal);        
-        Double valor = DoubleParse(valorString);  
         boolean realizado = foiRealizado == null ? data.before(GetMidnightDate()) : foiRealizado;
 
         
@@ -76,5 +75,9 @@ public class DespesaServices {
         
         return despesa;
                
+    }
+
+    public List<Despesa> ObterDespesasPorDescricao(String texto) {
+        return despesaRepository.ObterDespesasPorDescricao(texto);
     }
 }

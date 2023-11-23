@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
@@ -21,6 +22,8 @@ import main.services.DoacaoServices;
 import main.services.ProcedimentoService;
 import main.services.VoluntarioService;
 import static main.utils.Constantes.FORM_FINANCAS;
+import main.utils.RealFormatter;
+import main.utils.TextFieldUtils;
 import org.controlsfx.control.textfield.TextFields;
 
 public class CadastrarDoacaoController extends CustomController implements InicializadorComDado{
@@ -42,7 +45,7 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     
     @FXML
     private Button cancelarCadastro;
-      
+    
     private DoacaoServices doacaoServices;
     private VoluntarioService voluntarioService;
     private int idDoacao;
@@ -60,10 +63,12 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         
         doacaoServices = new DoacaoServices();
         voluntarioService = new VoluntarioService();
+        TextFieldUtils.setupCurrencyTextField(valorDoacao);
         
         configurarDoadores();
         configurarVoluntarios();
         setData();
+        
     }
 
     public void configurarDoadores(){
@@ -83,14 +88,14 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaOnResume(FORM_FINANCAS, contentFather, primmaryStage, blackShadow, null);
+            App.getInstance().EntrarTelaNoAction(FORM_FINANCAS, contentFather, primmaryStage, blackShadow);
         });        
     }
     
     public void SalvarDespesa(){
         LocalDate data = dataDoacao.getValue();
         String doador = doadorDoacao.getText();
-        String valor = valorDoacao.getText();
+        double valor = RealFormatter.unformatarReal(valorDoacao.getText());
         
         doacaoServices.Salvar(idDoacao, doador, valor, data, new byte[]{});
     }
@@ -100,7 +105,10 @@ public class CadastrarDoacaoController extends CustomController implements Inici
             doadorDoacao.setText(doacao.getDoador());
             LocalDate localDate = doacao.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             dataDoacao.setValue(localDate);
-            valorDoacao.setText(String.valueOf(doacao.getValor()));
+            var valor = RealFormatter.formatarComoReal(doacao.getValor());
+                    valorDoacao.setText(valor);
+            var texto = valorDoacao.getText();
+            int a = 1;
         }
     }
      

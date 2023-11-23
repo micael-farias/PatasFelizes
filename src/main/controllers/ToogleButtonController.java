@@ -1,5 +1,7 @@
 package main.controllers;
 
+import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,10 +10,31 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import main.utils.ToogleEnum;
 
 public class ToogleButtonController {
+
+    
+    @FXML
+    private ImageView imagemDireita;
+
+    @FXML
+    private ImageView imagemEsquerda;
+
+    @FXML
+    private Label labelDireita;
+
+    @FXML
+    private Label labelEsquerda;
+
+    @FXML
+    private HBox layoutCheckBox;
+
+    @FXML
+    private Pane paneAtual;
 
     @FXML
     private StackPane direito;
@@ -19,21 +42,6 @@ public class ToogleButtonController {
     @FXML
     private StackPane esquerdo;
     
-    @FXML
-    private ImageView imagemDireita;
-
-    @FXML
-    private ImageView imagemEsquerda;
-    
-    @FXML
-    private Label labelDireita;
-
-    @FXML
-    private Label labelEsquerda;
-        
-    @FXML
-    private HBox layoutCheckBox;
-
     public ToogleEnum lado;
     
     private boolean toogleDesativado;
@@ -44,7 +52,7 @@ public class ToogleButtonController {
       
         direito.setOnMousePressed(e -> {
             if(toogleDesativado) return;
-            
+            moverParaEsquerda();
             ativarBotao(ToogleEnum.DIREITO);
             if (clickDireita != null) {
                 MouseEvent event = new MouseEvent(direito, direito, MouseEvent.MOUSE_PRESSED, 0, 0, 0, 0, MouseButton.PRIMARY, 1, false, false, false, false, true, false, false, false, false, false, null);
@@ -54,7 +62,7 @@ public class ToogleButtonController {
 
         esquerdo.setOnMousePressed(e -> {
             if(toogleDesativado) return;
-           
+            moverParaDireita();
             ativarBotao(ToogleEnum.ESQUERDO);
             if (clickDireita != null) {
                 MouseEvent event = new MouseEvent(esquerdo, esquerdo, MouseEvent.MOUSE_PRESSED, 0, 0, 0, 0, MouseButton.PRIMARY, 1, false, false, false, false, true, false, false, false, false, false, null);
@@ -82,13 +90,9 @@ public class ToogleButtonController {
         switch (opcao) {
             case DIREITO -> {
                 lado = ToogleEnum.DIREITO;
-                direito.setStyle("-fx-background-color: #A8C4F8;"  + shadow);
-                esquerdo.setStyle("-fx-background-color: #FFFFFF; -fx-effect: none;");
             }
             case ESQUERDO -> {
                 lado = ToogleEnum.ESQUERDO;
-                esquerdo.setStyle("-fx-background-color: #A8C4F8; "  + shadow);
-                direito.setStyle("-fx-background-color: #FFFFFF; -fx-effect: none;");
             }
             default -> {
             }
@@ -119,6 +123,18 @@ public class ToogleButtonController {
         labelEsquerda.setVisible(true);
     } 
 
+    private void moverParaEsquerda() {
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), paneAtual);
+            transition.setToX(layoutCheckBox.getWidth() - paneAtual.getWidth());
+            transition.play(); 
+    }
+
+    private void moverParaDireita() {
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), paneAtual);
+        transition.setToX(0);
+        transition.play();
+    }
+    
     public ToogleEnum getSelectedItem() {
         return lado;
     }

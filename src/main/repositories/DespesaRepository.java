@@ -56,4 +56,8 @@ public class DespesaRepository extends BaseRepository<Despesa> {
         if ( despesas != null ) return despesas.get(0);
         return null;
     }
+
+    public List<Despesa> ObterDespesasPorDescricao(String desc) {
+        return SelecionarTodos("*", "DESCRICAO LIKE '%"+desc+"%'", null, Despesa.class);
+    }
 }

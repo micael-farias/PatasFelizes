@@ -1,5 +1,9 @@
 package main.repositories;
 
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -10,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 import main.model.Despesa;
 import main.model.Doacao;
+import main.model.Procedimento;
 
 public class DoacaoRepository extends BaseRepository<Doacao>{
     
@@ -29,7 +34,7 @@ public class DoacaoRepository extends BaseRepository<Doacao>{
             doacao.setData(data);
             doacao.setValor(valor);
             doacao.setFotoComprovante(fotoComprovante);
-            Inserir(doacao);  
+            this.Inserir(doacao);  
        }else{
             doacao = new Doacao();
             doacao.setId(idDoacao);
@@ -52,4 +57,29 @@ public class DoacaoRepository extends BaseRepository<Doacao>{
     public Set<String> ObterNomesDoadores() { 
         return new HashSet<>( SelecionarTodos("Doador", null, null, String.class));  
     }
+
+    public double[] BuscarValoresDoacoesEDespesa() {
+        double[] valores = new double[2]; 
+
+        try (Statement statement = connection.createStatement();
+             ResultSet rs = statement.executeQuery("SELECT COALESCE(SUM(DE.VALOR), 0) AS DESPESAS, COALESCE(SUM(DO.VALOR), 0) AS DOACOES FROM DESPESAS DE, DOACOES DO")) {
+
+            if (rs.next()) {
+                valores[0] = rs.getDouble("DESPESAS"); 
+                valores[1] = rs.getDouble("DOACOES");  
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return valores;
+    }
+
+    public List<Doacao> ObterDoacoesPorDescricao(String doador) {
+        return SelecionarTodos("*", "DOADOR LIKE '%"+doador+"%'", null, Doacao.class);
+    }
+
+
+    
 }

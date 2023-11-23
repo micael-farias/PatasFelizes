@@ -20,9 +20,13 @@ import main.model.Despesa;
 import main.model.Procedimento;
 import main.model.Tarefa;
 import main.services.TarefaServices;
+import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
 import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import static main.utils.Constantes.DIALOG_CADASTRAR_TAREFA;
+import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
+import static main.utils.Constantes.FORM_FINANCAS;
+import static main.utils.Constantes.FORM_TAREFAS;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
 import static main.utils.DateHelper.CalendarParaString;
@@ -33,7 +37,7 @@ import static main.utils.ImageLoader.CarregarImagem;
 public class TarefaController extends CustomController implements InicializadorComDado{
     
     @FXML
-    private CheckBox checkBoxRealizado;
+    private ImageView checkBoxRealizado;
     
     @FXML
     private Label dataTarefa;
@@ -60,7 +64,7 @@ public class TarefaController extends CustomController implements InicializadorC
     private Label nomeVoluntario;
 
     @FXML
-    private VBox tarefaLayout;
+    private HBox layoutClickable;
     
     private Tarefa tarefa;
     private TarefaServices tarefaServices;
@@ -81,19 +85,20 @@ public class TarefaController extends CustomController implements InicializadorC
         nomeVoluntario.setText(tarefa.getVoluntario().getNome());
         dataTarefa.setText(CalendarParaString(tarefa.getData()));
         dataTarefa.setStyle("-fx-font-weight: bold;");
-        
-        checkBoxRealizado.setSelected(tarefa.isRealizado());
-        checkBoxRealizado.setOnAction(event -> {
-            if (checkBoxRealizado.isSelected()) {         
-                tarefaServices.Salvar(tarefa.getId(), tarefa.getVoluntario().getNome(), tarefa.getAnimal() != null ? tarefa.getAnimal().getNome() : null,
+        setImage(tarefa.isRealizada(), posicao);
+        checkBoxRealizado.setOnMouseClicked(event -> {
+            boolean realizada = !tarefa.isRealizada();
+            setImage(realizada, posicao);
+            if (realizada) {  
+                tarefa = tarefaServices.Salvar(tarefa.getId(), tarefa.getVoluntario().getNome(), tarefa.getAnimal() != null ? tarefa.getAnimal().getNome() : null,
                         tarefa.getDescricao(), DateHelper.CalendarParaLocalDate(tarefa.getData()), tarefa.getTipo(), true);
             }else{
-                             tarefaServices.Salvar(tarefa.getId(), tarefa.getVoluntario().getNome(), tarefa.getAnimal() != null ? tarefa.getAnimal().getNome() : null,
-                        tarefa.getDescricao(), DateHelper.CalendarParaLocalDate(tarefa.getData()), tarefa.getTipo(), false);          
+                tarefa = tarefaServices.Salvar(tarefa.getId(), tarefa.getVoluntario().getNome(), tarefa.getAnimal() != null ? tarefa.getAnimal().getNome() : null,
+                        tarefa.getDescricao(), DateHelper.CalendarParaLocalDate(tarefa.getData()), tarefa.getTipo(), false);       
             }
         });   
         
-        if(posicao % 2 == 0){
+        if(posicao % 2 != 0){
             layoutTarefa.setStyle("-fx-background-color: white;");
             editarTarefa.setImage(new Image(PATH_IMAGES +"editar-colorido.png"));
             excluirTarefa.setImage(new Image(PATH_IMAGES + "remover-colorido.png"));
@@ -101,9 +106,19 @@ public class TarefaController extends CustomController implements InicializadorC
     }
      
     public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow){
-        tarefaLayout.setOnMouseClicked(e -> {
+        layoutClickable.setOnMouseClicked(e -> {
             App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA , contentFather, primaryStage, blackShadow, new Object[]{ tarefa });        
-        });      
+        });  
+        
+        excluirTarefa.setOnMouseClicked(e ->{
+          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_TAREFAS, contentFather, primaryStage, blackShadow,
+                   new Object[]{ "Deseja realmente excluir essa tarefa? "});        
+          });  
+        
+        editarTarefa.setOnMouseClicked(e ->{
+          App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA, contentFather, primaryStage, blackShadow,
+                   new Object[]{ tarefa.getId(), tarefa});    
+        });
     }
  
     @Override
@@ -111,6 +126,22 @@ public class TarefaController extends CustomController implements InicializadorC
         setData(dados);
         setListeners(contentFather, primmaryStage, blackShadow);    
     }   
+    
+     public void setImage(boolean realizado, int posicao){
+        if(posicao % 2 != 0){
+            if(realizado){
+                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_azul_checked.png"));          
+            }else{
+                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_azul_not_checked.png"));
+            }
+        }else{
+            if(realizado){
+                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
+            }else{
+                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
+            }
+        }
+    }
     
    
 }

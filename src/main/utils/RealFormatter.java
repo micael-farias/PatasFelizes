@@ -9,4 +9,9 @@ public class RealFormatter {
     public static String formatarComoReal(double valor) {
         return FORMATO_MOEDA.format(valor);
     }
+    
+    public static double unformatarReal(String valor){
+        var valorString = valor.replaceAll("[^\\d,]", "").replace(",", ".");       
+        return NumberHelper.DoubleParse(valorString);
+    }
 }

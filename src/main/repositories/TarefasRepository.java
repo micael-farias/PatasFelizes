@@ -50,7 +50,7 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
             statement.setString(3, tarefa.getDescricao());
             statement.setTimestamp(4, new Timestamp(tarefa.getData().getTimeInMillis()));
             statement.setString(5, tarefa.getTipo());
-            statement.setBoolean(6, tarefa.isRealizado());
+            statement.setBoolean(6, tarefa.isRealizada());
             statement.setTimestamp(7, new Timestamp(tarefa.getDataCadastro().getTimeInMillis()));
 
             int rowsAffected = statement.executeUpdate();
@@ -80,7 +80,7 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
             statement.setString(3, tarefa.getDescricao());
             statement.setTimestamp(4, new Timestamp(tarefa.getData().getTimeInMillis()));
             statement.setString(5, tarefa.getTipo());
-            statement.setBoolean(6, tarefa.isRealizado());
+            statement.setBoolean(6, tarefa.isRealizada());
             statement.setInt(7, tarefa.getId());
                                 System.out.println("SQL gerado: " + statement.toString());
 
@@ -175,5 +175,24 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
             e.printStackTrace();
         }
 
-        return tiposNomes;    }
+        return tiposNomes;    
+    }
+
+    public List<Tarefa> EncontrarTarefasPorDescricao(String tarefa) {
+        List<Tarefa> tarefasRetornadas = new ArrayList<>();
+
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM Tarefas Where descricao like '%"+tarefa+"%'")) {
+
+            while (resultSet.next()) {
+                Tarefa t = mapearTarefa(resultSet);
+                tarefasRetornadas.add(t);      
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tarefasRetornadas;  
+    }
 }

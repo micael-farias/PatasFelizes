@@ -19,7 +19,7 @@
             <Label fx:id="labelEsquerda" stylesheets="@../css/toggle.css" text="Label" />
          </children>
       </StackPane>
-      <StackPane fx:id="direito" prefHeight="100.0" prefWidth="80.0" styleClass="card_direito" stylesheets="@../css/toggle.css">
+      <StackPane fx:id="direito" prefHeight="100.0" prefWidth="80.0" styleClass="card_selecionado" stylesheets="@../css/toggle.css">
          <children>
             <ImageView fx:id="imagemDireita" fitHeight="20.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>

@@ -23,6 +23,8 @@ import main.services.DespesaServices;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.FORM_FINANCAS;
 import static main.utils.Constantes.FORM_HOME;
+import main.utils.RealFormatter;
+import main.utils.TextFieldUtils;
 import org.controlsfx.control.textfield.TextFields;
 
 public class CadastrarDespesaController extends CustomController implements InicializadorComDado{
@@ -71,6 +73,8 @@ public class CadastrarDespesaController extends CustomController implements Inic
         configurarPets();
         configurarTiposDespesa();
         setData();
+        
+        TextFieldUtils.setupCurrencyTextField(valorDespesa);
     }
 
     public void configurarPets(){
@@ -90,7 +94,7 @@ public class CadastrarDespesaController extends CustomController implements Inic
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaOnResume(FORM_FINANCAS, contentFather, primmaryStage, blackShadow, null);
+            App.getInstance().FecharDialog(primmaryStage, blackShadow);
         });        
     }
     
@@ -99,7 +103,7 @@ public class CadastrarDespesaController extends CustomController implements Inic
         String descriao = descricaoDespesa.getText();
         String pet = petDespesa.getText();
         String tipo = tipoDespesa.getText();
-        String valor = valorDespesa.getText();
+        double valor = RealFormatter.unformatarReal(valorDespesa.getText());
         
         despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, null);
     }
@@ -112,7 +116,7 @@ public class CadastrarDespesaController extends CustomController implements Inic
             dataDespesa.setValue(localDate);
             petDespesa.setText((procedimento == null) ? "" : procedimento.getAnimal().getNome());
             tipoDespesa.setText(despesa.getTipo());
-            valorDespesa.setText(String.valueOf(despesa.getValor()));
+            valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
         }
     }
 }
