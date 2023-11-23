@@ -3,71 +3,54 @@ package main.repositories;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import main.model.Voluntario;
 import static main.utils.Constantes.PATH_IMAGES;
 
-public class VoluntarioRepository {
-    
-    private static final List<Voluntario> voluntarios = new ArrayList<>();
-    
-    public VoluntarioRepository(){
-        if (voluntarios.size() == 0) a();       
+public class VoluntarioRepository extends BaseRepository<Voluntario>{
+
+    public VoluntarioRepository() {
+        super(Voluntario.class);
     }
     
     public Voluntario EncontrarVoluntarioPor(String nome){
-         for(Voluntario v : voluntarios){
-             if(v.getNome().contains(nome)){
-                  return v;
-             }
-         }
-         return null;
+        return SelecionarTodos("*", "NOME = '"+nome+"'", null, Voluntario.class).get(0);
+    }
+    
+    public Voluntario EncontrarVoluntarioPor(int id){
+        return SelecionarTodos("*", "ID = '"+id+"'", null, Voluntario.class).get(0);
+    }
+    
+    public  Set<String> EncontrarNomesVoluntarios(){
+        return new HashSet<>(SelecionarTodos("NOME", null, null, String.class));
     }
     
     public List<Voluntario> ObterVoluntarios(){
-        List<Voluntario> voluntariosRetornados = new ArrayList<>();
-        Collections.sort(voluntariosRetornados, Comparator.comparing(Voluntario::getDataCadastro).reversed());
-        return voluntariosRetornados;
+        return new ArrayList<>(SelecionarTodos("*", null, "NOME DESC", Voluntario.class));
     }
 
-    public void Salvar(int idVoluntario, String nome, String email, String telefone) {
-
-       int index = EncontrarPosicaoVoluntarioPor(idVoluntario);
+    public void Salvar(int idVoluntario, String nome, String email, String telefone, byte[] fotoVoluntario) {
        
        Voluntario voluntario;
-       
-       if(index == -1){
+      
+       if(idVoluntario == -1){
             voluntario = new Voluntario();
             voluntario.setNome(nome);
             voluntario.setEmail(email);
-            voluntario.setTelefone(telefone);        
-            voluntarios.add(voluntario);  
+            voluntario.setTelefone(telefone);     
+            voluntario.setFoto(fotoVoluntario);
+            this.Inserir(voluntario);  
        }else{
-            voluntario = voluntarios.get(index);
+            voluntario = new Voluntario();
+            voluntario.setId(idVoluntario);
             voluntario.setNome(nome);
             voluntario.setEmail(email);
             voluntario.setTelefone(telefone);  
-            voluntarios.set(index, voluntario);  
+            voluntario.setFoto(fotoVoluntario);
+            Atualizar(voluntario);  
        }
     }
     
-    public int EncontrarPosicaoVoluntarioPor(int id) {
-        for(Voluntario v : voluntarios){
-            if(v.getId() == id){
-                return voluntarios.indexOf(v);
-            }
-        }
-        
-        return -1;
-    }
-    
-    public void a(){
-        voluntarios.add(new Voluntario("Alexandre Toledo", PATH_IMAGES +"alexandre.jpeg", "alexandre@toledo.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Dinah Toledo", PATH_IMAGES +"dina.jpeg", "dinah@toledo.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Emanoela Maciel", PATH_IMAGES + "manu.jpeg", "manu@patasfelises.com.br", "88997652491"));
-        voluntarios.add(new Voluntario("Graziella Rodrigues", PATH_IMAGES+"grazi.jpg", "grazi@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Michael Farias", PATH_IMAGES+"michael.png", "michael@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Pedro Emanuel", PATH_IMAGES+"pedro.png", "pedro@patasfelizes.com.br","85997654398"));
-        voluntarios.add(new Voluntario("Wania Kelly", PATH_IMAGES+"wania.png", "wania@patasfelizes.com.br","85997654398"));       
-    }
 }

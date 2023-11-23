@@ -2,10 +2,12 @@ package main.controllers;
 
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Calendar;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -14,13 +16,16 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
 import main.interfaces.InicializadorComDado;
+import main.model.Despesa;
+import main.model.Procedimento;
 import main.services.AnimalService;
 import main.services.DespesaServices;
+import main.services.ProcedimentoService;
 import static main.utils.Constantes.FORM_FINANCAS;
 import static main.utils.Constantes.FORM_HOME;
 import org.controlsfx.control.textfield.TextFields;
 
-public class CadastrarDespesaController implements InicializadorComDado{
+public class CadastrarDespesaController extends CustomController implements InicializadorComDado{
 
     @FXML
     private DatePicker dataDespesa;
@@ -43,21 +48,29 @@ public class CadastrarDespesaController implements InicializadorComDado{
     @FXML
     private Button cancelarCadastro;
 
-    DespesaServices despesaServices;
-    AnimalService animalServices;
+    private DespesaServices despesaServices;
+    private AnimalService animalServices;
+    private ProcedimentoService procedimentoServices;
+    private int idDespesa;
+    private Despesa despesa;
     
     @Override
-    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object dado) {
-        initialize();
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
+        initialize(dados);
         setListeners(contentFather, primmaryStage, blackShadow);
     }
     
-    public void initialize(){
+    public void initialize(Object[] dados){
+        idDespesa = ObterDadoArray(dados, 0) == null ? -1 : (int) ObterDadoArray(dados, 0) ;
+        despesa = ObterDadoArray(dados, 1) == null ? null : (Despesa) ObterDadoArray(dados, 1) ;
+        
         animalServices = new AnimalService();
         despesaServices = new DespesaServices();
-        
+        procedimentoServices = new ProcedimentoService();
+
         configurarPets();
         configurarTiposDespesa();
+        setData();
     }
 
     public void configurarPets(){
@@ -88,6 +101,18 @@ public class CadastrarDespesaController implements InicializadorComDado{
         String tipo = tipoDespesa.getText();
         String valor = valorDespesa.getText();
         
-        despesaServices.Cadastrar(descriao, valor, data, pet, tipo);
+        despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, null);
+    }
+    
+    private void setData() {
+        if(despesa != null){
+            Procedimento procedimento = procedimentoServices.ObterProcedimentoPorDespesa(idDespesa);
+            descricaoDespesa.setText(despesa.getDescricao());
+            LocalDate localDate = despesa.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            dataDespesa.setValue(localDate);
+            petDespesa.setText((procedimento == null) ? "" : procedimento.getAnimal().getNome());
+            tipoDespesa.setText(despesa.getTipo());
+            valorDespesa.setText(String.valueOf(despesa.getValor()));
+        }
     }
 }

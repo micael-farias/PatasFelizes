@@ -33,7 +33,7 @@ public class EquipeController implements Inicializador, Resumidor {
 
     @Override
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
-
+        criarGridVoluntarios(contentFather, primmaryStage, blackShadow);
     }
     
     public void initialize(){

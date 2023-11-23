@@ -1,52 +1,43 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main.model;
 
 import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
-/**
- *
- * @author micha
- */
 public class Despesa {
        
-    private static int nextId = 1;
     private int Id;
     private String Descricao;
     private double Valor;
-    private Date Data;
-    private Date DataCadastro;
+    private Calendar Data;
     private String Tipo;
+    private boolean Realizada;
+    private Calendar DataCadastro;
 
-    public Despesa(String Descricao, double Valor, Date Data) {
-        this.Id = nextId++;
+    public Despesa(String Descricao, double Valor, Calendar Data) {
         this.Descricao = Descricao;
         this.Valor = Valor;
         this.Data = Data;
-        this.DataCadastro = new Date();
+        this.DataCadastro = Calendar.getInstance();
     }
-
-    public Despesa(String Descricao, double Valor, Date Data, String Tipo) {
-        this.Id = nextId++;
-        this.Descricao = Descricao;
-        this.Valor = Valor;
-        this.Data = Data;
-        this.Tipo = Tipo;
-        this.DataCadastro = new Date();
-    }
-    
-    
 
     public Despesa() {
-        this.Id = nextId++;
-        this.DataCadastro = new Date();
+        this.DataCadastro = Calendar.getInstance();
     }
 
     public String getTipo() {
         return Tipo;
     }
+
+    public boolean isRealizada() {
+        return Realizada;
+    }
+
+    public void setRealizada(boolean Realizada) {
+        this.Realizada = Realizada;
+    }
+    
+    
 
     public void setTipo(String Tipo) {
         this.Tipo = Tipo;
@@ -68,11 +59,11 @@ public class Despesa {
         this.Valor = Valor;
     }
 
-    public Date getData() {
+    public Calendar getData() {
         return Data;
     }
 
-    public void setData(Date Data) {
+    public void setData(Calendar Data) {
         this.Data = Data;
     }
 
@@ -84,11 +75,11 @@ public class Despesa {
         this.Id = Id;
     }
 
-    public Date getDataCadastro() {
+    public Calendar getDataCadastro() {
         return DataCadastro;
     }
 
-    public void setDataCadastro(Date DataCadastro) {
+    public void setDataCadastro(Calendar DataCadastro) {
         this.DataCadastro = DataCadastro;
     }
     

@@ -15,6 +15,7 @@ import main.interfaces.Resumidor;
 import main.model.Animal;
 import main.repositories.AnimalRepository;
 import static main.utils.Constantes.DIALOG_FILTRAR_ANIMAL;
+import main.utils.EmailSenderThread;
 import main.views.gridview.AnimalGridView;
 
 public class HomeController implements Inicializador, Resumidor{

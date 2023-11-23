@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import main.App;
 import main.controllers.DespesaController;
 import main.controllers.DoacaoController;
@@ -18,12 +19,17 @@ import static main.utils.Constantes.CARD_DOACAO;
 
 public class DoacoesGridView extends GridView<Doacao> {
     
+ 
     Pane contentFather;
-            
-    public DoacoesGridView(GridPane animaisGrid, int numColumns, List<Doacao> items, Pane contentFather, StackPane stackPaneScroll) {
+    Pane blackShadow;
+    Stage primaryStage;
+    
+    public DoacoesGridView(GridPane animaisGrid, int numColumns, List<Doacao> items, Pane contentFather, StackPane stackPaneScroll, Stage primaryStage, Pane blackShadow) {
         super(animaisGrid, numColumns, items);
-                set(stackPaneScroll);
-this.contentFather = contentFather;
+        set(stackPaneScroll);
+        this.contentFather = contentFather;
+        this.blackShadow = blackShadow;
+        this.primaryStage = primaryStage;
         setInsets(new Insets(0,10,0,10));
     }
 
@@ -31,7 +37,7 @@ this.contentFather = contentFather;
     public Node createGridAsyncItem(Doacao doacao, int column, int row) {
         var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_DOACAO, VBox.class);
         DoacaoController controller = fxmlLoader.getLoader().getController();
-        controller.setData(row, doacao);     
+        controller.Inicializar(contentFather, primaryStage, blackShadow, new Object[]{doacao, row});
         return fxmlLoader.getResult();
     }
     

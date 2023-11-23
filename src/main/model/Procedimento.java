@@ -1,34 +1,35 @@
 package main.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Procedimento {
-    private static int nextId = 1;
     
     private int Id;
     private String Descricao;
     private Animal Animal;
-    private Date Data;
+    private Calendar Data;
     private String tipo;
     private Voluntario Voluntario;
     private Despesa Despesa;
-    private Date DataCadastro;
+    private Tarefa tarefa;
+    private Calendar DataCadastro;
     private boolean Realizado;
     
-    public Procedimento(String Descricao, Date Data) {
-        this.Id = nextId++;
-        this.Descricao = Descricao;
-        this.Data = Data;
-        this.DataCadastro = new Date();
-    }
-
     public Procedimento() {
-        this.Id  = nextId++;
-        this.DataCadastro = new Date();
+        this.DataCadastro = Calendar.getInstance();
     }
     
     public int getId() {
         return Id;
+    }
+
+    public Tarefa getTarefa() {
+        return tarefa;
+    }
+
+    public void setTarefa(Tarefa tarefa) {
+        this.tarefa = tarefa;
     }
 
     public String getTipo() {
@@ -42,14 +43,6 @@ public class Procedimento {
     public void setId(int Id) {
         this.Id = Id;
     }
-
-    public Date getDataCadastro() {
-        return DataCadastro;
-    }
-
-    public void setDataCadastro(Date DataCadastro) {
-        this.DataCadastro = DataCadastro;
-    }
     
     public String getDescricao() {
         return Descricao;
@@ -59,14 +52,24 @@ public class Procedimento {
         this.Descricao = Descricao;
     }
 
-    public Date getData() {
+    public Calendar getData() {
         return Data;
     }
 
-    public void setData(Date Data) {
+    public void setData(Calendar Data) {
         this.Data = Data;
     }
 
+    public Calendar getDataCadastro() {
+        return DataCadastro;
+    }
+
+    public void setDataCadastro(Calendar DataCadastro) {
+        this.DataCadastro = DataCadastro;
+    }
+
+    
+    
     public Animal getAnimal() {
         return Animal;
     }

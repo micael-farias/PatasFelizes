@@ -1,5 +1,6 @@
 package main.controllers;
 
+import java.util.Calendar;
 import java.util.List;
 import main.App;
 import javafx.fxml.FXML;
@@ -28,7 +29,7 @@ import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
 import main.utils.ImageLoader;
-import main.utils.IntegerHelper;
+import main.utils.NumberHelper;
 import main.utils.Rectangles;
 import main.utils.ToogleEnum;
 import static main.utils.ToogleEnum.DIREITO;
@@ -88,6 +89,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     
     private byte[] fotoAnimal;
     private String ultimoStatus;
+    private char sexoAnimalValor;
     ToggleView toggleViewSexo;
     ToggleView toogleViewCastrado;
     ProcedimentoService procedimentoService;
@@ -96,27 +98,27 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     private static Animal ultimoAnimal;
     
     @Override
-    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object dado) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dado) {
         initialize(dado);
-        initializeViews(contentFather);
+        initializeViews(contentFather,primmaryStage, blackShadow);
         setListeners(contentFather, primmaryStage, blackShadow);
     }
     
-    public void initialize(Object dado){
-        ultimoAnimal = (dado != null) ? (Animal) dado : ultimoAnimal;
+    public void initialize(Object[] dado){
+        ultimoAnimal = (dado != null) ? (Animal) ObterDadoArray(dado, 0) : ultimoAnimal;
         animalService =  new AnimalService();
         procedimentoService = new ProcedimentoService();
         configuraToggles();
         setData(ultimoAnimal);  
     }
     
-    public void initializeViews(Pane contentFather){
-        criarGridProcedimentos(contentFather);
+    public void initializeViews(Pane contentFather, Stage primmaryStage, Pane blackShadow){
+        criarGridProcedimentos(contentFather,primmaryStage, blackShadow);
     }
     
-    public void criarGridProcedimentos(Pane contentFather){
+    public void criarGridProcedimentos(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         List<Procedimento> procedimentos = procedimentoService.EncontrarProcedimentosPor(ultimoAnimal.getId());
-        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(procedimentosGridView, 1, procedimentos);
+        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primmaryStage, blackShadow, procedimentosGridView, 1, procedimentos);
         procedimentosGrid.createGridAsync();   
     }
     
@@ -130,20 +132,34 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         nomeAnimalTextField.setText(animal.getNome());
               
         Idade idadeAnimal = CalculaAnosEMesesPorDt(animal.getDataNascimento());
-        
+        sexoAnimalValor = animal.getSexo();
+        boolean animalSemSexoDefinido = sexoAnimalValor == 'N';
+        ultimoStatus = animal.getStatus();
         anosAnimalTextField.setText(String.valueOf(idadeAnimal.getAnos()));
         mesesAnimalTextField.setText(String.valueOf(idadeAnimal.getMeses()));
         descricaoAnimalTextField.setText(animal.getDescricao());
-        toggleViewSexo.ativarBotao((animal.getSexo() == 'M') ? DIREITO : ESQUERDO);
+        sexoDesconhecidoCheckBox.setSelected(animalSemSexoDefinido);
+        if(animalSemSexoDefinido){
+            toggleViewSexo.desativarToogle();
+        }else{
+            toggleViewSexo.ativarBotao((animal.getSexo() == 'M') ? DIREITO : ESQUERDO);
+        }
+        
         toogleViewCastrado.ativarBotao((animal.isCastrado()) ? DIREITO : ESQUERDO);
     }
     
     public void atualizarAnimal(Stage primaryStage) {
         String nomeAnimal = nomeAnimalTextField.getText();
         String anosAnimal = anosAnimalTextField.getText();
-        String mesesAnimal = mesesAnimalTextField.getText();
+        String mesesAnimal = mesesAnimalTextField.getText() == null ? "0" : mesesAnimalTextField.getText();
         String descricaoAnimal = descricaoAnimalTextField.getText();
-        ToogleEnum sexoAnimal = toggleViewSexo.getSelectedItem();
+        ToogleEnum sexoAnimal;
+        if(sexoAnimalValor == 'N'){
+            sexoAnimal = null;
+        }else{
+            sexoAnimal = toggleViewSexo.getSelectedItem();   
+        } 
+                                
         ToogleEnum castrado = toogleViewCastrado.getSelectedItem();
 
         animalService.Salvar(ultimoAnimal.getId() ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
@@ -156,7 +172,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         });
 
         layoutImageViewAnimal.setOnMouseClicked(e -> {
-            fotoAnimal = CarregarImagemAnimal(primaryStage, imagemAnimal, layoutImageViewAnimal);
+            fotoAnimal = CarregarImagem(primaryStage, imagemAnimal, layoutImageViewAnimal);
         });
 
         statusAnimal.getItems().forEach(item -> item.setOnAction(event -> {
@@ -182,8 +198,10 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         
         sexoDesconhecidoCheckBox.setOnAction(event -> {
             if (sexoDesconhecidoCheckBox.isSelected()) {
+                sexoAnimalValor = 'N';
                 toggleViewSexo.desativarToogle();
             }else{
+                sexoAnimalValor = toggleViewSexo.getSelectedItem() == ToogleEnum.DIREITO ? 'F' : 'M';
                 toggleViewSexo.ativarToogle();
             }
         });
@@ -197,7 +215,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
               manterTexto(anosAnimalTextField);     
         } else {
             String currentText = anosAnimalTextField.getText();
-            int ano = IntegerHelper.IntegerParse(currentText);
+            int ano = NumberHelper.IntegerParse(currentText);
             if(ano == 1 || ano == 2){
                 anosAnimalTextField.setTextFormatter(criarTextFormatter(2));
             }else{
@@ -213,7 +231,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
               manterTexto(mesesAnimalTextField);     
         } else {
             String currentText = mesesAnimalTextField.getText();
-            int ano = IntegerHelper.IntegerParse(currentText);
+            int ano = NumberHelper.IntegerParse(currentText);
             if(ano == 1 || ano == 0){
                 mesesAnimalTextField.setTextFormatter(criarTextFormatter(2));
                 manterTexto(mesesAnimalTextField);     
@@ -229,6 +247,6 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
 
     @Override
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
-         criarGridProcedimentos(contentFather);
+         criarGridProcedimentos(contentFather, primmaryStage, blackShadow);
     }
 }

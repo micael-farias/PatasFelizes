@@ -22,7 +22,7 @@ import main.model.Procedimento;
 import main.services.AnimalService;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.FORM_HOME;
-import main.utils.IntegerHelper;
+import main.utils.NumberHelper;
 import main.utils.ToogleEnum;
 import main.views.gridview.ProcedimentoGridView;
 import main.views.toggle.ToggleView;
@@ -70,7 +70,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     
     private ToggleView toggleViewSexo;
     private ToggleView toogleViewCastrado;
-    
+    private char sexoAnimalValor;
     private byte[] fotoAnimal;
     private String ultimoStatus;
     private AnimalService animalService;
@@ -99,10 +99,16 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         String mesesAnimal = mesesAnimalTextField.getText();
         String anosAnimal = anosAnimalTextField.getText();
         String descricaoAnimal = descricaoAnimalTextField.getText();
-        ToogleEnum sexoAnimal = toggleViewSexo.getSelectedItem();
+        ToogleEnum sexoAnimal;
+        if(sexoAnimalValor == 'N'){
+            sexoAnimal = null;
+        }else{
+            sexoAnimal = toggleViewSexo.getSelectedItem();   
+        } 
+        
         ToogleEnum castrado = toogleViewCastrado.getSelectedItem();
-
-        animalService.Salvar(0 , nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
+        ultimoStatus = "F";
+        animalService.Salvar(-1 , nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
         
     }
 
@@ -113,7 +119,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         });
 
         layoutImageViewAnimal.setOnMouseClicked(e -> {
-            fotoAnimal = CarregarImagemAnimal(primaryStage, imagemAnimal, layoutImageViewAnimal);
+            fotoAnimal = CarregarImagem(primaryStage, imagemAnimal, layoutImageViewAnimal);
         });
 
         statusAnimal.getItems().forEach(item -> item.setOnAction(event -> {
@@ -126,8 +132,10 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         
         sexoDesconhecidoCheckBox.setOnAction(event -> {
             if (sexoDesconhecidoCheckBox.isSelected()) {
+                sexoAnimalValor = 'N';
                 toggleViewSexo.desativarToogle();
             }else{
+                sexoAnimalValor = toggleViewSexo.getSelectedItem() == ToogleEnum.DIREITO ? 'F' : 'M';
                 toggleViewSexo.ativarToogle();
             }
         });
@@ -141,7 +149,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
               manterTexto(anosAnimalTextField);     
         } else {
             String currentText = anosAnimalTextField.getText();
-            int ano = IntegerHelper.IntegerParse(currentText);
+            int ano = NumberHelper.IntegerParse(currentText);
             if(ano == 1 || ano == 2){
                 anosAnimalTextField.setTextFormatter(criarTextFormatter(2));
             }else{
@@ -157,7 +165,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
               manterTexto(mesesAnimalTextField);     
         } else {
             String currentText = mesesAnimalTextField.getText();
-            int ano = IntegerHelper.IntegerParse(currentText);
+            int ano = NumberHelper.IntegerParse(currentText);
             if(ano == 1 || ano == 0){
                 mesesAnimalTextField.setTextFormatter(criarTextFormatter(2));
                 manterTexto(mesesAnimalTextField);     

@@ -3,6 +3,7 @@ package main.utils;
 public class Constantes {
     public static String PATH_VIEWS_FXML = "/main/views/fxml/";
     public static String PATH_IMAGES = "/assets/images/";
+    public static String PATH_FILES = "/assets/files/";
     public static String FORM_HOME = PATH_VIEWS_FXML + "Home.fxml";
     public static String FORM_BASE = PATH_VIEWS_FXML + "Base.fxml";
     public static String FORM_FINANCAS = PATH_VIEWS_FXML + "Financas.fxml";
@@ -27,4 +28,5 @@ public class Constantes {
     public static String DIALOG_CADASTRAR_ADOCAO = PATH_VIEWS_FXML + "CadastrarAdocao.fxml";
     public static String DIALOG_FILTRAR_ANIMAL = PATH_VIEWS_FXML + "FiltrarAnimal.fxml";
     public static String DIALOG_REMOVER = PATH_VIEWS_FXML + "Remover.fxml";
+    public static String PATH_DATA_BASE = PATH_FILES + "scripts.sql";
 }

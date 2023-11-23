@@ -1,5 +1,6 @@
 package main.controllers;
 
+import java.util.Calendar;
 import main.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
 import static main.utils.ImageLoader.CarregarImagem;
 import main.utils.Rectangles;
 
-public class AnimalCardController implements InicializadorComDado{
+public class AnimalCardController extends CustomController implements InicializadorComDado{
 
     @FXML
     private Label idadeAnimal;
@@ -28,9 +29,9 @@ public class AnimalCardController implements InicializadorComDado{
     private ImageView sexoAnimal;
 
     @Override
-    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object dado) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object dado[]) {
 
-        Animal animal = (Animal) dado;
+        Animal animal = (Animal) ObterDadoArray(dado, 0);
 
         Idade idadeAnimalMesesAnos = CalculaAnosEMesesPorDt(animal.getDataNascimento());
         String textoIdadeAnimal = idadeAnimalMesesAnos.getAnos() + " anos e " + idadeAnimalMesesAnos.getMeses() + " meses";
@@ -46,7 +47,7 @@ public class AnimalCardController implements InicializadorComDado{
         
         CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimais());
         imagemAnimal.setOnMouseClicked(e -> {
-            App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, primmaryStage, animal, blackShadow);
+            App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, primmaryStage, new Object[]{animal}, blackShadow);
         }); 
     }
 

@@ -18,9 +18,8 @@ public class AdicionarVoluntarioController {
             
     public void setOnClick(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
       
-       cadastrarVoluntario.setOnMouseClicked(e -> {
-            
-            App.getInstance().AbrirDialog(DIALOG_CADASTRAR_VOLUNTARIO, contentFather, primmaryStage, blackShadow);
+       cadastrarVoluntario.setOnMouseClicked(e -> {         
+            App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_VOLUNTARIO, contentFather, primmaryStage, blackShadow, null);
       });
 
      

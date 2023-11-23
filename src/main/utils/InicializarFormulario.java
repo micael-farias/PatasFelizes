@@ -68,7 +68,7 @@ public class InicializarFormulario {
         }     
     }
     
-    public <T> void EntrarTela(String tela, Pane content, Stage primmaryStage, T dado, Pane blackShadow){   
+    public <T> void EntrarTela(String tela, Pane content, Stage primmaryStage, T[] dado, Pane blackShadow){   
         try {
             removerDialogoAberto(blackShadow, primmaryStage);
             FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
@@ -92,6 +92,10 @@ public class InicializarFormulario {
         content.getChildren().clear();
         ObservableList<Node> children = content.getChildren();
         children.addAll(result.getResult());     
+    }
+    
+    public <T> void FecharDialog(Stage primmaryStage, Pane blackShadow){   
+        removerDialogoAberto(blackShadow, primmaryStage);
     }
     
     public <T> void AbrirDialog(String tela, Pane contentFather, Stage primaryStage, Pane blackShadow) {   
@@ -121,7 +125,7 @@ public class InicializarFormulario {
         }        
     }
     
-    public <T> void AbrirDialogComDado(String tela, Pane contentFather, Stage primaryStage, Pane blackShadow, T dado) {   
+    public <T> void AbrirDialogComDado(String tela, Pane contentFather, Stage primaryStage, Pane blackShadow, T[] dado) {   
         try {
 
             Stage dialog = new Stage();
@@ -185,6 +189,7 @@ public class InicializarFormulario {
             dialog.initOwner(primaryStage);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(telaDestino));
+           
             Parent root2 = loader.load();
             InicializadorComOrigemEDado cam = loader.getController();                      
             cam.Inicializar(contentFather, primaryStage, blackShadow, telaOrigem, dado);
@@ -200,6 +205,7 @@ public class InicializarFormulario {
             
             dialogoAberto = root2;
         } catch(IOException e) {
+            e.printStackTrace();
         }        
     }
     

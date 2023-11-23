@@ -37,16 +37,27 @@ public class AnimalFormularioController extends CustomController{
         return toogleViewCastrado;
     }
 
-    public byte[] CarregarImagemAnimal(Stage primaryStage, ImageView imagemAnimal, VBox layoutImageViewAnimal) {
-        byte[] fotoAnimal = ImageLoader.CarregarImagemLocal(primaryStage);
-        if (fotoAnimal != null) {
-            ImageLoader.CarregarImagem(imagemAnimal, fotoAnimal, "", Rectangles.GetRectangleImageAnimais());
-            imagemAnimal.setFitHeight(layoutImageViewAnimal.heightProperty().doubleValue());
-            imagemAnimal.setFitWidth(layoutImageViewAnimal.widthProperty().doubleValue());
+    public static byte[] CarregarImagem(Stage primaryStage, ImageView image, VBox layoutImageView) {
+        byte[] foto = ImageLoader.CarregarImagemLocal(primaryStage);
+        if (foto != null) {
+            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimais());
+            image.setFitHeight(layoutImageView.heightProperty().doubleValue());
+            image.setFitWidth(layoutImageView.widthProperty().doubleValue());
         }
         
-        return fotoAnimal;
+        return foto;
     }
+    
+      public static byte[] CarregarImagemv2(Stage primaryStage, ImageView image, VBox layoutImageView, byte[] foto) {
+        if (foto != null) {
+            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimais());
+            image.setFitHeight(layoutImageView.heightProperty().doubleValue());
+            image.setFitWidth(layoutImageView.widthProperty().doubleValue());
+        }
+        
+        return foto;
+    }
+    
     
     public TextFormatter criarTextFormatter(int tamanho){
         return new TextFormatter<>(change -> {
