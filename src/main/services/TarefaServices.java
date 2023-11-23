@@ -91,4 +91,8 @@ public class TarefaServices {
     public Set<String> ObterNomesTiposTarefa() {
         return tarefasRepository.obterNomesTiposTarefa();
     }
+
+    public List<Tarefa> EncontrarTarefasPorDescricao(String tarefa) {
+        return tarefasRepository.EncontrarTarefasPorDescricao(tarefa);
+    }
 }

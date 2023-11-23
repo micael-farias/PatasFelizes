@@ -9,6 +9,40 @@
     -fx-padding: 0px;
 }
 
+
+
+
+
+.cardAnimal{
+    -fx-background-color: linear-gradient(to top, black, transparent);
+    -fx-border-radius: 10px; /* Raio da borda de 10 pixels */
+}
+
+.labelNomeAnimal {
+    -fx-font-family: 'Noto Sans'; /* Define a fonte 'Noto Sans' */
+    -fx-font-size: 25px; /* Define o tamanho da fonte */
+    -fx-text-fill: #FFFFFF; /* Define a cor do texto */
+}
+
+.labelIdadeAnimal {
+    -fx-font-family: 'Noto Sans'; /* Define a fonte 'Noto Sans' */
+    -fx-font-size: 14px; /* Define o tamanho da fonte */
+    -fx-text-fill: #FFFFFF; /* Define a cor do texto */
+}
+
+
+.labelSexoAnimal {
+    -fx-font-family: 'Noto Sans'; /* Define a fonte 'Noto Sans' */
+    -fx-font-size: 14px; /* Define o tamanho da fonte */
+    -fx-text-fill: #FFFFFF; /* Define a cor do texto */
+}
+
+
+
+
+
+
+
 .menuButtonExited {
     -fx-background-color:  #84A1DB;
     -fx-padding: 0px;
@@ -124,11 +158,9 @@
 .round-layout{
     -fx-background-color: #FFFFFF;
     -fx-cursor: hand;
-    -fx-padding: 0px;
-    -fx-content-display: top;
-    -fx-alignment: top-center;
+    -fx-padding: 10px;
     -fx-border-color: #494949;
-    -fx-border-radius: 20px;
+    -fx-border-radius: 10px;
 }
 
 .layoutPet {
@@ -138,7 +170,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
     -fx-content-display: top;
     -fx-font: 10pt "Noto Sans Mono Bold";
-    -fx-text-fill: #9e9e9e;
+    -fx-text-fill: #000000;
     -fx-cursor: hand;
 }
 

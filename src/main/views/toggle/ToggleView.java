@@ -23,11 +23,11 @@ public class ToggleView {
        controlador.setListeneres(clickDireita, clickEsquerda);
        ObservableList<Node> children = contentFather.getChildren();
        children.add(fxmlLoader.getResult());
-       ativarBotao(ToogleEnum.DIREITO);
+       ativarBotao(ToogleEnum.ESQUERDO);
     }    
     
    public void ativarBotao(ToogleEnum opcao){
-        controlador.ativarBotao(opcao);
+       controlador.ativarBotao(opcao);
    }
    
    public void ativarToogle(){

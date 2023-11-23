@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.interfaces.InicializadorComDado;
 import main.model.Animal;
@@ -21,12 +22,21 @@ public class AnimalCardController extends CustomController implements Inicializa
 
     @FXML
     private Label idadeAnimal;
+    
+    @FXML
+    private StackPane stackPane;
+
     @FXML
     private ImageView imagemAnimal;
+
+    @FXML
+    private Pane pane;
+
     @FXML
     private Label nomeAnimal;
+
     @FXML
-    private ImageView sexoAnimal;
+    private Label sexoAnimal;
 
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object dado[]) {
@@ -39,14 +49,15 @@ public class AnimalCardController extends CustomController implements Inicializa
         idadeAnimal.setText(textoIdadeAnimal);
         nomeAnimal.setText(animal.getNome());
         if(animal.getSexo() == 'M'){
-            sexoAnimal.setImage(new Image(PATH_IMAGES + "marte-azul.png"));
+            sexoAnimal.setText("Macho");
         }else{
-            sexoAnimal.setImage(new Image(PATH_IMAGES + "femea.png"));
+            sexoAnimal.setText("Femea");
         }
         
         
         CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimais());
-        imagemAnimal.setOnMouseClicked(e -> {
+        pane.setClip(Rectangles.GetRectanglePaneAnimais());
+        stackPane.setOnMouseClicked(e -> {
             App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, primmaryStage, new Object[]{animal}, blackShadow);
         }); 
     }

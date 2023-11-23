@@ -8,9 +8,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -19,12 +19,12 @@
         <URL value="@/main/views/css/financas.css" />
     </stylesheets>
    <children>
-      <Button fx:id="novaDespesaButton" layoutX="64.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #C2D5FA;" text="Nova despesa" textFill="#515151">
+      <Button fx:id="novaDespesaButton" layoutX="64.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #C2D5FA;" text="Nova doação" textFill="#515151">
          <font>
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
       </Button>
-      <TextField layoutX="64.0" layoutY="128.0" prefHeight="48.0" prefWidth="974.0">
+      <TextField fx:id="textFieldBuscarFinança" layoutX="64.0" layoutY="128.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
@@ -48,12 +48,12 @@
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="1054.0" layoutY="50.0" text="R$ 0,00">
+      <Label fx:id="labelTotalReceita" layoutX="1054.0" layoutY="50.0" text="R$ 0,00">
          <font>
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="1054.0" layoutY="76.0" text="R$ 0,00">
+      <Label fx:id="labelTotalDespesa" layoutX="1054.0" layoutY="76.0" text="R$ 0,00">
          <font>
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
@@ -68,19 +68,19 @@
             <Image url="@../../../assets/images/despesas.png" />
          </image>
       </ImageView>
-      <StackPane fx:id="stackPaneScroll" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="1038.0">
+      <StackPane fx:id="stackPaneScroll" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="1038.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                <content>
-                  <GridPane fx:id="despesasGrid" prefHeight="0.0" prefWidth="3.0">
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <GridPane fx:id="despesasGrid" prefHeight="475.0" prefWidth="1024.0" style="-fx-background-color: #FFFFFF;">
+                     <columnConstraints>
+                        <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
                   </GridPane>
                </content>
             </ScrollPane>
          </children>
       </StackPane>
-      <HBox fx:id="toogleFinancas" layoutX="448.0" layoutY="64.0" prefHeight="32.0" prefWidth="184.0" />
+      <HBox fx:id="toogleFinancas" layoutX="448.0" layoutY="64.0" prefHeight="32.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

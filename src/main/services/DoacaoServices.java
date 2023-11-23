@@ -26,9 +26,16 @@ public class DoacaoServices {
         return doacaoRepository.ObterNomesDoadores();
     }
     
-    public Doacao Salvar(int idDoacao, String doador, String valorString, LocalDate dataLocal, byte[] fotoComprovante){
+    public Doacao Salvar(int idDoacao, String doador, double valor, LocalDate dataLocal, byte[] fotoComprovante){
         Calendar data = LocalDateParaCalendar(dataLocal);     
-        double valor = NumberHelper.DoubleParse(valorString);        
         return doacaoRepository.Salvar(idDoacao, doador, valor, data, fotoComprovante);
+    }
+
+    public double[] ObterTotalReceitaEDespesa() {
+        return doacaoRepository.BuscarValoresDoacoesEDespesa();
+    }
+
+    public List<Doacao> ObterDoacoesPorDoador(String texto) {
+        return doacaoRepository.ObterDoacoesPorDescricao(texto);
     }
 }

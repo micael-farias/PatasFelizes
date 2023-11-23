@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,36 +8,51 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="958.0" styleClass="box" stylesheets="@../css/card_grid.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
    <children>
-      <CheckBox fx:id="checkBoxRealizado" mnemonicParsing="false" prefHeight="18.0" prefWidth="50.0">
-         <HBox.margin>
-            <Insets left="10.0" />
-         </HBox.margin>
-      </CheckBox>
-      <VBox fx:id="despesaLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="961.0">
+      <VBox prefHeight="44.0" prefWidth="962.0">
          <children>
-            <HBox fx:id="layoutDespesa" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/procedimento.css">
+            <HBox fx:id="layoutDespesa" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="dataDespesa" alignment="CENTER" prefHeight="44.0" prefWidth="304.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="descricaoDespesa" alignment="CENTER" prefHeight="44.0" prefWidth="400.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="Despesa">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="valorDespesa" alignment="CENTER" prefHeight="44.0" prefWidth="183.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="R$ 18,00">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
+                  <ImageView fx:id="checkBoxRealizado" fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" styleClass="check-box">
+                     <image>
+                        <Image url="@../../../assets/images/check_cinza_not_checked.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <HBox fx:id="layoutClickable" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="851.0" stylesheets="@../css/card_grid.css">
+                     <children>
+                        <Label fx:id="dataDespesa" prefHeight="44.0" prefWidth="268.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="descricaoDespesa" prefHeight="44.0" prefWidth="356.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="Despesa">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="valorDespesa" prefHeight="44.0" prefWidth="228.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="R$ 18,00">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
                      <children>
-                        <ImageView fx:id="editarDespesa" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="editarDespesa" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="editar">
                            <image>
                               <Image url="@../../../assets/images/editar-branco.png" />
                            </image>
@@ -47,7 +61,7 @@
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
                      <children>
-                        <ImageView fx:id="excluirDespesa" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="excluirDespesa" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="excluir">
                            <image>
                               <Image url="@../../../assets/images/remover-branco.png" />
                            </image>

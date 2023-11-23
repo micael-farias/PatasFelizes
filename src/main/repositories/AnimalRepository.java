@@ -86,10 +86,6 @@ public class AnimalRepository extends BaseRepository<Animal>{
         System.out.println("Nome do primeiro animal: " + primeiroAnimal.getNome());
 
         return listaAnimais;
-    
-
-          
-       
          } 
 
     public Animal EncontrarAnimalPor(int idAnimal) {
@@ -102,6 +98,10 @@ public class AnimalRepository extends BaseRepository<Animal>{
 
     public Set<String> EncontrarNomesAnimais() {     
         return new HashSet<String>(SelecionarTodos("NOME",null,null, String.class));
+    }
+
+    public List<Animal> EncontrarAnimaisPorNome(String nome) {
+        return SelecionarTodos("*", "NOME LIKE '%"+nome+"%'",null, Animal.class);
     }
     
     

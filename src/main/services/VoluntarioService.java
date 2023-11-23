@@ -29,7 +29,11 @@ public class VoluntarioService {
     public List<Voluntario> ObterVoluntarios() {
         return voluntarioRepository.ObterVoluntarios();
     }
- 
+    
+    public List<Voluntario> ObterVoluntarios(String nome) {
+        return voluntarioRepository.ObterVoluntariosPorNome(nome);
+    }
+    
     public Set<String> ObterNomeVoluntarios() {
         return voluntarioRepository.EncontrarNomesVoluntarios();
     }

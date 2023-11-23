@@ -8,8 +8,9 @@ import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 public abstract class GridView<T> {
@@ -37,26 +38,6 @@ public abstract class GridView<T> {
         return null;
     }
 
-    public GridPane createGrid() {
-        Node primeiroItem = itemInicial();
-        if (primeiroItem != null) {
-            configurarItemGrid(primeiroItem);
-        }
-
-        for (T item : items) {
-            Node gridItem = createGridAsyncItem(item, column, row);
-            configurarItemGrid(gridItem);
-        }
-
-        // Remover o ProgressIndicator após o carregamento
-        if(stackPaneScroll != null){
-                    Platform.runLater(() -> stackPaneScroll.getChildren().remove(progressIndicator));
-
-        }
-
-        return grid;
-    }
-    
     public void set(StackPane stackPaneScroll){
         this.stackPaneScroll = stackPaneScroll;
     }
@@ -77,30 +58,54 @@ public abstract class GridView<T> {
     }
 
     public void createGridAsync() {
-        // Adicionar o ProgressIndicator centralizado antes de iniciar a thread
-            if(stackPaneScroll != null){      
-                grid.getChildren().clear();
-                stackPaneScroll.setAlignment(Pos.CENTER);
-                stackPaneScroll.getChildren().add(progressIndicator);
-            }
+        
+        if (stackPaneScroll != null) {
+            grid.getChildren().clear();
+            stackPaneScroll.setAlignment(Pos.CENTER);
+            stackPaneScroll.getChildren().add(progressIndicator);
+        }
 
         Task<Void> task = new Task<Void>() {
             @Override
-            protected Void call() {  
+            protected Void call() {
+                int counter = 0;
+                
                 try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GridView.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                Platform.runLater(() -> createGrid());
+                Node primeiroItem = itemInicial();
+                if (primeiroItem != null) {
+                    Platform.runLater(() -> configurarItemGrid(primeiroItem));
+                }
+
+                for (T item : items) {
+                    Node gridItem = createGridAsyncItem(item, column, counter++);
+                    Platform.runLater(() -> configurarItemGrid(gridItem));
+                }
+
                 return null;
             }
         };
 
-        task.setOnSucceeded(null);
+        task.setOnSucceeded(event -> {
+            // Remover o ProgressIndicator após o carregamento
+            if (stackPaneScroll != null) {
+                stackPaneScroll.getChildren().remove(progressIndicator);
+            }
+        });
+        
+        task.setOnFailed(e ->{
+                if (stackPaneScroll != null) {
+                stackPaneScroll.getChildren().remove(progressIndicator);
+            }
+        });
+        
 
         Thread thread = new Thread(task);
         thread.start();
     }
+
 }

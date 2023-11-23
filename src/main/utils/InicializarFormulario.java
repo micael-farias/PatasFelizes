@@ -94,6 +94,15 @@ public class InicializarFormulario {
         children.addAll(result.getResult());     
     }
     
+    public <T> void EntrarTelaNoAction(String tela, Pane content, Stage primmaryStage, Pane blackShadow){   
+        removerDialogoAberto(blackShadow, primmaryStage);
+        FXMLLoadResult<Pane> result = mapping.get(tela);
+        content.getChildren().clear();
+        ObservableList<Node> children = content.getChildren();
+        children.addAll(result.getResult());     
+    }
+    
+    
     public <T> void FecharDialog(Stage primmaryStage, Pane blackShadow){   
         removerDialogoAberto(blackShadow, primmaryStage);
     }

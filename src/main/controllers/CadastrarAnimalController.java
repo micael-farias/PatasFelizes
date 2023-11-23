@@ -127,7 +127,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         }));     
         
         cancelarCadastro.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaOnResume(FORM_HOME, contentFather, primaryStage, blackShadow, null);
+            App.getInstance().FecharDialog(primaryStage, blackShadow);
         });
         
         sexoDesconhecidoCheckBox.setOnAction(event -> {

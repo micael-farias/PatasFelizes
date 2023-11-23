@@ -41,13 +41,12 @@ public class ProcedimentoService {
         tarefasRepository = new TarefasRepository();
     }
     
-    public Procedimento Salvar(int idProcedimento, String descricao, LocalDate dataLocal, String tipo, String valorString, String voluntarioString, int idAnimal, Boolean foiRealizado) {
+    public Procedimento Salvar(int idProcedimento, String descricao, LocalDate dataLocal, String tipo, double valor, String voluntarioString, int idAnimal, Boolean foiRealizado) {
         Date data = LocalDateParaDate(dataLocal); 
              
         boolean realizado = foiRealizado == null ? data.before(GetMidnightDate()) : foiRealizado;
         boolean enviaEmail = !data.before(GetMidnightDate());
                 
-        Double valor = DoubleParse(valorString);       
         Despesa despesa = null;
                 
         Voluntario voluntario = voluntarioRepository.EncontrarVoluntarioPor(voluntarioString);

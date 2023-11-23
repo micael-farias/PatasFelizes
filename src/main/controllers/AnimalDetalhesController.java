@@ -27,6 +27,7 @@ import static main.utils.Constantes.DIALOG_CADASTRAR_ADOCAO;
 import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
+import static main.utils.Constantes.FORM_HOME;
 import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
 import main.utils.ImageLoader;
 import main.utils.NumberHelper;
@@ -180,7 +181,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         }));
         
         voltarButton.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaInicial(contentFather, primaryStage, blackShadow);
+            App.getInstance().EntrarTelaNoAction(FORM_HOME,contentFather, primaryStage, blackShadow);
         });
         
         adicionarProcedimentoButton.setOnMouseClicked(e ->{

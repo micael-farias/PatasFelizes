@@ -79,7 +79,7 @@ public class Tarefa{
     public void setData(Calendar Data) {
         this.Data = Data;
     }
-    public boolean isRealizado() {
+    public boolean isRealizada() {
         return Realizado;
     }
 

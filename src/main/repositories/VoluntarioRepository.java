@@ -31,6 +31,10 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
         return new ArrayList<>(SelecionarTodos("*", null, "NOME DESC", Voluntario.class));
     }
 
+    public List<Voluntario> ObterVoluntariosPorNome(String nome){
+        return new ArrayList<>(SelecionarTodos("*", "NOME LIKE '%"+nome+"%'", "NOME DESC", Voluntario.class));
+    }
+    
     public void Salvar(int idVoluntario, String nome, String email, String telefone, byte[] fotoVoluntario) {
        
        Voluntario voluntario;

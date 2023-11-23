@@ -17,7 +17,7 @@
         <URL value="@/main/views/css/financas.css" />
     </stylesheets>
    <children>
-      <TextField layoutX="64.0" layoutY="64.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
+      <TextField fx:id="textFieldBuscarVoluntario" layoutX="64.0" layoutY="64.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
@@ -33,9 +33,9 @@
       </Button>
       <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1038.0">
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="578.0" prefWidth="1038.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/detalhesanimal.css" vbarPolicy="ALWAYS">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="578.0" prefWidth="1038.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                <content>
-                  <GridPane fx:id="membrosGrid" prefHeight="0.0" prefWidth="3.0">
+                  <GridPane fx:id="membrosGrid" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #FFFFFF;">
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
