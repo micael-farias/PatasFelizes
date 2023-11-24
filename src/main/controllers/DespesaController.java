@@ -123,7 +123,7 @@ public class DespesaController extends CustomController implements Inicializador
             }else{
                 checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
             }
-        }
+    }
     }
     
     @Override

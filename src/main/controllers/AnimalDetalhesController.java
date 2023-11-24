@@ -1,14 +1,20 @@
 package main.controllers;
 
+import com.sun.javafx.css.StyleManager;
 import java.util.Calendar;
 import java.util.List;
+import javafx.collections.ObservableList;
+import javafx.css.Rule;
+import javafx.css.StyleOrigin;
 import main.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -28,6 +34,7 @@ import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.FORM_HOME;
+import static main.utils.Constantes.PATH_IMAGES;
 import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
 import main.utils.ImageLoader;
 import main.utils.NumberHelper;
@@ -86,7 +93,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     private Button voltarButton;
 
     @FXML
-    private CheckBox sexoDesconhecidoCheckBox;
+    private ImageView sexoDesconhecidoCheckBox;
     
     private byte[] fotoAnimal;
     private String ultimoStatus;
@@ -97,7 +104,9 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     AnimalService animalService;
     
     private static Animal ultimoAnimal;
-    
+    @FXML
+    private Label labelNome;
+
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dado) {
         initialize(dado);
@@ -106,7 +115,9 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     }
     
     public void initialize(Object[] dado){
-        ultimoAnimal = (dado != null) ? (Animal) ObterDadoArray(dado, 0) : ultimoAnimal;
+
+   
+    ultimoAnimal = (dado != null) ? (Animal) ObterDadoArray(dado, 0) : ultimoAnimal;
         animalService =  new AnimalService();
         procedimentoService = new ProcedimentoService();
         configuraToggles();
@@ -119,7 +130,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     
     public void criarGridProcedimentos(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         List<Procedimento> procedimentos = procedimentoService.EncontrarProcedimentosPor(ultimoAnimal.getId());
-        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primmaryStage, blackShadow, procedimentosGridView, 1, procedimentos);
+        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primmaryStage, blackShadow, procedimentosGridView, 1, procedimentos, ultimoAnimal.getId());
         procedimentosGrid.createGridAsync();   
     }
     
@@ -129,7 +140,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     }
     
     public void setData(Animal animal){
-        ImageLoader.CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimais());
+        ImageLoader.CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimaisDetails());
         nomeAnimalTextField.setText(animal.getNome());
               
         Idade idadeAnimal = CalculaAnosEMesesPorDt(animal.getDataNascimento());
@@ -139,7 +150,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         anosAnimalTextField.setText(String.valueOf(idadeAnimal.getAnos()));
         mesesAnimalTextField.setText(String.valueOf(idadeAnimal.getMeses()));
         descricaoAnimalTextField.setText(animal.getDescricao());
-        sexoDesconhecidoCheckBox.setSelected(animalSemSexoDefinido);
+        setImage(animalSemSexoDefinido);
         if(animalSemSexoDefinido){
             toggleViewSexo.desativarToogle();
         }else{
@@ -177,6 +188,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         });
 
         statusAnimal.getItems().forEach(item -> item.setOnAction(event -> {
+            statusAnimal.setText(item.getText());
             ultimoStatus = item.getText();
         }));
         
@@ -184,10 +196,10 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
             App.getInstance().EntrarTelaNoAction(FORM_HOME,contentFather, primaryStage, blackShadow);
         });
         
-        adicionarProcedimentoButton.setOnMouseClicked(e ->{
+       /* adicionarProcedimentoButton.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialogComOrigemEDado(DIALOG_CADASTRAR_PROCEDIMENTO, FORM_ANIMAL_DETALHES , contentFather, primaryStage, blackShadow,
                     new Object[]{ultimoAnimal.getId()});
-        });
+        });*/
         
         adotarButton.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialog(DIALOG_CADASTRAR_ADOCAO, contentFather, primaryStage, blackShadow);
@@ -197,16 +209,27 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
             App.getInstance().AbrirDialogComOrigem(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow);
         });       
         
-        sexoDesconhecidoCheckBox.setOnAction(event -> {
-            if (sexoDesconhecidoCheckBox.isSelected()) {
-                sexoAnimalValor = 'N';
-                toggleViewSexo.desativarToogle();
-            }else{
+        sexoDesconhecidoCheckBox.setOnMouseClicked(event -> {
+            if (sexoAnimalValor == 'N') {
                 sexoAnimalValor = toggleViewSexo.getSelectedItem() == ToogleEnum.DIREITO ? 'F' : 'M';
                 toggleViewSexo.ativarToogle();
+            }else{
+                sexoAnimalValor = 'N';
+                toggleViewSexo.desativarToogle();
             }
-        });
+             
+            setImage(sexoAnimalValor == 'N');
+       });
     }
+    
+    public void setImage(boolean animalSemSexo){
+        if(animalSemSexo){
+                sexoDesconhecidoCheckBox.setImage(new Image(PATH_IMAGES + "check_azul_checked.png"));       
+        }else{
+                sexoDesconhecidoCheckBox.setImage(new Image(PATH_IMAGES + "check_azul_not_checked.png"));        
+        }
+    }
+    
     
     @FXML
     public void handleKeyTypedAnos(KeyEvent event) {

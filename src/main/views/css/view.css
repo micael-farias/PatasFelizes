@@ -155,6 +155,11 @@
     -fx-background-color: transparent;
 }
 
+.addCursor{
+    
+    -fx-cursor: hand;
+}
+
 .round-layout{
     -fx-background-color: #FFFFFF;
     -fx-cursor: hand;

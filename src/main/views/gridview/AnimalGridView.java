@@ -28,7 +28,7 @@ public class AnimalGridView extends GridView<Animal> {
         this.blackShadow = blackShadow;
         this.primmaryStage = primmaryStage;
         set(stackPaneScroll);
-        setInsets(new Insets(10));
+        setInsets(new Insets(0,10,10,10));
     }
 
     @Override

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="702.0" styleClass="box" stylesheets="@../css/card_grid.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.ProcedimentoController">
+   <children>
+      <VBox prefHeight="44.0" prefWidth="962.0">
+         <children>
+            <HBox fx:id="layoutProcedimento" alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="938.0">
+               <children>
+                  <ImageView fx:id="checkBoxRealizado" fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" styleClass="check-box">
+                     <image>
+                        <Image url="@../../../assets/images/check_cinza_not_checked.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <HBox fx:id="layoutClickable" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="592.0">
+                     <children>
+                        <Label fx:id="dataProcedimento" prefHeight="44.0" prefWidth="308.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="descricaoProcedimento" prefHeight="44.0" prefWidth="310.0" styleClass="labelProcedimento" stylesheets="@../css/procedimento.css" text="Despesa">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+                     <children>
+                        <ImageView fx:id="editarProcedimento" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="editar">
+                           <image>
+                              <Image url="@../../../assets/images/editar-branco.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+                     <children>
+                        <ImageView fx:id="excluirProcedimento" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="excluir">
+                           <image>
+                              <Image url="@../../../assets/images/remover-branco.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

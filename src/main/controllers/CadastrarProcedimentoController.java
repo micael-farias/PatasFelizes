@@ -21,10 +21,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
+import main.interfaces.InicializadorComDado;
 import main.interfaces.InicializadorComOrigemEDado;
 import main.model.Procedimento;
 import main.services.ProcedimentoService;
 import main.services.VoluntarioService;
+import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
 import org.controlsfx.control.textfield.TextFields;
@@ -32,7 +34,7 @@ import org.controlsfx.control.textfield.TextFields;
  *
  * @author micha
  */
-public class CadastrarProcedimentoController extends CustomController implements InicializadorComOrigemEDado{
+public class CadastrarProcedimentoController extends CustomController implements InicializadorComDado{
     @FXML
     private DatePicker dataProcedimento;
    
@@ -64,12 +66,12 @@ public class CadastrarProcedimentoController extends CustomController implements
     private boolean jaRealizado;
     
     @Override
-    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, String origem, Object[] dados) {
+    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
         idAnimal = ObterDadoArray(dados, 0) == null ? -1 : (int) ObterDadoArray(dados, 0) ;
         procedimento = ObterDadoArray(dados,1) == null ? null : (Procedimento) ObterDadoArray(dados, 1);
                 
         initialize();
-        setListeners(origem, contentFather, primmaryStage, blackShadow);     
+        setListeners(contentFather, primmaryStage, blackShadow);     
     }
    
     public void configurarVoluntarios(){
@@ -92,10 +94,10 @@ public class CadastrarProcedimentoController extends CustomController implements
         if(procedimento != null) setData();
     }
     
-    public void setListeners(String origem, Pane contentFather, Stage primmaryStage, Pane blackShadow){
+    public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarProcedimento.setOnMouseClicked(e->{
             cadastrarNovoProcedimento(primmaryStage);
-            App.getInstance().EntrarTelaOnResume(origem ,contentFather, primmaryStage, blackShadow, null);                       
+            App.getInstance().EntrarTelaOnResume(FORM_ANIMAL_DETALHES ,contentFather, primmaryStage, blackShadow, null);                       
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{

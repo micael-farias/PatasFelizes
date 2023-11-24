@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import main.App;
 import main.controllers.ToogleButtonController;
-import static main.utils.Constantes.TOOGLE_BUTTON;
 import main.utils.ToogleEnum;
 
 public class ToggleView {
@@ -16,9 +15,14 @@ public class ToggleView {
    ToogleButtonController controlador;
    EventHandler<MouseEvent> clickDireita;
    EventHandler<MouseEvent> clickEsquerda;
+   String path;
+   
+   public ToggleView(String path){
+       this.path = path;
+   }
     
     public void CriarToggle(Pane contentFather, EventHandler<MouseEvent> clickDireita, EventHandler<MouseEvent> clickEsquerda) {
-       var fxmlLoader = App.getInstance().RealizarLoadFXML(TOOGLE_BUTTON, HBox.class);
+       var fxmlLoader = App.getInstance().RealizarLoadFXML(path, HBox.class);
        controlador = fxmlLoader.getLoader().getController();
        controlador.setListeneres(clickDireita, clickEsquerda);
        ObservableList<Node> children = contentFather.getChildren();

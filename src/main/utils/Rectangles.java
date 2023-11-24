@@ -22,6 +22,13 @@ public class Rectangles {
         return clip;
     }
     
+    public static Rectangle GetRectangleImageAnimaisDetails(){
+        Rectangle clip = new Rectangle(180, 180);
+        clip.setArcWidth(20);
+        clip.setArcHeight(20);
+        return clip;
+    }
+    
     public static Image CreateBlackImage() {
         return new Image(PATH_IMAGES +"black.png");
     }

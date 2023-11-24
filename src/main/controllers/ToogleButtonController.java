@@ -73,16 +73,14 @@ public class ToogleButtonController {
     }
     
     public void desativarToogle(){
-        layoutCheckBox.setStyle("-fx-background-color: gray;");
-        direito.setStyle("-fx-background-color: gray;");
-        esquerdo.setStyle("-fx-background-color: gray;");
+        layoutCheckBox.setStyle("-fx-background-radius: 10;     -fx-background-color : #C2D5FA;    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 5, 0, 0, 0);");
+        paneAtual.setStyle("-fx-background-radius: 10; -fx-background-color : transparent; -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 0, 1, 1, 0);");
         toogleDesativado = true;
     }
     
     public void ativarToogle(){
-        layoutCheckBox.setStyle("-fx-background-color: #FFFFFF;");
-        direito.setStyle("-fx-background-color: #A8C4F8;");
-        esquerdo.setStyle("-fx-background-color: #FFFFFF;");
+        layoutCheckBox.setStyle("-fx-background-radius: 10;     -fx-background-color : #FFFFFF;    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 5, 0, 0, 0);");
+        paneAtual.setStyle("-fx-background-radius: 10; -fx-background-color : #C2D5FA; -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 0, 1, 1, 0);");
         toogleDesativado = false;
     }
     
@@ -90,9 +88,11 @@ public class ToogleButtonController {
         switch (opcao) {
             case DIREITO -> {
                 lado = ToogleEnum.DIREITO;
+                moverParaEsquerda();
             }
             case ESQUERDO -> {
                 lado = ToogleEnum.ESQUERDO;
+                moverParaDireita();
             }
             default -> {
             }
