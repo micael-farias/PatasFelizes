@@ -90,7 +90,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     private HBox toogleCastrado;
 
     @FXML
-    private Button voltarButton;
+    private ImageView voltarButton;
 
     @FXML
     private ImageView sexoDesconhecidoCheckBox;
@@ -194,6 +194,14 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         
         voltarButton.setOnMouseClicked(e ->{
             App.getInstance().EntrarTelaNoAction(FORM_HOME,contentFather, primaryStage, blackShadow);
+        });
+        
+        voltarButton.setOnMouseEntered(e ->{
+            voltarButton.setImage(new Image(PATH_IMAGES + "voltar_claro.png"));
+        });
+        
+        voltarButton.setOnMouseExited(e ->{
+            voltarButton.setImage(new Image(PATH_IMAGES + "voltar_escuro.png"));
         });
         
        /* adicionarProcedimentoButton.setOnMouseClicked(e ->{

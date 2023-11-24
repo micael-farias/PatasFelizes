@@ -12,9 +12,6 @@ import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 public class AdicionarProcedimentoController {
 
     @FXML
-    private Circle botaoAdicionarProcedimento;
-
-    @FXML
     private Label labelAdicionarProcedimento;
 
     @FXML
@@ -27,10 +24,6 @@ public class AdicionarProcedimentoController {
       iconClick.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_PROCEDIMENTO, contentFather, primmaryStage, blackShadow, new Object[]{idAnimal});   
       });    
-        
-      botaoAdicionarProcedimento.setOnMouseClicked(e -> {         
-            App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_PROCEDIMENTO, contentFather, primmaryStage, blackShadow, new Object[]{idAnimal});
-      });
 
       labelAdicionarProcedimento.setOnMouseClicked(e -> {         
             App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_PROCEDIMENTO, contentFather, primmaryStage, blackShadow, new Object[]{idAnimal});

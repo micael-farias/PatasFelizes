@@ -27,14 +27,7 @@
 }
 
 .buttonVoltar {
-    -fx-background-color: #FFFFFF;
-    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
-    -fx-background-radius: 60pt;
     -fx-cursor: hand;
-}
-
-.buttonVoltar:hover {
-    -fx-background-color: #888888;
 }
 
 .removerButton {
@@ -55,6 +48,13 @@
     -fx-text-fill: #000000;  
     -fx-font-weight: normal;
 }
+
+.LabelFiltrar{
+    -fx-font-size: 14px;
+    -fx-text-fill: gray;  
+    -fx-font-weight: normal;
+}
+
 
 .round-layout{
     -fx-background-color: #FFFFFF;

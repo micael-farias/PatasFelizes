@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="702.0" styleClass="box" stylesheets="@../css/card_grid.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AdicionarProcedimentoController">
@@ -18,10 +17,9 @@
                <children>
                   <StackPane prefHeight="150.0" prefWidth="200.0" stylesheets="@../css/view.css">
                      <children>
-                        <Circle fx:id="botaoAdicionarProcedimento" fill="WHITE" radius="14.0" stroke="WHITE" strokeType="INSIDE" styleClass="addCursor" />
-                        <ImageView fx:id="iconClick" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" styleClass="check-box">
+                        <ImageView fx:id="iconClick" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="check-box">
                            <image>
-                              <Image url="@../../../assets/images/icone-plus-blue.png" />
+                              <Image url="@../../../assets/images/addProcedimento.png" />
                            </image>
                         </ImageView>
                      </children>
