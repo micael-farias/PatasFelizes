@@ -95,12 +95,12 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         initialize();
         setListeners(contentFather, primmaryStage, blackShadow);
+        configuraToggles();
     }
     
     public void initialize(){
         animalService =  new AnimalService();
         procedimentoService = new ProcedimentoService();
-        configuraToggles();
     }
     
     public void configuraToggles(){
@@ -153,6 +153,11 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
              
             setImage(sexoAnimalValor == 'N');
        });
+        
+        cancelarCadastro.setOnMouseClicked(e ->{
+            App.getInstance().FecharDialog(primaryStage, blackShadow);
+        });
+        
     }
     
     public void setImage(boolean animalSemSexo){

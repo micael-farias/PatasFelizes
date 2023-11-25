@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="948.0" stylesheets="@../css/detalhesanimal.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarAnimalController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="948.0" styleClass="pane" stylesheets="@../css/detalhesanimal.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarAnimalController">
    <children>
       <Label fx:id="labelNome" layoutX="248.0" layoutY="28.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Nome">
          <font>
@@ -22,18 +22,21 @@
          </font>
       </Label>
       <Label id="Labels" layoutX="248.0" layoutY="94.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Sobre" textFill="WHITE" />
-      <TextArea fx:id="descricaoAnimalTextField" layoutX="248.0" layoutY="124.0" prefHeight="94.0" prefWidth="680.0" styleClass="round-layout-text-area" stylesheets="@../css/detalhesanimal.css" wrapText="true" />
+      <TextArea fx:id="descricaoAnimalTextField" layoutX="248.0" layoutY="124.0" prefHeight="94.0" prefWidth="660.0" styleClass="round-layout-text-area" stylesheets="@../css/detalhesanimal.css" wrapText="true" AnchorPane.bottomAnchor="258.0" AnchorPane.rightAnchor="39.0" />
       <Label id="Labels" layoutX="39.0" layoutY="221.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Sexo" />
       <Label id="Labels" layoutX="39.0" layoutY="313.0" lineSpacing="2.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Castrado" />
       <Label id="Labels" layoutX="39.0" layoutY="374.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Status" />
-      <Button id="button" fx:id="salvarAnimal" layoutX="821.0" layoutY="419.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
-      <Button id="button" fx:id="cancelarCadastro" layoutX="707.0" layoutY="419.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+      <Button id="button" fx:id="salvarAnimal" layoutX="802.0" layoutY="419.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" AnchorPane.bottomAnchor="39.6" AnchorPane.rightAnchor="39.0" />
+      <Button id="button" fx:id="cancelarCadastro" layoutX="686.0" layoutY="419.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" AnchorPane.bottomAnchor="39.6" />
       <HBox fx:id="toggleSexo" layoutX="39.0" layoutY="251.0" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
       <HBox fx:id="toogleCastrado" layoutX="39.0" layoutY="343.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
-      <VBox alignment="CENTER" layoutX="1022.0" layoutY="27.0" prefHeight="55.0" prefWidth="50.0" />
-      <VBox fx:id="layoutImageViewAnimal" layoutX="39.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css">
+      <VBox fx:id="layoutImageViewAnimal" alignment="CENTER" layoutX="39.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css">
          <children>
-            <ImageView fx:id="imagemAnimal" cache="true" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" smooth="false" />
+            <ImageView fx:id="imagemAnimal" cache="true" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" smooth="false" styleClass="imageViewAnimal">
+               <image>
+                  <Image url="@../../../assets/images/plus.png" />
+               </image>
+            </ImageView>
          </children>
       </VBox>
       <Label layoutX="760.0" layoutY="28.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Idade" />
@@ -62,7 +65,7 @@
             </Label>
          </children>
       </HBox>
-      <TextField fx:id="nomeAnimalTextField" layoutX="248.0" layoutY="60.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="496.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+      <TextField fx:id="nomeAnimalTextField" layoutX="248.0" layoutY="60.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="479.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
@@ -70,12 +73,12 @@
             <Insets left="10.0" />
          </padding>
       </TextField>
-      <TextField fx:id="anosAnimalTextField" layoutX="759.0" layoutY="61.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+      <TextField fx:id="anosAnimalTextField" layoutX="739.0" layoutY="61.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="mesesAnimalTextField" layoutX="851.0" layoutY="61.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+      <TextField fx:id="mesesAnimalTextField" layoutX="851.0" layoutY="61.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css" AnchorPane.rightAnchor="39.0">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>

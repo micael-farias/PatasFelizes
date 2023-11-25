@@ -41,17 +41,7 @@ public class AnimalFormularioController extends CustomController{
     public static byte[] CarregarImagem(Stage primaryStage, ImageView image, VBox layoutImageView) {
         byte[] foto = ImageLoader.CarregarImagemLocal(primaryStage);
         if (foto != null) {
-            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimais());
-            image.setFitHeight(layoutImageView.heightProperty().doubleValue());
-            image.setFitWidth(layoutImageView.widthProperty().doubleValue());
-        }
-        
-        return foto;
-    }
-    
-      public static byte[] CarregarImagemv2(Stage primaryStage, ImageView image, VBox layoutImageView, byte[] foto) {
-        if (foto != null) {
-            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimais());
+            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimaisDetails());
             image.setFitHeight(layoutImageView.heightProperty().doubleValue());
             image.setFitWidth(layoutImageView.widthProperty().doubleValue());
         }
