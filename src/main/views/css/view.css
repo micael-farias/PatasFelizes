@@ -10,7 +10,9 @@
 }
 
 
-
+#labelsFinancas{
+    -fx-font: 16px "Noto Sans Mono";
+}
 
 
 .cardAnimal{
@@ -153,6 +155,11 @@
     -fx-padding: 0px;
     -fx-spacing: 32px;
     -fx-background-color: transparent;
+}
+
+.addCursor{
+    
+    -fx-cursor: hand;
 }
 
 .round-layout{

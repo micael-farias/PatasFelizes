@@ -46,7 +46,7 @@ public class EmailSenderThread extends Thread {
             message.setText(body);
 
             // Enviando o email
-            Transport.send(message);
+//            Transport.send(message);
 
             System.out.println("Email enviado para: " + to);
         } catch (MessagingException e) {

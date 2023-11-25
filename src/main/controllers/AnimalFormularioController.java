@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.model.Animal;
+import static main.utils.Constantes.TOOGLE_BUTTON_SHORT;
 import main.utils.ImageLoader;
 import main.utils.Rectangles;
 import main.views.toggle.ToggleView;
@@ -22,7 +23,7 @@ import main.views.toggle.ToggleView;
 public class AnimalFormularioController extends CustomController{
     
     public ToggleView configuraToggleSexo(Pane toggleSexo) {
-        ToggleView toggleViewSexo = new ToggleView();
+        ToggleView toggleViewSexo = new ToggleView(TOOGLE_BUTTON_SHORT);
         toggleViewSexo.CriarToggle(toggleSexo, null, null);
         toggleViewSexo.setImagemDireita("marte-cinza.png");
         toggleViewSexo.setImagemEsquerda("venus-cinza.png");
@@ -30,27 +31,17 @@ public class AnimalFormularioController extends CustomController{
     }
 
     public ToggleView configuraToggleCastrado(Pane toogleCastrado) {
-        ToggleView toogleViewCastrado = new ToggleView();
+        ToggleView toogleViewCastrado = new ToggleView(TOOGLE_BUTTON_SHORT);
         toogleViewCastrado.CriarToggle(toogleCastrado, null, null);
         toogleViewCastrado.setTextoDireito("SIM");
-        toogleViewCastrado.setTextoEsquerdo("NAO");
+        toogleViewCastrado.setTextoEsquerdo("NÃO");
         return toogleViewCastrado;
     }
 
     public static byte[] CarregarImagem(Stage primaryStage, ImageView image, VBox layoutImageView) {
         byte[] foto = ImageLoader.CarregarImagemLocal(primaryStage);
         if (foto != null) {
-            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimais());
-            image.setFitHeight(layoutImageView.heightProperty().doubleValue());
-            image.setFitWidth(layoutImageView.widthProperty().doubleValue());
-        }
-        
-        return foto;
-    }
-    
-      public static byte[] CarregarImagemv2(Stage primaryStage, ImageView image, VBox layoutImageView, byte[] foto) {
-        if (foto != null) {
-            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimais());
+            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimaisDetails());
             image.setFitHeight(layoutImageView.heightProperty().doubleValue());
             image.setFitWidth(layoutImageView.widthProperty().doubleValue());
         }

@@ -22,6 +22,7 @@ import main.services.DoacaoServices;
 import main.services.DespesaServices;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
+import static main.utils.Constantes.TOOGLE_BUTTON;
 import main.utils.RealFormatter;
 import main.utils.ToogleEnum;
 import main.views.gridview.DespesasGridView;
@@ -78,7 +79,7 @@ public class FinancasController implements Inicializador, Resumidor {
     }
     
     public void initalizeViews(Pane contentFather, Stage primaryStage, Pane blackShadow){
-        toggleViewFinancas = new ToggleView();
+        toggleViewFinancas = new ToggleView(TOOGLE_BUTTON);
         toggleViewFinancas.CriarToggle(toogleFinancas,
                 e -> {
                     setHintDespesa();

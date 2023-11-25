@@ -78,17 +78,17 @@ public class TarefaController extends CustomController implements InicializadorC
         Rectangle clip = new Rectangle(35, 35);
             clip.setArcWidth(10);
             clip.setArcHeight(10);
-
+            
         CarregarImagem(fotoVoluntario, tarefa.getVoluntario().getFoto(), tarefa.getVoluntario().idFoto(), clip);
         descricaoTarefa.setText(tarefa.getDescricao());
         nomeAnimal.setText(tarefa.getAnimal()!= null ? tarefa.getAnimal().getNome() : "-");
         nomeVoluntario.setText(tarefa.getVoluntario().getNome());
         dataTarefa.setText(CalendarParaString(tarefa.getData()));
-        dataTarefa.setStyle("-fx-font-weight: bold;");
-        setImage(tarefa.isRealizada(), posicao);
+
+        setImage(tarefa.isRealizada());
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !tarefa.isRealizada();
-            setImage(realizada, posicao);
+            setImage(realizada);
             if (realizada) {  
                 tarefa = tarefaServices.Salvar(tarefa.getId(), tarefa.getVoluntario().getNome(), tarefa.getAnimal() != null ? tarefa.getAnimal().getNome() : null,
                         tarefa.getDescricao(), DateHelper.CalendarParaLocalDate(tarefa.getData()), tarefa.getTipo(), true);
@@ -127,19 +127,11 @@ public class TarefaController extends CustomController implements InicializadorC
         setListeners(contentFather, primmaryStage, blackShadow);    
     }   
     
-     public void setImage(boolean realizado, int posicao){
-        if(posicao % 2 != 0){
-            if(realizado){
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_azul_checked.png"));          
-            }else{
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_azul_not_checked.png"));
-            }
+     public void setImage(boolean realizado){
+        if(realizado){
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_azul_checked.png"));          
         }else{
-            if(realizado){
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
-            }else{
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
-            }
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_azul_not_checked.png"));
         }
     }
     

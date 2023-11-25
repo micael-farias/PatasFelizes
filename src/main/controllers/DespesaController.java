@@ -61,14 +61,13 @@ public class DespesaController extends CustomController implements Inicializador
 
         descricaoDespesa.setText(despesa.getDescricao());
         dataDespesa.setText(CalendarParaString(despesa.getData()));
-        dataDespesa.setStyle("-fx-font-weight: bold;");
         valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
-        setImage(despesa.isRealizada(), posicao);
+        setImage(despesa.isRealizada());
 
         
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !despesa.isRealizada();
-            setImage(realizada, posicao);
+            setImage(realizada);
             if (realizada) {  
                 despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
                         DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), true);
@@ -110,12 +109,14 @@ public class DespesaController extends CustomController implements Inicializador
         });
     }
       
-    public void setImage(boolean realizado, int posicao){
-        if(realizado){
-            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
-        }else{
-            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
-        }
+    public void setImage(boolean realizado){
+
+            if(realizado){
+                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
+            }else{
+                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
+            }
+        
     }
     
     @Override

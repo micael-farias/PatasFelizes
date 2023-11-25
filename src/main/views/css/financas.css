@@ -2,24 +2,20 @@
  * Empty Stylesheet file.
  */
 
-.buttonDespesa {
+
+
+.button_nova {
+    -fx-font-weight: bold;
+    -fx-background-color:  #C2D5FA;
+    -fx-background-radius: 8pt;
     -fx-cursor: hand;
 }
 
-.buttonReceita{
+.button_nova:hover {
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(194, 213, 250, 0.7);
+    -fx-background-radius: 8pt;
     -fx-cursor: hand;
-}
-
-.buttonDespesa:hover {
-    -fx-background-color: #4CAF50; /* Cor de fundo quando o mouse está sobre o botão */
-    -fx-background-color: brightness(-20%); /* Escurece a cor de fundo */
-   -fx-text-fill: #FFFFFF; /* Cor do texto quando o mouse está sobre o botão */
-}
-
-.buttonReceita:hover {
-    -fx-background-color: #4CAF50; /* Cor de fundo quando o mouse está sobre o botão */
-    -fx-background-color: brightness(-20%); /* Escurece a cor de fundo */
-    -fx-text-fill: #FFFFFF; /* Cor do texto quando o mouse está sobre o botão */
 }
 
 

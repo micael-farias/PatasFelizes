@@ -11,7 +11,9 @@
 .labelData{
     -fx-text-fill: #6E6E6E;
     -fx-font-weight: bold;
+    -fx-font-size: 16px;
 }
+
 
 .labelProcedimento{
     -fx-text-fill: #404040;

@@ -22,6 +22,7 @@ import main.interfaces.InicializadorComDado;
 import main.model.Procedimento;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
+import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
@@ -31,10 +32,7 @@ import static main.utils.DateHelper.DataParaString;
 public class ProcedimentoController extends CustomController implements InicializadorComDado{
 
     @FXML
-    private CheckBox checkBoxRealizado;
-    
-    @FXML
-    private VBox adicionarPet;
+    private ImageView checkBoxRealizado;
 
     @FXML
     private Label dataProcedimento;
@@ -47,12 +45,27 @@ public class ProcedimentoController extends CustomController implements Iniciali
 
     @FXML
     private ImageView excluirProcedimento;
-    
+
+    @FXML
+    private HBox layoutClickable;
+
     @FXML
     private HBox layoutProcedimento;
+
+    @FXML
+    private Label voluntarioProcedimento;
     
     private Procedimento procedimento;
+    
     private ProcedimentoService procedimentoService;
+       
+    public void setImage(boolean realizado){
+        if(realizado){
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
+        }else{
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
+        }        
+    }
     
     public void setData(Object[] dados) {
         procedimento = (Procedimento) ObterDadoArray(dados, 0);
@@ -61,10 +74,13 @@ public class ProcedimentoController extends CustomController implements Iniciali
         
         descricaoProcedimento.setText(procedimento.getDescricao());
         dataProcedimento.setText(CalendarParaString(procedimento.getData()));
-        dataProcedimento.setStyle("-fx-font-weight: bold;");
-        checkBoxRealizado.setSelected(procedimento.isRealizado());
-        checkBoxRealizado.setOnAction(event -> {
-            if (checkBoxRealizado.isSelected()) {  
+        setImage(procedimento.isRealizado());
+
+        
+        checkBoxRealizado.setOnMouseClicked(event -> {
+            boolean realizada = !procedimento.isRealizado();
+            setImage(realizada);
+            if (realizada) {  
 
                 procedimentoService.Salvar(procedimento.getId(),
                         procedimento.getDescricao(), 
@@ -92,10 +108,20 @@ public class ProcedimentoController extends CustomController implements Iniciali
     }
     
     public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow){
-        layoutProcedimento.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialogComOrigemEDado(DIALOG_CADASTRAR_PROCEDIMENTO, FORM_ANIMAL_DETALHES , contentFather, primaryStage, blackShadow,
+        layoutClickable.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_PROCEDIMENTO, contentFather, primaryStage, blackShadow,
                     new Object[]{ procedimento.getAnimal().getId(), procedimento});        
             });
+        
+        excluirProcedimento.setOnMouseClicked(e ->{
+          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,
+                   new Object[]{ "Deseja realmente excluir essa despesa? "});        
+          });  
+        
+        editarProcedimento.setOnMouseClicked(e ->{
+          App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_PROCEDIMENTO , contentFather, primaryStage, blackShadow,
+                   new Object[]{ procedimento.getId(), procedimento});    
+        });
     }
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {

@@ -46,5 +46,10 @@ public class AnimalGridView extends GridView<Animal> {
         controller.setOnClick(contentFather, primmaryStage, blackShadow);              
         return fxmlLoader.getResult();
     }
+    
+    @Override
+    public Insets firstRowInsets() {
+        return new Insets(-10,10,10,10);
+    }
 }
 

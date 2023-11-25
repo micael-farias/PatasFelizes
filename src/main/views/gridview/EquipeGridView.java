@@ -48,4 +48,10 @@ public class EquipeGridView extends GridView<Voluntario> {
         controller.setOnClick(contentFather, primaryStage, blackShadow);              
         return fxmlLoader.getResult();
     }
+    
+    @Override
+    public Insets firstRowInsets() {
+        return new Insets(-10,10,10,10);
+    }
+
 }

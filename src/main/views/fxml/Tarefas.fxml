@@ -17,17 +17,21 @@
         <URL value="@/main/views/css/financas.css" />
     </stylesheets>
    <children>
-      <Button fx:id="novaTarefa" layoutX="64.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #C2D5FA;" text="Nova tarefa" textFill="#515151">
+      <Button id="labelsFinancas" fx:id="novaTarefa" layoutX="77.0" layoutY="70.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-font-weight: bold;" styleClass="button_nova" text="Nova tarefa" textFill="#515151">
          <font>
             <Font name="Noto Sans Mono Bold" size="14.0" />
          </font>
+         <stylesheets>
+            <URL value="@../css/financas.css" />
+            <URL value="@../css/view.css" />
+         </stylesheets>
       </Button>
-      <TextField fx:id="textFieldBuscarTarefa" layoutX="64.0" layoutY="128.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
+      <TextField fx:id="textFieldBuscarTarefa" layoutX="77.0" layoutY="128.0" prefHeight="49.0" prefWidth="991.0" styleClass="round-layout" stylesheets="@../css/view.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
       </TextField>
-      <Button contentDisplay="TOP" layoutX="1054.0" layoutY="126.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
+      <Button contentDisplay="TOP" layoutX="1087.0" layoutY="128.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
                <image>
@@ -36,11 +40,11 @@
             </ImageView>
          </graphic>
       </Button>
-      <StackPane fx:id="stackPaneScroll" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="1038.0">
+      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="198.0" prefHeight="534.0" prefWidth="1064.0">
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="1038.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                <content>
-                  <GridPane fx:id="tarefasGrid" prefHeight="475.0" prefWidth="1026.0">
+                  <GridPane fx:id="tarefasGrid" prefHeight="517.0" prefWidth="1045.0">
                      <columnConstraints>
                         <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>

@@ -12,13 +12,15 @@ public class Constantes {
     public static String FORM_ANIMAL_DETALHES = PATH_VIEWS_FXML + "AnimalDetalhes.fxml";
     public static String CARD_ANIMAL = PATH_VIEWS_FXML + "AnimalCardv2.fxml";
     public static String CARD_ADICIONAR_ANIMAL = PATH_VIEWS_FXML + "AdicionarAnimal.fxml";
+    public static String CARD_ADICIONAR_PROCEDIMENTO = PATH_VIEWS_FXML + "AdicionarProcedimento.fxml";
     public static String CARD_DESPESA = PATH_VIEWS_FXML + "Despesa.fxml";
     public static String CARD_DOACAO = PATH_VIEWS_FXML + "Doacao.fxml";
     public static String CARD_TAREFA = PATH_VIEWS_FXML + "Tarefa.fxml";
     public static String CARD_VOLUNTARIO = PATH_VIEWS_FXML + "VoluntarioV2.fxml";
     public static String CARD_ADICIONAR_VOLUNTARIO = PATH_VIEWS_FXML + "AdicionarVoluntario.fxml";
-        public static String TOOGLE_BUTTON = PATH_VIEWS_FXML + "ToogleButtonv2.fxml";
-    public static String CARD_PROCEDIMENTO = PATH_VIEWS_FXML + "Procedimento.fxml";
+    public static String TOOGLE_BUTTON = PATH_VIEWS_FXML + "ToogleButtonv2.fxml";
+    public static String TOOGLE_BUTTON_SHORT = PATH_VIEWS_FXML + "ToogleButtonv2Short.fxml";
+    public static String CARD_PROCEDIMENTO = PATH_VIEWS_FXML + "Procedimentov2.fxml";
     public static String DIALOG_CADASTRAR_ANIMAL = PATH_VIEWS_FXML + "CadastrarAnimal.fxml";
     public static String DIALOG_CADASTRAR_VOLUNTARIO = PATH_VIEWS_FXML + "CadastrarVoluntario.fxml";
     public static String DIALOG_CADASTRAR_TAREFA = PATH_VIEWS_FXML + "CadastrarTarefa.fxml";

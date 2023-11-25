@@ -5,15 +5,9 @@
 package main.model;
 
 import java.util.Calendar;
-import java.util.Date;
 import main.annotations.TableName;
 import main.interfaces.PossuiIdFoto;
-import static main.utils.ImageConverter.ImageFileToByteArray;
 
-/**
- *
- * @author micha
- */
 @TableName("Voluntarios")
 public class Voluntario implements PossuiIdFoto{
 

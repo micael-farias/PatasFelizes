@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS Procedimentos (
     IdAnimal INTEGER NOT NULL,
     Data TIMESTAMP NOT NULL,
     Tipo VARCHAR(255) NOT NULL,
-    IdVoluntario INTEGER NOT NULL,
+    IdVoluntario INTEGER,
     IdDespesa INTEGER,
     IdTarefa INTEGER NOT NULL,
     Realizado BOOLEAN NOT NULL,

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,12 +21,20 @@
                         <Image url="@../../../assets/images/femea.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="labelEsquerda" alignment="CENTER" prefHeight="18.0" prefWidth="125.0" stylesheets="@../css/toggle.css" text="Label" textAlignment="CENTER" />
+                  <Label id="labelsFinancas" fx:id="labelEsquerda" alignment="CENTER" prefHeight="18.0" prefWidth="125.0" text="Label" textAlignment="CENTER">
+                     <stylesheets>
+                        <URL value="@../css/toggle.css" />
+                        <URL value="@../css/view.css" />
+                     </stylesheets></Label>
                </children>
             </StackPane>
             <StackPane fx:id="direito" layoutX="100.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="100.0" stylesheets="@../css/toggle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label fx:id="labelDireita" alignment="CENTER" prefHeight="18.0" prefWidth="115.0" stylesheets="@../css/toggle.css" text="Label" visible="false" />
+                  <Label id="labelsFinancas" fx:id="labelDireita" alignment="CENTER" prefHeight="18.0" prefWidth="115.0" text="Label" visible="false">
+                     <stylesheets>
+                        <URL value="@../css/toggle.css" />
+                        <URL value="@../css/view.css" />
+                     </stylesheets></Label>
                   <ImageView fx:id="imagemEsquerda" fitHeight="20.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../assets/images/femea.png" />
