@@ -97,6 +97,10 @@ public class ProcedimentoService {
     public List<Procedimento> EncontrarProcedimentosPor(int idAnimal) {
         return procedimentoRepository.encontrarProcedimentosPor(idAnimal);
     }
+        
+    public List<Procedimento> EncontrarProcedimentosPor(String descricao, int idAnimal) {
+        return procedimentoRepository.encontrarProcedimentosPor(descricao, idAnimal);
+    }
     
     
     public Set<String> ObterNomesTiposProcedimento() {

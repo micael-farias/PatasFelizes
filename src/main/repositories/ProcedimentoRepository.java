@@ -235,4 +235,22 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
 
         return procedimento;
     }
+
+    public List<Procedimento> encontrarProcedimentosPor(String descricao, int idAnimal) {
+        List<Procedimento> procedimentosAnimal = new ArrayList<>();
+        try (PreparedStatement statement = connection.prepareStatement(
+                     "SELECT * FROM Procedimentos WHERE DESCRICAO LIKE '%"+descricao+"%' AND IDANIMAL = " + idAnimal)) {
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    procedimentosAnimal.add(mapearProcedimento(resultSet));
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return procedimentosAnimal;
+    }
 }

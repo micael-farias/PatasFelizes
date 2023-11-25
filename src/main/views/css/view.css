@@ -21,20 +21,22 @@
 }
 
 .labelNomeAnimal {
-    -fx-font-family: 'Noto Sans'; /* Define a fonte 'Noto Sans' */
+    -fx-font-weight: bold;
     -fx-font-size: 25px; /* Define o tamanho da fonte */
     -fx-text-fill: #FFFFFF; /* Define a cor do texto */
 }
 
 .labelIdadeAnimal {
-    -fx-font-family: 'Noto Sans'; /* Define a fonte 'Noto Sans' */
+    -fx-font-weight: bold;
+    -fx-font-family: 'Noto Sans Devanagari'; /* Define a fonte 'Noto Sans' */
     -fx-font-size: 14px; /* Define o tamanho da fonte */
     -fx-text-fill: #FFFFFF; /* Define a cor do texto */
 }
 
 
 .labelSexoAnimal {
-    -fx-font-family: 'Noto Sans'; /* Define a fonte 'Noto Sans' */
+    -fx-font-weight: bold;
+    -fx-font-family: 'Noto Sans Devanagari'; /* Define a fonte 'Noto Sans' */
     -fx-font-size: 14px; /* Define o tamanho da fonte */
     -fx-text-fill: #FFFFFF; /* Define a cor do texto */
 }

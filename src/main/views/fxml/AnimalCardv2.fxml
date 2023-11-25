@@ -18,39 +18,39 @@
             <Pane fx:id="pane" prefHeight="225.0" prefWidth="232.0" styleClass="cardAnimal" stylesheets="@../css/view.css" />
             <VBox alignment="BOTTOM_LEFT" prefHeight="246.0" prefWidth="241.0">
                <children>
-                  <HBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="232.0" styleClass="hBoxInfoPetInternal" stylesheets="@../css/view.css">
+                  <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="223.0" stylesheets="@../css/view.css">
                      <children>
-                        <VBox prefHeight="61.0" prefWidth="14.0">
+                        <VBox prefHeight="83.0" prefWidth="34.0">
                            <children>
-                              <Circle fill="#11ff00" radius="5.0" stroke="#0bff58" strokeType="INSIDE" strokeWidth="0.0">
+                              <Circle fx:id="statusAnimal" fill="#11ff00" radius="5.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.5">
                                  <VBox.margin>
                                     <Insets top="14.0" />
                                  </VBox.margin>
                               </Circle>
                            </children>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
                         </VBox>
-                        <VBox prefHeight="76.0" prefWidth="216.0">
+                        <Pane prefHeight="48.0" prefWidth="334.0">
                            <children>
-                              <Label fx:id="nomeAnimal" minHeight="-Infinity" prefHeight="28.0" prefWidth="198.0" styleClass="labelNomeAnimal" stylesheets="@../css/view.css" text="Nazaré" textFill="WHITE">
+                              <Label fx:id="nomeAnimal" layoutX="11.0" minHeight="-Infinity" prefHeight="28.0" prefWidth="198.0" styleClass="labelNomeAnimal" stylesheets="@../css/view.css" text="Nazaré" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="23.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="sexoAnimal" styleClass="labelSexoAnimal" stylesheets="@../css/view.css" text="Femea" textFill="WHITE">
+                              <Label fx:id="sexoAnimal" layoutX="12.0" layoutY="33.0" prefHeight="30.0" prefWidth="48.0" styleClass="labelSexoAnimal" stylesheets="@../css/view.css" text="FemeaI" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold Italic" size="15.0" />
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="idadeAnimal" styleClass="labelSexoAnimal" text="6 anos e 12 meses" textFill="WHITE">
+                              <Label fx:id="idadeAnimal" layoutX="12.0" layoutY="53.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="118.0" styleClass="labelSexoAnimal" text="6 anos e 12 meses" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </Label>
                            </children>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </VBox>
+                        </Pane>
                      </children>
                      <VBox.margin>
                         <Insets bottom="25.0" />

@@ -10,7 +10,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.App;
 import static main.controllers.AnimalFormularioController.CarregarImagem;
-import static main.controllers.AnimalFormularioController.CarregarImagemv2;
 import main.interfaces.InicializadorComDado;
 import main.model.Voluntario;
 import main.services.VoluntarioService;
@@ -92,7 +91,6 @@ public class CadastrarVoluntarioController extends CustomController implements I
             emailVoluntario.setText(voluntario.getEmail());
             telefoneVoluntario.setText(voluntario.getTelefone());
             fotoVoluntario = voluntario.getFoto();
-            CarregarImagemv2(primmaryStage, imagemVoluntario, layoutImageViewVoluntario, voluntario.getFoto());
 
         }
     }

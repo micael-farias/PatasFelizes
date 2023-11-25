@@ -7,16 +7,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import main.interfaces.InicializadorBase;
 
 import static main.utils.Constantes.FORM_BASE;
+import static main.utils.Constantes.PATH_FILES;
 
 public class Main extends Application {
     
     @Override
     public void start(Stage primaryStage) {
         try {
+            Font.loadFont(getClass().getResourceAsStream(PATH_FILES + "NotoSansDevanagari.ttf"), 12);
             FXMLLoader loader = new FXMLLoader(getClass().getResource(FORM_BASE));
             Parent root = loader.load();
             InicializadorBase base = loader.getController();

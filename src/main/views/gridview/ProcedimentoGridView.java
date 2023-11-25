@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.App;
@@ -22,13 +23,14 @@ public class ProcedimentoGridView extends GridView<Procedimento> {
     Stage primaryStage;
     int idAnimal;
     
-    public ProcedimentoGridView(Pane contentFather, Stage primmaryStage, Pane blackShadow, GridPane animaisGrid, int numColumns, List<Procedimento> items, int id) {
+    public ProcedimentoGridView(Pane contentFather, Stage primmaryStage, StackPane stackPaneScroll, Pane blackShadow, GridPane animaisGrid, int numColumns, List<Procedimento> items, int id) {
         super(animaisGrid, numColumns, items);
         this.contentFather = contentFather;
         this.blackShadow = blackShadow;
         this.primaryStage = primmaryStage;
         this.idAnimal = id;
-        setInsets(new Insets(0,10,0,10));
+        set(stackPaneScroll);
+        setInsets(new Insets(0,10,0,0));
     }
 
     @Override
