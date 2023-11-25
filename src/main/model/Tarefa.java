@@ -49,6 +49,9 @@ public class Tarefa{
     }
 
     public Voluntario getVoluntario() {
+        if(Voluntário == null){
+            return new Voluntario();
+        }
         return Voluntário;
     }
 

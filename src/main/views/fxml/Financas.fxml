@@ -24,7 +24,11 @@
             <URL value="@/main/views/css/financas.css" />
          </stylesheets>
          <children>
+<<<<<<< HEAD
             <Button id="labelsFinancas" fx:id="novaDespesaButton" layoutX="77.0" layoutY="70.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-font-weight: bold;" styleClass="button_nova" text="Nova doação" textFill="#515151">
+=======
+            <Button fx:id="novaDespesaButton" layoutX="64.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #C2D5FA;" text="Nova doação" textFill="#515151">
+>>>>>>> 3db561a0cc99edbefaf06894fe8a6aacad7a92ee
                <font>
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
@@ -33,7 +37,11 @@
                   <URL value="@../css/view.css" />
                </stylesheets>
             </Button>
+<<<<<<< HEAD
             <TextField fx:id="textFieldBuscarFinança" layoutX="77.0" layoutY="128.0" prefHeight="49.0" prefWidth="991.0" styleClass="round-layout" stylesheets="@../css/view.css">
+=======
+            <TextField fx:id="textFieldBuscarFinança" layoutX="64.0" layoutY="128.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
+>>>>>>> 3db561a0cc99edbefaf06894fe8a6aacad7a92ee
                <font>
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
@@ -57,12 +65,20 @@
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
             </Label>
+<<<<<<< HEAD
             <Label id="labelsFinancas" fx:id="labelTotalReceita" layoutX="1054.0" layoutY="50.0" stylesheets="@../css/view.css" text="R$ 0,00">
+=======
+            <Label fx:id="labelTotalReceita" layoutX="1054.0" layoutY="50.0" text="R$ 0,00">
+>>>>>>> 3db561a0cc99edbefaf06894fe8a6aacad7a92ee
                <font>
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
             </Label>
+<<<<<<< HEAD
             <Label id="labelsFinancas" fx:id="labelTotalDespesa" layoutX="1054.0" layoutY="76.0" stylesheets="@../css/view.css" text="R$ 0,00">
+=======
+            <Label fx:id="labelTotalDespesa" layoutX="1054.0" layoutY="76.0" text="R$ 0,00">
+>>>>>>> 3db561a0cc99edbefaf06894fe8a6aacad7a92ee
                <font>
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
@@ -77,11 +93,19 @@
                   <Image url="@../../../assets/images/despesas.png" />
                </image>
             </ImageView>
+<<<<<<< HEAD
             <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="198.0" prefHeight="534.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                      <content>
                         <GridPane fx:id="despesasGrid" prefHeight="529.0" prefWidth="1044.0" style="-fx-background-color: #FFFFFF;">
+=======
+            <StackPane fx:id="stackPaneScroll" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
+                     <content>
+                        <GridPane fx:id="despesasGrid" prefHeight="475.0" prefWidth="1024.0" style="-fx-background-color: #FFFFFF;">
+>>>>>>> 3db561a0cc99edbefaf06894fe8a6aacad7a92ee
                            <columnConstraints>
                               <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
