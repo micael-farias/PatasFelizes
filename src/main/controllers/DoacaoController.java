@@ -11,9 +11,10 @@ import javafx.stage.Stage;
 import main.App;
 import main.interfaces.InicializadorComDado;
 import main.model.Doacao;
+import main.utils.Constantes;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
 import static main.utils.Constantes.DIALOG_REMOVER;
-import static main.utils.Constantes.FORM_FINANCAS;
+import static main.utils.Constantes.FORM_DOACOES;
 import static main.utils.Constantes.PATH_IMAGES;
 import static main.utils.DateHelper.CalendarParaString;
 import main.utils.RealFormatter;
@@ -59,7 +60,7 @@ public class DoacaoController extends CustomController implements InicializadorC
         dataDoacao.setStyle("-fx-font-weight: bold;");
         valorDoacao.setText(RealFormatter.formatarComoReal(doacao.getValor()));
 
-        if(posicao % 2 != 0){
+        if(posicao % 2 == 0){
             layoutDoacao.setStyle("-fx-background-color: white;");
             editarDoacao.setImage(new Image(PATH_IMAGES +"editar-colorido.png"));
             excluirDoacao.setImage(new Image(PATH_IMAGES + "remover-colorido.png"));
@@ -73,7 +74,7 @@ public class DoacaoController extends CustomController implements InicializadorC
             });
         
         excluirDoacao.setOnMouseClicked(e ->{
-          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_FINANCAS, contentFather, primaryStage, blackShadow,
+          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_DOACOES, contentFather, primaryStage, blackShadow,
                    new Object[]{ "Deseja realmente excluir essa doação? "});        
           });  
         

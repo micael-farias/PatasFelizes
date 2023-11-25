@@ -10,10 +10,7 @@ import javafx.stage.Stage;
 import main.App;
 import main.interfaces.InicializadorBase;
 import main.utils.Constantes;
-import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
-import static main.utils.Constantes.FORM_EQUIPE;
-import static main.utils.Constantes.FORM_FINANCAS;
-import static main.utils.Constantes.FORM_TAREFAS;
+import static main.utils.Constantes.*;
 
 public class BaseController implements InicializadorBase{
     
@@ -60,24 +57,6 @@ public class BaseController implements InicializadorBase{
         setActive(button);  
     }
 
-    @FXML
-    private void menuButtonFinancasExited(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        toExitedStyle(button);
-    }
-
-    @FXML
-    private void menuButtonFinancasEntered(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        toEnteredStyle(button);
-    }
-
-    @FXML
-    private void menuButtonFinancasClicked(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        App.getInstance().EntrarTela(FORM_FINANCAS, content, primmaryStage, blackShadow);
-        setActive(button);
-    }
 
     @FXML
     private void menuButtonAgendaExited(MouseEvent event) {
@@ -115,6 +94,64 @@ public class BaseController implements InicializadorBase{
         Button button = (Button) event.getSource();
         App.getInstance().EntrarTela(FORM_EQUIPE, content, primmaryStage, blackShadow);
         setActive(button);
+    }
+    
+    
+    @FXML
+    void menuButtonAuditoriaClicked(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        App.getInstance().EntrarTela(FORM_AUDITORIAS, content, primmaryStage, blackShadow);
+        setActive(button);
+    }
+
+    @FXML
+    void menuButtonAuditoriaEntered(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        toEnteredStyle(button);
+    }
+
+    @FXML
+    void menuButtonAuditoriaExited(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        toExitedStyle(button);
+    }
+
+    @FXML
+    void menuButtonDespesasClicked(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        App.getInstance().EntrarTela(FORM_DESPESAS, content, primmaryStage, blackShadow);
+        setActive(button);
+    }
+
+    @FXML
+    void menuButtonDespesasEntered(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        toEnteredStyle(button);
+    }
+
+    @FXML
+    void menuButtonDespesasExited(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        toExitedStyle(button);
+    }
+
+    @FXML
+    void menuButtonDoacoesClicked(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        App.getInstance().EntrarTela(FORM_DOACOES, content, primmaryStage, blackShadow);
+        setActive(button);
+    }
+
+    @FXML
+    void menuButtonDoacoesEntered(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        toEnteredStyle(button);
+    }
+
+    @FXML
+    void menuButtonDoacoesExited(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        toExitedStyle(button);
     }
    
     private void toExitedStyle(Button button) {

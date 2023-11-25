@@ -87,6 +87,7 @@ CREATE TABLE IF NOT EXISTS Alteracoes (
     IdRegistroAfetado INTEGER NOT NULL,
     ColunaAlterada TEXT NOT NULL,
     ValorAntigo TEXT,
+    Descritor VARCHAR(255),
     ValorNovo TEXT,
     DataAlteracao TIMESTAMP NOT NULL
 );

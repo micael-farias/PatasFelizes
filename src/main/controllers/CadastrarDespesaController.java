@@ -22,7 +22,7 @@ import main.model.Procedimento;
 import main.services.AnimalService;
 import main.services.DespesaServices;
 import main.services.ProcedimentoService;
-import static main.utils.Constantes.FORM_FINANCAS;
+import static main.utils.Constantes.FORM_DESPESAS;
 import static main.utils.Constantes.FORM_HOME;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
@@ -91,7 +91,7 @@ public class CadastrarDespesaController extends CustomController implements Inic
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarDespesa.setOnMouseClicked(e->{
             SalvarDespesa();
-            App.getInstance().EntrarTelaOnResume(FORM_FINANCAS ,contentFather, primmaryStage, blackShadow, null);                      
+            App.getInstance().EntrarTelaOnResume(FORM_DESPESAS ,contentFather, primmaryStage, blackShadow, null);                      
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{

@@ -14,7 +14,6 @@ import main.interfaces.InicializadorComDado;
 import main.model.Voluntario;
 import main.services.VoluntarioService;
 import static main.utils.Constantes.FORM_EQUIPE;
-import static main.utils.Constantes.FORM_FINANCAS;
 import main.utils.ImageLoader;
 import main.utils.Rectangles;
 import static main.utils.Rectangles.GetCircleVoluntario;

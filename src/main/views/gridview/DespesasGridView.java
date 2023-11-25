@@ -10,9 +10,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.App;
+import main.controllers.AdicionarDoacaoController;
 import main.controllers.DespesaController;
 import main.model.Despesa;
+import static main.utils.Constantes.CARD_ADICIONAR_DOACAO;
 import static main.utils.Constantes.CARD_DESPESA;
+import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
 
 
 public class DespesasGridView extends GridView<Despesa> {
@@ -35,6 +38,14 @@ public class DespesasGridView extends GridView<Despesa> {
         var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_DESPESA, HBox.class);
         DespesaController controller = fxmlLoader.getLoader().getController();
         controller.Inicializar(contentFather, primaryStage, blackShadow, new Object[]{despesa, row});
+        return fxmlLoader.getResult();
+    }
+    
+     @Override
+    public Node itemInicial() {
+        var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_ADICIONAR_DOACAO, HBox.class);    
+        AdicionarDoacaoController controller = fxmlLoader.getLoader().getController();
+        controller.setOnClick(contentFather, primaryStage, blackShadow, "Clique aqui para adicionar uma nova despesa", DIALOG_CADASTRAR_DESPESA);              
         return fxmlLoader.getResult();
     }
     

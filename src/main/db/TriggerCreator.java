@@ -10,46 +10,46 @@ public class TriggerCreator {
 
     public static void create(Statement statement) throws SQLException {
         // Exemplo de uso para a tabela Animais
-        createTriggersForTableAndColumns("Animais", "Nome,DataNascimento,Descricao,Sexo,Castrado,Status", statement);
+        createTriggersForTableAndColumns("Animais", "Nome,DataNascimento,Descricao,Sexo,Castrado,Status", statement, "Nome");
 
         // Exemplo de uso para a tabela Doacoes
-        createTriggersForTableAndColumns("Doacoes", "Doador,Valor,Data", statement);
+        createTriggersForTableAndColumns("Doacoes", "Doador,Valor,Data", statement, "Doador");
 
         // Exemplo de uso para a tabela Voluntarios
-        createTriggersForTableAndColumns("Voluntarios", "Nome,Email,Telefone", statement);
+        createTriggersForTableAndColumns("Voluntarios", "Nome,Email,Telefone", statement, "Nome");
 
         // Exemplo de uso para a tabela Despesas
-        createTriggersForTableAndColumns("Despesas", "Descricao,Valor,Data,Tipo,Realizada", statement);
+        createTriggersForTableAndColumns("Despesas", "Descricao,Valor,Data,Tipo,Realizada", statement, "Descricao");
 
         // Exemplo de uso para a tabela Tarefas
-        createTriggersForTableAndColumns("Tarefas", "IdVoluntario,IdAnimal,Descricao,Data,Tipo,Realizado", statement);
+        createTriggersForTableAndColumns("Tarefas", "IdVoluntario,IdAnimal,Descricao,Data,Tipo,Realizado", statement, "Descricao");
 
         // Exemplo de uso para a tabela Procedimentos
-        createTriggersForTableAndColumns("Procedimentos", "Descricao,IdAnimal,Data,Tipo,IdVoluntario,IdDespesa,IdTarefa,Realizado", statement);
+        createTriggersForTableAndColumns("Procedimentos", "Descricao,IdAnimal,Data,Tipo,IdVoluntario,IdDespesa,IdTarefa,Realizado", statement, "Descricao");
 
         // Exemplo de uso para a tabela Adotantes
-        createTriggersForTableAndColumns("Adotantes", "Nome,Contato,CEP,Cidade,Rua,Bairro,Numero", statement);
+        createTriggersForTableAndColumns("Adotantes", "Nome,Contato,CEP,Cidade,Rua,Bairro,Numero", statement, "Nome");
     }
 
-    public static void createTriggersForTableAndColumns(String tableName, String columns, Statement statement) throws SQLException {
+    public static void createTriggersForTableAndColumns(String tableName, String columns, Statement statement, String descritor) throws SQLException {
         String[] columnArray = columns.split(",");
 
         for (String column : columnArray) {
             String triggerName = tableName + "AposAtualizar_" + column.trim();
-            String triggerSQL = generateTriggerSQL(triggerName, tableName, column.trim());
+            String triggerSQL = generateTriggerSQL(triggerName, tableName, column.trim(), descritor);
             statement.executeUpdate(triggerSQL);
             System.out.println("Trigger criada para " + tableName + "." + column);
         }
     }
 
-    public static String generateTriggerSQL(String triggerName, String tableName, String columnName) {
+    public static String generateTriggerSQL(String triggerName, String tableName, String columnName, String descritor) {
         return String.format("CREATE TRIGGER IF NOT EXISTS %s\n" +
                         "AFTER UPDATE OF %s ON %s\n" +
                         "FOR EACH ROW\n" +
-                        "WHEN NEW.%s != OLD.%s\n" +  // Condição para verificar se a coluna foi alterada
+                        "WHEN NEW.%s != OLD.%s\n" +  //
                         "BEGIN\n" +
-                        "        INSERT INTO Alteracoes (TabelaAfetada, IdRegistroAfetado, ColunaAlterada, ValorAntigo, ValorNovo, DataAlteracao)\n" +
-                        "        VALUES ('%s', NEW.Id, '%s', OLD.%s, NEW.%s, datetime('now', 'localtime') );\n" +
+                        "        INSERT INTO Alteracoes (TabelaAfetada, IdRegistroAfetado, Descritor, ColunaAlterada, ValorAntigo, ValorNovo, DataAlteracao)\n" +
+                        "        VALUES ('%s', NEW.Id, OLD."+descritor+",'%s', OLD.%s, NEW.%s, datetime('now', 'localtime') );\n" +
                         "END;",
                 triggerName, columnName, tableName, columnName, columnName, tableName, columnName, columnName, columnName);
     }

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.TarefaController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.TarefaController">
    <children>
-      <VBox prefHeight="44.0" prefWidth="962.0">
+      <VBox minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0">
          <children>
             <HBox fx:id="layoutTarefa" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" styleClass="box" stylesheets="@../css/card_grid.css">
                <children>
@@ -31,7 +31,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <HBox fx:id="layoutClickable" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="851.0" stylesheets="@../css/card_grid.css">
+                  <HBox fx:id="layoutClickable" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="829.0" stylesheets="@../css/card_grid.css">
                      <children>
                         <Label fx:id="nomeVoluntario" prefHeight="44.0" prefWidth="210.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="R$ 18,00">
                            <font>

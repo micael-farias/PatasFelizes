@@ -21,7 +21,7 @@ import main.services.DespesaServices;
 import main.services.DoacaoServices;
 import main.services.ProcedimentoService;
 import main.services.VoluntarioService;
-import static main.utils.Constantes.FORM_FINANCAS;
+import static main.utils.Constantes.FORM_DOACOES;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
 import org.controlsfx.control.textfield.TextFields;
@@ -84,11 +84,11 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarDoacao.setOnMouseClicked(e->{
             SalvarDespesa();
-            App.getInstance().EntrarTelaOnResume(FORM_FINANCAS ,contentFather, primmaryStage, blackShadow, null);                      
+            App.getInstance().EntrarTelaOnResume(FORM_DOACOES ,contentFather, primmaryStage, blackShadow, null);                      
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaNoAction(FORM_FINANCAS, contentFather, primmaryStage, blackShadow);
+            App.getInstance().EntrarTelaNoAction(FORM_DOACOES, contentFather, primmaryStage, blackShadow);
         });        
     }
     
