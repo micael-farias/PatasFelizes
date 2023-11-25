@@ -1,5 +1,6 @@
 package main.services;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -16,6 +17,8 @@ import static main.utils.DateHelper.LocalDateParaDate;
 import static main.utils.NumberHelper.DoubleParse;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.repositories.TarefasRepository;
 import static main.utils.DateHelper.LocalDateParaCalendar;
 
@@ -56,23 +59,36 @@ public class DespesaServices {
                 return null;
             }  
         }       
-        
-        Despesa despesa = despesaRepository.Salvar(idDespesa, descricao, valor, data, tipo, realizado);                
-        if(animal != null){
-            Procedimento procedimento = procedimentoRepository.encontrarProcedimentosPorDespesa(idDespesa);
+        Despesa despesa;
+        try{
+            despesaRepository.BeginTransaction();
+            despesa = despesaRepository.Salvar(idDespesa, descricao, valor, data, tipo, realizado);                
+            if(animal != null){
+                Procedimento procedimento = procedimentoRepository.encontrarProcedimentosPorDespesa(idDespesa);
 
-            if(procedimento == null){
-                procedimentoRepository.Salvar(-1, descricao, data, tipo, despesa, null, null, animal, realizado);
-                tarefaRepository.Salvar(-1, null, animal, descricao, data, tipo, realizado);
-            }else{
-                procedimentoRepository.Salvar(procedimento.getId(), descricao, data, 
-                    tipo, despesa, procedimento.getVoluntario(), procedimento.getTarefa(), animal, realizado);   
-                tarefaRepository.Salvar(procedimento.getTarefa().getId(), procedimento.getTarefa().getVoluntario(),
-                        animal, descricao, data, tipo, realizado);  
+                if(procedimento == null){
+                    Tarefa tarefa = tarefaRepository.Salvar(-1, null, animal, descricao, data, tipo, realizado);
+                    procedimentoRepository.Salvar(-1, descricao, data, tipo, despesa, null, tarefa, animal, realizado);
+                  }else{
+                   Tarefa tarefa =  tarefaRepository.Salvar(procedimento.getTarefa().getId(), procedimento.getTarefa().getVoluntario(),
+                            animal, descricao, data, tipo, realizado);  
+                    procedimentoRepository.Salvar(procedimento.getId(), descricao, data, 
+                        tipo, despesa, procedimento.getVoluntario(), tarefa, animal, realizado);   
+                    
+                }
             }
+        
+            despesaRepository.CommitTransaction();
+        }catch(Exception e){
+            e.printStackTrace();
+            try {
+                despesaRepository.RollbackTransaction();
+            } catch (SQLException ex) {
+                Logger.getLogger(DespesaServices.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            despesa= null;
         }
-        
-        
         return despesa;
                
     }

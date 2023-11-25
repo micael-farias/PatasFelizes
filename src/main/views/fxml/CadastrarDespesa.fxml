@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,80 +13,79 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="394.0" prefWidth="680.0" stylesheets="@../css/cadastrarDepesa.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarDespesaController">
+<AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="680.0" stylesheets="@../css/cadastrar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarDespesaController">
    <children>
-      <Button id="button" fx:id="salvarDespesa" layoutX="505.0" layoutY="335.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
-      <Button id="button" fx:id="cancelarCadastro" layoutX="389.0" layoutY="335.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
-      <VBox layoutX="57.0" layoutY="41.0" prefHeight="52.0" prefWidth="554.0">
+      <Button id="button" fx:id="salvarDespesa" layoutX="505.0" layoutY="369.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
+      <Button id="button" fx:id="cancelarCadastro" layoutX="389.0" layoutY="369.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+      <VBox layoutX="57.0" layoutY="30.0" prefHeight="95.0" prefWidth="554.0">
          <children>
-            <HBox prefHeight="50.0" prefWidth="546.0">
+            <HBox prefHeight="20.0" prefWidth="554.0">
                <children>
-                  <Label prefHeight="22.0" prefWidth="57.0" stylesheets="@../css/cadastraranimal.css" text="Despesa" />
-                  <Label stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="26.0" prefWidth="164.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Despesa" />
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
-            <TextField fx:id="descricaoDespesa" prefHeight="30.0" prefWidth="542.0" stylesheets="@../css/cadastraranimal.css" />
+            <TextArea fx:id="descricaoDespesa" prefHeight="57.0" prefWidth="554.0" styleClass="round-layout-text-area" stylesheets="@../css/detalhesanimal.css" wrapText="true" />
          </children>
       </VBox>
-      <VBox layoutX="56.0" layoutY="103.0" prefHeight="52.0" prefWidth="271.0">
+      <VBox layoutX="56.0" layoutY="120.0" prefHeight="52.0" prefWidth="271.0">
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="20.0" prefWidth="32.0" stylesheets="@../css/cadastraranimal.css" text="Data" />
-                  <Label stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
-               </children>
-            </HBox>
-            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
-               <children>
-                  <DatePicker fx:id="dataDespesa" prefHeight="30.0" prefWidth="272.0" />
-               </children>
-            </StackPane>
-         </children>
-      </VBox>
-      <VBox layoutX="339.0" layoutY="103.0" prefHeight="52.0" prefWidth="271.0">
-         <children>
-            <HBox prefHeight="50.0" prefWidth="546.0">
-               <children>
-                  <Label prefHeight="22.0" prefWidth="30.0" stylesheets="@../css/cadastraranimal.css" text="Tipo" />
-                  <Label stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
-               </children>
-            </HBox>
-            <TextField fx:id="tipoDespesa" prefHeight="30.0" prefWidth="504.0" stylesheets="@../css/cadastraranimal.css" />
-         </children>
-      </VBox>
-      <VBox layoutX="56.0" layoutY="168.0" prefHeight="52.0" prefWidth="271.0">
-         <children>
-            <HBox prefHeight="50.0" prefWidth="546.0">
-               <children>
-                  <Label prefHeight="22.0" prefWidth="37.0" stylesheets="@../css/cadastraranimal.css" text="Valor" />
-                  <Label stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="26.0" prefWidth="183.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Data" />
                </children>
             </HBox>
             <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="valorDespesa" prefHeight="30.0" prefWidth="504.0" stylesheets="@../css/cadastraranimal.css" />
+                  <DatePicker fx:id="dataDespesa" editable="false" minHeight="-Infinity" prefHeight="30.0" prefWidth="272.0" stylesheets="@../css/datePicker.css" />
                </children>
             </StackPane>
          </children>
       </VBox>
-      <VBox layoutX="339.0" layoutY="168.0" prefHeight="52.0" prefWidth="271.0">
+      <VBox layoutX="339.0" layoutY="120.0" prefHeight="52.0" prefWidth="271.0">
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="22.0" prefWidth="25.0" stylesheets="@../css/cadastraranimal.css" text="Pet" />
+                  <Label prefHeight="26.0" prefWidth="145.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Tipo" />
                </children>
             </HBox>
-            <TextField fx:id="petDespesa" prefHeight="30.0" prefWidth="504.0" stylesheets="@../css/cadastraranimal.css" />
+            <TextField fx:id="tipoDespesa" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
          </children>
       </VBox>
-      <VBox layoutX="57.0" layoutY="237.0" prefHeight="82.0" prefWidth="554.0">
+      <VBox layoutX="56.0" layoutY="187.0" prefHeight="52.0" prefWidth="271.0">
          <children>
-            <Label prefHeight="22.0" prefWidth="1047.0" stylesheets="@../css/cadastraranimal.css" text="Anexar documentos e comprovantes" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="51.0" styleClass="anexadorComprovante" stylesheets="@../css/cadastrardoacao.css">
+            <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <ImageView fitHeight="47.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+                  <Label prefHeight="26.0" prefWidth="95.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Valor" />
+               </children>
+            </HBox>
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="valorDespesa" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox layoutX="339.0" layoutY="187.0" prefHeight="52.0" prefWidth="271.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="142.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Pet" />
+               </children>
+            </HBox>
+            <TextField fx:id="petDespesa" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+         </children>
+      </VBox>
+      <VBox layoutX="57.0" layoutY="254.0" prefHeight="82.0" prefWidth="554.0">
+         <children>
+            <Label prefHeight="22.0" prefWidth="1047.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Anexar documentos e comprovantes" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="51.0" style="-fx-cursor: hand;" styleClass="round-layout" stylesheets="@../css/cadastrar.css">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                      <image>
-                        <Image url="@../../../assets/images/calendario.png" />
+                        <Image url="@../../../assets/images/download.png" />
                      </image>
                   </ImageView>
                </children>

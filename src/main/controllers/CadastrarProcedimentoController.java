@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -42,7 +43,7 @@ public class CadastrarProcedimentoController extends CustomController implements
     private CheckBox checkBoxJaRealizado;
     
     @FXML
-    private TextField descricaoProcedimento;
+    private TextArea descricaoProcedimento;
 
     @FXML
     private Button salvarProcedimento;

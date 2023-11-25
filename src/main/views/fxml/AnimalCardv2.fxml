@@ -34,7 +34,7 @@
                         </VBox>
                         <Pane prefHeight="48.0" prefWidth="334.0">
                            <children>
-                              <Label fx:id="nomeAnimal" layoutX="11.0" minHeight="-Infinity" prefHeight="28.0" prefWidth="198.0" styleClass="labelNomeAnimal" stylesheets="@../css/view.css" text="Nazaré" textFill="WHITE">
+                              <Label fx:id="nomeAnimal" alignment="TOP_LEFT" layoutX="11.0" minHeight="-Infinity" prefHeight="41.0" prefWidth="198.0" styleClass="labelNomeAnimal" stylesheets="@../css/view.css" text="Nazaré" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="23.0" />
                                  </font>

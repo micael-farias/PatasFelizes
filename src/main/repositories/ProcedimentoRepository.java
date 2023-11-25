@@ -24,7 +24,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
     }
 
 
-    public Procedimento Salvar(int idProcedimento, String descricao, Calendar data, String tipo, Despesa despesa, Voluntario voluntario, Tarefa tarefa, Animal animal, boolean realizado) {
+    public Procedimento Salvar(int idProcedimento, String descricao, Calendar data, String tipo, Despesa despesa, Voluntario voluntario, Tarefa tarefa, Animal animal, boolean realizado) throws SQLException {
         Procedimento procedimento = new Procedimento();
         procedimento.setId(idProcedimento);
         procedimento.setDescricao(descricao);
@@ -44,7 +44,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
         }
     }
 
-    private Procedimento inserirProcedimento(Procedimento procedimento) {
+    private Procedimento inserirProcedimento(Procedimento procedimento) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
                      "INSERT INTO Procedimentos (descricao, data, tipo, idDespesa, idVoluntario, idTarefa, idAnimal, dataCadastro, realizado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)) {
@@ -70,13 +70,13 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
 
         return null;
     }
 
-    private Procedimento atualizarProcedimento(Procedimento procedimento) {
+    private Procedimento atualizarProcedimento(Procedimento procedimento) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
                      "UPDATE Procedimentos SET descricao=?, data=?, tipo=?, idDespesa=?, idVoluntario=?, idTarefa=?, idAnimal=?, realizado=? WHERE id=?")) {
 
@@ -97,7 +97,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
                 return procedimento;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
 
         return null;

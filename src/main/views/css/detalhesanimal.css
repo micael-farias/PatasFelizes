@@ -81,7 +81,6 @@
     -fx-border-color: #494949;
     -fx-border-radius: 5px;
     -fx-font-size: 14px;
-    -fx-control-inner-background:#FFFFFF;
     -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 1, 0, 0, 0);
 }
 

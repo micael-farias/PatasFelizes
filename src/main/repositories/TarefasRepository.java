@@ -22,7 +22,7 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
     }
 
     // Método para salvar uma tarefa no banco de dados
-    public Tarefa Salvar(int idTarefa, Voluntario voluntario, Animal animal, String descricao, Calendar data, String tipo, boolean realizado) {
+    public Tarefa Salvar(int idTarefa, Voluntario voluntario, Animal animal, String descricao, Calendar data, String tipo, boolean realizado) throws SQLException {
         Tarefa tarefa = new Tarefa();
         tarefa.setId(idTarefa);
         tarefa.setVoluntario(voluntario);
@@ -40,7 +40,7 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
     }
 
     // Método para inserir uma tarefa no banco de dados
-    private Tarefa inserirTarefa(Tarefa tarefa) {
+    private Tarefa inserirTarefa(Tarefa tarefa) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
                      "INSERT INTO Tarefas (idVoluntario, idAnimal, descricao, data, tipo, realizado, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)) {
@@ -64,14 +64,14 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
 
         return null;
     }
 
     // Método para atualizar uma tarefa no banco de dados
-    private Tarefa atualizarTarefa(Tarefa tarefa) {
+    private Tarefa atualizarTarefa(Tarefa tarefa) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
                      "UPDATE Tarefas SET idVoluntario=?, idAnimal=?, descricao=?, data=?, tipo=?, realizado=? WHERE id=?")) {
 
@@ -90,7 +90,7 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
                 return tarefa;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
 
         return null;

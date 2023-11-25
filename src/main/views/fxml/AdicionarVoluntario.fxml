@@ -13,7 +13,7 @@
             <Image url="@../../../assets/images/icone-plus-blue.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" prefHeight="36.0" prefWidth="180.0" style="-fx-text-fill: #7596d8;" text="Novo Pet">
+      <Label alignment="CENTER" prefHeight="36.0" prefWidth="180.0" style="-fx-text-fill: #7596d8;" text="Novo Voluntário">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

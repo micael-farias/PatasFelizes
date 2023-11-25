@@ -9,6 +9,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.model.Animal;
 import static main.utils.Constantes.TOOGLE_BUTTON_SHORT;
@@ -38,10 +39,12 @@ public class AnimalFormularioController extends CustomController{
         return toogleViewCastrado;
     }
 
-    public static byte[] CarregarImagem(Stage primaryStage, ImageView image, VBox layoutImageView) {
+    public static byte[] CarregarImagem(Stage primaryStage, ImageView image, VBox layoutImageView, Rectangle clip) {
         byte[] foto = ImageLoader.CarregarImagemLocal(primaryStage);
         if (foto != null) {
-            ImageLoader.CarregarImagem(image, foto, "", Rectangles.GetRectangleImageAnimaisDetails());
+            ImageLoader.CarregarImagem(image, foto, "", clip);
+            System.out.println(layoutImageView.heightProperty().doubleValue());
+            System.out.println(layoutImageView.widthProperty().doubleValue());
             image.setFitHeight(layoutImageView.heightProperty().doubleValue());
             image.setFitWidth(layoutImageView.widthProperty().doubleValue());
         }

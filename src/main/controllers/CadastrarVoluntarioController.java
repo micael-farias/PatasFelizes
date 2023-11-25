@@ -17,6 +17,8 @@ import static main.utils.Constantes.FORM_EQUIPE;
 import static main.utils.Constantes.FORM_FINANCAS;
 import main.utils.ImageLoader;
 import main.utils.Rectangles;
+import static main.utils.Rectangles.GetCircleVoluntario;
+import static main.utils.Rectangles.GetRectangleVoluntario;
 import main.utils.ToogleEnum;
 
 public class CadastrarVoluntarioController extends CustomController implements InicializadorComDado{
@@ -73,7 +75,7 @@ public class CadastrarVoluntarioController extends CustomController implements I
         });
         
         layoutImageViewVoluntario.setOnMouseClicked(e -> {
-            fotoVoluntario = CarregarImagem(primmaryStage, imagemVoluntario, layoutImageViewVoluntario);
+            fotoVoluntario = CarregarImagem(primmaryStage, imagemVoluntario, layoutImageViewVoluntario, GetCircleVoluntario());
         });
     }
     
@@ -91,7 +93,9 @@ public class CadastrarVoluntarioController extends CustomController implements I
             emailVoluntario.setText(voluntario.getEmail());
             telefoneVoluntario.setText(voluntario.getTelefone());
             fotoVoluntario = voluntario.getFoto();
-
+            ImageLoader.CarregarImagem(imagemVoluntario, fotoVoluntario, voluntario.idFoto(), Rectangles.GetRectangleVoluntario());
+            imagemVoluntario.setFitHeight(150.4);
+            imagemVoluntario.setFitWidth(150.4);
         }
     }
     

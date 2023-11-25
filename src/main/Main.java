@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import main.db.ExportData;
+import main.db.ImportData;
 import main.interfaces.InicializadorBase;
 
 import static main.utils.Constantes.FORM_BASE;
@@ -19,6 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+           // ExportData.export();
             Font.loadFont(getClass().getResourceAsStream(PATH_FILES + "NotoSansDevanagari.ttf"), 12);
             FXMLLoader loader = new FXMLLoader(getClass().getResource(FORM_BASE));
             Parent root = loader.load();

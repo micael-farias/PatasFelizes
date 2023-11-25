@@ -13,6 +13,7 @@ import main.interfaces.InicializadorComDado;
 import main.model.Voluntario;
 import static main.utils.Constantes.DIALOG_CADASTRAR_VOLUNTARIO;
 import static main.utils.ImageLoader.CarregarImagem;
+import static main.utils.Rectangles.GetCircleVoluntario;
 import static main.utils.Rectangles.GetRectangleVoluntario;
 
 public class VoluntarioController extends CustomController implements InicializadorComDado{
@@ -34,7 +35,7 @@ public class VoluntarioController extends CustomController implements Inicializa
     public void setData(Object[] dado) {
         voluntario = (Voluntario) ObterDadoArray(dado, 0);
             
-        CarregarImagem(fotoVoluntario, voluntario.getFoto(), voluntario.idFoto(), GetRectangleVoluntario());
+        CarregarImagem(fotoVoluntario, voluntario.getFoto(), voluntario.idFoto(), GetCircleVoluntario());
         String nome = voluntario.getNome();
         nomeVoluntario.setText(nome);
     }

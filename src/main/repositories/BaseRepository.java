@@ -28,67 +28,72 @@ public class BaseRepository<T> {
         this.classe = classe;
         this.connection = Database.GetInstanceDB().GetConnection(); 
     }
-
-    public int Inserir(T objeto) {
-        try {
-            String tabela = ObterNomeTabela(objeto.getClass());
-            Field[] campos = objeto.getClass().getDeclaredFields();
-
-            StringBuilder query = new StringBuilder("INSERT INTO " + tabela + " (");
-            StringBuilder values = new StringBuilder(" VALUES (");
-
-            for (Field campo : campos) {
-                campo.setAccessible(true);
-                if (campo.getName().equals("Id")) {
-                    continue;
-                }
-                query.append(campo.getName()).append(", ");
-                values.append("?, ");
-            }
-
-            query.delete(query.length() - 2, query.length());
-            values.delete(values.length() - 2, values.length());
-            query.append(")").append(values).append(")");
-
-            return executarQueryInsercao(objeto, query.toString());
-
-        } catch (IllegalAccessException | SQLException e) {
-            e.printStackTrace();
-        }
-        
-        return -1;
+    
+    public void BeginTransaction() throws SQLException{
+        connection.setAutoCommit(false);
     }
 
-    public void Atualizar(T objeto) {
-        try {
-            String tabela = ObterNomeTabela(objeto.getClass());
-            Field[] campos = objeto.getClass().getDeclaredFields();
-            StringBuilder query = new StringBuilder("UPDATE " + tabela + " SET ");
+    public void CommitTransaction() throws SQLException{
+        connection.commit();
+        connection.setAutoCommit(true);
 
-            for (Field campo : campos) {
-                campo.setAccessible(true);
-                if (campo.getName().equals("Id") || campo.getName().equals("DataCadastro")) {
-                    continue;
-                }
-                query.append(campo.getName()).append("=?, ");
-            }
-
-            query.delete(query.length() - 2, query.length());
-
-            query.append(" WHERE ");
-            for (Field campo : campos) {
-                campo.setAccessible(true);
-                if (campo.getName().equals("Id")) {
-                    query.append(campo.getName()).append("=?");
-                    break;
-                }
-            }
-
-            executarQueryAtualizacao(objeto, query.toString());
-
-        } catch (IllegalAccessException | SQLException e) {
-            e.printStackTrace();
+    }
+    
+    public void RollbackTransaction() throws SQLException{
+        if (connection != null) {
+            connection.rollback();
+            connection.setAutoCommit(true);
         }
+    }
+    
+    public int Inserir(T objeto) throws SQLException, IllegalAccessException {
+        String tabela = ObterNomeTabela(objeto.getClass());
+        Field[] campos = objeto.getClass().getDeclaredFields();
+
+        StringBuilder query = new StringBuilder("INSERT INTO " + tabela + " (");
+        StringBuilder values = new StringBuilder(" VALUES (");
+
+        for (Field campo : campos) {
+            campo.setAccessible(true);
+            if (campo.getName().equals("Id")) {
+                continue;
+            }
+            query.append(campo.getName()).append(", ");
+            values.append("?, ");
+        }
+
+        query.delete(query.length() - 2, query.length());
+        values.delete(values.length() - 2, values.length());
+        query.append(")").append(values).append(")");
+
+        return executarQueryInsercao(objeto, query.toString());
+    }
+
+    public void Atualizar(T objeto) throws SQLException, IllegalAccessException {
+        String tabela = ObterNomeTabela(objeto.getClass());
+        Field[] campos = objeto.getClass().getDeclaredFields();
+        StringBuilder query = new StringBuilder("UPDATE " + tabela + " SET ");
+
+        for (Field campo : campos) {
+            campo.setAccessible(true);
+            if (campo.getName().equals("Id") || campo.getName().equals("DataCadastro")) {
+                continue;
+            }
+            query.append(campo.getName()).append("=?, ");
+        }
+
+        query.delete(query.length() - 2, query.length());
+
+        query.append(" WHERE ");
+        for (Field campo : campos) {
+            campo.setAccessible(true);
+            if (campo.getName().equals("Id")) {
+                query.append(campo.getName()).append("=?");
+                break;
+            }
+        }
+
+        executarQueryAtualizacao(objeto, query.toString());
     }
 
     public void Excluir(T objeto) {
@@ -141,10 +146,10 @@ public class BaseRepository<T> {
         int idGerado;
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preencherValoresStatement(objeto, preparedStatement);
-                    System.out.println("SQL gerado: " + preparedStatement.toString());
-preparedStatement.executeUpdate();
+            System.out.println("SQL gerado: " + preparedStatement.toString());
+            preparedStatement.executeUpdate();
              // Recupera as chaves geradas (IDs) após a execução do insert
-        try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     idGerado = generatedKeys.getInt(1); // O 1 indica a primeira coluna, que é o ID
                 } else {
@@ -160,8 +165,7 @@ preparedStatement.executeUpdate();
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             IndiceAtualizacao indice = preencherValoresStatement(objeto, preparedStatement);
             preparedStatement.setInt(indice.posicao, indice.id);
-                                System.out.println("SQL gerado: " + preparedStatement.toString());
-preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
         }
     }
 

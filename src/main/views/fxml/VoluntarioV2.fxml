@@ -15,7 +15,7 @@
          <children>
             <ImageView fx:id="fotoVoluntario" cache="true" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../assets/images/alexandre.jpeg" />
+                  <Image url="@../../../assets/images/addProcedimento.png" />
                </image>
             </ImageView>
             <VBox alignment="CENTER" layoutX="4.0" layoutY="189.0" prefHeight="86.0" prefWidth="222.0">
