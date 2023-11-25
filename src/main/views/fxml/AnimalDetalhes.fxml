@@ -33,7 +33,7 @@
             <Label id="Labels" layoutX="52.0" layoutY="411.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Status" />
             <Label layoutX="262.0" layoutY="250.0" prefHeight="26.0" prefWidth="352.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Procedimentos" />
             <Button id="button" fx:id="salvarAnimal" layoutX="896.0" layoutY="593.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
-            <Button id="button" layoutX="782.0" layoutY="593.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+            <Button id="button" fx:id="cancelarCadastro" layoutX="782.0" layoutY="593.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
             <HBox fx:id="toggleSexo" layoutX="52.0" layoutY="288.0" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
             <HBox fx:id="toogleCastrado" layoutX="52.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
             <ImageView fx:id="voltarButton" fitHeight="32.0" fitWidth="52.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="buttons">
@@ -41,7 +41,7 @@
                   <Image url="@../../../assets/images/voltar_escuro.png" />
                </image>
             </ImageView>
-            <StackPane layoutX="265.0" layoutY="338.0" prefHeight="227.0" prefWidth="740.0">
+            <StackPane fx:id="stackPaneScroll" layoutX="262.0" layoutY="338.0" prefHeight="227.0" prefWidth="748.0">
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="239.0" prefWidth="740.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                      <content>
@@ -104,18 +104,18 @@
                   <Insets left="10.0" />
                </padding>
             </TextField>
-            <TextField fx:id="anosAnimalTextField" layoutX="834.0" layoutY="87.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+            <TextField fx:id="anosAnimalTextField" layoutX="834.0" layoutY="87.0" maxWidth="-Infinity" minHeight="-Infinity" onKeyPressed="#handleKeyTypedAnos" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
                <font>
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="mesesAnimalTextField" layoutX="926.0" layoutY="87.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+            <TextField fx:id="mesesAnimalTextField" layoutX="926.0" layoutY="87.0" maxWidth="-Infinity" minHeight="-Infinity" onKeyPressed="#handleKeyTypedMeses" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
                <font>
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
             </TextField>
             <Label layoutX="926.0" layoutY="54.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Meses" />
-            <TextField fx:id="nomeAnimalTextField1" layoutX="594.0" layoutY="285.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="323.0" promptText="Buscar por descrição" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+            <TextField fx:id="textFieldBuscarProcedimento" layoutX="266.0" layoutY="285.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="651.0" promptText="Buscar por descrição" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
                <font>
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>

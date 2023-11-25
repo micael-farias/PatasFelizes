@@ -8,7 +8,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import main.enums.StatusAnimal;
+import main.factories.StatusAnimalFactory;
 import main.interfaces.InicializadorComDado;
 import main.model.Animal;
 import main.model.Idade;
@@ -31,7 +34,9 @@ public class AnimalCardController extends CustomController implements Inicializa
 
     @FXML
     private Pane pane;
-
+    
+    @FXML
+    private Circle statusAnimal;
     @FXML
     private Label nomeAnimal;
 
@@ -48,12 +53,13 @@ public class AnimalCardController extends CustomController implements Inicializa
         
         idadeAnimal.setText(textoIdadeAnimal);
         nomeAnimal.setText(animal.getNome());
+        statusAnimal.setFill(StatusAnimalFactory.GetColorStatus(animal.getStatus()));
         if(animal.getSexo() == 'M'){
             sexoAnimal.setText("Macho");
         }else{
             sexoAnimal.setText("Femea");
         }
-        
+       // setStyles(idadeAnimal, sexoAnimal, nomeAnimal);
         
         CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimais());
         pane.setClip(Rectangles.GetRectanglePaneAnimais());
@@ -61,6 +67,7 @@ public class AnimalCardController extends CustomController implements Inicializa
             App.getInstance().EntrarTela(FORM_ANIMAL_DETALHES, contentFather, primmaryStage, new Object[]{animal}, blackShadow);
         }); 
     }
-
+    
+   
 
 }

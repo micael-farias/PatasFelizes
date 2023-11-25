@@ -66,7 +66,7 @@
 
 .round-layout{
     -fx-background-color: #FFFFFF;
-    -fx-cursor: hand;
+    -fx-cursor: text;
     -fx-border-color: #494949;
     -fx-border-radius: 5px;
     -fx-font-size: 14px;

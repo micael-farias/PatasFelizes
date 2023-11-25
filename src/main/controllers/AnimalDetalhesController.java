@@ -16,17 +16,22 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import static javafx.scene.input.KeyCode.BACK_SPACE;
+import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.factories.StatusAnimalFactory;
 import main.interfaces.InicializadorComDado;
 import main.interfaces.Resumidor;
 import main.model.Animal;
 import main.model.Idade;
 import main.model.Procedimento;
+import main.model.Voluntario;
 import main.services.AnimalService;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.DIALOG_CADASTRAR_ADOCAO;
@@ -72,6 +77,8 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
 
     @FXML
     private Button removerButton;
+    @FXML
+    private Button cancelarCadastro;
 
     @FXML
     private Button salvarAnimal;
@@ -90,6 +97,12 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
 
     @FXML
     private ImageView sexoDesconhecidoCheckBox;
+    
+    @FXML
+    private TextField textFieldBuscarProcedimento;
+    
+    @FXML
+    private StackPane stackPaneScroll;
     
     private byte[] fotoAnimal;
     private String ultimoStatus;
@@ -126,7 +139,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     
     public void criarGridProcedimentos(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         List<Procedimento> procedimentos = procedimentoService.EncontrarProcedimentosPor(ultimoAnimal.getId());
-        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primmaryStage, blackShadow, procedimentosGridView, 1, procedimentos, ultimoAnimal.getId());
+        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primmaryStage,stackPaneScroll, blackShadow, procedimentosGridView, 1, procedimentos, ultimoAnimal.getId());
         procedimentosGrid.createGridAsync();   
     }
     
@@ -145,6 +158,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         ultimoStatus = animal.getStatus();
         anosAnimalTextField.setText(String.valueOf(idadeAnimal.getAnos()));
         mesesAnimalTextField.setText(String.valueOf(idadeAnimal.getMeses()));
+        statusAnimal.setText(StatusAnimalFactory.GetStatusString(animal.getStatus()));
         descricaoAnimalTextField.setText(animal.getDescricao());
         setImage(animalSemSexoDefinido);
         if(animalSemSexoDefinido){
@@ -208,11 +222,19 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
             adotarButton.setImage(new Image(PATH_IMAGES + "adotar_escuro.png"));
         });
         
-       /* adicionarProcedimentoButton.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialogComOrigemEDado(DIALOG_CADASTRAR_PROCEDIMENTO, FORM_ANIMAL_DETALHES , contentFather, primaryStage, blackShadow,
-                    new Object[]{ultimoAnimal.getId()});
-        });*/
+        cancelarCadastro.setOnMouseClicked(e ->{
+            App.getInstance().EntrarTelaNoAction(FORM_HOME, contentFather, primaryStage, blackShadow);
+        });
         
+        textFieldBuscarProcedimento.setOnKeyPressed(e ->{
+            String nome = textFieldBuscarProcedimento.getText();
+            if(e.getCode().equals(ENTER)){
+                  List<Procedimento> procedimentos = procedimentoService.EncontrarProcedimentosPor(nome, ultimoAnimal.getId());
+                  ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primaryStage,stackPaneScroll, blackShadow, procedimentosGridView, 1, procedimentos, ultimoAnimal.getId());
+                  procedimentosGrid.createGridAsync();
+            }
+        });  
+                
         adotarButton.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialog(DIALOG_CADASTRAR_ADOCAO, contentFather, primaryStage, blackShadow);
         });
@@ -243,7 +265,6 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     }
     
     
-    @FXML
     public void handleKeyTypedAnos(KeyEvent event) {
         char input = event.getCharacter().charAt(0);
 
