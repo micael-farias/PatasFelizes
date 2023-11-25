@@ -28,7 +28,7 @@ public class AnimalGridView extends GridView<Animal> {
         this.blackShadow = blackShadow;
         this.primmaryStage = primmaryStage;
         set(stackPaneScroll);
-        setInsets(new Insets(0,10,10,10));
+        setInsets(new Insets(10));
     }
 
     @Override
@@ -45,6 +45,11 @@ public class AnimalGridView extends GridView<Animal> {
         AdicionarAnimalController controller = fxmlLoader.getLoader().getController();
         controller.setOnClick(contentFather, primmaryStage, blackShadow);              
         return fxmlLoader.getResult();
+    }
+    
+    @Override
+    public Insets firstRowInsets() {
+        return new Insets(-10,10,10,10);
     }
 }
 

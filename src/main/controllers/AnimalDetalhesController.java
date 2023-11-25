@@ -30,7 +30,6 @@ import main.model.Procedimento;
 import main.services.AnimalService;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.DIALOG_CADASTRAR_ADOCAO;
-import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.FORM_HOME;
@@ -46,12 +45,9 @@ import main.views.gridview.ProcedimentoGridView;
 import main.views.toggle.ToggleView;
 
 public class AnimalDetalhesController  extends AnimalFormularioController implements InicializadorComDado, Resumidor{
-      
-  @FXML
-    private Button adicionarProcedimentoButton;
-
+    
     @FXML
-    private VBox adotarButton;
+    private ImageView adotarButton;
 
     @FXML
     private TextField anosAnimalTextField;
@@ -202,6 +198,14 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         
         voltarButton.setOnMouseExited(e ->{
             voltarButton.setImage(new Image(PATH_IMAGES + "voltar_escuro.png"));
+        });
+                
+        adotarButton.setOnMouseEntered(e ->{
+            adotarButton.setImage(new Image(PATH_IMAGES + "adotar_claro.png"));
+        });
+        
+        adotarButton.setOnMouseExited(e ->{
+            adotarButton.setImage(new Image(PATH_IMAGES + "adotar_escuro.png"));
         });
         
        /* adicionarProcedimentoButton.setOnMouseClicked(e ->{

@@ -23,6 +23,7 @@ public abstract class GridView<T> {
     private List<T> items;
     int column = 0;
     int row = 1;
+    boolean estaNaSegundaLinha = false;
 
     public GridView(GridPane grid, int numColumns, List<T> items) {
         this.grid = grid;
@@ -37,6 +38,10 @@ public abstract class GridView<T> {
     public Node itemInicial() {
         return null;
     }
+    
+    public Insets firstRowInsets() {
+        return insets;
+    }
 
     public void set(StackPane stackPaneScroll){
         this.stackPaneScroll = stackPaneScroll;
@@ -44,13 +49,19 @@ public abstract class GridView<T> {
 
     public void configurarItemGrid(Node gridItem) {
         grid.add(gridItem, column, row);
-
+        boolean linha = row == 1;
         if (++column >= numColumns) {
             column = 0;
             row++;
         }
+        
+        if(linha){         
+                    System.out.println("entrou aqui " + row + column);
 
-        GridPane.setMargin(gridItem, insets);
+            GridPane.setMargin(gridItem, firstRowInsets());
+        }else{
+            GridPane.setMargin(gridItem, insets);        
+        }
     }
 
     public void setInsets(Insets insets) {

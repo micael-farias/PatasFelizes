@@ -20,7 +20,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AnimalDetalhesController">
    <children>
-      <Pane layoutX="28.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1076.0" styleClass="pane" stylesheets="@../css/detalhesanimal.css">
+      <Pane layoutX="25.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1076.0" styleClass="pane" stylesheets="@../css/detalhesanimal.css">
          <children>
             <Label fx:id="labelNome" layoutX="265.0" layoutY="55.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Nome">
                <font>
@@ -36,12 +36,12 @@
             <Button id="button" layoutX="782.0" layoutY="593.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
             <HBox fx:id="toggleSexo" layoutX="52.0" layoutY="288.0" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
             <HBox fx:id="toogleCastrado" layoutX="52.0" layoutY="380.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
-            <ImageView fx:id="voltarButton" fitHeight="32.0" fitWidth="52.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="buttonVoltar">
+            <ImageView fx:id="voltarButton" fitHeight="32.0" fitWidth="52.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="buttons">
                <image>
-                  <Image url="@../../../assets/images/seta-circulo-esquerda.png" />
+                  <Image url="@../../../assets/images/voltar_escuro.png" />
                </image>
             </ImageView>
-            <StackPane layoutX="265.0" layoutY="338.0" prefHeight="239.0" prefWidth="740.0">
+            <StackPane layoutX="265.0" layoutY="338.0" prefHeight="227.0" prefWidth="740.0">
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="239.0" prefWidth="740.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                      <content>
@@ -54,11 +54,11 @@
                   </ScrollPane>
                </children>
             </StackPane>
-            <VBox fx:id="adotarButton" alignment="CENTER" layoutX="1012.0" layoutY="17.0" prefHeight="55.0" prefWidth="50.0">
+            <VBox alignment="CENTER" layoutX="1012.0" layoutY="17.0" prefHeight="55.0" prefWidth="50.0">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="adotarButton" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="buttons">
                      <image>
-                        <Image url="@../../../assets/images/coracao-de-casa(1).png" />
+                        <Image url="@../../../assets/images/adotar_escuro.png" />
                      </image>
                   </ImageView>
                   <Label stylesheets="@../css/cadastraranimal.css" text="Adotar" />
@@ -125,7 +125,7 @@
             </TextField>
             <Button fx:id="filtrarAnimaisButton" layoutX="927.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="buttonFilter" stylesheets="@../css/view.css">
                <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="buttons" x="40.0">
                      <image>
                         <Image url="@../../../assets/images/filtro.png" />
                      </image>

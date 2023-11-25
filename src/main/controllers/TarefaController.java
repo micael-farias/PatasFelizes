@@ -19,6 +19,7 @@ import main.interfaces.InicializadorComDado;
 import main.model.Despesa;
 import main.model.Procedimento;
 import main.model.Tarefa;
+import main.model.Voluntario;
 import main.services.TarefaServices;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
 import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
@@ -78,11 +79,15 @@ public class TarefaController extends CustomController implements InicializadorC
         Rectangle clip = new Rectangle(35, 35);
             clip.setArcWidth(10);
             clip.setArcHeight(10);
-
-        CarregarImagem(fotoVoluntario, tarefa.getVoluntario().getFoto(), tarefa.getVoluntario().idFoto(), clip);
+            
+        Voluntario voluntario = tarefa.getVoluntario();
+        byte[] foto = (voluntario == null) ? null : voluntario.getFoto();
+        String idFoto = (voluntario == null) ? null : voluntario.idFoto();
+        String nome = (voluntario == null) ? null : voluntario.getNome();
+        CarregarImagem(fotoVoluntario, foto , idFoto, clip);
         descricaoTarefa.setText(tarefa.getDescricao());
         nomeAnimal.setText(tarefa.getAnimal()!= null ? tarefa.getAnimal().getNome() : "-");
-        nomeVoluntario.setText(tarefa.getVoluntario().getNome());
+        nomeVoluntario.setText(nome);
         dataTarefa.setText(CalendarParaString(tarefa.getData()));
 
         setImage(tarefa.isRealizada());

@@ -19,8 +19,14 @@
     -fx-background-color :transparent;
     -fx-background-radius : 0.0em;
     -fx-padding :0.0 10.0 0.0 0.0;
-
 }
+
+.scroll-pane {
+    -fx-background-color: white;
+    -fx-background: white;
+    -fx-border-color: white;
+}
+
 
  .scroll-bar .increment-arrow,
  .scroll-bar .decrement-arrow{

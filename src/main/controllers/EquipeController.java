@@ -65,7 +65,7 @@ public class EquipeController implements Inicializador, Resumidor {
     }
 
     private void criarGridComResultados(List<Voluntario> voluntarios, Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-        EquipeGridView animalGridView = new EquipeGridView(membrosGrid, 3, voluntarios, contentFather, stackPaneScroll, primmaryStage, blackShadow);
+        EquipeGridView animalGridView = new EquipeGridView(membrosGrid, 4, voluntarios, contentFather, stackPaneScroll, primmaryStage, blackShadow);
         animalGridView.createGridAsync();  
     }
 

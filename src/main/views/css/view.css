@@ -10,7 +10,9 @@
 }
 
 
-
+#labelsFinancas{
+    -fx-font: 16px "Noto Sans Mono";
+}
 
 
 .cardAnimal{

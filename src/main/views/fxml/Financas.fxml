@@ -14,27 +14,31 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FinancasController">
+<AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FinancasController">
     <stylesheets>
         <URL value="@/main/views/css/financas.css" />
     </stylesheets>
    <children>
-      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass">
          <stylesheets>
             <URL value="@/main/views/css/financas.css" />
          </stylesheets>
          <children>
-            <Button fx:id="novaDespesaButton1" layoutX="64.0" layoutY="64.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-background-color: #C2D5FA;" text="Nova doação" textFill="#515151">
+            <Button id="labelsFinancas" fx:id="novaDespesaButton" layoutX="77.0" layoutY="70.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-font-weight: bold;" styleClass="button_nova" text="Nova doação" textFill="#515151">
                <font>
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
+               <stylesheets>
+                  <URL value="@../css/financas.css" />
+                  <URL value="@../css/view.css" />
+               </stylesheets>
             </Button>
-            <TextField fx:id="textFieldBuscarFinança1" layoutX="64.0" layoutY="128.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
+            <TextField fx:id="textFieldBuscarFinança" layoutX="77.0" layoutY="128.0" prefHeight="49.0" prefWidth="991.0" styleClass="round-layout" stylesheets="@../css/view.css">
                <font>
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
             </TextField>
-            <Button contentDisplay="TOP" layoutX="1054.0" layoutY="126.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
+            <Button contentDisplay="TOP" layoutX="1087.0" layoutY="128.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
                      <image>
@@ -43,41 +47,41 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label layoutX="970.0" layoutY="50.0" text="Receitas">
+            <Label id="labelsFinancas" layoutX="970.0" layoutY="50.0" stylesheets="@../css/view.css" text="Receitas">
                <font>
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="970.0" layoutY="76.0" text="Despesas">
+            <Label id="labelsFinancas" layoutX="970.0" layoutY="76.0" stylesheets="@../css/view.css" text="Despesas">
                <font>
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="labelTotalReceita1" layoutX="1054.0" layoutY="50.0" text="R$ 0,00">
+            <Label id="labelsFinancas" fx:id="labelTotalReceita" layoutX="1054.0" layoutY="50.0" stylesheets="@../css/view.css" text="R$ 0,00">
                <font>
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="labelTotalDespesa1" layoutX="1054.0" layoutY="76.0" text="R$ 0,00">
+            <Label id="labelsFinancas" fx:id="labelTotalDespesa" layoutX="1054.0" layoutY="76.0" stylesheets="@../css/view.css" text="R$ 0,00">
                <font>
                   <Font name="Noto Sans Mono Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="945.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="945.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/images/receitas.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="945.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="945.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../assets/images/despesas.png" />
                </image>
             </ImageView>
-            <StackPane fx:id="stackPaneScroll1" layoutX="65.0" layoutY="187.0" prefHeight="475.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;">
+            <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="198.0" prefHeight="534.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                      <content>
-                        <GridPane fx:id="despesasGrid1" prefHeight="475.0" prefWidth="1024.0" style="-fx-background-color: #FFFFFF;">
+                        <GridPane fx:id="despesasGrid" prefHeight="529.0" prefWidth="1044.0" style="-fx-background-color: #FFFFFF;">
                            <columnConstraints>
                               <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
@@ -86,7 +90,7 @@
                   </ScrollPane>
                </children>
             </StackPane>
-            <HBox fx:id="toogleFinancas1" layoutX="448.0" layoutY="64.0" prefHeight="32.0" prefWidth="200.0" />
+            <HBox fx:id="toogleFinancas" layoutX="448.0" layoutY="64.0" prefHeight="32.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
    </children>
