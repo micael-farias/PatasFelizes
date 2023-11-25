@@ -44,7 +44,7 @@ public class DateHelper {
         return instant.atZone(ZoneId.systemDefault()).toLocalDate();
     }
  
-    public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
+public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
         if (dataNascimento == null) {
             return null;
         }

@@ -4,11 +4,14 @@
  */
 package main.services;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 import main.model.Voluntario;
 import main.repositories.VoluntarioRepository;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +26,11 @@ public class VoluntarioService {
     }
 
     public void Salvar(int idVoluntario, String nome, String email, String telefone, byte[] fotoVoluntario) {
-        voluntarioRepository.Salvar(idVoluntario, nome, email, telefone, fotoVoluntario);
+        try {
+            voluntarioRepository.Salvar(idVoluntario, nome, email, telefone, fotoVoluntario);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public List<Voluntario> ObterVoluntarios() {

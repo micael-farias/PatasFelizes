@@ -9,6 +9,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.App;
 import main.interfaces.InicializadorBase;
+import main.utils.Constantes;
+import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.FORM_EQUIPE;
 import static main.utils.Constantes.FORM_FINANCAS;
 import static main.utils.Constantes.FORM_TAREFAS;
@@ -49,7 +51,12 @@ public class BaseController implements InicializadorBase{
     @FXML
     private void menuButtonPetsClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
-        App.getInstance().EntrarTelaInicial(content, primmaryStage, blackShadow);
+        if(App.getInstance().MappingContatis(FORM_ANIMAL_DETALHES)){
+            App.getInstance().EntrarTelaOnResume(FORM_ANIMAL_DETALHES, content, primmaryStage, blackShadow, null);
+        }else{
+            App.getInstance().EntrarTelaInicial(content, primmaryStage, blackShadow);
+       
+        }
         setActive(button);  
     }
 

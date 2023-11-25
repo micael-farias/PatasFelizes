@@ -24,7 +24,7 @@ public class DoacaoRepository extends BaseRepository<Doacao>{
         super(Doacao.class);
     }
     
-     public Doacao Salvar(int idDoacao, String doador, Double valor, Calendar data, byte[] fotoComprovante){
+     public Doacao Salvar(int idDoacao, String doador, Double valor, Calendar data, byte[] fotoComprovante) throws SQLException, IllegalAccessException{
        
        Doacao doacao;
        

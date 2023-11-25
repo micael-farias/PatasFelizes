@@ -29,6 +29,10 @@ public class InicializarFormulario {
     private Parent dialogoAberto;
     private static HashMap<String,FXMLLoadResult> mapping = new HashMap<>();
     
+    public boolean MappingContatis(String key){
+        return mapping.containsKey(key);
+    }
+    
     public <T> FXMLLoadResult<T> RealizarLoadFXML(String arquivo, Class<T> type) {
         try {
             var resource = getClass().getResource(arquivo);
@@ -68,6 +72,24 @@ public class InicializarFormulario {
         }     
     }
     
+    public void EntrarTelaComRemocao(String tela, String telaRemovida, Pane content, Stage primmaryStage, Pane blackShadow){   
+        try {          
+            mapping.remove(telaRemovida);
+            removerDialogoAberto(blackShadow, primmaryStage);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
+            Pane menu = loader.load();
+            Inicializador controlador = loader.getController();
+            controlador.Inicializar(content, primmaryStage, blackShadow);
+            content.getChildren().clear();
+            ObservableList<Node> children = content.getChildren();
+            children.addAll(menu); 
+            mapping.put(tela, new FXMLLoadResult<Pane>(menu,loader));
+       } catch (IOException ex) {
+            Logger.getLogger(BaseController.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
+    
+    
     public <T> void EntrarTela(String tela, Pane content, Stage primmaryStage, T[] dado, Pane blackShadow){   
         try {
             removerDialogoAberto(blackShadow, primmaryStage);
@@ -101,7 +123,14 @@ public class InicializarFormulario {
         ObservableList<Node> children = content.getChildren();
         children.addAll(result.getResult());     
     }
-    
+    public <T> void EntrarTelaNoActionComRemocao(String tela, String telaRemovida, Pane content, Stage primmaryStage, Pane blackShadow){  
+        mapping.remove(telaRemovida);
+        removerDialogoAberto(blackShadow, primmaryStage);
+        FXMLLoadResult<Pane> result = mapping.get(tela);
+        content.getChildren().clear();
+        ObservableList<Node> children = content.getChildren();
+        children.addAll(result.getResult());     
+    }    
     
     public <T> void FecharDialog(Stage primmaryStage, Pane blackShadow){   
         removerDialogoAberto(blackShadow, primmaryStage);

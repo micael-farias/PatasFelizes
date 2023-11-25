@@ -1,5 +1,6 @@
 package main.repositories;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
@@ -14,7 +15,7 @@ public class DespesaRepository extends BaseRepository<Despesa> {
     }
 
 
-    public Despesa Salvar(int idDespesa, String descricao, Double valor, Calendar data, String tipo, boolean realizado) {
+    public Despesa Salvar(int idDespesa, String descricao, Double valor, Calendar data, String tipo, boolean realizado) throws IllegalAccessException, SQLException{
         Despesa despesa;
 
         if (idDespesa == -1) {

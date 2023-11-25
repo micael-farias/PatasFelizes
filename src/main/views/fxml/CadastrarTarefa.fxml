@@ -11,36 +11,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="680.0" stylesheets="@../css/cadastrarTarefa.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarTarefaController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0" prefWidth="680.0" stylesheets="@../css/cadastrar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarTarefaController">
    <children>
-      <VBox alignment="BOTTOM_RIGHT" layoutX="51.0" layoutY="54.0" prefHeight="211.0" prefWidth="607.0">
+      <VBox alignment="BOTTOM_RIGHT" layoutX="36.0" layoutY="33.0" prefHeight="211.0" prefWidth="594.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0">
          <children>
-            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="68.0" prefWidth="579.0">
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="607.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="26.0" prefWidth="607.0">
                      <children>
-                        <Label prefHeight="20.0" prefWidth="54.0" text="Tarefa">
+                        <Label prefHeight="20.0" prefWidth="54.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Tarefa">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label text="*" textFill="#ee0303" />
+                        <Label textFill="#ee0303" />
                      </children>
                   </HBox>
-                  <TextArea fx:id="descricaoTarefa" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="578.0" styleClass="rounded-image-view" stylesheets="@../css/view.css">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </TextArea>
+                  <TextArea fx:id="descricaoTarefa" prefHeight="56.0" prefWidth="589.0" styleClass="round-layout-text-area" stylesheets="@../css/detalhesanimal.css" wrapText="true" />
                </children>
             </VBox>
             <HBox prefHeight="20.0" prefWidth="580.0">
                <children>
-                  <VBox prefHeight="44.0" prefWidth="290.0">
+                  <VBox prefHeight="67.0" prefWidth="306.0">
                      <children>
                         <HBox prefHeight="29.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="104.0" text="Responsavel">
+                              <Label prefHeight="20.0" prefWidth="104.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Responsavel">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -48,21 +44,20 @@
                                     <Insets />
                                  </HBox.margin>
                               </Label>
-                              <Label text="*" textFill="#ee0303" />
                            </children>
                         </HBox>
-                        <TextField fx:id="responsavelTarefa" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="24.0" prefWidth="277.0" stylesheets="@../css/view.css">
+                        <TextField fx:id="responsavelTarefa" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="30.0" prefWidth="277.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </TextField>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="290.0">
+                  <VBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="298.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="42.0" text="Data">
+                              <Label prefHeight="20.0" prefWidth="42.0" styleClass="Label" text="Data">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -70,10 +65,9 @@
                                     <Insets left="12.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="*" textFill="#ee0303" />
                            </children>
                         </HBox>
-                        <DatePicker fx:id="dataTarefa" prefHeight="30.0" prefWidth="297.0" />
+                        <DatePicker fx:id="dataTarefa" editable="false" minHeight="-Infinity" prefHeight="30.0" prefWidth="297.0" stylesheets="@../css/datePicker.css" />
                      </children>
                   </VBox>
                </children>
@@ -81,13 +75,13 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="20.0" prefWidth="580.0">
+            <HBox prefHeight="67.0" prefWidth="595.0">
                <children>
-                  <VBox prefHeight="44.0" prefWidth="290.0">
+                  <VBox prefHeight="67.0" prefWidth="306.0">
                      <children>
                         <HBox prefHeight="29.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="32.0" text="Pet">
+                              <Label prefHeight="20.0" prefWidth="32.0" styleClass="Label" text="Pet">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -97,18 +91,18 @@
                               </Label>
                            </children>
                         </HBox>
-                        <TextField fx:id="petTarefa" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="24.0" prefWidth="277.0" stylesheets="@../css/view.css">
+                        <TextField fx:id="petTarefa" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="30.0" prefWidth="277.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </TextField>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="290.0">
+                  <VBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="282.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="36.0" text="Tipo">
+                              <Label prefHeight="20.0" prefWidth="36.0" styleClass="Label" text="Tipo">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -116,10 +110,9 @@
                                     <Insets left="12.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label text="*" textFill="#ee0303" />
                            </children>
                         </HBox>
-                        <TextField fx:id="tipoTarefa" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="294.0" stylesheets="@../css/view.css" />
+                        <TextField fx:id="tipoTarefa" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="297.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
                      </children>
                   </VBox>
                </children>

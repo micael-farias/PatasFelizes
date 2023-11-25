@@ -133,7 +133,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         });
 
         layoutImageViewAnimal.setOnMouseClicked(e -> {
-            fotoAnimal = CarregarImagem(primaryStage, imagemAnimal, layoutImageViewAnimal);
+            fotoAnimal = CarregarImagem(primaryStage, imagemAnimal, layoutImageViewAnimal, Rectangles.GetRectangleImageAnimaisDetails());
         });
 
         statusAnimal.getItems().forEach(item -> item.setOnAction(event -> {

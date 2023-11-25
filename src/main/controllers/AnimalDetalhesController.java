@@ -190,11 +190,11 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow) {
         salvarAnimal.setOnMouseClicked(e -> {
             atualizarAnimal(primaryStage);
-            App.getInstance().EntrarTelaInicial(contentFather, primaryStage, blackShadow);
+            App.getInstance().EntrarTelaComRemocao(FORM_HOME, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow);
         });
 
         layoutImageViewAnimal.setOnMouseClicked(e -> {
-            fotoAnimal = CarregarImagem(primaryStage, imagemAnimal, layoutImageViewAnimal);
+            fotoAnimal = CarregarImagem(primaryStage, imagemAnimal, layoutImageViewAnimal, Rectangles.GetRectangleImageAnimaisDetails());
         });
 
         statusAnimal.getItems().forEach(item -> item.setOnAction(event -> {
@@ -203,7 +203,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         }));
         
         voltarButton.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaNoAction(FORM_HOME,contentFather, primaryStage, blackShadow);
+            App.getInstance().EntrarTelaNoActionComRemocao(FORM_HOME, FORM_ANIMAL_DETALHES,contentFather, primaryStage, blackShadow);
         });
         
         voltarButton.setOnMouseEntered(e ->{
@@ -223,7 +223,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaNoAction(FORM_HOME, contentFather, primaryStage, blackShadow);
+            App.getInstance().EntrarTelaNoActionComRemocao(FORM_HOME, FORM_ANIMAL_DETALHES,contentFather, primaryStage, blackShadow);
         });
         
         textFieldBuscarProcedimento.setOnKeyPressed(e ->{
@@ -240,7 +240,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         });
         
         removerButton.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialogComOrigem(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow);
+            App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow, new Object[]{ultimoAnimal.getId()});
         });       
         
         sexoDesconhecidoCheckBox.setOnMouseClicked(event -> {
@@ -304,6 +304,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
 
     @Override
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
-         criarGridProcedimentos(contentFather, primmaryStage, blackShadow);
+        ultimoAnimal = (dados != null) ? (Animal) ObterDadoArray(dados, 0) : ultimoAnimal;
+        criarGridProcedimentos(contentFather, primmaryStage, blackShadow);
     }
 }

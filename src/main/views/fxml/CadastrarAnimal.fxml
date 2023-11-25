@@ -39,7 +39,7 @@
             </ImageView>
          </children>
       </VBox>
-      <Label layoutX="760.0" layoutY="28.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Idade" />
+      <Label layoutX="741.0" layoutY="28.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Idade" />
       <MenuButton id="button" fx:id="statusAnimal" layoutX="39.0" layoutY="405.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" stylesheets="@../css/detalhesanimal.css" text="Selecione">
          <items>
             <MenuItem mnemonicParsing="false" text="Para a adoção" />
@@ -83,7 +83,7 @@
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="851.0" layoutY="28.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Meses" />
+      <Label layoutX="832.0" layoutY="28.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Meses" />
       <Button fx:id="filtrarAnimaisButton" layoutX="937.0" layoutY="284.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="buttonFilter" stylesheets="@../css/view.css" />
    </children>
 </AnchorPane>

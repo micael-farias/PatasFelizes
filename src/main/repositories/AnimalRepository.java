@@ -22,12 +22,8 @@ public class AnimalRepository extends BaseRepository<Animal>{
     
     
     public AnimalRepository(){
-        super(Animal.class);     
-        if(Count() == 0){
-            for(Animal a : getListaDeAnimais()){
-                this.Inserir(a);
-            }
-        }   
+        super(Animal.class);    
+                        
     }
     
     public ArrayList<Animal> EncontrarAnimais(){
@@ -35,7 +31,7 @@ public class AnimalRepository extends BaseRepository<Animal>{
        return a;
     }
     
-    public Animal Salvar(int idAnimal, String nomeAnimal, Calendar dataNascimentoAnimal, String descricaoAnimal, char sexoAnimal, boolean castrado, byte[] fotoAnimal, String status) {
+    public Animal Salvar(int idAnimal, String nomeAnimal, Calendar dataNascimentoAnimal, String descricaoAnimal, char sexoAnimal, boolean castrado, byte[] fotoAnimal, String status) throws SQLException, IllegalAccessException {
         Animal animal;
         
         if(idAnimal == -1){
