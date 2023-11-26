@@ -25,7 +25,6 @@ import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import static main.utils.Constantes.DIALOG_CADASTRAR_TAREFA;
 import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
-import static main.utils.Constantes.FORM_FINANCAS;
 import static main.utils.Constantes.FORM_TAREFAS;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
@@ -98,7 +97,7 @@ public class TarefaController extends CustomController implements InicializadorC
             }
         });   
         
-        if(posicao % 2 != 0){
+        if(posicao % 2 == 0){
             layoutTarefa.setStyle("-fx-background-color: white;");
             editarTarefa.setImage(new Image(PATH_IMAGES +"editar-colorido.png"));
             excluirTarefa.setImage(new Image(PATH_IMAGES + "remover-colorido.png"));

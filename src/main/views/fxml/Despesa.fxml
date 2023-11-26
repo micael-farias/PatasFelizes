@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="958.0" styleClass="box" stylesheets="@../css/card_grid.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0" styleClass="box" stylesheets="@../css/card_grid.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
    <children>
-      <VBox prefHeight="44.0" prefWidth="962.0">
+      <VBox prefHeight="44.0" prefWidth="991.0">
          <children>
             <HBox fx:id="layoutDespesa" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -22,7 +22,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
-                  <HBox fx:id="layoutClickable" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="851.0" stylesheets="@../css/card_grid.css">
+                  <HBox fx:id="layoutClickable" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="886.0" stylesheets="@../css/card_grid.css">
                      <children>
                         <Label fx:id="dataDespesa" prefHeight="44.0" prefWidth="268.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
                            <font>
@@ -32,7 +32,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="descricaoDespesa" prefHeight="44.0" prefWidth="356.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="Despesa">
+                        <Label fx:id="descricaoDespesa" prefHeight="44.0" prefWidth="374.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="Despesa">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -40,7 +40,12 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="valorDespesa" prefHeight="44.0" prefWidth="228.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="R$ 18,00">
+                        <ImageView fx:id="iconComprovante" fitHeight="56.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/comprovante.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="valorDespesa" prefHeight="44.0" prefWidth="215.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="R$ 18,00">
                            <font>
                               <Font size="16.0" />
                            </font>

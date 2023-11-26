@@ -1,5 +1,6 @@
 package main.db;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,13 +9,13 @@ import static main.utils.Constantes.PATH_FILES;
 
 public class ImportData {
 
-    public static void importar() {
+    public static void importar(File file) {
         try {
             // Conectar ao banco de dados SQLite
             Connection connection = DriverManager.getConnection("jdbc:sqlite:patas.db");
             Statement statement = connection.createStatement();
 
-            BufferedReader bufferedReader = new BufferedReader(new FileReader("C:/Users/micha/Desktop/Workspace2/Patas 3.0/PatasFelizes/src/assets/files/patas.sql"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {

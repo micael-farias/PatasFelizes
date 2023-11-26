@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="354.0" prefWidth="680.0" stylesheets="@../css/cadastrar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarDoacaoController">
    <children>
@@ -53,18 +54,36 @@
       <VBox layoutX="55.0" layoutY="186.0" prefHeight="82.0" prefWidth="554.0">
          <children>
             <Label prefHeight="22.0" prefWidth="1047.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Anexar documentos e comprovantes" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="51.0" style="-fx-cursor: hand;" styleClass="round-layout" stylesheets="@../css/cadastrardoacao.css">
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="47.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                     <image>
-                        <Image url="@../../../assets/images/download.png" />
-                     </image>
-                  </ImageView>
+                  <HBox fx:id="layoutAdicionarComprovante" alignment="CENTER" prefHeight="100.0" prefWidth="51.0" style="-fx-cursor: hand;" styleClass="round-layout" stylesheets="@../css/cadastrardoacao.css">
+                     <children>
+                        <ImageView fitHeight="47.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../../../assets/images/download.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="layoutComprovante" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0" prefWidth="554.0" style="-fx-cursor: hand;" visible="false">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/arquivo-pdf%20.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="labelComprovante" text="doacao_n12.pdf" textFill="#666666">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
-               <VBox.margin>
-                  <Insets top="6.0" />
-               </VBox.margin>
-            </HBox>
+            </StackPane>
          </children>
       </VBox>
    </children>

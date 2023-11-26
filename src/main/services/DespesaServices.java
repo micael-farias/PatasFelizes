@@ -45,7 +45,7 @@ public class DespesaServices {
         return despesaRepository.ObterTiposDespesa();
     }    
     
-    public Despesa Cadastrar(int idDespesa, String descricao, double valor, LocalDate dataLocal, String animalString, String tipo, Boolean foiRealizado) {
+    public Despesa Cadastrar(int idDespesa, String descricao, double valor, LocalDate dataLocal, String animalString, String tipo, Boolean foiRealizado, byte[] fotoComprovante) {
         Calendar data = LocalDateParaCalendar(dataLocal);        
         boolean realizado = foiRealizado == null ? data.before(GetMidnightDate()) : foiRealizado;
 
@@ -62,9 +62,16 @@ public class DespesaServices {
         Despesa despesa;
         try{
             despesaRepository.BeginTransaction();
-            despesa = despesaRepository.Salvar(idDespesa, descricao, valor, data, tipo, realizado);                
+            if(idDespesa == -1){
+                        despesa = despesaRepository.Salvar(idDespesa, descricao, valor, data, tipo, realizado, fotoComprovante);                
+
+            }else{
+
             if(animal != null){
                 Procedimento procedimento = procedimentoRepository.encontrarProcedimentosPorDespesa(idDespesa);
+                despesa = despesaRepository.EncontrarDespesaPor(idDespesa);
+                realizado = foiRealizado == null ? despesa.isRealizada(): foiRealizado;
+                despesa = despesaRepository.Salvar(idDespesa, descricao, valor, data, tipo, realizado, fotoComprovante);                
 
                 if(procedimento == null){
                     Tarefa tarefa = tarefaRepository.Salvar(-1, null, animal, descricao, data, tipo, realizado);
@@ -76,7 +83,9 @@ public class DespesaServices {
                         tipo, despesa, procedimento.getVoluntario(), tarefa, animal, realizado);   
                     
                 }
-            }
+            }else{
+                despesa = despesaRepository.Salvar(idDespesa, descricao, valor, data, tipo, realizado, fotoComprovante);                
+            }}
         
             despesaRepository.CommitTransaction();
         }catch(Exception e){

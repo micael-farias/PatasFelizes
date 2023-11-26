@@ -11,20 +11,26 @@ import java.util.Calendar;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
+import static main.controllers.AnimalFormularioController.CarregarImagem;
 import main.interfaces.InicializadorComDado;
 import main.model.Despesa;
 import main.model.Procedimento;
 import main.services.AnimalService;
 import main.services.DespesaServices;
 import main.services.ProcedimentoService;
-import static main.utils.Constantes.FORM_FINANCAS;
+import static main.utils.Constantes.FORM_DESPESAS;
 import static main.utils.Constantes.FORM_HOME;
+import main.utils.ImageLoader;
+import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
+import main.utils.Rectangles;
 import main.utils.TextFieldUtils;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -46,16 +52,26 @@ public class CadastrarDespesaController extends CustomController implements Inic
     private TextField tipoDespesa;
 
     @FXML
+    private Label labelComprovante;
+    
+    @FXML
     private TextField valorDespesa;
     
     @FXML
     private Button cancelarCadastro;
+    
+    @FXML
+    private HBox layoutAdicionarComprovante;
+
+    @FXML
+    private HBox layoutComprovante;
 
     private DespesaServices despesaServices;
     private AnimalService animalServices;
     private ProcedimentoService procedimentoServices;
     private int idDespesa;
     private Despesa despesa;
+    private byte[] comprovante;
     
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
@@ -73,10 +89,10 @@ public class CadastrarDespesaController extends CustomController implements Inic
 
         configurarPets();
         configurarTiposDespesa();
-        setData();
         
         TextFieldUtils.setupCurrencyTextField(valorDespesa);
-    }
+         setData();
+   }
 
     public void configurarPets(){
         Set<String> animaisPossiveis = animalServices.ObterNomesAnimais();
@@ -91,12 +107,26 @@ public class CadastrarDespesaController extends CustomController implements Inic
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarDespesa.setOnMouseClicked(e->{
             SalvarDespesa();
-            App.getInstance().EntrarTelaOnResume(FORM_FINANCAS ,contentFather, primmaryStage, blackShadow, null);                      
+            App.getInstance().EntrarTelaOnResume(FORM_DESPESAS ,contentFather, primmaryStage, blackShadow, null);                      
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
             App.getInstance().FecharDialog(primmaryStage, blackShadow);
         });        
+        
+        layoutAdicionarComprovante.setOnMouseClicked(e ->{
+            comprovante = ImageLoader.CarregarImagemLocal(primmaryStage);
+            labelComprovante.setText("despesa_"+idDespesa+".pdf");
+            layoutAdicionarComprovante.setVisible(false);
+            layoutComprovante.setVisible(true);
+        });
+        
+        layoutComprovante.setOnMouseClicked(e -> {
+                PdfDownloader.baixarPdf(despesa.getFotoComprovante(), "despesa_"+idDespesa+".pdf");
+
+        });
+        
+        
     }
     
     public void SalvarDespesa(){
@@ -106,7 +136,7 @@ public class CadastrarDespesaController extends CustomController implements Inic
         String tipo = tipoDespesa.getText();
         double valor = RealFormatter.unformatarReal(valorDespesa.getText());
         
-        despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, null);
+        despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, null, comprovante);
     }
     
     private void setData() {
@@ -118,6 +148,12 @@ public class CadastrarDespesaController extends CustomController implements Inic
             petDespesa.setText((procedimento == null) ? "" : procedimento.getAnimal().getNome());
             tipoDespesa.setText(despesa.getTipo());
             valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
+            comprovante = despesa.getFotoComprovante();
+            if(comprovante != null){
+                layoutComprovante.setVisible(true);
+                labelComprovante.setText("despesa_"+idDespesa+".pdf");
+                layoutAdicionarComprovante.setVisible(false);
+            }
         }
     }
 }

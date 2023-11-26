@@ -3,12 +3,15 @@ package main;
 import java.io.IOException;
 import java.util.Calendar;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import main.db.Database;
 import main.db.ExportData;
 import main.db.ImportData;
 import main.interfaces.InicializadorBase;
@@ -21,7 +24,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-           // ExportData.export();
             Font.loadFont(getClass().getResourceAsStream(PATH_FILES + "NotoSansDevanagari.ttf"), 12);
             FXMLLoader loader = new FXMLLoader(getClass().getResource(FORM_BASE));
             Parent root = loader.load();

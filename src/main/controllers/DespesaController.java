@@ -15,7 +15,7 @@ import main.services.DespesaServices;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
 import static main.utils.Constantes.DIALOG_REMOVER;
-import static main.utils.Constantes.FORM_FINANCAS;
+import static main.utils.Constantes.FORM_DOACOES;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
 import static main.utils.DateHelper.CalendarParaString;
@@ -46,6 +46,10 @@ public class DespesaController extends CustomController implements Inicializador
 
     @FXML
     private ImageView excluirDespesa;
+        
+    @FXML
+    private ImageView iconComprovante;
+    
     
     private Despesa despesa;
     private DespesaServices despesaService;
@@ -62,6 +66,7 @@ public class DespesaController extends CustomController implements Inicializador
         descricaoDespesa.setText(despesa.getDescricao());
         dataDespesa.setText(CalendarParaString(despesa.getData()));
         valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
+        iconComprovante.setVisible(despesa.getFotoComprovante() != null);
         setImage(despesa.isRealizada());
 
         
@@ -70,14 +75,14 @@ public class DespesaController extends CustomController implements Inicializador
             setImage(realizada);
             if (realizada) {  
                 despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
-                        DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), true);
+                        DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), true, despesa.getFotoComprovante());
             }else{
                 despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
-                        DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), false);      
+                        DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), false, despesa.getFotoComprovante());      
             }
         });        
         
-        if(posicao % 2 != 0){
+        if(posicao % 2 == 0){
             layoutDespesa.setStyle("-fx-background-color: white;");
             editarDespesa.setImage(new Image(PATH_IMAGES +"editar-colorido.png"));
             excluirDespesa.setImage(new Image(PATH_IMAGES + "remover-colorido.png"));
@@ -99,7 +104,7 @@ public class DespesaController extends CustomController implements Inicializador
           });
         
         excluirDespesa.setOnMouseClicked(e ->{
-          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_FINANCAS, contentFather, primaryStage, blackShadow,
+          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_DOACOES, contentFather, primaryStage, blackShadow,
                    new Object[]{ "Deseja realmente excluir essa despesa? "});        
           });  
         

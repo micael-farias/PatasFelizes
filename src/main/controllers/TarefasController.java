@@ -22,9 +22,6 @@ import main.views.gridview.TarefasGridView;
 public class TarefasController implements Inicializador , Resumidor{  
 
     @FXML
-    private Button novaTarefa;
-
-    @FXML
     private GridPane tarefasGrid;
     
     @FXML
@@ -57,10 +54,7 @@ public class TarefasController implements Inicializador , Resumidor{
     }
   
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
-        novaTarefa.setOnMouseClicked(e->{
-            App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA, contentFather, primmaryStage, blackShadow, null);
-        });  
-        
+
         textFieldBuscarTarefa.setOnKeyPressed(e ->{
             String tarefa = textFieldBuscarTarefa.getText();
             if(e.getCode().equals(ENTER)){

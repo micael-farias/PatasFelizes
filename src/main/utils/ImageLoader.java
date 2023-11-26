@@ -61,6 +61,20 @@ public class ImageLoader {
         return null;
     }
     
+   
+    public static File CarregarSql(Stage primaryStage){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Arquivos SQL", "*.sql"));
+
+        File selectedFile = fileChooser.showOpenDialog(primaryStage);
+        if (selectedFile != null) {
+            return selectedFile;
+        }
+        
+        return null;
+    }
+      
+    
     private static byte[] LoadImageBytes(File file) throws IOException {
         try (FileInputStream fis = new FileInputStream(file);
              ByteArrayOutputStream bos = new ByteArrayOutputStream()) {

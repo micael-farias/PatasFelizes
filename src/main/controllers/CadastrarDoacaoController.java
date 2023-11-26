@@ -7,6 +7,7 @@ import java.util.Calendar;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -21,7 +22,9 @@ import main.services.DespesaServices;
 import main.services.DoacaoServices;
 import main.services.ProcedimentoService;
 import main.services.VoluntarioService;
-import static main.utils.Constantes.FORM_FINANCAS;
+import static main.utils.Constantes.FORM_DOACOES;
+import main.utils.ImageLoader;
+import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
 import org.controlsfx.control.textfield.TextFields;
@@ -43,6 +46,14 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     @FXML
     private TextField valorDoacao;
     
+     @FXML
+    private HBox layoutAdicionarComprovante;
+
+    @FXML
+    private HBox layoutComprovante;
+
+        @FXML
+    private Label labelComprovante;
     @FXML
     private Button cancelarCadastro;
     
@@ -50,7 +61,8 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     private VoluntarioService voluntarioService;
     private int idDoacao;
     private Doacao doacao;
-    
+    private byte[] comprovante;
+
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
         initialize(dados);
@@ -84,12 +96,23 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarDoacao.setOnMouseClicked(e->{
             SalvarDespesa();
-            App.getInstance().EntrarTelaOnResume(FORM_FINANCAS ,contentFather, primmaryStage, blackShadow, null);                      
+            App.getInstance().EntrarTelaOnResume(FORM_DOACOES ,contentFather, primmaryStage, blackShadow, null);                      
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaNoAction(FORM_FINANCAS, contentFather, primmaryStage, blackShadow);
-        });        
+            App.getInstance().EntrarTelaNoAction(FORM_DOACOES, contentFather, primmaryStage, blackShadow);
+        });      
+          layoutAdicionarComprovante.setOnMouseClicked(e ->{
+            comprovante = ImageLoader.CarregarImagemLocal(primmaryStage);
+            labelComprovante.setText("doacao_"+idDoacao+".pdf");
+            layoutAdicionarComprovante.setVisible(false);
+            layoutComprovante.setVisible(true);
+        });
+        
+        layoutComprovante.setOnMouseClicked(e -> {
+                PdfDownloader.baixarPdf(doacao.getFotoComprovante(), "doacao_"+idDoacao+".pdf");
+
+        });
     }
     
     public void SalvarDespesa(){
@@ -97,7 +120,7 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         String doador = doadorDoacao.getText();
         double valor = RealFormatter.unformatarReal(valorDoacao.getText());
         
-        doacaoServices.Salvar(idDoacao, doador, valor, data, new byte[]{});
+        doacaoServices.Salvar(idDoacao, doador, valor, data, comprovante);
     }
     
     private void setData() {
@@ -107,8 +130,12 @@ public class CadastrarDoacaoController extends CustomController implements Inici
             dataDoacao.setValue(localDate);
             var valor = RealFormatter.formatarComoReal(doacao.getValor());
                     valorDoacao.setText(valor);
-            var texto = valorDoacao.getText();
-            int a = 1;
+              comprovante = doacao.getFotoComprovante();
+            if(comprovante != null){
+                layoutComprovante.setVisible(true);
+                labelComprovante.setText("doacao_"+idDoacao+".pdf");
+                layoutAdicionarComprovante.setVisible(false);
+            }
         }
     }
      
