@@ -4,7 +4,7 @@ import javafx.scene.control.TextField;
 
 public class CustomController {
     
-    public Object ObterDadoArray(Object[] dados, int posicao){
+ public Object ObterDadoArray(Object[] dados, int posicao){
         try{
             return dados[posicao];
         }catch(Exception ex){

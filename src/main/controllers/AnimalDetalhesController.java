@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.BACK_SPACE;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -26,12 +27,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.factories.StatusAnimalFactory;
+import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.interfaces.Resumidor;
+import main.model.Adocao;
 import main.model.Animal;
 import main.model.Idade;
 import main.model.Procedimento;
 import main.model.Voluntario;
+import main.services.AdocaoServices;
 import main.services.AnimalService;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.DIALOG_CADASTRAR_ADOCAO;
@@ -39,6 +43,7 @@ import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.FORM_HOME;
 import static main.utils.Constantes.PATH_IMAGES;
+import main.utils.DateHelper;
 import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
 import main.utils.ImageLoader;
 import main.utils.NumberHelper;
@@ -58,16 +63,40 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     private TextField anosAnimalTextField;
 
     @FXML
+    private Button cancelarCadastro;
+
+    @FXML
+    private Label dataAdocao;
+
+    @FXML
     private TextArea descricaoAnimalTextField;
+
+    @FXML
+    private Button filtrarAnimaisButton;
 
     @FXML
     private ImageView imagemAnimal;
 
     @FXML
+    private Label labelNome;
+
+    @FXML
+    private VBox layoutAdicionarAdocao;
+
+    @FXML
+    private Pane layoutAdocao;
+
+    @FXML
     private VBox layoutImageViewAnimal;
 
     @FXML
+    private AnchorPane layoutRemoverAdocao;
+
+    @FXML
     private TextField mesesAnimalTextField;
+
+    @FXML
+    private Label nomeAdotante;
 
     @FXML
     private TextField nomeAnimalTextField;
@@ -77,32 +106,32 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
 
     @FXML
     private Button removerButton;
-    @FXML
-    private Button cancelarCadastro;
 
     @FXML
     private Button salvarAnimal;
 
     @FXML
+    private ImageView sexoDesconhecidoCheckBox;
+
+    @FXML
+    private StackPane stackPaneScroll;
+
+    @FXML
     private MenuButton statusAnimal;
+
+    @FXML
+    private TextField textFieldBuscarProcedimento;
 
     @FXML
     private HBox toggleSexo;
 
     @FXML
     private HBox toogleCastrado;
-
-    @FXML
-    private ImageView voltarButton;
-
-    @FXML
-    private ImageView sexoDesconhecidoCheckBox;
     
     @FXML
-    private TextField textFieldBuscarProcedimento;
-    
+    private HBox boxNomeAdotante;
     @FXML
-    private StackPane stackPaneScroll;
+    private ImageView voltarButton;    
     
     private byte[] fotoAnimal;
     private String ultimoStatus;
@@ -111,24 +140,27 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     ToggleView toogleViewCastrado;
     ProcedimentoService procedimentoService;
     AnimalService animalService;
+    AdocaoServices adocaoService;
     
+    private static Adocao adocao;
     private static Animal ultimoAnimal;
-    @FXML
-    private Label labelNome;
+
 
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dado) {
         initialize(dado);
         initializeViews(contentFather,primmaryStage, blackShadow);
         setListeners(contentFather, primmaryStage, blackShadow);
+        configurarLayoutAdocao();
     }
     
     public void initialize(Object[] dado){
 
    
-    ultimoAnimal = (dado != null) ? (Animal) ObterDadoArray(dado, 0) : ultimoAnimal;
+        ultimoAnimal = (dado != null) ? (Animal) ObterDadoArray(dado, 0) : ultimoAnimal;
         animalService =  new AnimalService();
         procedimentoService = new ProcedimentoService();
+        adocaoService  = new AdocaoServices();
         configuraToggles();
         setData(ultimoAnimal);  
     }
@@ -184,7 +216,8 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
                                 
         ToogleEnum castrado = toogleViewCastrado.getSelectedItem();
 
-        animalService.Salvar(ultimoAnimal.getId() ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
+        Animal animal = animalService.Salvar(ultimoAnimal.getId() ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
+        if(animal.getStatus().equals("PA") && adocao != null) adocaoService.DeletarAdocaoPorId(adocao.getId(), ultimoAnimal.getId());
     }
     
     public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow) {
@@ -203,7 +236,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         }));
         
         voltarButton.setOnMouseClicked(e ->{
-            App.getInstance().EntrarTelaNoActionComRemocao(FORM_HOME, FORM_ANIMAL_DETALHES,contentFather, primaryStage, blackShadow);
+            App.getInstance().EntrarTelaComRemocao(FORM_HOME, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow);
         });
         
         voltarButton.setOnMouseEntered(e ->{
@@ -226,6 +259,12 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
             App.getInstance().EntrarTelaNoActionComRemocao(FORM_HOME, FORM_ANIMAL_DETALHES,contentFather, primaryStage, blackShadow);
         });
         
+        boxNomeAdotante.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialogComAcao(DIALOG_CADASTRAR_ADOCAO,FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,
+                    new Object[]{ultimoAnimal.getId(), adocao}, (dado) -> { configurarLayoutAdocao();} );
+        });
+        
+        
         textFieldBuscarProcedimento.setOnKeyPressed(e ->{
             String nome = textFieldBuscarProcedimento.getText();
             if(e.getCode().equals(ENTER)){
@@ -235,8 +274,22 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
             }
         });  
                 
+        layoutRemoverAdocao.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,new Object[]{"Deseja realmente deletar essa adoção"}, (dado) ->{
+                adocaoService.DeletarAdocaoPorId(adocao.getId(), ultimoAnimal.getId());
+                configurarLayoutAdocao(); 
+                statusAnimal.setText("Para adoção");
+            });
+        
+        });
+        
+        
+        
         adotarButton.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialog(DIALOG_CADASTRAR_ADOCAO, contentFather, primaryStage, blackShadow);
+            App.getInstance().AbrirDialogComAcao(DIALOG_CADASTRAR_ADOCAO,FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow, new Object[]{ultimoAnimal.getId(), adocao}, (dado) -> {           
+                configurarLayoutAdocao();
+                statusAnimal.setText("Adotado");
+            } );
         });
         
         removerButton.setOnMouseClicked(e ->{
@@ -261,6 +314,21 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
                 sexoDesconhecidoCheckBox.setImage(new Image(PATH_IMAGES + "check_azul_checked.png"));       
         }else{
                 sexoDesconhecidoCheckBox.setImage(new Image(PATH_IMAGES + "check_azul_not_checked.png"));        
+        }
+    }
+    
+    public void configurarLayoutAdocao(){
+        adocao = adocaoService.EncontrarAdocaoPorId(ultimoAnimal.getId());
+        if(adocao != null){
+            layoutAdicionarAdocao.setVisible(false);
+            layoutAdocao.setVisible(true);
+            nomeAdotante.setText(adocao.getAdotante().getNome());
+            dataAdocao.setText(DateHelper.CalendarParaString(adocao.getDataCadastro()));
+            layoutRemoverAdocao.setVisible(true);
+        }else{
+            layoutAdocao.setVisible(false);
+            layoutRemoverAdocao.setVisible(false);
+            layoutAdicionarAdocao.setVisible(true);       
         }
     }
     
@@ -306,5 +374,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
         ultimoAnimal = (dados != null) ? (Animal) ObterDadoArray(dados, 0) : ultimoAnimal;
         criarGridProcedimentos(contentFather, primmaryStage, blackShadow);
+        configurarLayoutAdocao();
+
     }
 }

@@ -16,7 +16,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import main.controllers.BaseController;
+import main.interfaces.Acao;
 import main.interfaces.Inicializador;
+import main.interfaces.InicializadorComAcao;
 import main.interfaces.InicializadorComDado;
 import main.interfaces.InicializadorComOrigem;
 import main.interfaces.InicializadorComOrigemEDado;
@@ -114,6 +116,33 @@ public class InicializarFormulario {
         content.getChildren().clear();
         ObservableList<Node> children = content.getChildren();
         children.addAll(result.getResult());     
+    }
+    
+    public <T> void AbrirDialogComAcao(String tela, String telaOrigem, Pane content, Stage primaryStage, Pane blackShadow, Object[] dados, Acao acao){                
+        try {
+
+              Stage dialog = new Stage();
+              dialog.initStyle(StageStyle.UNDECORATED);
+              dialog.initModality(Modality.APPLICATION_MODAL);
+              dialog.initOwner(primaryStage);
+
+              FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
+              Parent root2 = loader.load();
+              InicializadorComAcao controlador = loader.getController();
+              controlador.Inicializar(telaOrigem, content,primaryStage, blackShadow, acao, dados);
+
+              AnchorPane pane = CentralizarDialogo(root2, primaryStage);
+
+              if(pane.getChildren().contains(blackShadow)){
+                  pane.getChildren().remove(blackShadow);
+              }
+
+              blackShadow.setVisible(true);
+              pane.getChildren().addAll(blackShadow, root2);
+
+              dialogoAberto = root2;
+          } catch(IOException e) {
+          }        
     }
     
     public <T> void EntrarTelaNoAction(String tela, Pane content, Stage primmaryStage, Pane blackShadow){   

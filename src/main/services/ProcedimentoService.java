@@ -67,10 +67,9 @@ public class ProcedimentoService {
             
             if(idProcedimento == -1){
                 if(valor != 0.0) despesa = despesaRepository.Salvar(-1, descricao, valor, dataCalendar, tipo, realizado, null);       
-                Tarefa tarefa = tarefasRepository.Salvar(-1, voluntario, animal,descricao, dataCalendar, tipo, realizado);
 
 
-                procedimento = procedimentoRepository.Salvar(idProcedimento, descricao, dataCalendar, tipo, despesa, voluntario, tarefa, animal, realizado);
+                procedimento = procedimentoRepository.Salvar(idProcedimento, descricao, dataCalendar, tipo, despesa, voluntario, animal, realizado);
                             
 
                      new EmailSenderThread(voluntario.getEmail(), "Nova tarefa pra você", "Patas felizes tem uma nova tarefa").start();
@@ -78,9 +77,6 @@ public class ProcedimentoService {
                 procedimento = procedimentoRepository.encontrarProcedimentosPorId(idProcedimento);
                 realizado = foiRealizado == null ? procedimento.isRealizado() : foiRealizado;
                 Tarefa tarefa = null;
-                if(procedimento.getTarefa() != null){
-                    tarefa = tarefasRepository.Salvar(procedimento.getTarefa().getId(), voluntario, animal, descricao, dataCalendar, tipo, realizado);
-                }
 
                 if(valor != 0.0){
                     if(procedimento.getDespesa() == null){
@@ -96,7 +92,7 @@ public class ProcedimentoService {
                     despesaRepository.Deletar(procedimento.getDespesa());
                 }
 
-                procedimento = procedimentoRepository.Salvar(idProcedimento, descricao, dataCalendar, tipo, despesa, voluntario, tarefa, animal, realizado);
+                procedimento = procedimentoRepository.Salvar(idProcedimento, descricao, dataCalendar, tipo, despesa, voluntario, animal, realizado);
             }
 
             

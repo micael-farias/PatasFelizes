@@ -96,8 +96,18 @@ public class BaseRepository<T> {
         executarQueryAtualizacao(objeto, query.toString());
     }
 
-    public void Excluir(T objeto) {
-        // Implemente o método de exclusão
+    public void Excluir(Class<T> objeto, int id) throws  Exception {
+        String tabela = ObterNomeTabela(objeto);
+        String query = "DELETE FROM " + tabela + " WHERE ID = " + id;
+        try(Statement statement = connection.createStatement()){
+            int rowsAffetected = statement.executeUpdate(query);
+            if(rowsAffetected != 1){
+                throw new Exception("Deleção ocorreu de forma inesperada");
+                        
+            }
+        }catch(SQLException e){
+            throw e;
+        }
     }
 
     public <Tipo> List<Tipo> SelecionarTodos(String colunas, String where, String order, Class<Tipo> tipoResultado) {

@@ -54,12 +54,17 @@ public class AnimalCardController extends CustomController implements Inicializa
         idadeAnimal.setText(textoIdadeAnimal);
         nomeAnimal.setText(animal.getNome());
         statusAnimal.setFill(StatusAnimalFactory.GetColorStatus(animal.getStatus()));
-        if(animal.getSexo() == 'M'){
-            sexoAnimal.setText("Macho");
-        }else{
-            sexoAnimal.setText("Femea");
+        switch (animal.getSexo()) {
+            case 'M':
+                sexoAnimal.setText("Macho");
+                break;
+            case 'F':
+                sexoAnimal.setText("Femea");
+                break;
+            default:
+                sexoAnimal.setText("Não identificado");
+                break;
         }
-       // setStyles(idadeAnimal, sexoAnimal, nomeAnimal);
         
         CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimais());
         pane.setClip(Rectangles.GetRectanglePaneAnimais());

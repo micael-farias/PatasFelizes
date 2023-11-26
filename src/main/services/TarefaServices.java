@@ -38,11 +38,11 @@ public class TarefaServices {
         procedimentoRepository = new ProcedimentoRepository();
     }
     
-    public List<Tarefa> ObterTarefas(){
+    public List<Procedimento> ObterTarefas(){
         return tarefasRepository.ObterTarefas();
     }    
     
-    public Tarefa Salvar(int idTarefa, String voluntarioString, String animalString, String descricao, LocalDate dataLocal, String tipo, Boolean foiRealizado){
+    public Procedimento Salvar(int idTarefa, String voluntarioString, String animalString, String descricao, LocalDate dataLocal, String tipo, Boolean foiRealizado){
         Voluntario voluntario = voluntarioService.ObterVoluntarioPorNome(voluntarioString);
         if(voluntario == null){
             // mensagem de erro
@@ -59,37 +59,35 @@ public class TarefaServices {
             }
             
         }
-      
+        
         Calendar data = LocalDateParaCalendar(dataLocal);    
         boolean realizado = foiRealizado == null ? data.before(GetMidnightDate()) : foiRealizado;
         boolean enviaEmail = !data.before(GetMidnightDate());
-        Tarefa tarefa;
+        Procedimento procedimento = null;
         try{
             tarefasRepository.BeginTransaction();
-
-            tarefa = tarefasRepository.Salvar(idTarefa, voluntario, animal, descricao, data, tipo, realizado);
             //enviar email para a pessoa
 
 
 
             if(idTarefa == -1){
                 if(animal != null){
-                    procedimentoRepository.Salvar(-1, descricao, data, tipo, null, voluntario, tarefa, animal, realizado);
+                    procedimento = procedimentoRepository.Salvar(-1, descricao, data, tipo, null, voluntario, animal, realizado);
                                 if(enviaEmail){
                 new EmailSenderThread(voluntario.getEmail(), "Nova tarefa pra você", "Patas felizes tem uma nova tarefa").start();
             }
                 }
             }else{               
                 if(animal != null){
-                    Procedimento procedimento = procedimentoRepository.encontrarProcedimentosPorTarefa(idTarefa);
+                    procedimento = procedimentoRepository.encontrarProcedimentosPorTarefa(idTarefa);
                     realizado = foiRealizado == null ? procedimento.isRealizado() : foiRealizado;
 
                     if(procedimento.getDespesa() == null){
-                        procedimentoRepository.Salvar(procedimento.getId(), descricao, data, tipo, null, voluntario, tarefa, animal, realizado);
+                      procedimento =  procedimentoRepository.Salvar(procedimento.getId(), descricao, data, tipo, null, voluntario, animal, realizado);
 
                     }else{
                         despesaRepository.Salvar(procedimento.getDespesa().getId(), descricao, procedimento.getDespesa().getValor(), data, tipo, realizado, procedimento.getDespesa().getFotoComprovante());
-                        procedimentoRepository.Salvar(procedimento.getId(), descricao, data, tipo, procedimento.getDespesa(), voluntario, tarefa, animal, realizado);
+                      procedimento =  procedimentoRepository.Salvar(procedimento.getId(), descricao, data, tipo, procedimento.getDespesa(), voluntario, animal, realizado);
                     }
                 }
             }
@@ -101,18 +99,18 @@ public class TarefaServices {
             } catch (SQLException ex) {
                 Logger.getLogger(TarefaServices.class.getName()).log(Level.SEVERE, null, ex);
             }
-            tarefa = null;
+            procedimento = null;
         }
         
                
-        return tarefa;
+        return procedimento;
     }
 
     public Set<String> ObterNomesTiposTarefa() {
         return tarefasRepository.obterNomesTiposTarefa();
     }
 
-    public List<Tarefa> EncontrarTarefasPorDescricao(String tarefa) {
+    public List<Procedimento> EncontrarTarefasPorDescricao(String tarefa) {
         return tarefasRepository.EncontrarTarefasPorDescricao(tarefa);
     }
 }

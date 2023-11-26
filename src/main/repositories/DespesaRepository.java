@@ -80,7 +80,7 @@ public class DespesaRepository extends BaseRepository<Despesa> {
     }
 
     public void Deletar(Despesa despesa) {
-        Excluir(despesa);
+        //Excluir(despesa);
     }
 
     public Despesa EncontrarDespesaPor(int idDespesa) {
