@@ -2,6 +2,7 @@ package main.repositories;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -98,6 +99,24 @@ public class AnimalRepository extends BaseRepository<Animal>{
 
     public List<Animal> EncontrarAnimaisPorNome(String nome) {
         return SelecionarTodos("*", "NOME LIKE '%"+nome+"%'",null, Animal.class);
+    }
+
+    public void AtualizarStatusAnimal(String status, int idAnimal) throws Exception {
+        try (PreparedStatement statement = connection.prepareStatement(
+                     "UPDATE Animais SET status=? WHERE id=?")) {
+
+            statement.setString(1, status);
+            statement.setInt(2, idAnimal);
+            
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected != 1) {
+                throw new Exception("Falha na atualização do Status do animal");
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+
     }
     
     

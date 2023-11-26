@@ -65,11 +65,11 @@ public class TarefaController extends CustomController implements InicializadorC
     @FXML
     private HBox layoutClickable;
     
-    private Tarefa tarefa;
+    private Procedimento procedimento;
     private TarefaServices tarefaServices;
     
      public void setData(Object[] dados) {
-        tarefa = (Tarefa) ObterDadoArray(dados, 0);
+        procedimento = (Procedimento) ObterDadoArray(dados, 0);
         tarefaServices = new TarefaServices();
         
         int posicao = (int) ObterDadoArray(dados, 1);   
@@ -78,24 +78,26 @@ public class TarefaController extends CustomController implements InicializadorC
             clip.setArcWidth(10);
             clip.setArcHeight(10);
             
-        CarregarImagem(fotoVoluntario, tarefa.getVoluntario().getFoto(), tarefa.getVoluntario().idFoto(), clip);
-        descricaoTarefa.setText(tarefa.getDescricao());
-        nomeAnimal.setText(tarefa.getAnimal()!= null ? tarefa.getAnimal().getNome() : "-");
-        nomeVoluntario.setText(tarefa.getVoluntario().getNome());
-        dataTarefa.setText(CalendarParaString(tarefa.getData()));
+            
+        CarregarImagem(fotoVoluntario, procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().getFoto(),
+                procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().idFoto(), clip);
+        descricaoTarefa.setText(procedimento.getDescricao());
+        nomeAnimal.setText(procedimento.getAnimal()!= null ? procedimento.getAnimal().getNome() : "-");
+        nomeVoluntario.setText(procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().getNome());
+        dataTarefa.setText(CalendarParaString(procedimento.getData()));
 
-        setImage(tarefa.isRealizada());
+      /*  setImage(procedimento.isRealizada());
         checkBoxRealizado.setOnMouseClicked(event -> {
-            boolean realizada = !tarefa.isRealizada();
+            boolean realizada = !procedimento.isRealizada();
             setImage(realizada);
             if (realizada) {  
-                tarefa = tarefaServices.Salvar(tarefa.getId(), tarefa.getVoluntario().getNome(), tarefa.getAnimal() != null ? tarefa.getAnimal().getNome() : null,
-                        tarefa.getDescricao(), DateHelper.CalendarParaLocalDate(tarefa.getData()), tarefa.getTipo(), true);
+              //  procedimento = tarefaServices.Salvar(procedimento.getId(), procedimento.getVoluntario().getNome(), procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : null,
+              //          procedimento.getDescricao(), DateHelper.CalendarParaLocalDate(procedimento.getData()), procedimento.getTipo(), true);
             }else{
-                tarefa = tarefaServices.Salvar(tarefa.getId(), tarefa.getVoluntario().getNome(), tarefa.getAnimal() != null ? tarefa.getAnimal().getNome() : null,
-                        tarefa.getDescricao(), DateHelper.CalendarParaLocalDate(tarefa.getData()), tarefa.getTipo(), false);       
+               // procedimento = tarefaServices.Salvar(procedimento.getId(), procedimento.getVoluntario().getNome(), procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : null,
+               //         procedimento.getDescricao(), DateHelper.CalendarParaLocalDate(procedimento.getData()), procedimento.getTipo(), false);       
             }
-        });   
+        });   */
         
         if(posicao % 2 == 0){
             layoutTarefa.setStyle("-fx-background-color: white;");
@@ -106,7 +108,7 @@ public class TarefaController extends CustomController implements InicializadorC
      
     public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow){
         layoutClickable.setOnMouseClicked(e -> {
-            App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA , contentFather, primaryStage, blackShadow, new Object[]{ tarefa });        
+            App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA , contentFather, primaryStage, blackShadow, new Object[]{ procedimento });        
         });  
         
         excluirTarefa.setOnMouseClicked(e ->{
@@ -116,7 +118,7 @@ public class TarefaController extends CustomController implements InicializadorC
         
         editarTarefa.setOnMouseClicked(e ->{
           App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA, contentFather, primaryStage, blackShadow,
-                   new Object[]{ tarefa.getId(), tarefa});    
+                   new Object[]{ procedimento.getId(), procedimento});    
         });
     }
  

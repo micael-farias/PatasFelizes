@@ -74,13 +74,10 @@ public class DespesaServices {
                 despesa = despesaRepository.Salvar(idDespesa, descricao, valor, data, tipo, realizado, fotoComprovante);                
 
                 if(procedimento == null){
-                    Tarefa tarefa = tarefaRepository.Salvar(-1, null, animal, descricao, data, tipo, realizado);
-                    procedimentoRepository.Salvar(-1, descricao, data, tipo, despesa, null, tarefa, animal, realizado);
+                    procedimentoRepository.Salvar(-1, descricao, data, tipo, despesa, null, animal, realizado);
                   }else{
-                   Tarefa tarefa =  tarefaRepository.Salvar(procedimento.getTarefa().getId(), procedimento.getTarefa().getVoluntario(),
-                            animal, descricao, data, tipo, realizado);  
                     procedimentoRepository.Salvar(procedimento.getId(), descricao, data, 
-                        tipo, despesa, procedimento.getVoluntario(), tarefa, animal, realizado);   
+                        tipo, despesa, procedimento.getVoluntario(), animal, realizado);   
                     
                 }
             }else{

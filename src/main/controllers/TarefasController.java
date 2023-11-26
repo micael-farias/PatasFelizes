@@ -14,6 +14,7 @@ import main.App;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
 import main.model.Animal;
+import main.model.Procedimento;
 import main.model.Tarefa;
 import main.services.TarefaServices;
 import static main.utils.Constantes.DIALOG_CADASTRAR_TAREFA;
@@ -49,7 +50,7 @@ public class TarefasController implements Inicializador , Resumidor{
     }
     
     public void initializeViews(Pane contentFather, Stage primmaryStage, Pane blackShadow){
-        List<Tarefa> tarefas = tarefaService.ObterTarefas();
+        List<Procedimento> tarefas = tarefaService.ObterTarefas();
         criarGridComResultados(tarefas, contentFather, primmaryStage, blackShadow);
     }
   
@@ -58,7 +59,7 @@ public class TarefasController implements Inicializador , Resumidor{
         textFieldBuscarTarefa.setOnKeyPressed(e ->{
             String tarefa = textFieldBuscarTarefa.getText();
             if(e.getCode().equals(ENTER)){
-                  List<Tarefa> tarefas = tarefaService.EncontrarTarefasPorDescricao(tarefa);
+                  List<Procedimento> tarefas = tarefaService.EncontrarTarefasPorDescricao(tarefa);
                   criarGridComResultados(tarefas, contentFather, primmaryStage, blackShadow);
             }else if(e.getCode().equals(BACK_SPACE)){
                 if(tarefa.length() == 0) hintBuscarTarefas();
@@ -71,7 +72,7 @@ public class TarefasController implements Inicializador , Resumidor{
         initializeViews(contentFather,primmaryStage, blackShadow);
     }
 
-    private void criarGridComResultados(List<Tarefa> tarefas, Pane contentFather, Stage primmaryStage, Pane blackShadow) {
+    private void criarGridComResultados(List<Procedimento> tarefas, Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         TarefasGridView animalGridView = new TarefasGridView(contentFather, primmaryStage, blackShadow, tarefasGrid, 1, tarefas, stackPaneScroll);
         animalGridView.createGridAsync();  
     }

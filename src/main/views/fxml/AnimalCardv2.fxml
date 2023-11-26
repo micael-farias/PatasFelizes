@@ -39,12 +39,12 @@
                                     <Font name="System Bold" size="23.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="sexoAnimal" layoutX="12.0" layoutY="33.0" prefHeight="30.0" prefWidth="48.0" styleClass="labelSexoAnimal" stylesheets="@../css/view.css" text="FemeaI" textFill="WHITE">
+                              <Label fx:id="sexoAnimal" layoutX="12.0" layoutY="33.0" prefHeight="30.0" prefWidth="185.0" styleClass="labelSexoAnimal" stylesheets="@../css/view.css" text="FemeaI" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="idadeAnimal" layoutX="12.0" layoutY="53.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="118.0" styleClass="labelSexoAnimal" text="6 anos e 12 meses" textFill="WHITE">
+                              <Label fx:id="idadeAnimal" layoutX="12.0" layoutY="53.0" minHeight="-Infinity" prefHeight="25.0" prefWidth="185.0" styleClass="labelSexoAnimal" text="6 anos e 12 meses" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

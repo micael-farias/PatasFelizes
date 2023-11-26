@@ -57,6 +57,12 @@
     -fx-font-weight: normal;
 }
 
+.LabelInfoAdocao{
+    -fx-font-size: 14px;
+    -fx-text-fill: #494949;  
+    -fx-font-weight: normal;
+}
+
 .LabelFiltrar{
     -fx-font-size: 14px;
     -fx-text-fill: gray;  

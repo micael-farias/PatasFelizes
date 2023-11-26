@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import main.model.Animal;
 import main.services.AnimalService;
 import static main.utils.Constantes.FORM_TAREFAS;
 /**
@@ -54,15 +55,16 @@ public class CadastrarTarefaController extends CustomController implements Inici
     @FXML
     private TextField tipoTarefa;
     
-    private Tarefa tarefa;
+    private Procedimento procedimento;
     private TarefaServices tarefasService; 
     private VoluntarioService voluntarioService;
+    private ProcedimentoService procedimentoService;
     private AnimalService animalServices;
     
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
         
-        tarefa = ObterDadoArray(dados,0) == null ? null : (Tarefa) ObterDadoArray(dados, 0);
+        procedimento = ObterDadoArray(dados,0) == null ? null : (Procedimento) ObterDadoArray(dados, 0);
         
         initialize();
         setListeners(contentFather, primmaryStage, blackShadow);     
@@ -88,12 +90,13 @@ public class CadastrarTarefaController extends CustomController implements Inici
         tarefasService = new TarefaServices();
         voluntarioService = new VoluntarioService();
         animalServices = new AnimalService();
+        procedimentoService= new ProcedimentoService();
         
         configurarPets();
         configurarVoluntarios();
         configurarTiposTarefa();
         
-        if(tarefa != null) setData();
+        if(procedimento != null) setData();
     }
 
     private void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
@@ -107,23 +110,23 @@ public class CadastrarTarefaController extends CustomController implements Inici
         });
     }
 
-    public Tarefa cadastrarNovaTarefa(Stage primaryStage) {
+    public Procedimento cadastrarNovaTarefa(Stage primaryStage) {
         String descricao = descricaoTarefa.getText();
         LocalDate data = dataTarefa.getValue();
         String tipo = tipoTarefa.getText();
         String voluntario = responsavelTarefa.getText();
-        String animal = petTarefa.getText();
-        
+        String animalString = petTarefa.getText();
+        Animal animal = animalServices.ObterAnimalPorNome(animalString);
 
-        return tarefasService.Salvar(tarefa == null ? -1 : tarefa.getId(), voluntario, animal, descricao, data, tipo, null);      
+        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, 0.0, voluntario, animal.getId(), null);      
     }
 
     private void setData() {
-        descricaoTarefa.setText(tarefa.getDescricao());
-        LocalDate localDate = tarefa.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        descricaoTarefa.setText(procedimento.getDescricao());
+        LocalDate localDate = procedimento.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         dataTarefa.setValue(localDate);
-        tipoTarefa.setText(tarefa.getTipo());
-        responsavelTarefa.setText(tarefa.getVoluntario() != null ? tarefa.getVoluntario().getNome() : "");
-        petTarefa.setText(tarefa.getAnimal() != null ? tarefa.getAnimal().getNome() : "");
+        tipoTarefa.setText(procedimento.getTipo());
+        responsavelTarefa.setText(procedimento.getVoluntario() != null ? procedimento.getVoluntario().getNome() : "");
+        petTarefa.setText(procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : "");
     }
 }

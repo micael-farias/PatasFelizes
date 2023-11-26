@@ -66,7 +66,7 @@ public abstract class GridView<T> {
     }
 
     public void createGridAsync() {
-        if (stackPaneScroll != null) {
+        if (stackPaneScroll != null && items.size() > 1) {
             grid.getChildren().clear();
             stackPaneScroll.setAlignment(Pos.CENTER);
             stackPaneScroll.getChildren().add(progressIndicator);
@@ -104,13 +104,13 @@ public abstract class GridView<T> {
 
         task.setOnSucceeded(event -> {
             // Remover o ProgressIndicator após o carregamento
-            if (stackPaneScroll != null) {
+            if (stackPaneScroll != null && stackPaneScroll.getChildren().contains(progressIndicator)) {
                 stackPaneScroll.getChildren().remove(progressIndicator);
             }
         });
         
         task.setOnFailed(e ->{
-                if (stackPaneScroll != null) {
+                if (stackPaneScroll != null && stackPaneScroll.getChildren().contains(progressIndicator)) {
                 stackPaneScroll.getChildren().remove(progressIndicator);
             }
         });

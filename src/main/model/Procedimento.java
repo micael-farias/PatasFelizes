@@ -12,7 +12,6 @@ public class Procedimento {
     private String tipo;
     private Voluntario Voluntario;
     private Despesa Despesa;
-    private Tarefa tarefa;
     private Calendar DataCadastro;
     private boolean Realizado;
     
@@ -23,15 +22,7 @@ public class Procedimento {
     public int getId() {
         return Id;
     }
-
-    public Tarefa getTarefa() {
-        return tarefa;
-    }
-
-    public void setTarefa(Tarefa tarefa) {
-        this.tarefa = tarefa;
-    }
-
+    
     public String getTipo() {
         return tipo;
     }

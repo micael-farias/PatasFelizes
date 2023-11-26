@@ -39,23 +39,10 @@ CREATE TABLE IF NOT EXISTS Despesas (
     DataCadastro TIMESTAMP NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Tarefas (
-    Id INTEGER PRIMARY KEY AUTOINCREMENT,
-    IdVoluntario INTEGER,
-    IdAnimal INTEGER,
-    Descricao TEXT NOT NULL,
-    Data TIMESTAMP NOT NULL,
-    Tipo VARCHAR(255) NOT NULL,
-    Realizado BOOLEAN NOT NULL,
-    DataCadastro TIMESTAMP NOT NULL,
-    FOREIGN KEY (IdVoluntario) REFERENCES Voluntarios(Id),
-    FOREIGN KEY (IdAnimal) REFERENCES Animais(Id)
-);
-
 CREATE TABLE IF NOT EXISTS Procedimentos (
     Id INTEGER PRIMARY KEY AUTOINCREMENT,
     Descricao TEXT NOT NULL,
-    IdAnimal INTEGER NOT NULL,
+    IdAnimal INTEGER,
     Data TIMESTAMP NOT NULL,
     Tipo VARCHAR(255) NOT NULL,
     IdVoluntario INTEGER,
@@ -63,9 +50,8 @@ CREATE TABLE IF NOT EXISTS Procedimentos (
     IdTarefa INTEGER NOT NULL,
     Realizado BOOLEAN NOT NULL,
     DataCadastro TIMESTAMP NOT NULL,
-    FOREIGN KEY (IdAnimal) REFERENCES Animais(Id),
+    FOREIGN KEY (IdAnimal) REFERENCES Animais(Id) ON DELETE CASCADE,
     FOREIGN KEY (IdDespesa) REFERENCES Despesas(Id),
-    FOREIGN KEY (IdTarefa) REFERENCES Tarefas(Id),
     FOREIGN KEY (IdVoluntario) REFERENCES Voluntarios(Id)
 );
 
@@ -74,11 +60,21 @@ CREATE TABLE IF NOT EXISTS Adotantes (
     Nome VARCHAR(255) UNIQUE NOT NULL,
     Contato VARCHAR(255) UNIQUE NOT NULL,
     CEP VARCHAR(10), 
-    Cidade VARCHAR(255) NOT NULL,
-    Rua VARCHAR(255) NOT NULL,
-    Bairro VARCHAR(255) NOT NULL,
+    Cidade VARCHAR(255),
+    Rua VARCHAR(255),
+    Bairro VARCHAR(255),
+    Complemento VARCHAR(255),
     Numero INT NOT NULL,
     DataCadastro TIMESTAMP NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Adocoes (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    IdAnimal INTEGER NOT NULL,
+    IdAdotante INTEGER NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL,
+    FOREIGN KEY (IdAnimal) REFERENCES Animais(Id) ON DELETE CASCADE,
+    FOREIGN KEY (IdAdotante) REFERENCES Adotantes(Id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Alteracoes (

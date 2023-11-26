@@ -10,9 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
+import main.interfaces.Acao;
+import main.interfaces.InicializadorComAcao;
 import main.interfaces.InicializadorComOrigemEDado;
 
-public class RemoverController extends CustomController implements InicializadorComOrigemEDado{
+public class RemoverController extends CustomController implements InicializadorComAcao{
     
      @FXML
     private Label mensagem;
@@ -23,18 +25,20 @@ public class RemoverController extends CustomController implements Inicializador
     @FXML
     private Button cancelar;
 
+
     @Override
-    public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, String origem, Object[] dados) {
-       String msg = ObterDadoArray(dados, 0).toString();
-       mensagem.setText(msg);
+    public void Inicializar(String telaOrigem, Pane contentFather, Stage primmaryStage, Pane blackShadow, Acao acao, Object[] dados) {
+        String msg = ObterDadoArray(dados, 0).toString();
+        mensagem.setText(msg);
         
         confirmar.setOnMouseClicked(e->{
-           App.getInstance().EntrarTelaOnResume(origem, contentFather, primmaryStage, blackShadow, null);                  
+           acao.RealizarAcao(null);
+           App.getInstance().FecharDialog(primmaryStage, blackShadow);                  
         });  
         
         cancelar.setOnMouseClicked(e->{
-            App.getInstance().EntrarTelaNoAction(origem, contentFather, primmaryStage, blackShadow);
-        });
+           App.getInstance().FecharDialog(primmaryStage, blackShadow);
+        });    
     }
     
 

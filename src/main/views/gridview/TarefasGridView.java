@@ -13,6 +13,7 @@ import main.App;
 import main.controllers.AdicionarDoacaoController;
 import main.controllers.DespesaController;
 import main.controllers.TarefaController;
+import main.model.Procedimento;
 import main.model.Tarefa;
 import static main.utils.Constantes.CARD_ADICIONAR_DOACAO;
 import static main.utils.Constantes.CARD_TAREFA;
@@ -20,13 +21,13 @@ import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
 import static main.utils.Constantes.DIALOG_CADASTRAR_TAREFA;
 
 
-public class TarefasGridView extends GridView<Tarefa> {
+public class TarefasGridView extends GridView<Procedimento> {
     
     Pane contentFather;
     Stage primmaryStage;
     Pane blackShadow;
             
-    public TarefasGridView(Pane contentFather, Stage primmaryStage, Pane blackShadow, GridPane tarefasGrid, int numColumns, List<Tarefa> items, StackPane stackPaneScroll) {
+    public TarefasGridView(Pane contentFather, Stage primmaryStage, Pane blackShadow, GridPane tarefasGrid, int numColumns, List<Procedimento> items, StackPane stackPaneScroll) {
         super(tarefasGrid, numColumns, items);
         this.contentFather = contentFather;
         this.blackShadow = blackShadow;
@@ -36,7 +37,7 @@ public class TarefasGridView extends GridView<Tarefa> {
     }
 
     @Override
-    public Node createGridAsyncItem(Tarefa tarefa, int column, int row) {
+    public Node createGridAsyncItem(Procedimento tarefa, int column, int row) {
         var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_TAREFA, HBox.class);
         TarefaController controller = fxmlLoader.getLoader().getController();
         controller.Inicializar(contentFather, primmaryStage, blackShadow, new Object[]{tarefa, row});

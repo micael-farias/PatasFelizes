@@ -23,17 +23,18 @@ public class AnimalService  {
         procedimentoService = new ProcedimentoService();
     }
     
-    public void Salvar(int idAnimal, String nomeAnimal, String anosAnimal, String mesesAnimal, String descricaoAnimal, ToogleEnum sexoAnimal, ToogleEnum castradoAnimal, byte[] fotoAnimal, String ultimoStatus) {
+    public Animal Salvar(int idAnimal, String nomeAnimal, String anosAnimal, String mesesAnimal, String descricaoAnimal, ToogleEnum sexoAnimal, ToogleEnum castradoAnimal, byte[] fotoAnimal, String ultimoStatus) {
         
         Calendar idade = ConvertMesAnoToCalendar(anosAnimal, mesesAnimal);
         char sexo = sexoAnimal == null ? 'N' : sexoAnimal == ToogleEnum.DIREITO ? 'M' : 'F';
         boolean castrado = castradoAnimal == ToogleEnum.DIREITO;
         String statusAnimal = StatusAnimalFactory.GetStatus(ultimoStatus).name();
         try {
-            Animal animal  = animalRepository.Salvar(idAnimal, nomeAnimal, idade, descricaoAnimal, sexo, castrado, fotoAnimal, statusAnimal);
+            return  animalRepository.Salvar(idAnimal, nomeAnimal, idade, descricaoAnimal, sexo, castrado, fotoAnimal, statusAnimal);
         } catch (Exception ex) {
             Logger.getLogger(AnimalService.class.getName()).log(Level.SEVERE, null, ex);
         } 
+        return null;
     } 
     
     public List<Animal> ObterAnimais(){

@@ -24,7 +24,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
     }
 
 
-    public Procedimento Salvar(int idProcedimento, String descricao, Calendar data, String tipo, Despesa despesa, Voluntario voluntario, Tarefa tarefa, Animal animal, boolean realizado) throws SQLException {
+    public Procedimento Salvar(int idProcedimento, String descricao, Calendar data, String tipo, Despesa despesa, Voluntario voluntario, Animal animal, boolean realizado) throws SQLException {
         Procedimento procedimento = new Procedimento();
         procedimento.setId(idProcedimento);
         procedimento.setDescricao(descricao);
@@ -33,7 +33,6 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
         procedimento.setVoluntario(voluntario);
         procedimento.setDespesa(despesa);
         procedimento.setAnimal(animal);
-        procedimento.setTarefa(tarefa);
         procedimento.setRealizado(realizado);
         procedimento.setDespesa(despesa);
 
@@ -46,7 +45,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
 
     private Procedimento inserirProcedimento(Procedimento procedimento) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
-                     "INSERT INTO Procedimentos (descricao, data, tipo, idDespesa, idVoluntario, idTarefa, idAnimal, dataCadastro, realizado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                     "INSERT INTO Procedimentos (descricao, data, tipo, idDespesa, idVoluntario, idAnimal, dataCadastro, realizado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)) {
 
             statement.setString(1, procedimento.getDescricao());
@@ -54,10 +53,9 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
             statement.setString(3, procedimento.getTipo());
             statement.setObject(4, procedimento.getDespesa() != null ? procedimento.getDespesa().getId() : null);
             statement.setObject(5, procedimento.getVoluntario() != null ? procedimento.getVoluntario().getId() : null);
-            statement.setObject(6, procedimento.getTarefa() != null ? procedimento.getTarefa().getId() : null);
-            statement.setObject(7, procedimento.getAnimal() != null ? procedimento.getAnimal().getId() : null);
-            statement.setTimestamp(8, new Timestamp(procedimento.getDataCadastro().getTimeInMillis()));
-            statement.setBoolean(9, procedimento.isRealizado());
+            statement.setObject(6, procedimento.getAnimal() != null ? procedimento.getAnimal().getId() : null);
+            statement.setTimestamp(7, new Timestamp(procedimento.getDataCadastro().getTimeInMillis()));
+            statement.setBoolean(8, procedimento.isRealizado());
             
             int rowsAffected = statement.executeUpdate();
 
@@ -78,17 +76,16 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
 
     private Procedimento atualizarProcedimento(Procedimento procedimento) throws SQLException {
         try (PreparedStatement statement = connection.prepareStatement(
-                     "UPDATE Procedimentos SET descricao=?, data=?, tipo=?, idDespesa=?, idVoluntario=?, idTarefa=?, idAnimal=?, realizado=? WHERE id=?")) {
+                     "UPDATE Procedimentos SET descricao=?, data=?, tipo=?, idDespesa=?, idVoluntario=?,idAnimal=?, realizado=? WHERE id=?")) {
 
             statement.setString(1, procedimento.getDescricao());
             statement.setTimestamp(2, new Timestamp(procedimento.getData().getTimeInMillis()));
             statement.setString(3, procedimento.getTipo());
             statement.setObject(4, procedimento.getDespesa() != null ? procedimento.getDespesa().getId() : null);
             statement.setObject(5, procedimento.getVoluntario() != null ? procedimento.getVoluntario().getId() : null);
-            statement.setObject(6, procedimento.getTarefa() != null ? procedimento.getTarefa().getId() : null);
-            statement.setObject(7, procedimento.getAnimal() != null ? procedimento.getAnimal().getId() : null);
-            statement.setBoolean(8, procedimento.isRealizado());
-            statement.setInt(9, procedimento.getId());
+            statement.setObject(6, procedimento.getAnimal() != null ? procedimento.getAnimal().getId() : null);
+            statement.setBoolean(7, procedimento.isRealizado());
+            statement.setInt(8, procedimento.getId());
                                 System.out.println("SQL gerado: " + statement.toString());
 
             int rowsAffected = statement.executeUpdate();
@@ -216,13 +213,6 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
         if (voluntarioId > 0) {
             Voluntario voluntario = new VoluntarioRepository().EncontrarVoluntarioPor(voluntarioId);
             procedimento.setVoluntario(voluntario);
-        }
-
-        // Mapear Tarefa
-        int tarefaId = resultSet.getInt("idTarefa");
-        if (tarefaId > 0) {
-            Tarefa tarefa = new TarefasRepository().EncontrarTarefaPor(tarefaId);
-            procedimento.setTarefa(tarefa);
         }
 
         // Mapear Animal
