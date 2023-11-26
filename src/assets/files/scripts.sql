@@ -84,10 +84,10 @@ CREATE TABLE IF NOT EXISTS Adotantes (
 CREATE TABLE IF NOT EXISTS Alteracoes (
     Id INTEGER PRIMARY KEY AUTOINCREMENT,
     TabelaAfetada TEXT NOT NULL,
+    Descritor VARCHAR(255),
     IdRegistroAfetado INTEGER NOT NULL,
     ColunaAlterada TEXT NOT NULL,
     ValorAntigo TEXT,
-    Descritor VARCHAR(255),
     ValorNovo TEXT,
     DataAlteracao TIMESTAMP NOT NULL
 );

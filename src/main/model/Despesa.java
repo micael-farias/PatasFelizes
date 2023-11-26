@@ -13,6 +13,7 @@ public class Despesa {
     private String Tipo;
     private boolean Realizada;
     private Calendar DataCadastro;
+    private byte[] FotoComprovante;
 
     public Despesa(String Descricao, double Valor, Calendar Data) {
         this.Descricao = Descricao;
@@ -25,6 +26,16 @@ public class Despesa {
         this.DataCadastro = Calendar.getInstance();
     }
 
+    public byte[] getFotoComprovante() {
+        return FotoComprovante;
+    }
+
+    public void setFotoComprovante(byte[] FotoComprovante) {
+        this.FotoComprovante = FotoComprovante;
+    }
+
+//    
+    
     public String getTipo() {
         return Tipo;
     }

@@ -98,29 +98,44 @@ public class Alteracao {
     
 
     // Método para formatar a mensagem
-    public String formatarMensagem() {
+    public void formatarMensagem() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd 'de' MMMM 'de' yyyy");
-
-
-        return String.format(
-                "O %s descrito por %s foi alterado, teve sua/seu %s alterada de \"%s\" para \"%s\" na %s.",
-                transformarParaSingular(TabelaAfetada),
-                Descritor,
-                ColunaAlterada,
+        
+        if(Descritor == "MJ"){
+            int A = 1;
+        }
+        this.Mensagem = String.format(
+                "Sua/Seu %s alterada de \"%s\" para \"%s\" na %s.",
+                ColunaAlterada.toLowerCase(),
                 ValorAntigo,
                 ValorNovo,
-                dateFormat.format(DataAlteracao)
-        );
+               "Qu");
+        
+        this.Identificador =  String.format("%s descrito por %s foi alterado",transformarParaSingular(TabelaAfetada), Descritor);      
+       
     }
 
     private String transformarParaSingular(String palavraPlural) {
-        if (palavraPlural.endsWith("s")) {
-            return palavraPlural.substring(0, palavraPlural.length() - 1);
+        switch (palavraPlural.toLowerCase()) {
+            case "animais":
+                return "O animal";
+            case "doacoes":
+                return "A doação";
+            case "voluntarios":
+                return "O voluntário";
+            case "despesas":
+                return "A despesa";
+            case "tarefas":
+                return "A tarefa";
+            case "procedimentos":
+                return "O procedimento";
+            case "adotantes":
+                return "O adotante";
+            case "alteracoes":
+                return "A alteracao";
+            default:
+                return null; // Ou lance uma exceção, dependendo dos requisitos do seu aplicativo.
         }
-        if (palavraPlural.endsWith("oes")) {
-            return palavraPlural.replace("oes", "ão");
-        }
-        return palavraPlural;
     }
 
   

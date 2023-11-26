@@ -6,26 +6,22 @@ import java.sql.Statement;
 
 public class TriggerCreator {
 
-    private static final String URL = "jdbc:sqlite:/path/to/your/database.db";
 
     public static void create(Statement statement) throws SQLException {
         // Exemplo de uso para a tabela Animais
-        createTriggersForTableAndColumns("Animais", "Nome,DataNascimento,Descricao,Sexo,Castrado,Status", statement, "Nome");
+        createTriggersForTableAndColumns("Animais", "Nome,Sexo,Castrado,Status", statement, "Nome");
 
         // Exemplo de uso para a tabela Doacoes
         createTriggersForTableAndColumns("Doacoes", "Doador,Valor,Data", statement, "Doador");
 
         // Exemplo de uso para a tabela Voluntarios
-        createTriggersForTableAndColumns("Voluntarios", "Nome,Email,Telefone", statement, "Nome");
+        createTriggersForTableAndColumns("Voluntarios", "Email,Telefone", statement, "Nome");
 
         // Exemplo de uso para a tabela Despesas
-        createTriggersForTableAndColumns("Despesas", "Descricao,Valor,Data,Tipo,Realizada", statement, "Descricao");
+        createTriggersForTableAndColumns("Despesas", "Valor,Data,Tipo", statement, "Descricao");
 
         // Exemplo de uso para a tabela Tarefas
-        createTriggersForTableAndColumns("Tarefas", "IdVoluntario,IdAnimal,Descricao,Data,Tipo,Realizado", statement, "Descricao");
-
-        // Exemplo de uso para a tabela Procedimentos
-        createTriggersForTableAndColumns("Procedimentos", "Descricao,IdAnimal,Data,Tipo,IdVoluntario,IdDespesa,IdTarefa,Realizado", statement, "Descricao");
+        createTriggersForTableAndColumns("Tarefas", "IdVoluntario,IdAnimal,Data,Tipo,Realizado", statement, "Descricao");
 
         // Exemplo de uso para a tabela Adotantes
         createTriggersForTableAndColumns("Adotantes", "Nome,Contato,CEP,Cidade,Rua,Bairro,Numero", statement, "Nome");

@@ -18,7 +18,7 @@ public class Constantes {
     public static String CARD_ADICIONAR_DESPESA = PATH_VIEWS_FXML + "AdicionarDespesa.fxml";
     public static String CARD_ADICIONAR_PROCEDIMENTO = PATH_VIEWS_FXML + "AdicionarProcedimento.fxml";
     public static String CARD_DESPESA = PATH_VIEWS_FXML + "Despesa.fxml";
-    public static String CARD_AUDITORIA = PATH_VIEWS_FXML + "Auditorias.fxml";
+    public static String CARD_AUDITORIA = PATH_VIEWS_FXML + "Auditoria.fxml";
     public static String CARD_DOACAO = PATH_VIEWS_FXML + "Doacao.fxml";
     public static String CARD_TAREFA = PATH_VIEWS_FXML + "Tarefa.fxml";
     public static String CARD_VOLUNTARIO = PATH_VIEWS_FXML + "VoluntarioV2.fxml";

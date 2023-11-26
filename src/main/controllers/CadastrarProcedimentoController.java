@@ -135,7 +135,8 @@ public class CadastrarProcedimentoController extends CustomController implements
         dataProcedimento.setValue(localDate);
         tipoProcedimento.setText(procedimento.getTipo());
         voluntarioProcedimento.setText(procedimento.getVoluntario() == null ? "" : procedimento.getVoluntario().getNome());
-        valorProcedimento.setText(RealFormatter.formatarComoReal(procedimento.getDespesa().getValor()));
+        valorProcedimento.setText(RealFormatter.formatarComoReal(procedimento.getDespesa() == null ? 0 : procedimento.getDespesa().getValor()));
+        jaRealizado = procedimento.isRealizado();
     }
 
 }

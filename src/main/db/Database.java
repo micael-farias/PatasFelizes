@@ -21,7 +21,7 @@ public class Database {
             statement.executeUpdate(sql);
             
             //CriarTriggers
-            TriggerCreator.create(statement);
+            //TriggerCreator.create(statement);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

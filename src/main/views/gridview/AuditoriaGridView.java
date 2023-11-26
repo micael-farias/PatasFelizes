@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import main.App;
 import main.controllers.AuditoriaController;
 import main.model.Alteracao;
@@ -24,7 +25,7 @@ public class AuditoriaGridView extends GridView<Alteracao> {
 
     @Override
     public Node createGridAsyncItem(Alteracao alteracao, int column, int row) {
-        var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_AUDITORIA, HBox.class);
+        var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_AUDITORIA, VBox.class);
         AuditoriaController controller = fxmlLoader.getLoader().getController();
         controller.setData(alteracao, row);
         return fxmlLoader.getResult();

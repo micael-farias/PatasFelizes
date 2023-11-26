@@ -46,7 +46,8 @@ public class DoacaoController extends CustomController implements InicializadorC
     private Label valorDoacao;
     @FXML
     private HBox layoutClickable;
-   
+   @FXML
+   private ImageView iconComprovante;
     private Doacao doacao;
 
 
@@ -59,7 +60,7 @@ public class DoacaoController extends CustomController implements InicializadorC
         dataDoacao.setText(CalendarParaString(doacao.getData()));
         dataDoacao.setStyle("-fx-font-weight: bold;");
         valorDoacao.setText(RealFormatter.formatarComoReal(doacao.getValor()));
-
+        iconComprovante.setVisible(doacao.getFotoComprovante() != null);
         if(posicao % 2 == 0){
             layoutDoacao.setStyle("-fx-background-color: white;");
             editarDoacao.setImage(new Image(PATH_IMAGES +"editar-colorido.png"));

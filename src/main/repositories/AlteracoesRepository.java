@@ -21,11 +21,12 @@ public class AlteracoesRepository extends BaseRepository<Alteracao>{
         alteracao.setId(resultSet.getInt("id"));
         alteracao.setTabelaAfetada(resultSet.getString("tabelaAfetada"));
         alteracao.setIdRegistroAfetado(resultSet.getInt("idRegistroAfetado"));
-        alteracao.setDataAlteracao(DateToCalendar(resultSet.getDate("data")));
+        alteracao.setDataAlteracao(DateToCalendar(resultSet.getDate("dataAlteracao")));
         alteracao.setDescritor(resultSet.getString("descritor"));
-        alteracao.setValorNovo(resultSet.getString("colunaAlterada"));
+        alteracao.setColunaAlterada(resultSet.getString("colunaAlterada"));
         alteracao.setValorAntigo(resultSet.getString("valorAntigo"));
-
+        alteracao.setValorNovo(resultSet.getString("valorNovo"));
+        alteracao.formatarMensagem();
         return alteracao;
     }
 
@@ -54,7 +55,7 @@ public class AlteracoesRepository extends BaseRepository<Alteracao>{
        
        for (Alteracao alteracao : AlteracoesRepository.alteracoes) {
 
-           if (alteracao.formatarMensagem().toLowerCase().contains(filtro.toLowerCase())) {
+           if (alteracao.getMensagem().toLowerCase().contains(filtro.toLowerCase())) {
                 alteracoesRetornadas.add(alteracao);
             }
         }

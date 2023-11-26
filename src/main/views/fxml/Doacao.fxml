@@ -32,7 +32,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="38.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="iconComprovante" fitHeight="38.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../assets/images/comprovante.png" />
                      </image>

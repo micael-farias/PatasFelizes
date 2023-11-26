@@ -40,7 +40,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <ImageView fitHeight="56.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="iconComprovante" fitHeight="56.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../assets/images/comprovante.png" />
                            </image>

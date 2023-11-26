@@ -2,6 +2,7 @@ package main.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import main.model.Alteracao;
 import main.services.AlteracoesServices;
@@ -11,7 +12,7 @@ import main.services.AlteracoesServices;
 public class AuditoriaController{
 
     @FXML
-    private VBox layoutAlteracao;
+    private HBox layoutAlteracao;
     
     @FXML
     private Label identificador;
@@ -25,7 +26,7 @@ public class AuditoriaController{
         mensagem.setText(alteracao.getMensagem());
         identificador.setText(alteracao.getIdentificador());
         
-         if(posicao % 2 == 0){
+         if(posicao % 2 != 0){
             layoutAlteracao.setStyle("-fx-background-color: white;");
         }    
         

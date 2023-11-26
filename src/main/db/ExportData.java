@@ -81,6 +81,8 @@ public class ExportData {
     
     private static String escapeString(String input) {
         // Substitui cada apóstrofo por dois apóstrofos
-        return input.replace("'", "''");
+        if(input != null)
+            return input.replace("'", "''");
+        return "";
     }
 }

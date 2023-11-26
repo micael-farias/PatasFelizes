@@ -94,28 +94,8 @@ public class BaseController implements InicializadorBase{
         Button button = (Button) event.getSource();
         App.getInstance().EntrarTela(FORM_EQUIPE, content, primmaryStage, blackShadow);
         setActive(button);
-    }
+    } 
     
-    
-    @FXML
-    void menuButtonAuditoriaClicked(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        App.getInstance().EntrarTela(FORM_AUDITORIAS, content, primmaryStage, blackShadow);
-        setActive(button);
-    }
-
-    @FXML
-    void menuButtonAuditoriaEntered(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        toEnteredStyle(button);
-    }
-
-    @FXML
-    void menuButtonAuditoriaExited(MouseEvent event) {
-        Button button = (Button) event.getSource();
-        toExitedStyle(button);
-    }
-
     @FXML
     void menuButtonDespesasClicked(MouseEvent event) {
         Button button = (Button) event.getSource();

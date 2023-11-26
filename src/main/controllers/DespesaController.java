@@ -46,6 +46,10 @@ public class DespesaController extends CustomController implements Inicializador
 
     @FXML
     private ImageView excluirDespesa;
+        
+    @FXML
+    private ImageView iconComprovante;
+    
     
     private Despesa despesa;
     private DespesaServices despesaService;
@@ -62,6 +66,7 @@ public class DespesaController extends CustomController implements Inicializador
         descricaoDespesa.setText(despesa.getDescricao());
         dataDespesa.setText(CalendarParaString(despesa.getData()));
         valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
+        iconComprovante.setVisible(despesa.getFotoComprovante() != null);
         setImage(despesa.isRealizada());
 
         
@@ -70,10 +75,10 @@ public class DespesaController extends CustomController implements Inicializador
             setImage(realizada);
             if (realizada) {  
                 despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
-                        DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), true);
+                        DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), true, despesa.getFotoComprovante());
             }else{
                 despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
-                        DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), false);      
+                        DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), false, despesa.getFotoComprovante());      
             }
         });        
         

@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="layoutAlteracao" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DoacaoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AuditoriaController">
    <children>
-      <HBox fx:id="layoutDoacao" prefHeight="100.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/card_grid.css">
+      <HBox fx:id="layoutAlteracao" prefHeight="100.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/card_grid.css">
          <children>
             <Label fx:id="identificador" prefHeight="44.0" prefWidth="336.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Voluntario de nome|descricao tal">
                <font>
