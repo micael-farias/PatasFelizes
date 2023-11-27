@@ -39,12 +39,12 @@
                            </image>
                         </ImageView>
                         <Label text="Feminino">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
                            <padding>
                               <Insets left="5.0" />
                            </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -56,12 +56,12 @@
                            </image>
                         </ImageView>
                         <Label text="Masculino">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
                            <padding>
                               <Insets left="5.0" />
                            </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -78,12 +78,12 @@
                            </image>
                         </ImageView>
                         <Label text="Sim">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
                            <padding>
                               <Insets left="5.0" />
                            </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -95,12 +95,12 @@
                            </image>
                         </ImageView>
                         <Label text="Não">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
                            <padding>
                               <Insets left="5.0" />
                            </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
