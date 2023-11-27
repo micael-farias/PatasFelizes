@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="layoutVoluntario" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="304.0" prefWidth="230.0" styleClass="layoutVoluntario" stylesheets="@../css/cardVoluntario.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.VoluntarioController">
+   <children>
+      <Pane prefHeight="327.0" prefWidth="222.0">
+         <children>
+            <ImageView fx:id="fotoVoluntario" cache="true" fitHeight="150.0" fitWidth="150.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../assets/images/addProcedimento.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" layoutX="4.0" layoutY="189.0" prefHeight="86.0" prefWidth="222.0">
+               <children>
+                  <Label fx:id="nomeVoluntario" alignment="CENTER" contentDisplay="TOP" prefHeight="31.0" prefWidth="202.0" styleClass="labeNomeVoluntario" stylesheets="@../css/cardVoluntario.css" text="Alexandre" textAlignment="CENTER" textFill="#d18f8f">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="telefoneVoluntario" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="118.0" styleClass="labelTelefoneVoluntario" stylesheets="@../css/cardVoluntario.css" text="(85) 9 9899-6527" textAlignment="CENTER" />
+                  <HBox alignment="CENTER" prefHeight="18.0" prefWidth="222.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="12.0" prefWidth="128.0" styleClass="layoutInformacoes" stylesheets="@../css/cardVoluntario.css">
+                           <children>
+                              <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../assets/images/icone-informacao.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Mais informações">
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</VBox>

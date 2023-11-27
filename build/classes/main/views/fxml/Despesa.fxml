@@ -1,11 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<HBox fx:id="layoutDespesa" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="1008.0" style="-fx-background-color: #FF00FF;" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0" styleClass="box" stylesheets="@../css/card_grid.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesaController">
    <children>
-      <Label alignment="CENTER" prefHeight="38.0" prefWidth="449.0" text="nOME" />
+      <VBox prefHeight="44.0" prefWidth="991.0">
+         <children>
+            <HBox fx:id="layoutDespesa" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="checkBoxRealizado" fitHeight="26.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" styleClass="check-box">
+                     <image>
+                        <Image url="@../../../assets/images/check_cinza_not_checked.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <HBox fx:id="layoutClickable" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="886.0" stylesheets="@../css/card_grid.css">
+                     <children>
+                        <Label fx:id="dataDespesa" prefHeight="44.0" prefWidth="268.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="descricaoDespesa" prefHeight="44.0" prefWidth="374.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="Despesa">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fx:id="iconComprovante" fitHeight="56.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/comprovante.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="valorDespesa" prefHeight="44.0" prefWidth="215.0" styleClass="labelDespesa" stylesheets="@../css/procedimento.css" text="R$ 18,00">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+                     <children>
+                        <ImageView fx:id="editarDespesa" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="editar">
+                           <image>
+                              <Image url="@../../../assets/images/editar-branco.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+                     <children>
+                        <ImageView fx:id="excluirDespesa" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="excluir">
+                           <image>
+                              <Image url="@../../../assets/images/remover-branco.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </HBox>

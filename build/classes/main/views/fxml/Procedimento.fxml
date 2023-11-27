@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.ProcedimentoController">
+   <children>
+      <CheckBox fx:id="checkBoxRealizado" mnemonicParsing="false" />
+      <VBox fx:id="adicionarPet" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="705.0">
+         <children>
+            <HBox fx:id="layoutProcedimento" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="491.0" styleClass="box" stylesheets="@../css/procedimento.css">
+               <children>
+                  <Label fx:id="dataProcedimento" alignment="CENTER" prefHeight="35.0" prefWidth="284.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="15/12/2009">
+                     <font>
+                        <Font name="System Bold" size="13.5" />
+                     </font>
+                  </Label>
+                  <Label fx:id="descricaoProcedimento" alignment="CENTER" prefHeight="35.0" prefWidth="358.0" styleClass="labelProcedimento" stylesheets="@../css/procedimento.css" text="Procedimento">
+                     <font>
+                        <Font size="13.5" />
+                     </font>
+                  </Label>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="35.0">
+                     <children>
+                        <ImageView fx:id="editarProcedimento" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/editar-branco.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="35.0">
+                     <children>
+                        <ImageView fx:id="excluirProcedimento" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/remover-branco.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

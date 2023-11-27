@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="354.0" prefWidth="680.0" stylesheets="@../css/cadastrar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarDoacaoController">
+   <children>
+      <Button id="button" fx:id="salvarDoacao" layoutX="502.0" layoutY="298.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
+      <Button id="button" fx:id="cancelarCadastro" layoutX="386.0" layoutY="298.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+      <VBox layoutX="55.0" layoutY="54.0" prefHeight="52.0" prefWidth="554.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="169.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Doador" />
+               </children>
+            </HBox>
+            <TextField fx:id="doadorDoacao" minHeight="-Infinity" prefHeight="30.0" prefWidth="542.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+         </children>
+      </VBox>
+      <VBox layoutX="55.0" layoutY="122.0" prefHeight="52.0" prefWidth="271.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="161.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Data" />
+               </children>
+            </HBox>
+            <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <DatePicker fx:id="dataDoacao" editable="false" minHeight="-Infinity" prefHeight="30.0" prefWidth="269.0" stylesheets="@../css/datePicker.css" />
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+      <VBox layoutX="338.0" layoutY="122.0" prefHeight="52.0" prefWidth="271.0">
+         <children>
+            <HBox prefHeight="50.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="163.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Valor" />
+               </children>
+            </HBox>
+            <TextField fx:id="valorDoacao" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+         </children>
+      </VBox>
+      <VBox layoutX="55.0" layoutY="186.0" prefHeight="82.0" prefWidth="554.0">
+         <children>
+            <Label prefHeight="22.0" prefWidth="1047.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Anexar documentos e comprovantes" />
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <HBox fx:id="layoutAdicionarComprovante" alignment="CENTER" prefHeight="100.0" prefWidth="51.0" style="-fx-cursor: hand;" styleClass="round-layout" stylesheets="@../css/cadastrardoacao.css">
+                     <children>
+                        <ImageView fitHeight="47.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                           <image>
+                              <Image url="@../../../assets/images/download.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="layoutComprovante" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="41.0" prefWidth="554.0" style="-fx-cursor: hand;" visible="false">
+                     <children>
+                        <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../assets/images/arquivo-pdf%20.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="labelComprovante" text="doacao_n12.pdf" textFill="#666666">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

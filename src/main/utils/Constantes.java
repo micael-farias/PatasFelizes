@@ -35,6 +35,7 @@ public class Constantes {
     public static String DIALOG_CADASTRAR_DESPESA = PATH_VIEWS_FXML + "CadastrarDespesa.fxml";
     public static String DIALOG_CADASTRAR_ADOCAO = PATH_VIEWS_FXML + "CadastrarAdocao.fxml";
     public static String DIALOG_MENSAGEM = PATH_VIEWS_FXML + "Mensagem.fxml";
+    public static String DIALOG_FILTRAR_ANIMAL = PATH_VIEWS_FXML + "FiltrarAnimal.fxml";
     public static String DIALOG_REMOVER = PATH_VIEWS_FXML + "Remover.fxml";
     public static String PATH_DATA_BASE = PATH_FILES + "scripts.sql";
 }

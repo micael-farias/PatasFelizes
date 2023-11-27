@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0" styleClass="box" stylesheets="@../css/card_grid.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AdicionarDoacaoController">
+   <children>
+      <VBox prefHeight="44.0" prefWidth="962.0">
+         <children>
+            <HBox fx:id="layoutProcedimento" alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="938.0">
+               <children>
+                  <StackPane prefHeight="44.0" prefWidth="40.0" stylesheets="@../css/view.css">
+                     <children>
+                        <ImageView fx:id="iconClick" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="check-box">
+                           <image>
+                              <Image url="@../../../assets/images/addProcedimento.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </StackPane>
+                  <HBox fx:id="layoutClickable" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="592.0" stylesheets="@../css/card_grid.css">
+                     <children>
+                        <Label fx:id="labelAdicionarDoacao" prefHeight="44.0" prefWidth="589.0" styleClass="labelAdd" stylesheets="@../css/procedimento.css" text="Clique aqui para adicionar uma nova doação" textFill="#6e6e6e">
+                           <font>
+                              <Font name="System Italic" size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0" />
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

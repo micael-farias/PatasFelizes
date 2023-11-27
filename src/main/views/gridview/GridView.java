@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public abstract class GridView<T> {
 
@@ -66,16 +67,23 @@ public abstract class GridView<T> {
     }
 
     public void createGridAsync() {
-        if (stackPaneScroll != null && items.size() > 1) {
+        
+        if(items.isEmpty()){
+            grid.getChildren().clear();
+        }
+        
+        if (stackPaneScroll != null && items.size() > 0) {
             grid.getChildren().clear();
             stackPaneScroll.setAlignment(Pos.CENTER);
             stackPaneScroll.getChildren().add(progressIndicator);
         }  
-        Node primeiroItem = itemInicial();
-                if (primeiroItem != null) {
-                    configurarItemGrid(primeiroItem);
-                }    
-
+        
+       
+            Node primeiroItem = itemInicial();
+            if (primeiroItem != null) {
+                configurarItemGrid(primeiroItem);
+            }    
+        
 
        Task<Void> task = new Task<Void>() {
             @Override
@@ -87,12 +95,7 @@ public abstract class GridView<T> {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GridView.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
                 
-                           
-                
-
-
                 for (T item : items) {
                     Node gridItem = createGridAsyncItem(item, column, counter++);
                     Platform.runLater(() -> configurarItemGrid(gridItem));

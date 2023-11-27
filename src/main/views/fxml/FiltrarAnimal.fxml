@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="432.0" stylesheets="@../css/filtrarAnimal.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FiltrarAnimalController">
+   <children>
+      <VBox id="VBoxExterna" layoutX="32.0" layoutY="32.0" prefHeight="707.0" prefWidth="368.0">
+         <children>
+            <VBox id="VBox" prefHeight="48.0" prefWidth="100.0">
+               <children>
+                  <Label id="Label" text="Ordenar por" />
+                  <ChoiceBox id="ChoiceBox" fx:id="tiposOrdenacaoChoiceBox" prefWidth="368.0" />
+               </children>
+            </VBox>
+            <VBox id="VBox" prefHeight="48.0" prefWidth="100.0">
+               <children>
+                  <Label id="Label" text="Status" />
+                  <ChoiceBox id="ChoiceBox" fx:id="statusCheckBox" prefWidth="368.0" />
+               </children>
+            </VBox>
+            <VBox id="VBox" prefHeight="64.0" prefWidth="100.0">
+               <children>
+                  <Label id="Label" text="Sexo" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="checkBoxFeminino" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Feminino">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="35.0" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="checkBoxMasculino" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Masculino">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox id="VBox" prefHeight="64.0" prefWidth="100.0">
+               <children>
+                  <Label id="Label" text="Castrado" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="checkBoxSim" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Sim">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="checkBoxNao" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Não">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox id="VBox" prefHeight="64.0" prefWidth="100.0">
+               <children>
+                  <Label id="Label" text="Idade" />
+                  <Label id="Label" text="De" />
+                  <HBox id="HBox" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField id="TextField" fx:id="primeiroIntervaloAno" prefHeight="24.0" prefWidth="124.0" />
+                        <Label id="LabelSimples" text="anos e" />
+                        <TextField id="TextField" fx:id="primeiraIntervaloMeses" prefWidth="124.0" />
+                        <Label id="LabelSimples" text="meses" />
+                     </children>
+                  </HBox>
+                  <Label id="Label" text="Até" />
+                  <HBox id="HBox" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField id="TextField" fx:id="segundoIntervaloAno" prefHeight="24.0" prefWidth="124.0" />
+                        <Label id="LabelSimples" text="anos e" />
+                        <TextField id="TextField" fx:id="segundoIntervaloMeses" prefWidth="124.0" />
+                        <Label id="LabelSimples" text="meses" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox id="HBoxButton" prefHeight="30.0" prefWidth="200.0">
+               <children>
+                  <Button id="Button" fx:id="filtrar" mnemonicParsing="false" text="Filtrar" />
+               </children>
+               <VBox.margin>
+                  <Insets top="133.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

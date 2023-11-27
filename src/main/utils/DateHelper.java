@@ -168,9 +168,12 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
     
      public static Calendar ConvertMesAnoToCalendar(String ano, String mes) {
         try {
+            
+            if(invalidString(mes) && invalidString(ano)) return null;
+            
             int mesInt = NumberHelper.IntegerParse(mes);
             int anoInt = NumberHelper.IntegerParse(ano);
-
+            
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(new Date());
             // Configura o mês e o ano
@@ -189,4 +192,8 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
             return null;
         }
     }
+     
+     public static boolean invalidString(String value){
+           return value == null || value.isBlank() || value.isEmpty();      
+     }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesasController">
+    <stylesheets>
+        <URL value="@/main/views/css/financas.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@/main/views/css/financas.css" />
+         </stylesheets>
+         <children>
+            <Button id="labelsFinancas" fx:id="novaDespesaButton" layoutX="77.0" layoutY="70.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="128.0" style="-fx-font-weight: bold;" styleClass="button_nova" text="Nova doação" textFill="#515151">
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../css/financas.css" />
+                  <URL value="@../css/view.css" />
+               </stylesheets>
+            </Button>
+            <TextField fx:id="textFieldBuscarFinança" layoutX="77.0" layoutY="64.0" prefHeight="49.0" prefWidth="991.0" promptText="Procurar despesa por descrição" styleClass="round-layout" stylesheets="@../css/view.css">
+               <font>
+                  <Font name="Noto Sans Mono Regular" size="18.0" />
+               </font>
+            </TextField>
+            <Button contentDisplay="TOP" layoutX="1087.0" layoutY="64.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
+                     <image>
+                        <Image url="@../../../assets/images/filtro.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
+                     <content>
+                        <GridPane fx:id="despesasGrid" prefHeight="529.0" prefWidth="1044.0" style="-fx-background-color: #FFFFFF;">
+                           <columnConstraints>
+                              <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </StackPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

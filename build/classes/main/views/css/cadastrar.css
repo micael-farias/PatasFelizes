@@ -1,0 +1,30 @@
+#AnchorPane {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+}
+
+.Label{
+    -fx-font-size: 17px;
+    -fx-text-fill: #000000DD;  
+    -fx-font-weight: bold;
+}
+
+.Label_reduced{
+    -fx-font-size: 17px;
+    -fx-text-fill: #000000;  
+    -fx-font-weight: normal;
+}
+
+.round-layout{
+    -fx-background-color: #FFFFFF;
+    -fx-cursor: text;
+    -fx-border-color: #494949;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-control-inner-background:#FFFFFF;
+    -fx-padding: 6px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 1, 0, 0, 0);
+}
+
+

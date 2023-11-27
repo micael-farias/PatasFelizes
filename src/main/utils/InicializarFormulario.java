@@ -144,7 +144,7 @@ public class InicializarFormulario {
               InicializadorComAcao controlador = loader.getController();
               controlador.Inicializar(telaOrigem,content,primaryStage, blackShadow, acao, dados);
 
-              AnchorPane pane = CentralizarDialogo(root2, primaryStage);
+                AnchorPane pane = (tela.contains("Filtrar")) ? CentralizarDialogoDireita(root2, primaryStage) : CentralizarDialogo(root2, primaryStage);
 
               if(pane.getChildren().contains(blackShadow)){
                   pane.getChildren().remove(blackShadow);
@@ -157,6 +157,7 @@ public class InicializarFormulario {
 
               dialogoAberto = root2;
           } catch(IOException e) {
+              e.printStackTrace();
           }        
     }
     
@@ -193,7 +194,7 @@ public class InicializarFormulario {
             Inicializador cam = loader.getController();
             cam.Inicializar(contentFather, primaryStage, blackShadow);
 
-            AnchorPane pane = CentralizarDialogo(root2, primaryStage);
+            AnchorPane pane = (tela.contains("Filtrar")) ? CentralizarDialogoDireita(root2, primaryStage) : CentralizarDialogo(root2, primaryStage);
             if(pane.getChildren().contains(blackShadow)){
                 pane.getChildren().remove(blackShadow);
             }
@@ -208,6 +209,7 @@ public class InicializarFormulario {
             
             dialogoAberto = root2;
         } catch(IOException e) {
+            e.printStackTrace();
         }        
     }
     
@@ -349,6 +351,26 @@ public class InicializarFormulario {
         }
         return null;
     }
+    
+    public AnchorPane CentralizarDialogoDireita(Parent root, Stage primaryStage){    
+    if(primaryStage != null && primaryStage.getScene() != null && primaryStage.getScene().getRoot() != null){
+        AnchorPane pane = (AnchorPane) primaryStage.getScene().getRoot();
+        
+        double paneWidth = pane.getWidth();
+        double paneHeight = pane.getHeight();
+        
+        double rootWidth = root.prefWidth(-1);
+        double rootHeight = root.prefHeight(-1);
+        
+        // Ajuste as âncoras para centralizar o diálogo à direita
+        AnchorPane.setTopAnchor(root, (paneHeight - rootHeight) / 2);
+        AnchorPane.setLeftAnchor(root, paneWidth - rootWidth);
+        
+        return pane;
+    }
+    return null;
+}
+
     
     public void EntrarTelaInicial(Pane content, Stage primmaryStage, Pane blackShadow){
           EntrarTela(FORM_HOME, content, primmaryStage, blackShadow);

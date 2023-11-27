@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AuditoriasController">
+    <stylesheets>
+        <URL value="@/main/views/css/financas.css" />
+    </stylesheets>
+   <children>
+      <TextField fx:id="textFieldBuscarAuditoria" layoutX="77.0" layoutY="64.0" prefHeight="49.0" prefWidth="991.0" promptText="Procurar alteracoes por mensagem" styleClass="round-layout" stylesheets="@../css/view.css">
+         <font>
+            <Font name="Noto Sans Mono Regular" size="18.0" />
+         </font>
+      </TextField>
+      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1064.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1064.0" styleClass="scrollPaneProcedimentos" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
+               <content>
+                  <GridPane fx:id="auditoriasGrid" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #FFFFFF;">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

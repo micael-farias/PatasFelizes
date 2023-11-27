@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="432.0" stylesheets="@../css/filtrarAnimal.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="16.0" layoutY="16.0" prefHeight="739.0" prefWidth="400.0">
+         <children>
+            <VBox prefHeight="64.0" prefWidth="100.0">
+               <children>
+                  <Label text="Ordenar por" />
+                  <ChoiceBox prefWidth="150.0" />
+                  <VBox prefHeight="64.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Status" />
+                        <ChoiceBox prefWidth="150.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="64.0" prefWidth="100.0">
+               <children>
+                  <Label text="Sexo" />
+                  <CheckBox mnemonicParsing="false" text="Feminino" />
+                  <CheckBox mnemonicParsing="false" text="Masculino" />
+               </children>
+            </VBox>
+            <VBox prefHeight="64.0" prefWidth="100.0">
+               <children>
+                  <Label text="Castrado" />
+                  <CheckBox mnemonicParsing="false" text="Sim" />
+                  <CheckBox mnemonicParsing="false" text="Não" />
+               </children>
+            </VBox>
+            <VBox prefHeight="64.0" prefWidth="100.0">
+               <children>
+                  <Label text="Idade" />
+                  <Label text="De" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField prefHeight="24.0" prefWidth="124.0" />
+                        <Label text="anos e" />
+                        <TextField prefWidth="124.0" />
+                        <Label text="meses" />
+                     </children>
+                  </HBox>
+                  <Label text="Até" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField prefHeight="24.0" prefWidth="124.0" />
+                        <Label text="anos e" />
+                        <TextField prefWidth="124.0" />
+                        <Label text="meses" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

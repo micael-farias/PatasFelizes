@@ -122,13 +122,11 @@ public class DespesaController extends CustomController implements Inicializador
     }
       
     public void setImage(boolean realizado){
-
-            if(realizado){
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
-            }else{
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
-            }
-        
+        if(realizado){
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
+        }else{
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
+        }       
     }
     
     @Override

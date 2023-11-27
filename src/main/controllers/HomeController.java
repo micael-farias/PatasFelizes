@@ -19,8 +19,10 @@ import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
 import main.model.Animal;
 import main.repositories.AnimalRepository;
+import static main.utils.Constantes.DIALOG_FILTRAR_ANIMAL;
 import main.views.gridview.AnimalGridView;
 import static main.utils.Constantes.DIALOG_MENSAGEM;
+import static main.utils.Constantes.FORM_HOME;
 
 public class HomeController implements Inicializador, Resumidor{    
 
@@ -62,7 +64,9 @@ public class HomeController implements Inicializador, Resumidor{
     
     public void setListeners(Pane contentFather, Pane blackShadow, Stage primmaryStage){
         filtrarAnimaisButton.setOnMouseClicked(e ->{
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Mensagem fefde");
+            App.getInstance().AbrirDialogComAcao(DIALOG_FILTRAR_ANIMAL, FORM_HOME, contentFather, primmaryStage, blackShadow, null, (animais) ->{
+                criarGridComResultados((List<Animal>) animais,contentFather, primmaryStage, blackShadow);
+            });
         });
         
         buscarAnimalTextField.setOnKeyPressed(e ->{

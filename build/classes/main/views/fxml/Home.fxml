@@ -8,25 +8,30 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="content" prefHeight="768.0" prefWidth="1166.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.HomeController">
+<Pane fx:id="content" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.HomeController">
    <children>
-      <ScrollPane hbarPolicy="NEVER" layoutX="64.0" layoutY="134.0" prefHeight="579.0" prefWidth="1038.0" styleClass="scrollPanePet" stylesheets="@../css/view.css" vbarPolicy="ALWAYS">
-         <content>
-            <GridPane fx:id="animaisGrid" prefHeight="206.0" prefWidth="1028.0">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-               </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
-      <TextField layoutX="64.0" layoutY="64.0" prefHeight="48.0" prefWidth="974.0" styleClass="round-layout" stylesheets="@../css/view.css">
+      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" minHeight="-Infinity" prefHeight="519.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
+               <content>
+                  <GridPane fx:id="animaisGrid" prefHeight="0.0" prefWidth="0.0" style="-fx-background-color: #FFFFFF;">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
+      <TextField fx:id="buscarAnimalTextField" layoutX="77.0" layoutY="64.0" prefHeight="49.0" prefWidth="991.0" styleClass="round-layout" stylesheets="@../css/view.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
       </TextField>
-      <Button contentDisplay="TOP" layoutX="1054.0" layoutY="63.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
+      <Button fx:id="filtrarAnimaisButton" contentDisplay="TOP" layoutX="1087.0" layoutY="63.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
          <graphic>
             <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
                <image>

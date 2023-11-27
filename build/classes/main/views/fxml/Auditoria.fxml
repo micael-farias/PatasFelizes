@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AuditoriaController">
+   <children>
+      <HBox fx:id="layoutAlteracao" prefHeight="100.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/card_grid.css">
+         <children>
+            <Label fx:id="identificador" prefHeight="44.0" prefWidth="336.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Voluntario de nome|descricao tal">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="mensagem" prefHeight="44.0" prefWidth="633.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="Seu nome foi alterado de tal pra tal na Quarta dia 12 de tal">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>

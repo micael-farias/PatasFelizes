@@ -45,9 +45,10 @@ public class AnimalCardController extends CustomController implements Inicializa
         Animal animal = (Animal) ObterDadoArray(dado, 0);
       
         String textoIdadeAnimal;
+             
+        Idade idadeAnimalMesesAnos= CalculaAnosEMesesPorDt(animal.getDataNascimento());
 
-        if(animal.getDataNascimento() == null){
-             Idade idadeAnimalMesesAnos = CalculaAnosEMesesPorDt(animal.getDataNascimento());
+        if(idadeAnimalMesesAnos != null){
              textoIdadeAnimal = idadeAnimalMesesAnos.getAnos() + " anos e " + idadeAnimalMesesAnos.getMeses() + " meses";
         }else{
              textoIdadeAnimal = "Não informada";

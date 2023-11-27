@@ -2,6 +2,20 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
 
+
+.button_nova {
+    -fx-font-weight: bold;
+    -fx-background-color:  #C2D5FA;
+    -fx-background-radius: 8pt;
+    -fx-cursor: hand;
 }
+
+.button_nova:hover {
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(194, 213, 250, 0.7);
+    -fx-background-radius: 8pt;
+    -fx-cursor: hand;
+}
+
+
