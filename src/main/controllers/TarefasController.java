@@ -42,11 +42,6 @@ public class TarefasController implements Inicializador , Resumidor{
     
     public void initialize(){
         tarefaService = new TarefaServices();
-       hintBuscarTarefas();
-    }
-    
-    public void hintBuscarTarefas(){
-        textFieldBuscarTarefa.setPromptText("Procurar tarefa por descrição");
     }
     
     public void initializeViews(Pane contentFather, Stage primmaryStage, Pane blackShadow){
@@ -61,8 +56,6 @@ public class TarefasController implements Inicializador , Resumidor{
             if(e.getCode().equals(ENTER)){
                   List<Procedimento> tarefas = tarefaService.EncontrarTarefasPorDescricao(tarefa);
                   criarGridComResultados(tarefas, contentFather, primmaryStage, blackShadow);
-            }else if(e.getCode().equals(BACK_SPACE)){
-                if(tarefa.length() == 0) hintBuscarTarefas();
             }
         });        
     }

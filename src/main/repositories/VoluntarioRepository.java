@@ -7,8 +7,10 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 import main.model.Voluntario;
-import static main.utils.Constantes.PATH_IMAGES;
+import static main.utils.DateHelper.DateToCalendar;
 
 public class VoluntarioRepository extends BaseRepository<Voluntario>{
 
@@ -17,7 +19,38 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
     }
     
     public Voluntario EncontrarVoluntarioPor(String nome){
-        return SelecionarTodos("*", "NOME = '"+nome+"'", null, Voluntario.class).get(0);
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(QueryBuscaPorNome("Voluntarios",nome))) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    Voluntario encontrado = mapearVoluntario(resultSet);
+
+                    // Verificar se há mais de uma correspondência
+                    if (resultSet.next()) {
+                        return null;
+                    }
+
+                    return encontrado;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    
+    public Voluntario mapearVoluntario(ResultSet resultSet) throws SQLException {
+        Voluntario voluntario = new Voluntario();
+        voluntario.setId(resultSet.getInt("Id"));
+        voluntario.setNome(resultSet.getString("Nome"));
+        voluntario.setFoto(resultSet.getBytes("Foto"));
+        voluntario.setEmail(resultSet.getString("Email"));
+        voluntario.setTelefone(resultSet.getString("Telefone"));
+        voluntario.setDataCadastro(DateToCalendar(resultSet.getTimestamp("DataCadastro")));
+        
+        return voluntario;
     }
     
     public Voluntario EncontrarVoluntarioPor(int id){

@@ -101,8 +101,8 @@ public class CadastrarTarefaController extends CustomController implements Inici
 
     private void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         salvarTarefa.setOnMouseClicked(e->{
-            cadastrarNovaTarefa(primmaryStage);
-            App.getInstance().EntrarTelaOnResume(FORM_TAREFAS ,contentFather, primmaryStage, blackShadow, null);                       
+            if(cadastrarNovaTarefa(primmaryStage) != null)
+                App.getInstance().EntrarTelaOnResume(FORM_TAREFAS ,contentFather, primmaryStage, blackShadow, null);                       
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{

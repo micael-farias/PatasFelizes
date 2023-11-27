@@ -106,8 +106,8 @@ public class CadastrarDespesaController extends CustomController implements Inic
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarDespesa.setOnMouseClicked(e->{
-            SalvarDespesa();
-            App.getInstance().EntrarTelaOnResume(FORM_DESPESAS ,contentFather, primmaryStage, blackShadow, null);                      
+            if(SalvarDespesa() != null)
+                App.getInstance().EntrarTelaOnResume(FORM_DESPESAS ,contentFather, primmaryStage, blackShadow, null);                      
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
@@ -129,14 +129,14 @@ public class CadastrarDespesaController extends CustomController implements Inic
         
     }
     
-    public void SalvarDespesa(){
+    public Despesa SalvarDespesa(){
         LocalDate data = dataDespesa.getValue();
         String descriao = descricaoDespesa.getText();
         String pet = petDespesa.getText();
         String tipo = tipoDespesa.getText();
         double valor = RealFormatter.unformatarReal(valorDespesa.getText());
         
-        despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, null, comprovante);
+        return despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, null, comprovante);
     }
     
     private void setData() {
@@ -145,7 +145,7 @@ public class CadastrarDespesaController extends CustomController implements Inic
             descricaoDespesa.setText(despesa.getDescricao());
             LocalDate localDate = despesa.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             dataDespesa.setValue(localDate);
-            petDespesa.setText((procedimento == null) ? "" : procedimento.getAnimal().getNome());
+            petDespesa.setText((procedimento == null) ? "" : procedimento.getAnimal() == null ? null : procedimento.getAnimal().getNome());
             tipoDespesa.setText(despesa.getTipo());
             valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
             comprovante = despesa.getFotoComprovante();

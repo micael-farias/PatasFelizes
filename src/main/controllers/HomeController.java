@@ -13,12 +13,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.App;
+import main.enums.MensagemTipo;
+import static main.enums.MensagemTipo.ERRO;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
 import main.model.Animal;
 import main.repositories.AnimalRepository;
-import static main.utils.Constantes.DIALOG_FILTRAR_ANIMAL;
 import main.views.gridview.AnimalGridView;
+import static main.utils.Constantes.DIALOG_MENSAGEM;
 
 public class HomeController implements Inicializador, Resumidor{    
 
@@ -60,7 +62,7 @@ public class HomeController implements Inicializador, Resumidor{
     
     public void setListeners(Pane contentFather, Pane blackShadow, Stage primmaryStage){
         filtrarAnimaisButton.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialogAlinhado(DIALOG_FILTRAR_ANIMAL, contentFather, filtrarAnimaisButton, blackShadow);
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Mensagem fefde");
         });
         
         buscarAnimalTextField.setOnKeyPressed(e ->{

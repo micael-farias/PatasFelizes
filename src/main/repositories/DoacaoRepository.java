@@ -58,7 +58,7 @@ public class DoacaoRepository extends BaseRepository<Doacao>{
         return new HashSet<>( SelecionarTodos("Doador", null, null, String.class));  
     }
 
-    public double[] BuscarValoresDoacoesEDespesa() {
+    public double[] BuscarValoresDoacoesEDespesa()  {
         double[] valores = new double[2]; 
         int pos = 0;
         

@@ -1,18 +1,14 @@
 package main.services;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import main.App;
+import main.enums.MensagemTipo;
 import main.model.Doacao;
 import main.repositories.DoacaoRepository;
 import static main.utils.DateHelper.LocalDateParaCalendar;
-import static main.utils.DateHelper.LocalDateParaDate;
-import main.utils.NumberHelper;
 
 public class DoacaoServices {
     DoacaoRepository doacaoRepository;
@@ -35,6 +31,9 @@ public class DoacaoServices {
             return doacaoRepository.Salvar(idDoacao, doador, valor, data, fotoComprovante);
         } catch (Exception ex) {
             ex.printStackTrace();
+            String mensagem = idDoacao == -1 ? "cadastrar" : "atualizar";
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a doacao");
+                      
             return null;
         } 
     }

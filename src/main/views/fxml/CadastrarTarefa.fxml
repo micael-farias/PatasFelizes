@@ -98,7 +98,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="282.0">
+                  <VBox alignment="CENTER_RIGHT" prefHeight="67.0" prefWidth="302.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
@@ -112,7 +112,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <TextField fx:id="tipoTarefa" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="297.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                        <TextField fx:id="tipoTarefa" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="30.0" prefWidth="301.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
                      </children>
                   </VBox>
                </children>

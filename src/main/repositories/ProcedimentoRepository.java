@@ -100,7 +100,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
         return null;
     }
 
-    public List<Procedimento> encontrarProcedimentosPor(int idAnimal) {
+    public List<Procedimento> encontrarProcedimentosPor(int idAnimal){
         List<Procedimento> procedimentosAnimal = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(
                      "SELECT * FROM Procedimentos WHERE idAnimal=?")) {
@@ -120,7 +120,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
         return procedimentosAnimal;
     }
 
-    public Procedimento encontrarProcedimentosPorId(int id) {
+    public Procedimento encontrarProcedimentosPorId(int id)  {
         try (PreparedStatement statement = connection.prepareStatement(
                      "SELECT * FROM Procedimentos WHERE id=?")) {
 
@@ -139,11 +139,11 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
         return null;
     }
 
-    public Procedimento encontrarProcedimentosPorTarefa(int idTarefa) {
+    public Procedimento encontrarProcedimentosPorTarefa(int idProcedimento) {
         try (PreparedStatement statement = connection.prepareStatement(
-                     "SELECT * FROM Procedimentos WHERE idTarefa=?")) {
+                     "SELECT * FROM Procedimentos WHERE id=?")) {
 
-            statement.setInt(1, idTarefa);
+            statement.setInt(1, idProcedimento);
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {

@@ -31,7 +31,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1064.0">
+      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="580.0" prefWidth="1064.0">
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="1038.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                <content>

@@ -80,7 +80,7 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
         return instant.atZone(ZoneId.systemDefault()).toLocalDate();
     }
     
-    public static Date GetMidnightDate() {
+    public static Calendar GetMidnightDate() {
         // Obtendo a instância de Calendar
         Calendar calendar = Calendar.getInstance();
 
@@ -90,8 +90,7 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        Date data =  calendar.getTime();
-        return data;
+        return calendar;
     }
     
     public static Idade CalculaAnosEMesesPorDt(Date data) {

@@ -40,6 +40,9 @@ public class TarefasGridView extends GridView<Procedimento> {
     public Node createGridAsyncItem(Procedimento tarefa, int column, int row) {
         var fxmlLoader = App.getInstance().RealizarLoadFXML(CARD_TAREFA, HBox.class);
         TarefaController controller = fxmlLoader.getLoader().getController();
+        if(tarefa.getDescricao().contains("we")){
+            int a = 1;
+        }
         controller.Inicializar(contentFather, primmaryStage, blackShadow, new Object[]{tarefa, row});
                 
         return fxmlLoader.getResult();

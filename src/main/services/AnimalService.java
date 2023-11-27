@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.App;
+import main.enums.MensagemTipo;
 import main.factories.StatusAnimalFactory;
 import main.model.Animal;
 import main.repositories.AnimalRepository;
@@ -16,11 +18,9 @@ import main.utils.ToogleEnum;
 public class AnimalService  {
 
     AnimalRepository animalRepository;    
-    ProcedimentoService procedimentoService;
     
     public AnimalService(){
         animalRepository = new AnimalRepository();
-        procedimentoService = new ProcedimentoService();
     }
     
     public Animal Salvar(int idAnimal, String nomeAnimal, String anosAnimal, String mesesAnimal, String descricaoAnimal, ToogleEnum sexoAnimal, ToogleEnum castradoAnimal, byte[] fotoAnimal, String ultimoStatus) {
@@ -29,11 +29,16 @@ public class AnimalService  {
         char sexo = sexoAnimal == null ? 'N' : sexoAnimal == ToogleEnum.DIREITO ? 'M' : 'F';
         boolean castrado = castradoAnimal == ToogleEnum.DIREITO;
         String statusAnimal = StatusAnimalFactory.GetStatus(ultimoStatus).name();
-        try {
+        try {            
+            
             return  animalRepository.Salvar(idAnimal, nomeAnimal, idade, descricaoAnimal, sexo, castrado, fotoAnimal, statusAnimal);
+   
         } catch (Exception ex) {
-            Logger.getLogger(AnimalService.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+            String mensagem = idAnimal == -1 ? "cadastrar" : "atualizar";
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o pet");
         } 
+        
         return null;
     } 
     
@@ -47,5 +52,15 @@ public class AnimalService  {
     
     public Animal ObterAnimalPorNome(String nome){
         return animalRepository.EncontrarAnimalPorNome(nome);
+    }
+
+    public boolean DeletarAnimalPorId(int id) {
+        try {
+            animalRepository.Excluir(Animal.class, id);
+            return true;
+        } catch (Exception ex) {          
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar o pet");
+            return false;
+        }
     }
 }

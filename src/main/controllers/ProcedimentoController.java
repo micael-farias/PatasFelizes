@@ -17,6 +17,7 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import java.util.Calendar;
 import main.App;
+import main.enums.MensagemTipo;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.model.Procedimento;
@@ -80,23 +81,29 @@ public class ProcedimentoController extends CustomController implements Iniciali
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !procedimento.isRealizado();
             setImage(realizada);
+            Procedimento procedimentoRetornado;
             if (realizada) {  
 
-                procedimentoService.Salvar(procedimento.getId(),
+                procedimentoRetornado = procedimentoService.Salvar(procedimento.getId(),
                         procedimento.getDescricao(), 
                         DateHelper.CalendarParaLocalDate(procedimento.getData()),
                         procedimento.getTipo(),
                         procedimento.getDespesa() == null ? 0.0 : procedimento.getDespesa().getValor(),
-                        procedimento.getVoluntario().getNome(),
+                        procedimento.getVoluntario() == null? null : procedimento.getVoluntario().getNome(),
                         procedimento.getAnimal().getId(), true);
             }else{
-                procedimentoService.Salvar(procedimento.getId(),
+                 procedimentoRetornado = procedimentoService.Salvar(procedimento.getId(),
                         procedimento.getDescricao(), 
                         DateHelper.CalendarParaLocalDate(procedimento.getData()),
                         procedimento.getTipo(),
                         procedimento.getDespesa() == null ? 0.0 : procedimento.getDespesa().getValor(),
-                        procedimento.getVoluntario().getNome(),
+                        procedimento.getVoluntario() == null? null : procedimento.getVoluntario().getNome(),
                         procedimento.getAnimal().getId(), false);
+            }
+             if(procedimentoRetornado == null){
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado do procedimento");
+            }else{
+                procedimento= procedimentoRetornado;
             }
         });        
           

@@ -2,7 +2,7 @@ package main.repositories;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import main.model.Animal;
+import static main.utils.DateHelper.DateToCalendar;
 
 public class AnimalRepository extends BaseRepository<Animal>{
     
@@ -85,12 +86,60 @@ public class AnimalRepository extends BaseRepository<Animal>{
         return listaAnimais;
          } 
 
-    public Animal EncontrarAnimalPor(int idAnimal) {
-        return SelecionarTodos("*", "ID ="+ idAnimal, null, Animal.class).get(0);
+
+    
+     public Animal EncontrarAnimalPor(int id) {
+        String sql = "SELECT * FROM Animais WHERE Id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return mapearAnimal(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private Animal mapearAnimal(ResultSet resultSet) throws SQLException {
+        Animal animal = new Animal();
+        animal.setId(resultSet.getInt("Id"));
+        animal.setNome(resultSet.getString("Nome"));
+        animal.setDataNascimento(DateToCalendar(resultSet.getTimestamp("DataNascimento")));
+        animal.setFoto(resultSet.getBytes("Foto"));
+        animal.setDescricao(resultSet.getString("Descricao"));
+        animal.setSexo(resultSet.getString("Sexo").charAt(0));
+        animal.setCastrado(resultSet.getBoolean("Castrado"));
+        animal.setStatus(resultSet.getString("Status"));
+        animal.setDataCadastro(DateToCalendar(resultSet.getTimestamp("DataCadastro")));
+
+        return animal;
     }
     
-    public Animal EncontrarAnimalPorNome(String nome) {     
-        return SelecionarTodos("*", "NOME = '" + nome +"'",null, Animal.class).get(0);
+    public Animal EncontrarAnimalPorNome(String nome) {    
+        try (PreparedStatement preparedStatement = connection.prepareStatement(QueryBuscaPorNome("Animais",nome))) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    Animal encontrado = mapearAnimal(resultSet);
+
+                    // Verificar se há mais de uma correspondência
+                    if (resultSet.next()) {
+                        return null;
+                    }
+
+                    return encontrado;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public Set<String> EncontrarNomesAnimais() {     
