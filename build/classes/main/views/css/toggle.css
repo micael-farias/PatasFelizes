@@ -1,0 +1,17 @@
+.card{
+    -fx-background-radius: 10;     -fx-background-color : #FFFFFF; 
+    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 4, 0, 0, 0);
+    -fx-cursor: hand;
+}
+
+.card_selecionado{
+    -fx-background-radius: 10; 
+    -fx-background-color : #C2D5FA;
+    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 0, 1, 1, 0);
+    -fx-cursor: hand;
+}
+
+
+#label {
+    -fx-font: 14px "Noto Sans Mono";
+}

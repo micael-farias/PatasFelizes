@@ -1,5 +1,9 @@
 #AnchorPane {
     -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-font: 10pt "Noto Sans Mono Bold";
+    -fx-text-fill: #9e9e9e;
 }
 
 #AnchorPane .label {
@@ -40,4 +44,9 @@
 
 .cancelButton {
     -fx-background-color: #F0F0F0 !important;
+}
+
+.imageViewAnimal{
+    -fx-pref-width: 10px; /* Largura desejada */
+    -fx-fit-height: 150px; /* Altura desejada */
 }

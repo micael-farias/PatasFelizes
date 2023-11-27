@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="356.0" prefWidth="738.0" stylesheets="@../css/cadastrar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarAdocaoController">
+   <children>
+      <Button id="button" fx:id="salvarAdocao" layoutX="574.0" layoutY="303.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
+      <Button id="button" fx:id="cancelarCadastro" layoutX="458.0" layoutY="303.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+      <VBox layoutX="55.0" layoutY="19.0" prefHeight="122.0" prefWidth="630.0" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0">
+         <children>
+            <Label prefHeight="32.0" prefWidth="214.0" text="Dados gerais do tutor">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="106.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="Tutor">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="547.0">
+                     <children>
+                        <TextField fx:id="nomeTutor" minHeight="-Infinity" prefHeight="30.0" prefWidth="529.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="98.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="Telefone">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="532.0">
+                     <children>
+                        <TextField fx:id="telefoneTutor" minHeight="-Infinity" prefHeight="30.0" prefWidth="534.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="53.0" layoutY="143.0" prefHeight="163.0" prefWidth="321.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="254.0" text="Dados de localização do tutor">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="94.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="CEP">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="221.0">
+                     <children>
+                        <TextField fx:id="cepTutor" minHeight="-Infinity" prefHeight="30.0" prefWidth="217.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="38.0" prefWidth="546.0" stylesheets="@../css/cadastrar.css">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="96.0" styleClass="Label_reduced" text="Rua">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="218.0">
+                     <children>
+                        <TextField fx:id="ruaTutor" minHeight="-Infinity" prefHeight="30.0" prefWidth="226.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="38.0" prefWidth="289.0">
+               <children>
+                  <Label prefHeight="30.0" prefWidth="96.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="Compl.">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="219.0">
+                     <children>
+                        <TextField fx:id="complementoEnd" minHeight="-Infinity" prefHeight="30.0" prefWidth="226.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="TOP_RIGHT" layoutX="384.0" layoutY="143.0" prefHeight="163.0" prefWidth="299.0">
+         <children>
+            <Label prefHeight="30.0" prefWidth="254.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <Label prefHeight="38.0" prefWidth="121.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="Cidade">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="245.0">
+                     <children>
+                        <TextField fx:id="cidadeTutor" minHeight="-Infinity" prefHeight="30.0" prefWidth="217.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="38.0" prefWidth="546.0">
+               <children>
+                  <HBox prefHeight="38.0" prefWidth="234.0">
+                     <children>
+                        <Label prefHeight="38.0" prefWidth="111.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="Bairro">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="146.0">
+                           <children>
+                              <TextField fx:id="bairroTutor" minHeight="-Infinity" prefHeight="30.0" prefWidth="122.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="38.0" prefWidth="110.0">
+                     <children>
+                        <Label prefHeight="38.0" prefWidth="34.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="N.º">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="51.0">
+                           <children>
+                              <TextField fx:id="numeroCasa" minHeight="-Infinity" prefHeight="30.0" prefWidth="51.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

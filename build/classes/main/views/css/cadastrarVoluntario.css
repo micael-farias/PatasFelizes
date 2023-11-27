@@ -1,0 +1,47 @@
+#AnchorPane {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-font: 10pt "Noto Sans Mono Bold";
+    -fx-text-fill: #9e9e9e;
+}
+
+#AnchorPane .label {
+    -fx-font: 16px "Noto Sans Mono";
+    -fx-font-weight: bold;
+}
+
+#AnchorPane .text-field {
+    -fx-font: 14px "Noto Sans Mono";
+}
+
+#AnchorPane .text-area {
+    -fx-font: 14px "Noto Sans Mono";
+}
+
+#AnchorPane .toggle-button {
+    -fx-font: 14px "Noto Sans Mono";
+}
+
+#AnchorPane .menu-button {
+    -fx-font: 14px "Noto Sans Mono";
+}
+
+#button {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-background-color: #8CB0F8;
+    -fx-background-radius: 8pt;
+    -fx-cursor: hand;
+}
+
+#button:hover {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-background-color: #A8C4F8;
+    -fx-background-radius: 8pt;
+}
+
+.cancelButton {
+    -fx-background-color: #F0F0F0 !important;
+}

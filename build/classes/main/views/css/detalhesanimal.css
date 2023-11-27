@@ -1,0 +1,104 @@
+#AnchorPane {
+    -fx-background-color: white;
+}
+
+
+#button {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-background-color: #C2D5FA;
+    -fx-background-radius: 8pt;
+    -fx-cursor: hand;
+}
+
+#button:hover {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-background-color: #A8C4F8;
+    -fx-background-radius: 8pt;
+}
+
+.cancelButton {
+    -fx-background-color: #F0F0F0 !important;
+}
+    
+.pane{
+    -fx-background-color: white;
+    -fx-background-radius: 8pt;
+    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 4, 0, 0, 0);
+}
+
+.buttons {
+    -fx-cursor: hand;
+}
+
+.removerButton {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-background-color: #FF6161;
+    -fx-background-radius: 8pt;
+    -fx-cursor: hand;
+}
+
+.removerButton:hover {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(255, 97, 97, 0.7);
+    -fx-background-radius: 8pt;
+    -fx-cursor: hand;
+}
+
+.scrollPaneProcedimentos {
+    -fx-background: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+}
+
+.Label{
+    -fx-font-size: 17px;
+    -fx-text-fill: #000000;  
+    -fx-font-weight: normal;
+}
+
+.LabelInfoAdocao{
+    -fx-font-size: 14px;
+    -fx-text-fill: #494949;  
+    -fx-font-weight: normal;
+}
+
+.LabelFiltrar{
+    -fx-font-size: 14px;
+    -fx-text-fill: gray;  
+    -fx-font-weight: normal;
+}
+
+
+.round-layout{
+    -fx-background-color: #FFFFFF;
+    -fx-cursor: text;
+    -fx-border-color: #494949;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-control-inner-background:#FFFFFF;
+    -fx-padding: 6px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 1, 0, 0, 0);
+}
+
+.round-layout-text-area{
+    -fx-background-color: #FFFFFF;
+    -fx-cursor: hand;
+    -fx-border-color: #494949;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 1, 0, 0, 0);
+}
+
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent, white, transparent, white;
+}

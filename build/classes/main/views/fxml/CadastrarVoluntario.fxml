@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="354.0" prefWidth="682.0" stylesheets="@../css/cadastrar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarVoluntarioController">
+   <children>
+      <Button id="button" fx:id="salvarVoluntario" layoutX="542.0" layoutY="288.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" />
+      <Button id="button" fx:id="cancelarCadastro" layoutX="426.0" layoutY="288.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" />
+      <VBox layoutX="44.0" layoutY="36.0" prefHeight="226.0" prefWidth="434.0">
+         <children>
+            <VBox prefHeight="72.0" prefWidth="368.0">
+               <children>
+                  <Label styleClass="Label" text="Nome">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="nomeVoluntario" minHeight="-Infinity" prefHeight="30.0" prefWidth="974.0" styleClass="round-layout">
+                     <font>
+                        <Font name="Noto Sans Mono Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="72.0" prefWidth="368.0">
+               <children>
+                  <Label styleClass="Label" text="Email">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="emailVoluntario" minHeight="-Infinity" prefHeight="30.0" prefWidth="974.0" styleClass="round-layout">
+                     <font>
+                        <Font name="Noto Sans Mono Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox prefHeight="72.0" prefWidth="368.0">
+               <children>
+                  <Label styleClass="Label" text="Telefone">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="telefoneVoluntario" minHeight="-Infinity" prefHeight="30.0" prefWidth="974.0" styleClass="round-layout">
+                     <font>
+                        <Font name="Noto Sans Mono Regular" size="18.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="layoutImageViewVoluntario" alignment="CENTER" layoutX="516.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" styleClass="layoutPet" stylesheets="@../css/view.css" AnchorPane.rightAnchor="25.0">
+         <children>
+            <ImageView fx:id="imagemVoluntario" cache="true" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../../../assets/images/plus.png" />
+               </image>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

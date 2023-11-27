@@ -6,16 +6,18 @@
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/utils/ImageCache.java</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/utils/Constantes.java</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/controllers/HomeController.java</file>
-            <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/fxml/Base.fxml</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/css/cadastraranimal.css</file>
-            <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/controllers/FinancasController.java</file>
-            <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/fxml/CadastrarAnimal.fxml</file>
+            <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/css/financas.css</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/controllers/AdicionarAnimalController.java</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/controllers/CadastrarAnimalController.java</file>
+            <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/css/datePicker.css</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/utils/FXMLLoadResult.java</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/utils/InicializarFormulario.java</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/controllers/BaseController.java</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/gridview/GridView.java</file>
+            <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/css/cadastrarVoluntario.css</file>
+            <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/css/detalhesanimal.css</file>
+            <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/css/filtrarAnimal.css</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/Main.java</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/gridview/DespesasGridView.java</file>
             <file>file:/home/pedro/git-workspace/PatasFelizes/src/main/views/gridview/AnimalGridView.java</file>

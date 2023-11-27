@@ -1,0 +1,89 @@
+CREATE TABLE IF NOT EXISTS Animais (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nome VARCHAR(50) UNIQUE NOT NULL,
+    DataNascimento TIMESTAMP,
+    Foto BLOB,
+    Descricao TEXT,
+    Sexo CHAR CHECK (Sexo IN ('M', 'F', 'N')),
+    Castrado BOOLEAN NOT NULL,
+    Status TEXT CHECK (Status IN ('PA', 'A', 'F', 'D')) NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Doacoes (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Doador VARCHAR(255) NOT NULL,
+    Valor REAL NOT NULL,
+    Data TIMESTAMP NOT NULL,
+    FotoComprovante BLOB,
+    DataCadastro TIMESTAMP NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Voluntarios (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nome VARCHAR(255) UNIQUE NOT NULL,
+    Foto BLOB,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Telefone VARCHAR(11) UNIQUE NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Despesas (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Descricao TEXT NOT NULL,
+    Valor REAL NOT NULL,
+    Data TIMESTAMP NOT NULL,
+    Tipo VARCHAR(255) NOT NULL,
+    FotoComprovante BLOB,
+    Realizada BOOLEAN NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Procedimentos (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Descricao TEXT NOT NULL,
+    IdAnimal INTEGER,
+    Data TIMESTAMP NOT NULL,
+    Tipo VARCHAR(255) NOT NULL,
+    IdVoluntario INTEGER,
+    IdDespesa INTEGER,
+    IdTarefa INTEGER NOT NULL,
+    Realizado BOOLEAN NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL,
+    FOREIGN KEY (IdAnimal) REFERENCES Animais(Id) ON DELETE CASCADE,
+    FOREIGN KEY (IdDespesa) REFERENCES Despesas(Id),
+    FOREIGN KEY (IdVoluntario) REFERENCES Voluntarios(Id)
+);
+
+CREATE TABLE IF NOT EXISTS Adotantes (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nome VARCHAR(255) UNIQUE NOT NULL,
+    Contato VARCHAR(255) UNIQUE NOT NULL,
+    CEP VARCHAR(10), 
+    Cidade VARCHAR(255),
+    Rua VARCHAR(255),
+    Bairro VARCHAR(255),
+    Complemento VARCHAR(255),
+    Numero INT NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Adocoes (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    IdAnimal INTEGER NOT NULL,
+    IdAdotante INTEGER NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL,
+    FOREIGN KEY (IdAnimal) REFERENCES Animais(Id) ON DELETE CASCADE,
+    FOREIGN KEY (IdAdotante) REFERENCES Adotantes(Id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Alteracoes (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    TabelaAfetada TEXT NOT NULL,
+    Descritor VARCHAR(255),
+    IdRegistroAfetado INTEGER NOT NULL,
+    ColunaAlterada TEXT NOT NULL,
+    ValorAntigo TEXT,
+    ValorNovo TEXT,
+    DataAlteracao TIMESTAMP NOT NULL
+);

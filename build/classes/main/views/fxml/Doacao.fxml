@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="doacaoLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DoacaoController">
+   <children>
+      <HBox fx:id="layoutDoacao" prefHeight="100.0" prefWidth="743.0" styleClass="box" stylesheets="@../css/card_grid.css">
+         <children>
+            <HBox fx:id="layoutClickable" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="912.0" stylesheets="@../css/card_grid.css">
+               <children>
+                  <Label fx:id="dataDoacao" prefHeight="44.0" prefWidth="274.0" styleClass="labelData" stylesheets="@../css/procedimento.css" text="Quarta Feira, 15/12/2009">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="nomeDoador" prefHeight="44.0" prefWidth="286.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="Diogo Marques">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="idDoacao" prefHeight="44.0" prefWidth="211.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="Doação 1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="iconComprovante" fitHeight="38.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../assets/images/comprovante.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="valorDoacao" prefHeight="44.0" prefWidth="123.0" styleClass="labelDoacao" stylesheets="@../css/procedimento.css" text="R$ 18,00">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+               <children>
+                  <ImageView fx:id="editarDoacao" fitHeight="53.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="editar">
+                     <image>
+                        <Image url="@../../../assets/images/editar-branco.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="35.0">
+               <children>
+                  <ImageView fx:id="excluirDoacao" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="excluir">
+                     <image>
+                        <Image url="@../../../assets/images/remover-branco.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
