@@ -1,0 +1,74 @@
+#AnchorPane {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+}
+
+#Label {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-text-fill: #404040
+}
+
+#LabelSimples {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-text-fill: #404040
+}
+
+#ChoiceBox {
+    -fx-background-color: #C2D5FA;
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-text-fill: #404040;
+    -fx-cursor: hand;
+}
+
+#CheckBox{
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-text-fill: #404040;
+}
+
+#CheckBox .box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #84A1DB;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+#VBoxExterna {
+    -fx-spacing: 25px;
+}
+
+#VBox {
+    -fx-spacing: 5px;
+}
+
+#HBox {
+    -fx-spacing: 5px;
+    -fx-alignment: center;
+}
+
+#TextField {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #84A1DB;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-font-size: 14px;
+    -fx-cursor: text;
+}
+
+#HBoxButton {
+    -fx-alignment: top_right;
+
+}
+
+#Button {
+    -fx-background-color: #C2D5FA;
+    -fx-background-radius: 8px;
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-text-fill: #515151;
+    -fx-cursor: hand;
+}
