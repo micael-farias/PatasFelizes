@@ -68,7 +68,7 @@ public class AdotantesRepository extends BaseRepository<Adotante> {
 
     // Method to update an existing Adotante in the database
     public Adotante AtualizarAdotante(Adotante adotante) throws SQLException {
-        String sql = "UPDATE ADOTANTES SET Nome=?, Contato=?, CEP=?, Cidade=?, Rua=?, Bairro=?, Numero=?, DataCadastro=?, Complemento = ? WHERE Id=?";
+        String sql = "UPDATE ADOTANTES SET Nome=?, Contato=?, CEP=?, Cidade=?, Rua=?, Bairro=?, Numero=?,Complemento = ? WHERE Id=?";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, adotante.getNome());
@@ -78,9 +78,8 @@ public class AdotantesRepository extends BaseRepository<Adotante> {
             preparedStatement.setString(5, adotante.getRua());
             preparedStatement.setString(6, adotante.getBairro());
             preparedStatement.setString(7, adotante.getNumero());
-            preparedStatement.setTimestamp(8, new Timestamp(adotante.getDataCadastro().getTimeInMillis()));
-            preparedStatement.setString(9, adotante.getComplemento());
-            preparedStatement.setInt(10, adotante.getId());
+            preparedStatement.setString(8, adotante.getComplemento());
+            preparedStatement.setInt(9, adotante.getId());
 
             int rowsAffected = preparedStatement.executeUpdate();
 

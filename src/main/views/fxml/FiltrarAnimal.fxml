@@ -131,7 +131,12 @@
             </VBox>
             <HBox id="HBoxButton" prefHeight="30.0" prefWidth="200.0">
                <children>
-                  <Button id="Button" fx:id="filtrar" mnemonicParsing="false" text="Filtrar" />
+                  <Button id="button" fx:id="cancelarFiltro" mnemonicParsing="false" prefHeight="32.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="Button" fx:id="filtrar" mnemonicParsing="false" prefWidth="76.0" text="Filtrar" />
                </children>
                <VBox.margin>
                   <Insets top="133.0" />

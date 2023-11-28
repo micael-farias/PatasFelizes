@@ -10,11 +10,13 @@ import java.util.Set;
 import main.db.Database;
 import main.model.Animal;
 import main.model.Despesa;
+import main.model.FiltroDespesa;
 
 import main.model.Procedimento;
 import main.model.Tarefa;
 import main.model.Voluntario;
 import static main.utils.DateHelper.DateToCalendar;
+import static main.utils.DateHelper.invalidString;
 
 
 public class ProcedimentoRepository extends BaseRepository<Procedimento>{
@@ -243,4 +245,53 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
 
         return procedimentosAnimal;
     }
+
+    public List<Procedimento> FiltrarProcedimentos(FiltroDespesa filtro) throws SQLException {
+        List<Procedimento> procedimentos = new ArrayList<>();
+
+        StringBuilder sql = new StringBuilder("SELECT * FROM PROCEDIMENTOS P " +
+                "LEFT JOIN ANIMAIS A ON P.IDANIMAL = A.ID " +
+                "LEFT JOIN VOLUNTARIOS V ON P.IDVOLUNTARIO = V.ID " +
+                "LEFT JOIN DESPESAS D ON P.IDDESPESA = D.ID " +
+                "WHERE 1 = 1");
+
+        if (!invalidString(filtro.getVoluntario())) {
+            sql.append(" AND V.NOME = '").append(filtro.getVoluntario()).append("'");
+        }
+
+        if (!invalidString(filtro.getAnimal())) {
+            sql.append(" AND A.NOME = '").append(filtro.getAnimal()).append("'");
+        }
+
+        if (filtro.getDataFinal() != null && filtro.getDataInicial() != null) {
+            sql.append(" AND P.Data BETWEEN ? AND ?");
+        }
+        
+        if (!invalidString(filtro.getOrdenacao())) {
+            sql.append(" ORDER BY ").append(filtro.getOrdenacao());
+        } 
+        
+        System.out.println(sql);
+        
+        try (PreparedStatement statement = connection.prepareStatement(sql.toString())) {
+
+            if (filtro.getDataFinal() != null && filtro.getDataInicial() != null) {
+                statement.setTimestamp(1, new Timestamp(filtro.getDataInicial().getTimeInMillis()));
+                statement.setTimestamp(2, new Timestamp(filtro.getDataFinal().getTimeInMillis()));
+            }
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Procedimento procedimento = mapearProcedimento(resultSet);
+                    procedimentos.add(procedimento);
+                }
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return procedimentos;
+    }
+
+
 }

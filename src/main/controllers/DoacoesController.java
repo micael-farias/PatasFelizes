@@ -12,9 +12,13 @@ import javafx.stage.Stage;
 import main.App;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
+import main.model.Despesa;
 import main.model.Doacao;
+import main.model.FiltroDespesa;
 import main.services.DoacaoServices;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
+import static main.utils.Constantes.DIALOG_FILTRAR_DOACOES;
+import static main.utils.Constantes.FORM_DOACOES;
 import main.views.gridview.DoacoesGridView;
 
 public class DoacoesController implements Inicializador, Resumidor {  
@@ -28,8 +32,11 @@ public class DoacoesController implements Inicializador, Resumidor {
     @FXML
     private TextField textFieldBuscarDoacoes;
     
+    @FXML
+    private Button filtrarDoacoes;
+    
     private DoacaoServices doacaoServices;
-
+    
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         initialize(contentFather, primmaryStage, blackShadow);
@@ -50,11 +57,24 @@ public class DoacoesController implements Inicializador, Resumidor {
             }
         });
         
+        filtrarDoacoes.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialogComAcao(DIALOG_FILTRAR_DOACOES, FORM_DOACOES, contentFather, primmaryStage, blackShadow, null, (dados) ->{
+                List<Doacao> doacoes = (List<Doacao>)dados[0];
+                doacaoServices.filtro = (FiltroDespesa) dados[1];
+                criarGridDoacoesComResultados(doacoes,contentFather, primmaryStage, blackShadow);
+            
+            });
+        });
     }
     
     public void criarDoacoes(Pane contentFather, Stage primaryStage, Pane blackShadow){
-        List<Doacao> doacoes = doacaoServices.ObterDoacoes();
-        criarGridDoacoesComResultados(doacoes, contentFather, primaryStage, blackShadow);
+        if(doacaoServices.filtro != null){
+           List<Doacao> doacoesFiltradas = doacaoServices.FiltrarDoacoes(doacaoServices.filtro);
+            criarGridDoacoesComResultados(doacoesFiltradas, contentFather, primaryStage, blackShadow);
+        }else{
+           List<Doacao> doacoes = doacaoServices.ObterDoacoes();
+           criarGridDoacoesComResultados(doacoes, contentFather, primaryStage, blackShadow);
+        }
     }
 
     @Override

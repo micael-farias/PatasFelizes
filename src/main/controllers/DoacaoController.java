@@ -16,7 +16,9 @@ import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
 import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_DOACOES;
 import static main.utils.Constantes.PATH_IMAGES;
+import main.utils.DateHelper;
 import static main.utils.DateHelper.CalendarParaString;
+import static main.utils.DateHelper.DataParaString;
 import main.utils.RealFormatter;
 
 public class DoacaoController extends CustomController implements InicializadorComDado{
@@ -57,7 +59,7 @@ public class DoacaoController extends CustomController implements InicializadorC
         
         nomeDoador.setText(doacao.getDoador());
         idDoacao.setText("Doação "+ doacao.getId());
-        dataDoacao.setText(CalendarParaString(doacao.getData()));
+        dataDoacao.setText(DataParaString(doacao.getData()) + "-" +DateHelper.DataParaStringReduced(doacao.getDataCadastro()));
         dataDoacao.setStyle("-fx-font-weight: bold;");
         valorDoacao.setText(RealFormatter.formatarComoReal(doacao.getValor()));
         iconComprovante.setVisible(doacao.getFotoComprovante() != null);

@@ -135,8 +135,8 @@ public class CadastrarDespesaController extends CustomController implements Inic
         String pet = petDespesa.getText();
         String tipo = tipoDespesa.getText();
         double valor = RealFormatter.unformatarReal(valorDespesa.getText());
-        
-        return despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, null, comprovante);
+        boolean realizado = despesa != null ? despesa.isRealizada() :  null;
+        return despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, realizado , comprovante);
     }
     
     private void setData() {

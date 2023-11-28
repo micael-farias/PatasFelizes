@@ -117,8 +117,9 @@ public class CadastrarTarefaController extends CustomController implements Inici
         String voluntario = responsavelTarefa.getText();
         String animalString = petTarefa.getText();
         Animal animal = animalServices.ObterAnimalPorNome(animalString);
+        boolean realizado = procedimento == null ? null : procedimento.isRealizado();
 
-        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, 0.0, voluntario, animal.getId(), null);      
+        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, 0.0, voluntario, animal.getId(), realizado);      
     }
 
     private void setData() {

@@ -3,7 +3,7 @@ package main.controllers;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Set;
-import java.util.Calendar;
+import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -52,7 +52,7 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     @FXML
     private HBox layoutComprovante;
 
-        @FXML
+    @FXML
     private Label labelComprovante;
     @FXML
     private Button cancelarCadastro;

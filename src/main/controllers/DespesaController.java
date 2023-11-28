@@ -65,7 +65,7 @@ public class DespesaController extends CustomController implements Inicializador
         int posicao = (int) ObterDadoArray(dados, 1);
 
         descricaoDespesa.setText(despesa.getDescricao());
-        dataDespesa.setText(CalendarParaString(despesa.getData()));
+        dataDespesa.setText(CalendarParaString(despesa.getData()) + "-" +DateHelper.CalendarParaStringReduced(despesa.getDataCadastro()));
         valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
         iconComprovante.setVisible(despesa.getFotoComprovante() != null);
         setImage(despesa.isRealizada());

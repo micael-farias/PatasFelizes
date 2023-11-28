@@ -101,8 +101,9 @@ public class CadastrarProcedimentoController extends CustomController implements
         String tipo = tipoProcedimento.getText();
         String voluntario = voluntarioProcedimento.getText();
         double valor = RealFormatter.unformatarReal(valorProcedimento.getText());
-
-        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, valor, voluntario, idAnimal, null);      
+        boolean realizado = procedimento == null ? null : procedimento.isRealizado();
+        
+        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, valor, voluntario, idAnimal, realizado);      
     }
 
     private void setData() {
