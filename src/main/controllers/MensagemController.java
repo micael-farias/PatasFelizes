@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import main.enums.MensagemTipo;
 import static main.utils.Constantes.PATH_IMAGES;
 
@@ -37,7 +39,14 @@ public class MensagemController {
         
         String titulo = (tipo == MensagemTipo.ERRO) ? "Ops!." : "Sucesso";
         tituloMensagem.setText(titulo);
+          // Ajuste a altura preferencial do VBox
+        double novaAltura = mensagem.getBoundsInLocal().getHeight() + mensagem.getBoundsInLocal().getHeight();
+        layoutMensagem.setPrefHeight(novaAltura);
+        mensagem.setText("sfdjhiidfjsahsdfjihsdfiuofsdhjifusdhfuiddasdsndssiadkjjsdjsaosdijsdisadiosdaiojsdaojsdjiodssdjajiosdavohdfsioufsdhuidfsofdsiuofduihsdfhsui");
         
-        mensagem.setText(msg);
+        // Ajuste a altura da Label mensagem para se adequar ao conteúdo
+        mensagem.setPrefHeight(USE_COMPUTED_SIZE);
+        mensagem.setMinHeight(Region.USE_PREF_SIZE);
+        mensagem.setMaxHeight(USE_COMPUTED_SIZE);
     }
 }

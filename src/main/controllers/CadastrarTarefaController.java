@@ -27,6 +27,8 @@ import javafx.scene.control.TextField;
 import main.model.Animal;
 import main.services.AnimalService;
 import static main.utils.Constantes.FORM_TAREFAS;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.utils.ValidacaoUtils;
 /**
  *
@@ -68,7 +70,11 @@ public class CadastrarTarefaController extends CustomController implements Inici
         procedimento = ObterDadoArray(dados,0) == null ? null : (Procedimento) ObterDadoArray(dados, 0);
         
         initialize();
-        setListeners(contentFather, primmaryStage, blackShadow);     
+        setListeners(contentFather, primmaryStage, blackShadow); 
+        autoCapitalizeFirstLetter(descricaoTarefa);
+        capitalizeEachWord(responsavelTarefa);
+        capitalizeEachWord(petTarefa);
+        autoCapitalizeFirstLetter(tipoTarefa);
     }
     
     public void configurarPets(){

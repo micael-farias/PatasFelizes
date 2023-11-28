@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -7,16 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="card" fx:id="layoutMensagem" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="103.0" prefWidth="269.0" stylesheets="@../css/mensagem.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.MensagemController">
+<AnchorPane id="card" fx:id="layoutMensagem" prefWidth="269.0" stylesheets="@../css/mensagem.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.MensagemController">
    <children>
-      <VBox layoutX="34.0" layoutY="6.0" prefHeight="87.0" prefWidth="211.0" AnchorPane.leftAnchor="50.0">
+      <VBox layoutX="34.0" layoutY="6.0" prefWidth="211.0" AnchorPane.leftAnchor="50.0">
          <children>
             <Label fx:id="tituloMensagem" prefHeight="28.0" prefWidth="198.0" text="Ops!..." textFill="WHITE" wrapText="true">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="mensagem" alignment="TOP_LEFT" prefHeight="72.0" prefWidth="211.0" text="Falha em cadastrar um novo djdjddjjd" textFill="WHITE" wrapText="true">
+            <Label fx:id="mensagem" alignment="TOP_LEFT" prefHeight="116.0" prefWidth="211.0" text="IJJKDJSDAKJOKSDAJSADOSKADJODASADISDSDOAISDJAOISDJSDOAIJSDAOISDAJSDAIOSDA" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
@@ -29,4 +30,7 @@
          </image>
       </ImageView>
    </children>
+   <padding>
+      <Insets bottom="10.0" />
+   </padding>
 </AnchorPane>

@@ -22,6 +22,7 @@ import main.services.DespesaServices;
 import main.services.TarefaServices;
 import main.services.VoluntarioService;
 import main.utils.DateHelper;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.views.textfield.ChoiceBoxCostumized;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -138,5 +139,8 @@ public class FiltrarTarefaController implements InicializadorComAcao {
         cancelarFiltro.setOnMouseClicked(e ->{
            App.getInstance().FecharDialog(primmaryStage, blackShadow);
         });
+        
+        capitalizeEachWord(voluntariosTextField);
+        capitalizeEachWord(petTextField);
     }  
 }

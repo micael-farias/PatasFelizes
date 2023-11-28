@@ -166,7 +166,7 @@
 
 .round-layout{
     -fx-background-color: #FFFFFF;
-    -fx-cursor: hand;
+    -fx-cursor: text;
     -fx-padding: 10px;
     -fx-border-color: #494949;
     -fx-border-radius: 10px;

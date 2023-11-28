@@ -17,7 +17,7 @@
         <URL value="@/main/views/css/financas.css" />
     </stylesheets>
    <children>
-      <TextField fx:id="textFieldBuscarTarefa" layoutX="77.0" layoutY="64.0" prefHeight="49.0" prefWidth="991.0" styleClass="round-layout" stylesheets="@../css/view.css">
+      <TextField fx:id="textFieldBuscarTarefa" layoutX="77.0" layoutY="64.0" prefHeight="49.0" prefWidth="991.0" promptText="Procurar tarefa por descrição" styleClass="round-layout" stylesheets="@../css/view.css">
          <font>
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
@@ -31,7 +31,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="580.0" prefWidth="1064.0">
+      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="534.0" prefWidth="1064.0">
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="1038.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                <content>

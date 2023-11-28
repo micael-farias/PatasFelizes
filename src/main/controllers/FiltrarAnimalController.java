@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
+import static main.controllers.AnimalFormularioController.textFormatter;
 import main.enums.Mapping;
 import main.enums.MensagemTipo;
 import main.interfaces.Acao;
@@ -20,6 +21,7 @@ import main.services.AnimalService;
 import main.utils.DateHelper;
 import static main.utils.DateHelper.invalidString;
 import main.utils.NumberHelper;
+import static main.utils.TextFieldUtils.applyNumericMask;
 import main.views.textfield.CheckBoxCustomized;
 import main.views.textfield.ChoiceBoxCostumized;
 
@@ -29,7 +31,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
     private ImageView checkBoxFeminino;
 
     @FXML
-    private ImageView checkBoxMasculino;
+    private ImageView checkBoxMasculino, checkBoxSexoDesconhecido;
 
     @FXML
     private ImageView checkBoxNao;
@@ -59,6 +61,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
     private Button filtrar, cancelarFiltro;
 
     private CheckBoxCustomized checkCostumizedFeminino;
+    private CheckBoxCustomized checkCostumizedSexoDesconhecido;
     private CheckBoxCustomized checkCostumizedMasculino;
     private CheckBoxCustomized checkCostumizedSim;
     private CheckBoxCustomized checkCostumizedNao;
@@ -88,6 +91,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
 
     private void inicializarComponentes(Stage primmaryStage, Pane blackShadow) {
         checkCostumizedFeminino = new CheckBoxCustomized();
+        checkCostumizedSexoDesconhecido = new CheckBoxCustomized();
         checkCostumizedMasculino = new CheckBoxCustomized();
         checkCostumizedSim = new CheckBoxCustomized();
         checkCostumizedNao = new CheckBoxCustomized();
@@ -98,6 +102,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
         tiposOrdenacaoChoiceBox.setItems(Mapping.getOrdenacoes());
         statusCheckBox.setItems(Mapping.getStatus());
 
+        checkCostumizedSexoDesconhecido.inicializar(checkBoxSexoDesconhecido);
         checkCostumizedFeminino.inicializar(checkBoxFeminino);
         checkCostumizedMasculino.inicializar(checkBoxMasculino);
         checkCostumizedSim.inicializar(checkBoxSim);
@@ -108,6 +113,10 @@ public class FiltrarAnimalController implements InicializadorComAcao {
         cancelarFiltro.setOnMouseClicked(e ->{
            App.getInstance().FecharDialog(primmaryStage, blackShadow);
         });
+        
+        textFormatter(primeiraIntervaloMeses, primeiroIntervaloAno);
+        textFormatter(segundoIntervaloMeses, segundoIntervaloAno);
+
     }
 
     
@@ -118,6 +127,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
         filtros.setStatusSelecionado(statusChoiceBox.getValue());
         filtros.setFiltrarMasculino(checkCostumizedMasculino.getChecked());
         filtros.setFiltrarFeminino(checkCostumizedFeminino.getChecked());
+        filtros.setFiltrarSexoDesconhecido(checkCostumizedSexoDesconhecido.getChecked());
         filtros.setFiltrarCastradoSim(checkCostumizedSim.getChecked());
         filtros.setFiltrarCastradoNao(checkCostumizedNao.getChecked());
         filtros.setIntervaloPrimeiroAno(primeiroIntervaloAno.getText());
@@ -135,7 +145,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
 
         return animalService.selecionarAnimais(Mapping.GetKeyOrdenacoes(filtros.getOrdenacaoSelecionada()),
                 Mapping.GetKeyStatus(filtros.getStatusSelecionado()), filtros.isFiltrarMasculino(),
-                filtros.isFiltrarFeminino(), filtros.isFiltrarCastradoSim(), filtros.isFiltrarCastradoNao(),
+                filtros.isFiltrarFeminino(), filtros.isFiltrarSexoDesconhecido(), filtros.isFiltrarCastradoSim(), filtros.isFiltrarCastradoNao(),
                 invervaloDois, invervaloUm);
     }
 
@@ -170,6 +180,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
 
         checkCostumizedMasculino.setImage(filtros.isFiltrarMasculino(), checkBoxMasculino);
         checkCostumizedFeminino.setImage(filtros.isFiltrarFeminino(), checkBoxFeminino);
+        checkCostumizedSexoDesconhecido.setImage(filtros.isFiltrarSexoDesconhecido(), checkBoxSexoDesconhecido);
         checkCostumizedSim.setImage(filtros.isFiltrarCastradoSim(), checkBoxSim);
         checkCostumizedNao.setImage(filtros.isFiltrarCastradoNao(), checkBoxNao);
 

@@ -32,6 +32,8 @@ import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
 import main.utils.Rectangles;
 import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -92,6 +94,10 @@ public class CadastrarDespesaController extends CustomController implements Inic
         configurarTiposDespesa();
         
         TextFieldUtils.setupCurrencyTextField(valorDespesa);
+        autoCapitalizeFirstLetter(descricaoDespesa);
+        autoCapitalizeFirstLetter(tipoDespesa);
+        capitalizeEachWord(petDespesa);
+        
          setData();
    }
 

@@ -21,6 +21,8 @@ import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.DateHelper.invalidString;
 import main.utils.ValidacaoUtils;
 import javafx.scene.control.TextInputControl;
+import static main.utils.TextFieldUtils.applyNumericMask;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
 
 /**
  *
@@ -75,6 +77,14 @@ public class CadastrarAdocaoController extends CustomController implements Inici
                 App.getInstance().FecharDialog(primmaryStage, blackShadow);
                     
         });
+       
+        autoCapitalizeFirstLetter(nomeTutor);
+        autoCapitalizeFirstLetter(ruaTutor);
+        autoCapitalizeFirstLetter(cidadeTutor);
+        autoCapitalizeFirstLetter(bairroTutor);
+        autoCapitalizeFirstLetter(complementoEnd);
+        applyNumericMask(telefoneTutor);
+        applyNumericMask(numeroCasa);
     }
     
     public boolean validarAdocao(String nome, String telefone){

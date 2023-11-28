@@ -7,6 +7,7 @@ public class FiltrosAnimais {
         private boolean filtrarFeminino;
         private boolean filtrarCastradoSim;
         private boolean filtrarCastradoNao;
+        private boolean filtrarSexoDesconhecido;
         private String intervaloPrimeiroAno;
         private String intervaloPrimeiroMeses;
         private String intervaloSegundoAno;
@@ -17,6 +18,14 @@ public class FiltrosAnimais {
             return ordenacaoSelecionada;
         }
 
+        public boolean isFiltrarSexoDesconhecido() {
+            return filtrarSexoDesconhecido;
+        }
+
+        public void setFiltrarSexoDesconhecido(boolean filtrarSexoDesconhecido) {
+            this.filtrarSexoDesconhecido = filtrarSexoDesconhecido;
+        }
+     
         public void setOrdenacaoSelecionada(String ordenacaoSelecionada) {
             this.ordenacaoSelecionada = ordenacaoSelecionada;
         }

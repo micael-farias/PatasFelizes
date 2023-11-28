@@ -40,7 +40,7 @@ public class AnimalFormularioController extends CustomController{
     }
     
         
-    public void textFormatter(TextField mesesTextField, TextField anoTextField) {
+    public static void textFormatter(TextField mesesTextField, TextField anoTextField) {
        // Criar um TextFormatter que aceita apenas números de 1 a 12
         TextFormatter<String> textFormatter = new TextFormatter<>(change -> {
             String newText = change.getControlNewText();

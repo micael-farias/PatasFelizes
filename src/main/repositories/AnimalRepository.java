@@ -195,8 +195,38 @@ private Animal atualizarAnimal(Animal animal) throws SQLException {
 
     }
     
+    public StringBuilder  filtrarPorSexo( boolean filtrarMasculino, boolean filtrarFeminino, boolean sexoDesconhecido){
+        StringBuilder sql = new StringBuilder("");
+        if(filtrarMasculino && filtrarFeminino && sexoDesconhecido) return sql;
+        boolean algumFiltroAtivado = filtrarMasculino || filtrarFeminino || sexoDesconhecido;
+
+        if (algumFiltroAtivado) {
+            sql.append(" AND (");
+
+            if (filtrarMasculino) {
+                sql.append("Sexo = 'M' OR ");
+            }
+
+            if (filtrarFeminino) {
+                sql.append("Sexo = 'F' OR ");
+            }
+
+            if (sexoDesconhecido) {
+                sql.append("Sexo = 'N' OR ");
+            }
+
+            // Remove o último " OR "
+            sql.delete(sql.length() - 4, sql.length());
+
+            sql.append(")");
+        }
+        
+        return sql;
+    }
+
+    
      public List<Animal> selecionarAnimais(String ordenacao, String status,
-            boolean filtrarMasculino, boolean filtrarFeminino,
+            boolean filtrarMasculino, boolean filtrarFeminino, boolean sexoDesconhecido,
             boolean filtrarSim, boolean filtrarNao,
             Calendar intervaloPrimeiro, Calendar intervaloSegundo) throws SQLException {
             List<Animal> animais = new ArrayList<>();
@@ -209,13 +239,7 @@ private Animal atualizarAnimal(Animal animal) throws SQLException {
                 sql.append(" AND Status = '").append(status).append("'");
             }          
             
-            if (filtrarMasculino) {
-                if(!filtrarFeminino){
-                    sql.append(" AND Sexo = 'M'");
-                }               
-            }else if(filtrarFeminino){
-                sql.append(" AND Sexo = 'F'");
-            }
+            sql.append(filtrarPorSexo(filtrarMasculino, filtrarFeminino, sexoDesconhecido));
             
             if (filtrarSim) {
                 if(!filtrarNao){

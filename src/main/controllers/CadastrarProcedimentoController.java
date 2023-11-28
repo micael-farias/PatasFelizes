@@ -23,6 +23,7 @@ import main.services.VoluntarioService;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
 import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 /**
@@ -81,6 +82,9 @@ public class CadastrarProcedimentoController extends CustomController implements
         configurarVoluntarios();
         configurarTiposProcedimento();
         TextFieldUtils.setupCurrencyTextField(valorProcedimento);
+        autoCapitalizeFirstLetter(descricaoProcedimento);
+        autoCapitalizeFirstLetter(voluntarioProcedimento);
+        autoCapitalizeFirstLetter(tipoProcedimento);
 
         if(procedimento != null) setData();
     }

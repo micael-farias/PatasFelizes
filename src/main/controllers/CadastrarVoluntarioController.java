@@ -23,6 +23,7 @@ import main.utils.ImageLoader;
 import main.utils.Rectangles;
 import static main.utils.Rectangles.GetCircleVoluntario;
 import static main.utils.Rectangles.GetRectangleVoluntario;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
 import main.utils.ToogleEnum;
 import main.utils.ValidacaoUtils;
 
@@ -89,7 +90,9 @@ public class CadastrarVoluntarioController extends CustomController implements I
                 if(voluntarioService.DeletarVoluntarioPorId(voluntario.getId()) == 1);
                     App.getInstance().EntrarTelaOnResume(FORM_EQUIPE, contentFather, primmaryStage, blackShadow, null);
             });
-        });    
+        }); 
+        
+        autoCapitalizeFirstLetter(nomeVoluntario);
     }
     
     public Voluntario Cadastrar(){

@@ -15,6 +15,7 @@ import main.App;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
 import main.model.Despesa;
+import static main.model.Despesa.somarValores;
 import main.model.FiltroDespesa;
 import main.model.Procedimento;
 import main.services.DoacaoServices;
@@ -78,7 +79,7 @@ public class DespesasController implements Inicializador, Resumidor {
     }
     
     public void calcularTotal(List<Despesa> despesas){
-        double valorTotal = Despesa.somarValores(despesas);
+        double valorTotal = somarValores(despesas);
         totalDespesas.setText(RealFormatter.formatarComoReal(valorTotal));;
     }
 
