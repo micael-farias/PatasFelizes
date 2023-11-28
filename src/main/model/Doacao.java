@@ -4,7 +4,6 @@
  */
 package main.model;
 
-import java.util.Calendar;
 import java.util.Date;
 import main.annotations.TableName;
 

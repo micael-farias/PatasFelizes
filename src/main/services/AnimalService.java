@@ -68,7 +68,7 @@ public class AnimalService  {
     public List<Animal> selecionarAnimais(String ordenacao, String status, boolean filtrarMasculino,
         boolean filtrarFeminino,boolean filtrarSim, boolean filtrarNao, Calendar intervaloPrimeiro, Calendar intervaloSegundo) {
         try {
-            return animalRepository.selecionarAnimais(ordenacao, status,
+            return this.animalRepository.selecionarAnimais(ordenacao, status,
                     filtrarMasculino, filtrarFeminino, filtrarSim, filtrarNao, intervaloPrimeiro, intervaloSegundo);
         } catch (SQLException ex) {
             App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar os pets");
