@@ -1,43 +1,28 @@
 package main.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import java.util.Calendar;
 import javafx.stage.Stage;
 import main.App;
 import static main.controllers.AnimalFormularioController.CarregarImagem;
 import main.interfaces.Inicializador;
-import main.interfaces.Resumidor;
 import main.model.Animal;
-import main.model.Idade;
-import main.model.Procedimento;
 import main.services.AnimalService;
 import main.services.ProcedimentoService;
-import static main.utils.Constantes.DIALOG_CADASTRAR_ADOCAO;
-import static main.utils.Constantes.DIALOG_REMOVER;
-import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
-import static main.utils.Constantes.FORM_HOME;
 import static main.utils.Constantes.PATH_IMAGES;
-import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
-import main.utils.ImageLoader;
 import main.utils.NumberHelper;
 import main.utils.Rectangles;
 import main.utils.ToogleEnum;
-import static main.utils.ToogleEnum.DIREITO;
-import static main.utils.ToogleEnum.ESQUERDO;
-import main.views.gridview.ProcedimentoGridView;
 import main.views.toggle.ToggleView;
 
 public class CadastrarAnimalController extends AnimalFormularioController implements Inicializador{
@@ -91,6 +76,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     
     private ProcedimentoService procedimentoService;
 
+
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         initialize();
@@ -101,6 +87,8 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     public void initialize(){
         animalService =  new AnimalService();
         procedimentoService = new ProcedimentoService();
+        statusAnimal.setText("Para a adoção");
+        ultimoStatus = "Para a adoção";
     }
     
     public void configuraToggles(){
@@ -109,7 +97,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     }
     
 
-    public void salvarAnimal(Stage primaryStage) {
+    public Animal salvarAnimal(Stage primaryStage) {
         String nomeAnimal = nomeAnimalTextField.getText();
         String anosAnimal = anosAnimalTextField.getText();
         String mesesAnimal = mesesAnimalTextField.getText() == null ? "0" : mesesAnimalTextField.getText();
@@ -123,13 +111,15 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
                                 
         ToogleEnum castrado = toogleViewCastrado.getSelectedItem();
 
-        animalService.Salvar(-1 ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
+        return animalService.Salvar(-1 ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
     }
     
     public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow) {
         salvarAnimal.setOnMouseClicked(e -> {
-            salvarAnimal(primaryStage);
-            App.getInstance().EntrarTelaInicial(contentFather, primaryStage, blackShadow);
+            Animal animal = salvarAnimal(primaryStage);
+            if(animal != null){
+                App.getInstance().EntrarTelaInicial(contentFather, primaryStage, blackShadow);       
+            }
         });
 
         layoutImageViewAnimal.setOnMouseClicked(e -> {

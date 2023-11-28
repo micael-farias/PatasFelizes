@@ -12,6 +12,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.App;
+import main.enums.MensagemTipo;
 
 public class PdfDownloader {
 
@@ -30,11 +32,11 @@ public class PdfDownloader {
                 document.add(imagem);
 
                 document.close();
+                App.getInstance().SetMensagem(MensagemTipo.SUCESSO, "Um PDF foi salvo na pasta downloads");
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao enviar o PDF");
+
         }
     }
 }

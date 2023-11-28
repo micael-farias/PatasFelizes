@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
+import main.enums.MensagemTipo;
 import main.interfaces.InicializadorComDado;
 import main.model.Despesa;
 import main.model.Procedimento;
@@ -73,12 +74,18 @@ public class DespesaController extends CustomController implements Inicializador
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !despesa.isRealizada();
             setImage(realizada);
+            Despesa despesaObtida;
             if (realizada) {  
-                despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
+                despesaObtida = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
                         DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), true, despesa.getFotoComprovante());
             }else{
-                despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
+                despesaObtida = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
                         DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), false, despesa.getFotoComprovante());      
+            }
+            if(despesaObtida == null){
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da despesa");
+            }else{
+                despesa= despesaObtida;
             }
         });        
         
@@ -115,13 +122,11 @@ public class DespesaController extends CustomController implements Inicializador
     }
       
     public void setImage(boolean realizado){
-
-            if(realizado){
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
-            }else{
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
-            }
-        
+        if(realizado){
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
+        }else{
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
+        }       
     }
     
     @Override

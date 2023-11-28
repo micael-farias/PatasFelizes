@@ -1,19 +1,13 @@
 package main.services;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import main.App;
+import main.enums.MensagemTipo;
 import main.model.Adocao;
 import main.model.Adotante;
-import main.model.Procedimento;
 import main.repositories.AdocaoRepository;
 import main.repositories.AdotantesRepository;
 import main.repositories.AnimalRepository;
-import main.repositories.DespesaRepository;
-import main.repositories.ProcedimentoRepository;
-import main.repositories.TarefasRepository;
 
 public class AdocaoServices {
 
@@ -45,6 +39,8 @@ public class AdocaoServices {
             adocaoRepository.CommitTransaction();
         }catch(Exception e){
             e.printStackTrace();
+            String mensagem = idAnimal == -1 ? "cadastrar" : "atualizar";
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a adoção");
             try {
                 adocaoRepository.RollbackTransaction();
             } catch (SQLException ex) {

@@ -36,6 +36,12 @@ public class Animal implements PossuiIdFoto{
         this.DataCadastro = Calendar.getInstance();
     }
 
+    public void setDataCadastro(Calendar DataCadastro) {
+        this.DataCadastro = DataCadastro;
+    }
+
+    
+    
     public String getStatus() {
         return Status;
     }

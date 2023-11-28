@@ -19,7 +19,10 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.App;
+import main.enums.MensagemTipo;
 import main.repositories.TarefasRepository;
+import main.utils.DateHelper;
 import static main.utils.DateHelper.LocalDateParaCalendar;
 
 public class DespesaServices {
@@ -46,7 +49,7 @@ public class DespesaServices {
     }    
     
     public Despesa Cadastrar(int idDespesa, String descricao, double valor, LocalDate dataLocal, String animalString, String tipo, Boolean foiRealizado, byte[] fotoComprovante) {
-        Calendar data = LocalDateParaCalendar(dataLocal);        
+        Calendar data = LocalDateParaCalendar(dataLocal);    
         boolean realizado = foiRealizado == null ? data.before(GetMidnightDate()) : foiRealizado;
 
         
@@ -55,7 +58,7 @@ public class DespesaServices {
         {
             animal = animalRepository.EncontrarAnimalPorNome(animalString);
             if(animal == null){
-                // mensagem de erro
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Animal não encontrado, verifique seu nome");
                 return null;
             }  
         }       
@@ -87,6 +90,8 @@ public class DespesaServices {
             despesaRepository.CommitTransaction();
         }catch(Exception e){
             e.printStackTrace();
+            String mensagem = idDespesa == -1 ? "cadastrar" : "atualizar";
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a despesa");
             try {
                 despesaRepository.RollbackTransaction();
             } catch (SQLException ex) {

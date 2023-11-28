@@ -1,0 +1,13 @@
+#card{
+    -fx-background-color :  #BF3436; 
+    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 4, 0, 0, 0);
+    -fx-cursor: hand;
+    -fx-background-radius: 3;
+}
+
+#card:hover{
+    -fx-background-color :  #FF0000; 
+    -fx-effect: dropshadow(three-pass-box, rgba(22, 22, 22, 0.4), 4, 0, 0, 0);
+    -fx-cursor: hand;
+    -fx-background-radius: 3;
+}

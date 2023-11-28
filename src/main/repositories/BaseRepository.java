@@ -46,6 +46,12 @@ public class BaseRepository<T> {
         }
     }
     
+    public String QueryBuscaPorNome(String tabela, String valor){
+       return String.format("SELECT * FROM %s WHERE UPPER(NOME) = UPPER('%s') OR UPPER(NOME) LIKE UPPER('%s%%') OR UPPER(NOME) LIKE UPPER('%%%s%%')",
+                tabela, valor, valor, valor);
+
+    }
+    
     public int Inserir(T objeto) throws SQLException, IllegalAccessException {
         String tabela = ObterNomeTabela(objeto.getClass());
         Field[] campos = objeto.getClass().getDeclaredFields();

@@ -1,22 +1,15 @@
 package main.controllers;
 
-import com.sun.javafx.css.StyleManager;
-import java.util.Calendar;
 import java.util.List;
-import javafx.collections.ObservableList;
-import javafx.css.Rule;
-import javafx.css.StyleOrigin;
 import main.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import static javafx.scene.input.KeyCode.BACK_SPACE;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,15 +19,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.enums.MensagemTipo;
 import main.factories.StatusAnimalFactory;
-import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.interfaces.Resumidor;
 import main.model.Adocao;
 import main.model.Animal;
 import main.model.Idade;
 import main.model.Procedimento;
-import main.model.Voluntario;
 import main.services.AdocaoServices;
 import main.services.AnimalService;
 import main.services.ProcedimentoService;
@@ -72,13 +64,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     private TextArea descricaoAnimalTextField;
 
     @FXML
-    private Button filtrarAnimaisButton;
-
-    @FXML
     private ImageView imagemAnimal;
-
-    @FXML
-    private Label labelNome;
 
     @FXML
     private VBox layoutAdicionarAdocao;
@@ -136,11 +122,11 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     private byte[] fotoAnimal;
     private String ultimoStatus;
     private char sexoAnimalValor;
-    ToggleView toggleViewSexo;
-    ToggleView toogleViewCastrado;
-    ProcedimentoService procedimentoService;
-    AnimalService animalService;
-    AdocaoServices adocaoService;
+    private ToggleView toggleViewSexo;
+    private ToggleView toogleViewCastrado;
+    private ProcedimentoService procedimentoService;
+    private AnimalService animalService;
+    private AdocaoServices adocaoService;
     
     private static Adocao adocao;
     private static Animal ultimoAnimal;
@@ -202,7 +188,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         toogleViewCastrado.ativarBotao((animal.isCastrado()) ? DIREITO : ESQUERDO);
     }
     
-    public void atualizarAnimal(Stage primaryStage) {
+    public Animal atualizarAnimal(Stage primaryStage) {
         String nomeAnimal = nomeAnimalTextField.getText();
         String anosAnimal = anosAnimalTextField.getText();
         String mesesAnimal = mesesAnimalTextField.getText() == null ? "0" : mesesAnimalTextField.getText();
@@ -215,15 +201,21 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         } 
                                 
         ToogleEnum castrado = toogleViewCastrado.getSelectedItem();
-
+        
+        if(ultimoStatus.equals("Adotado") && adocao == null){
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrada uma adoção para o animal");
+            return null;
+        }
+        
         Animal animal = animalService.Salvar(ultimoAnimal.getId() ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
         if(animal.getStatus().equals("PA") && adocao != null) adocaoService.DeletarAdocaoPorId(adocao.getId(), ultimoAnimal.getId());
+        return animal;
     }
     
     public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow) {
         salvarAnimal.setOnMouseClicked(e -> {
-            atualizarAnimal(primaryStage);
-            App.getInstance().EntrarTelaComRemocao(FORM_HOME, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow);
+            if(atualizarAnimal(primaryStage) != null)
+                App.getInstance().EntrarTelaComRemocao(FORM_HOME, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow);
         });
 
         layoutImageViewAnimal.setOnMouseClicked(e -> {
@@ -293,7 +285,10 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         });
         
         removerButton.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow, new Object[]{ultimoAnimal.getId()});
+            App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,new Object[]{"Deseja realmente deletar esse animal? Tudo ao seu respeito será removido."}, (dado) ->{
+                if(animalService.DeletarAnimalPorId(ultimoAnimal.getId()));
+                    App.getInstance().EntrarTelaOnResume(FORM_HOME, contentFather, primaryStage, blackShadow, null);
+            });
         });       
         
         sexoDesconhecidoCheckBox.setOnMouseClicked(event -> {

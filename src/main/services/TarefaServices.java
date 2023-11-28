@@ -43,12 +43,17 @@ public class TarefaServices {
     }    
     
     public Procedimento Salvar(int idTarefa, String voluntarioString, String animalString, String descricao, LocalDate dataLocal, String tipo, Boolean foiRealizado){
-        Voluntario voluntario = voluntarioService.ObterVoluntarioPorNome(voluntarioString);
-        if(voluntario == null){
-            // mensagem de erro
-            return null;
-        }
+          
         
+        Voluntario voluntario = null;
+       
+        if(voluntarioString != null){
+            voluntario = voluntarioService.ObterVoluntarioPorNome(voluntarioString);
+            if(voluntario == null){
+                // mensagem de erro
+                return null;
+            }
+        }
         Animal animal = null;
         if(animalString != null && !animalString.isEmpty())
         {
@@ -74,7 +79,7 @@ public class TarefaServices {
                 if(animal != null){
                     procedimento = procedimentoRepository.Salvar(-1, descricao, data, tipo, null, voluntario, animal, realizado);
                                 if(enviaEmail){
-                new EmailSenderThread(voluntario.getEmail(), "Nova tarefa pra você", "Patas felizes tem uma nova tarefa").start();
+                new EmailSenderThread(voluntario.getEmail(), "Nova tarefa pra você", "Patas felizes tem uma nova tarefa", null).start();
             }
                 }
             }else{               

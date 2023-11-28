@@ -93,7 +93,7 @@ public class AdotantesRepository extends BaseRepository<Adotante> {
         }
         return null;
     }
-    public Adotante BuscarAdotantePorId(int id) {
+    public Adotante BuscarAdotantePorId(int id) throws SQLException {
         Adotante adotante = null;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ADOTANTES WHERE ID = ?")) {
@@ -106,6 +106,7 @@ public class AdotantesRepository extends BaseRepository<Adotante> {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw  e;
         }
 
         return adotante;
@@ -128,5 +129,4 @@ public class AdotantesRepository extends BaseRepository<Adotante> {
     }
 
 
-    // Add other methods as needed for Adotante repository
 }

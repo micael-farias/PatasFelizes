@@ -12,6 +12,8 @@ import main.repositories.VoluntarioRepository;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.App;
+import main.enums.MensagemTipo;
 
 /**
  *
@@ -30,6 +32,9 @@ public class VoluntarioService {
             voluntarioRepository.Salvar(idVoluntario, nome, email, telefone, fotoVoluntario);
         } catch (Exception ex) {
             ex.printStackTrace();
+                String mensagem = idVoluntario == -1 ? "cadastrar" : "atualizar";
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o voluntário");
+          
         }
     }
 

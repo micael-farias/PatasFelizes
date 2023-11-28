@@ -34,7 +34,7 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
 
     
     // Method to insert a new Adocao into the database
-    public Adocao InserirAdocao(Adocao adocao) {
+    public Adocao InserirAdocao(Adocao adocao) throws SQLException {
         String sql = "INSERT INTO ADOCOES (IdAnimal, IdAdotante, DataCadastro) VALUES (?, ?, ?)";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -53,7 +53,7 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
         return null;
     }

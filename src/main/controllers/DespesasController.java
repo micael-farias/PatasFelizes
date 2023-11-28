@@ -2,31 +2,18 @@ package main.controllers;
 
 import java.util.List;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import static javafx.scene.input.KeyCode.BACK_SPACE;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import main.App;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
-import main.model.Animal;
 import main.model.Despesa;
-import main.model.Doacao;
 import main.services.DoacaoServices;
 import main.services.DespesaServices;
-import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
-import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
-import static main.utils.Constantes.TOOGLE_BUTTON;
-import main.utils.RealFormatter;
-import main.utils.ToogleEnum;
 import main.views.gridview.DespesasGridView;
-import main.views.gridview.DoacoesGridView;
 import main.views.toggle.ToggleView;
 
 public class DespesasController implements Inicializador, Resumidor {  

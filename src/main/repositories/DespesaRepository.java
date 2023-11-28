@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.sql.*;
 import main.model.Despesa;
+import static main.utils.DateHelper.DateToCalendar;
 
 public class DespesaRepository extends BaseRepository<Despesa> {
 
@@ -83,10 +84,38 @@ public class DespesaRepository extends BaseRepository<Despesa> {
         //Excluir(despesa);
     }
 
-    public Despesa EncontrarDespesaPor(int idDespesa) {
-        var despesas = SelecionarTodos("*", "ID = " + idDespesa, null, Despesa.class);
-        if ( despesas != null ) return despesas.get(0);
+    public Despesa EncontrarDespesaPor(int id) {
+        String sql = "SELECT * FROM Despesas WHERE Id = ?";
+        
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Mapear os resultados para o objeto Despesa
+                    return mapearDespesa(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
+    }
+
+    // Método para mapear uma despesa a partir de um ResultSet
+    private Despesa mapearDespesa(ResultSet resultSet) throws SQLException {
+        Despesa despesa = new Despesa();
+        despesa.setId(resultSet.getInt("Id"));
+        despesa.setDescricao(resultSet.getString("Descricao"));
+        despesa.setValor(resultSet.getDouble("Valor"));
+        despesa.setData(DateToCalendar(resultSet.getDate("Data")));
+        despesa.setTipo(resultSet.getString("Tipo"));
+        despesa.setRealizada(resultSet.getBoolean("Realizada"));
+        despesa.setDataCadastro(DateToCalendar(resultSet.getDate("DataCadastro")));
+        despesa.setFotoComprovante(resultSet.getBytes("FotoComprovante"));
+
+        return despesa;
     }
 
     public List<Despesa> ObterDespesasPorDescricao(String desc) {
