@@ -137,4 +137,15 @@ public class DespesaServices {
         }
     }
     
+    public int Excluir(int id) {
+        try {
+            despesaRepository.Excluir(Despesa.class, id);
+            return 1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar despesa");
+            return 0;
+        }
+    }
+    
 }

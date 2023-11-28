@@ -127,9 +127,13 @@ public class TarefaController extends CustomController implements InicializadorC
         });  
         
         excluirTarefa.setOnMouseClicked(e ->{
-          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_TAREFAS, contentFather, primaryStage, blackShadow,
-                   new Object[]{ "Deseja realmente excluir essa tarefa? "});        
-          });  
+          App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_TAREFAS, contentFather, primaryStage, blackShadow,
+                   new Object[]{ "Deseja realmente excluir essa tarefa? "}, (dados) ->{
+                       if(tarefaServices.Excluir(procedimento.getId()) == 1){
+                           App.getInstance().EntrarTelaOnResume(FORM_TAREFAS, contentFather, primaryStage, blackShadow, null);
+                       }
+                   });
+        });
         
         editarTarefa.setOnMouseClicked(e ->{
           App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA, contentFather, primaryStage, blackShadow,

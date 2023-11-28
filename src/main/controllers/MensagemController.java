@@ -22,27 +22,20 @@ public class MensagemController {
     @FXML
     private Label mensagem;
 
-    @FXML
-    private Label tituloMensagem;
 
     public void setData(MensagemTipo tipo, String msg) {
         String estilosExistentes = layoutMensagem.getStyle();
 
-        String estiloFundo = (tipo == MensagemTipo.ERRO) ? "-fx-background-color: #BF3436;" : "-fx-background-color: #087A12;";
+        String estiloFundo = (tipo == MensagemTipo.ERRO) ? "-fx-background-color: #8C2222;" : "-fx-background-color: #228B22;";
 
         String novoEstilo = estilosExistentes + estiloFundo;
         layoutMensagem.setStyle(novoEstilo);
 
-        String iconePath = (tipo == MensagemTipo.ERRO) ? PATH_IMAGES + "erro.png" : PATH_IMAGES + "sucesso.png";
+        String iconePath = (tipo == MensagemTipo.ERRO) ? PATH_IMAGES + "sistemaVermelho.png" : PATH_IMAGES + "sistemaVerde.png";
         Image icone = new Image(getClass().getResourceAsStream(iconePath));
         iconMensagem.setImage(icone);
         
-        String titulo = (tipo == MensagemTipo.ERRO) ? "Ops!." : "Sucesso";
-        tituloMensagem.setText(titulo);
-          // Ajuste a altura preferencial do VBox
-        double novaAltura = mensagem.getBoundsInLocal().getHeight() + mensagem.getBoundsInLocal().getHeight();
-        layoutMensagem.setPrefHeight(novaAltura);
-        mensagem.setText("sfdjhiidfjsahsdfjihsdfiuofsdhjifusdhfuiddasdsndssiadkjjsdjsaosdijsdisadiosdaiojsdaojsdjiodssdjajiosdavohdfsioufsdhuidfsofdsiuofduihsdfhsui");
+        mensagem.setText(msg);
         
         // Ajuste a altura da Label mensagem para se adequar ao conteúdo
         mensagem.setPrefHeight(USE_COMPUTED_SIZE);

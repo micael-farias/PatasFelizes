@@ -70,6 +70,7 @@ public class AnimalService  {
         try {
             return animalRepository.selecionarAnimais(ordenacao, status,
                     filtrarMasculino, filtrarFeminino, sexoDesconhecido, filtrarSim, filtrarNao, intervaloPrimeiro, intervaloSegundo);
+      
         } catch (SQLException ex) {
             App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar os pets");
             return null;

@@ -12,11 +12,6 @@
    <children>
       <VBox layoutX="34.0" layoutY="6.0" prefWidth="211.0" AnchorPane.leftAnchor="50.0">
          <children>
-            <Label fx:id="tituloMensagem" prefHeight="28.0" prefWidth="198.0" text="Ops!..." textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="17.0" />
-               </font>
-            </Label>
             <Label fx:id="mensagem" alignment="TOP_LEFT" prefHeight="116.0" prefWidth="211.0" text="IJJKDJSDAKJOKSDAJSADOSKADJODASADISDSDOAISDJAOISDJSDOAIJSDAOISDAJSDAIOSDA" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="16.0" />
@@ -24,9 +19,9 @@
             </Label>
          </children>
       </VBox>
-      <ImageView fx:id="iconMensagem" fitHeight="26.0" fitWidth="28.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
+      <ImageView fx:id="iconMensagem" fitHeight="26.0" fitWidth="28.0" layoutX="10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0">
          <image>
-            <Image url="@../../../assets/images/erro.png" />
+            <Image url="@../../../assets/images/sistemaVermelho.png" />
          </image>
       </ImageView>
    </children>

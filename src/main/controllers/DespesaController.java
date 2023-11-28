@@ -14,8 +14,10 @@ import main.model.Despesa;
 import main.model.Procedimento;
 import main.services.DespesaServices;
 import main.services.ProcedimentoService;
+import main.utils.Constantes;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
 import static main.utils.Constantes.DIALOG_REMOVER;
+import static main.utils.Constantes.FORM_DESPESAS;
 import static main.utils.Constantes.FORM_DOACOES;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
@@ -111,8 +113,12 @@ public class DespesaController extends CustomController implements Inicializador
           });
         
         excluirDespesa.setOnMouseClicked(e ->{
-          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_DOACOES, contentFather, primaryStage, blackShadow,
-                   new Object[]{ "Deseja realmente excluir essa despesa? "});        
+          App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_DESPESAS, contentFather, primaryStage, blackShadow,
+                  new Object[]{ "Deseja realmente excluir essa despesa? "}, (dados) ->{
+                       if(despesaService.Excluir(despesa.getId()) == 1){
+                           App.getInstance().EntrarTelaOnResume(FORM_DESPESAS, contentFather, primaryStage, blackShadow, null);
+                       }
+                   });             
           });  
         
         editarDespesa.setOnMouseClicked(e ->{

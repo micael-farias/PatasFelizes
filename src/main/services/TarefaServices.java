@@ -12,6 +12,7 @@ import main.App;
 import main.enums.MensagemTipo;
 import main.model.Animal;
 import main.model.Despesa;
+import main.model.Doacao;
 import main.model.FiltroDespesa;
 import main.model.Procedimento;
 import main.model.Tarefa;
@@ -130,6 +131,17 @@ public class TarefaServices {
             ex.printStackTrace();
             App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha em filtrar as tarefas");
             return null;
+        }
+    }
+    
+    public int Excluir(int id) {
+        try {
+            procedimentoRepository.Excluir(Procedimento.class, id);
+            return 1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar tarefa");
+            return 0;
         }
     }
 }

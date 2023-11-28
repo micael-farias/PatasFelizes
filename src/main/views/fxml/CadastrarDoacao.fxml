@@ -72,7 +72,7 @@
                      <children>
                         <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../assets/images/arquivo-pdf%20.png" />
+                              <Image url="@../../../assets/images/arquivo-pdf-escuro.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="labelComprovante" text="doacao_n12.pdf" textFill="#666666">

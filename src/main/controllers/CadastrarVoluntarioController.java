@@ -67,6 +67,7 @@ public class CadastrarVoluntarioController extends CustomController implements I
     
     public void initialise(Stage primmaryStage){
         voluntarioService = new VoluntarioService();
+        removerButton.setVisible(idVoluntario != -1);
         setData(primmaryStage);
         ValidacaoUtils.mascaraEmail(emailVoluntario);
     }

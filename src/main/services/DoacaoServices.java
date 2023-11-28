@@ -65,4 +65,15 @@ public class DoacaoServices {
              return null;
         }
     }
+
+    public int Excluir(int id) {
+        try {
+            doacaoRepository.Excluir(Doacao.class, id);
+            return 1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar doação");
+            return 0;
+        }
+    }
 }
