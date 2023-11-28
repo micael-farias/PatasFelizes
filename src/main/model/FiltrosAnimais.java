@@ -1,6 +1,6 @@
 package main.model;
 
-public class FiltrosAnimalModel {
+public class FiltrosAnimais {
         private String ordenacaoSelecionada;
         private String statusSelecionado;
         private boolean filtrarMasculino;

@@ -7,8 +7,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.sql.*;
+import main.model.Animal;
 import main.model.Despesa;
+import main.model.FiltroDespesa;
 import static main.utils.DateHelper.DateToCalendar;
+import static main.utils.DateHelper.invalidString;
 
 public class DespesaRepository extends BaseRepository<Despesa> {
 
@@ -46,16 +49,15 @@ public class DespesaRepository extends BaseRepository<Despesa> {
     
     private Despesa atualizarDespesa(Despesa despesa) throws SQLException {
     try (PreparedStatement statement = connection.prepareStatement(
-                 "UPDATE Despesas SET descricao=?, valor=?, data=?, tipo=?, realizada=?, dataCadastro=?, fotoComprovante=? WHERE id=?")) {
+                 "UPDATE Despesas SET descricao=?, valor=?, data=?, tipo=?, realizada=?, fotoComprovante=? WHERE id=?")) {
 
         statement.setString(1, despesa.getDescricao());
         statement.setDouble(2, despesa.getValor());
         statement.setTimestamp(3, new Timestamp(despesa.getData().getTimeInMillis()));
         statement.setString(4, despesa.getTipo());
         statement.setBoolean(5, despesa.isRealizada());
-        statement.setTimestamp(6, new Timestamp(despesa.getDataCadastro().getTimeInMillis()));
-        statement.setBytes(7, despesa.getFotoComprovante());
-        statement.setInt(8, despesa.getId());
+        statement.setBytes(6, despesa.getFotoComprovante());
+        statement.setInt(7, despesa.getId());
 
         System.out.println("SQL gerado: " + statement.toString());
 
@@ -121,4 +123,51 @@ public class DespesaRepository extends BaseRepository<Despesa> {
     public List<Despesa> ObterDespesasPorDescricao(String desc) {
         return SelecionarTodos("*", "DESCRICAO LIKE '%"+desc+"%'", null, Despesa.class);
     }
+
+    public List<Despesa> FiltrarDespesas(FiltroDespesa filtro, int idAnimal) throws SQLException {
+
+        List<Despesa> despesas = new ArrayList<Despesa>();     
+
+        StringBuilder sql = new StringBuilder("SELECT D.* FROM DESPESAS D ");
+        sql.append("LEFT JOIN PROCEDIMENTOS P ON D.ID = P.IDDESPESA ");
+        sql.append("WHERE 1 = 1");
+
+        if (!invalidString(filtro.getAnimal())) {
+            sql.append(" AND P.IDANIMAL = ").append(idAnimal);
+        }       
+
+        if(!invalidString(filtro.getTipo())){
+            sql.append(" AND D.TIPO = '").append(filtro.getTipo()).append("'");
+        }
+
+        if (filtro.getDataFinal() != null && filtro.getDataInicial() != null) {
+            sql.append(" AND D.Data BETWEEN ? AND ?");
+        }
+
+        if (!invalidString(filtro.getOrdenacao())){
+            sql.append(" ORDER BY D.").append(filtro.getOrdenacao());
+        }
+
+        System.out.println(sql);
+
+        try (PreparedStatement statement = connection.prepareStatement(sql.toString())) {
+
+            if(filtro.getDataFinal() != null && filtro.getDataInicial() != null){
+                statement.setTimestamp(1, new Timestamp(filtro.getDataInicial().getTimeInMillis()));
+                statement.setTimestamp(2, new Timestamp(filtro.getDataFinal().getTimeInMillis()));                        
+            }
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Despesa despesa = mapearDespesa(resultSet);
+                    despesas.add(despesa);
+                }
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return despesas;
+    }
+
 }

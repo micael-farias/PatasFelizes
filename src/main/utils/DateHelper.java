@@ -29,6 +29,18 @@ public class DateHelper {
         return resultado;
     }
     
+     public static String CalendarParaStringReduced(Calendar calendar) {
+        if (calendar == null) {
+            return null;
+        }
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String resultado = formato.format(calendar.getTime());
+        resultado = resultado.substring(0, 1).toUpperCase() + resultado.substring(1);
+        return resultado;
+    }
+    
+    
     public static String DataParaStringReduced(Date data) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(data);

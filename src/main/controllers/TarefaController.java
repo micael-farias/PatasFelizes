@@ -85,7 +85,7 @@ public class TarefaController extends CustomController implements InicializadorC
         descricaoTarefa.setText(procedimento.getDescricao());
         nomeAnimal.setText(procedimento.getAnimal()!= null ? procedimento.getAnimal().getNome() : "-");
         nomeVoluntario.setText(procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().getNome());
-        dataTarefa.setText(CalendarParaString(procedimento.getData()));
+        dataTarefa.setText(CalendarParaString(procedimento.getData()) + "-" +DateHelper.CalendarParaStringReduced(procedimento.getDataCadastro()));
 
        setImage(procedimento.isRealizado());
         checkBoxRealizado.setOnMouseClicked(event -> {

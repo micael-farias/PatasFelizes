@@ -18,26 +18,18 @@ public class Doacao {
     private int Id;
     private String Doador;
     private double Valor;
-    private Calendar Data;
+    private Date Data;
     private byte[] FotoComprovante;
-    private Calendar DataCadastro;
-
-    public Doacao(int id, String Doador, double Valor, Calendar Data) {
-        this.Id = id;
-        this.Doador = Doador;
-        this.Valor = Valor;
-        this.Data = Data;
-        this.DataCadastro =  Calendar.getInstance();
-    }
+    private Date DataCadastro;
 
     public Doacao() {
-        this.DataCadastro =  Calendar.getInstance();
+        this.DataCadastro =  new Date();
     }
-    public Calendar getDataCadastro() {
+    public Date getDataCadastro() {
         return DataCadastro;
     }
 
-    public void setDataCadastro(Calendar DataCadastro) {
+    public void setDataCadastro(Date DataCadastro) {
         this.DataCadastro = DataCadastro;
     }
 
@@ -75,11 +67,11 @@ public class Doacao {
         this.Valor = Valor;
     }
 
-    public Calendar getData() {
+    public Date getData() {
         return Data;
     }
 
-    public void setData(Calendar Data) {
+    public void setData(Date Data) {
         this.Data = Data;
     }
     

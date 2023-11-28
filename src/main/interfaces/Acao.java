@@ -9,5 +9,5 @@ package main.interfaces;
  * @author micha
  */
 public interface Acao<T> {
-    void RealizarAcao(T dado);
+    void RealizarAcao(T[] dado);
 }

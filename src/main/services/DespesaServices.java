@@ -21,9 +21,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.App;
 import main.enums.MensagemTipo;
+import main.model.FiltroDespesa;
 import main.repositories.TarefasRepository;
 import main.utils.DateHelper;
 import static main.utils.DateHelper.LocalDateParaCalendar;
+import static main.utils.DateHelper.invalidString;
 
 public class DespesaServices {
 
@@ -31,7 +33,8 @@ public class DespesaServices {
     AnimalRepository animalRepository; 
     ProcedimentoRepository procedimentoRepository;
     TarefasRepository tarefaRepository;
-            
+    public static FiltroDespesa filtro;
+
     
     public DespesaServices(){
         despesaRepository = new DespesaRepository();
@@ -87,7 +90,11 @@ public class DespesaServices {
                 despesa = despesaRepository.Salvar(idDespesa, descricao, valor, data, tipo, realizado, fotoComprovante);                
             }}
         
+            
+            filtro = null;
+            
             despesaRepository.CommitTransaction();
+            
         }catch(Exception e){
             e.printStackTrace();
             String mensagem = idDespesa == -1 ? "cadastrar" : "atualizar";
@@ -107,4 +114,28 @@ public class DespesaServices {
     public List<Despesa> ObterDespesasPorDescricao(String texto) {
         return despesaRepository.ObterDespesasPorDescricao(texto);
     }
+
+    public List<Despesa> FiltrarDespesas(FiltroDespesa filtro) {
+        int idAnimal = 0;
+        
+        if(!invalidString(filtro.getAnimal()))
+        {
+            Animal animal = animalRepository.EncontrarAnimalPorNome(filtro.getAnimal());
+            if(animal == null){
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Animal não encontrado, verifique seu nome");
+                return null;
+            }  
+            
+            idAnimal = animal.getId();
+        }  
+        
+        try {
+            return despesaRepository.FiltrarDespesas(filtro, idAnimal);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar despesas");
+            return null;
+        }
+    }
+    
 }

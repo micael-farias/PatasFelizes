@@ -15,7 +15,7 @@ import main.enums.MensagemTipo;
 import main.interfaces.Acao;
 import main.interfaces.InicializadorComAcao;
 import main.model.Animal;
-import main.model.FiltrosAnimalModel;
+import main.model.FiltrosAnimais;
 import main.services.AnimalService;
 import main.utils.DateHelper;
 import static main.utils.DateHelper.invalidString;
@@ -56,7 +56,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
     private ChoiceBox<String> tiposOrdenacaoChoiceBox;
 
     @FXML
-    private Button filtrar;
+    private Button filtrar, cancelarFiltro;
 
     private CheckBoxCustomized checkCostumizedFeminino;
     private CheckBoxCustomized checkCostumizedMasculino;
@@ -66,13 +66,12 @@ public class FiltrarAnimalController implements InicializadorComAcao {
     private ChoiceBoxCostumized ordenacaoChoiceBox;
     private ChoiceBoxCostumized statusChoiceBox;
 
-    private static FiltrosAnimalModel filtros;
+    private static FiltrosAnimais filtros;
     private AnimalService animalService;
     private Acao acao;
 
     @Override
-    public void Inicializar(String telaOrigem, Pane contentFather, Stage primmaryStage, Pane blackShadow, Acao acao,
-            Object[] dados) {
+    public void Inicializar(String telaOrigem, Pane contentFather, Stage primmaryStage, Pane blackShadow, Acao acao, Object[] dados) {
         this.acao = acao;
         animalService = new AnimalService();
         inicializarComponentes(primmaryStage, blackShadow);
@@ -82,7 +81,7 @@ public class FiltrarAnimalController implements InicializadorComAcao {
     private void handleFiltrar(Stage primmaryStage, Pane blackShadow) {
         List<Animal> animaisFiltrados = ObterFiltros();
         if (animaisFiltrados != null) {
-            acao.RealizarAcao(animaisFiltrados);
+                 acao.RealizarAcao(new Object[]{ animaisFiltrados, filtros });
             App.getInstance().FecharDialog(primmaryStage, blackShadow);
         }
     }
@@ -105,12 +104,15 @@ public class FiltrarAnimalController implements InicializadorComAcao {
         checkCostumizedNao.inicializar(checkBoxNao);
         statusChoiceBox.initialize(statusCheckBox);
         ordenacaoChoiceBox.initialize(tiposOrdenacaoChoiceBox);
-        filtrar.setOnMouseClicked(e -> handleFiltrar(primmaryStage, blackShadow));
+        filtrar.setOnMouseClicked(e -> handleFiltrar(primmaryStage, blackShadow));                
+        cancelarFiltro.setOnMouseClicked(e ->{
+           App.getInstance().FecharDialog(primmaryStage, blackShadow);
+        });
     }
 
     
     private List<Animal> ObterFiltros() {
-        filtros = filtros == null ? new FiltrosAnimalModel() : filtros;
+        filtros = filtros == null ? new FiltrosAnimais() : filtros;
 
         filtros.setOrdenacaoSelecionada(ordenacaoChoiceBox.getValue());
         filtros.setStatusSelecionado(statusChoiceBox.getValue());

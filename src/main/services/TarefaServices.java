@@ -8,7 +8,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.App;
+import main.enums.MensagemTipo;
 import main.model.Animal;
+import main.model.Despesa;
+import main.model.FiltroDespesa;
 import main.model.Procedimento;
 import main.model.Tarefa;
 import main.model.Voluntario;
@@ -117,5 +121,15 @@ public class TarefaServices {
 
     public List<Procedimento> EncontrarTarefasPorDescricao(String tarefa) {
         return tarefasRepository.EncontrarTarefasPorDescricao(tarefa);
+    }
+
+    public List<Procedimento> FiltrarTarefas(FiltroDespesa filtro) {
+        try {
+            return procedimentoRepository.FiltrarProcedimentos(filtro);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha em filtrar as tarefas");
+            return null;
+        }
     }
 }

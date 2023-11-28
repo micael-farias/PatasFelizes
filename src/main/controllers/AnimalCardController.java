@@ -13,6 +13,7 @@ import main.interfaces.InicializadorComDado;
 import main.model.Animal;
 import main.model.Idade;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
+import main.utils.DateHelper;
 import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
 import static main.utils.ImageLoader.CarregarImagem;
 import main.utils.Rectangles;
@@ -53,7 +54,7 @@ public class AnimalCardController extends CustomController implements Inicializa
         }else{
              textoIdadeAnimal = "Não informada";
         }
-        idadeAnimal.setText(textoIdadeAnimal);
+        idadeAnimal.setText(textoIdadeAnimal + DateHelper.CalendarParaStringReduced(animal.getDataCadastro()));
         nomeAnimal.setText(animal.getNome());
         statusAnimal.setFill(StatusAnimalFactory.GetColorStatus(animal.getStatus()));
         switch (animal.getSexo()) {

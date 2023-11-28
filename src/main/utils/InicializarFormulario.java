@@ -144,7 +144,7 @@ public class InicializarFormulario {
               InicializadorComAcao controlador = loader.getController();
               controlador.Inicializar(telaOrigem,content,primaryStage, blackShadow, acao, dados);
 
-                AnchorPane pane = (tela.contains("Filtrar")) ? CentralizarDialogoDireita(root2, primaryStage) : CentralizarDialogo(root2, primaryStage);
+              AnchorPane pane = (tela.contains("Filtrar")) ? CentralizarDialogoDireita(root2, primaryStage) : CentralizarDialogo(root2, primaryStage);
 
               if(pane.getChildren().contains(blackShadow)){
                   pane.getChildren().remove(blackShadow);
@@ -154,6 +154,9 @@ public class InicializarFormulario {
               }
               blackShadow.setVisible(true);
               pane.getChildren().addAll(blackShadow, root2, mensagemErro);
+              
+              blackShadow.setOnMouseClicked(e -> { FecharDialog(primaryStage, blackShadow);});
+              
 
               dialogoAberto = root2;
           } catch(IOException e) {
