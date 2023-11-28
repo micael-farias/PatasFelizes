@@ -58,6 +58,14 @@ public class ToggleView {
         controlador.setTextoEsquerdo(texto);
    }
    
+   public void manterParaDireita(){
+        controlador.manterParaDireita();
+   }
+      public void manterParaEsquerda(){
+        controlador.manterParaEsquerda();
+   }
+   
+   
    public ToogleEnum getSelectedItem(){
        return controlador.getSelectedItem(); 
    }

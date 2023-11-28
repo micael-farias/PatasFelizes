@@ -18,6 +18,9 @@ import main.model.Adocao;
 import main.model.Adotante;
 import main.services.AdocaoServices;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
+import static main.utils.DateHelper.invalidString;
+import main.utils.ValidacaoUtils;
+import javafx.scene.control.TextInputControl;
 
 /**
  *
@@ -62,8 +65,8 @@ public class CadastrarAdocaoController extends CustomController implements Inici
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
        salvarAdocao.setOnMouseClicked(e->{
-            CadastrarAdocao();
-            acao.RealizarAcao(null);
+            if(CadastrarAdocao() == null) return;
+            acao.RealizarAcao(new Object[]{});
             App.getInstance().FecharDialog(primmaryStage,blackShadow);
                     
         });
@@ -74,7 +77,14 @@ public class CadastrarAdocaoController extends CustomController implements Inici
         });
     }
     
-    public void CadastrarAdocao(){
+    public boolean validarAdocao(String nome, String telefone){
+        boolean nomeValido = ValidacaoUtils.validarCampo(nome, nomeTutor, "O nome do tutor não deve ser vazio");
+        boolean telefoneValido = ValidacaoUtils.validarCampo(telefone, telefoneTutor, "O telefone do tutor não deve ser vazio");
+        return nomeValido && telefoneValido;
+    }
+    
+    
+    public Adocao CadastrarAdocao(){
         String tutor = nomeTutor.getText();
         String telefone = telefoneTutor.getText();
         String cep = cepTutor.getText();
@@ -85,7 +95,10 @@ public class CadastrarAdocaoController extends CustomController implements Inici
         String complemento = complementoEnd.getText();
         int idAdocao = adocao == null ? -1 : adocao.getId();
         int idAdotante = adocao == null || adocao.getAdotante() == null ? -1 : adocao.getAdotante().getId();
-        adocaoServices.Salvar(idAdocao, idAdotante, tutor, telefone, cep, rua, cidade, bairro, numero, complemento, idAnimal);
+        
+        if(!validarAdocao(tutor, telefone)) return null;
+        
+        return adocaoServices.Salvar(idAdocao, idAdotante, tutor, telefone, cep, rua, cidade, bairro, numero, complemento, idAnimal);
     
     }
     
@@ -111,6 +124,7 @@ public class CadastrarAdocaoController extends CustomController implements Inici
         adocaoServices = new AdocaoServices();
         setListeners(contentFather, primmaryStage, blackShadow);
         setData();
+        
     }
 
     

@@ -87,11 +87,7 @@ public class EmailSenderThread extends Thread {
 
             System.out.println("Email enviado para: " + to);
 
-            Platform.runLater(
-              () -> {
-                     App.getInstance().SetMensagem(MensagemTipo.SUCESSO, "Email enviado com sucesso");
-              }
-            );
+
         } catch (Exception e) {
             
             if(!to.equals(username)){

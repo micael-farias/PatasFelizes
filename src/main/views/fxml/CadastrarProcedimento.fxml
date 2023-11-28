@@ -18,8 +18,8 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="79.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Descrição" />
-                  <Label stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="26.0" prefWidth="272.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Descrição" />
                </children>
             </HBox>
             <TextArea fx:id="descricaoProcedimento" prefHeight="82.0" prefWidth="554.0" styleClass="round-layout-text-area" stylesheets="@../css/detalhesanimal.css" wrapText="true" />
@@ -32,8 +32,8 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="60.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Data" />
-                  <Label stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="26.0" prefWidth="242.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Data" />
                </children>
             </HBox>
             <DatePicker fx:id="dataProcedimento" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="31.0" prefWidth="270.0" stylesheets="@../css/datePicker.css" />
@@ -44,7 +44,6 @@
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
                   <Label prefHeight="26.0" prefWidth="95.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Voluntário" />
-                  <Label stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
                </children>
             </HBox>
             <TextField fx:id="voluntarioProcedimento" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
@@ -54,8 +53,8 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="38.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Tipo" />
-                  <Label stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="26.0" prefWidth="259.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Tipo" />
                </children>
             </HBox>
             <TextField fx:id="tipoProcedimento" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />

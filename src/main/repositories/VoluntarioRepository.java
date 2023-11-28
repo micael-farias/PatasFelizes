@@ -69,7 +69,7 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
         return new ArrayList<>(SelecionarTodos("*", "NOME LIKE '%"+nome+"%'", "NOME DESC", Voluntario.class));
     }
     
-    public void Salvar(int idVoluntario, String nome, String email, String telefone, byte[] fotoVoluntario) throws SQLException, IllegalAccessException {
+    public Voluntario Salvar(int idVoluntario, String nome, String email, String telefone, byte[] fotoVoluntario) throws SQLException, IllegalAccessException {
        
        Voluntario voluntario;
       
@@ -89,6 +89,8 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
             voluntario.setFoto(fotoVoluntario);
             Atualizar(voluntario);  
        }
+       
+       return voluntario;
     }
     
 }

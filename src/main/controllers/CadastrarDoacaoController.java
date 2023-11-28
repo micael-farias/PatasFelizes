@@ -27,6 +27,7 @@ import main.utils.ImageLoader;
 import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
+import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 
 public class CadastrarDoacaoController extends CustomController implements InicializadorComDado{
@@ -95,8 +96,8 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarDoacao.setOnMouseClicked(e->{
-            SalvarDespesa();
-            App.getInstance().EntrarTelaOnResume(FORM_DOACOES ,contentFather, primmaryStage, blackShadow, null);                      
+            if(SalvarDespesa() != null)
+                App.getInstance().EntrarTelaOnResume(FORM_DOACOES ,contentFather, primmaryStage, blackShadow, null);                      
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
@@ -115,12 +116,14 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         });
     }
     
-    public void SalvarDespesa(){
+    public Doacao SalvarDespesa(){
         LocalDate data = dataDoacao.getValue();
         String doador = doadorDoacao.getText();
         double valor = RealFormatter.unformatarReal(valorDoacao.getText());
         
-        doacaoServices.Salvar(idDoacao, doador, valor, data, comprovante);
+        if(!validaDoacao(doador, doador, valor)) return null;
+        
+        return doacaoServices.Salvar(idDoacao, doador, valor, data, comprovante);
     }
     
     private void setData() {
@@ -137,6 +140,14 @@ public class CadastrarDoacaoController extends CustomController implements Inici
                 layoutAdicionarComprovante.setVisible(false);
             }
         }
+    }
+    
+      
+    public boolean validaDoacao(String descricao, String tipo, double valor){
+        boolean doador = ValidacaoUtils.validarCampo(descricao, doadorDoacao, "O nome do doador não deve ser vazio");
+        boolean dataValida = ValidacaoUtils.validarCampo(dataDoacao);
+        boolean valorValido = ValidacaoUtils.validarCampoReal(valor, valorDoacao, "Um valor deve ser informado");
+        return doador && dataValida && valorValido;
     }
      
     

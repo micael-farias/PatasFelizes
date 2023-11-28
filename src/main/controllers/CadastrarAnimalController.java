@@ -20,6 +20,7 @@ import main.model.Animal;
 import main.services.AnimalService;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.PATH_IMAGES;
+import static main.utils.DateHelper.invalidString;
 import main.utils.NumberHelper;
 import main.utils.Rectangles;
 import main.utils.ToogleEnum;
@@ -82,6 +83,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         initialize();
         setListeners(contentFather, primmaryStage, blackShadow);
         configuraToggles();
+        textFormatter(mesesAnimalTextField, anosAnimalTextField);
     }
     
     public void initialize(){
@@ -111,7 +113,23 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
                                 
         ToogleEnum castrado = toogleViewCastrado.getSelectedItem();
 
+        if(!validarPet(nomeAnimal)) return null;
+        
         return animalService.Salvar(-1 ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
+    }
+    
+    public boolean validarPet(String nome){
+        if (invalidString(nome)) {
+            nomeAnimalTextField.setPromptText("O nome do animal não deve ser vazio");
+            nomeAnimalTextField.setStyle(nomeAnimalTextField.getStyle() + "-fx-border-color: red ; -fx-border-width: 1px ;");
+            return false;
+        } else {
+            nomeAnimalTextField.setPromptText("");
+            nomeAnimalTextField.setStyle(nomeAnimalTextField.getStyle() + "-fx-border-color: black ; -fx-border-width: 1px ;");
+        }
+
+        
+        return true;
     }
     
     public void setListeners(Pane contentFather, Stage primaryStage, Pane blackShadow) {
@@ -134,7 +152,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         
         sexoDesconhecidoCheckBox.setOnMouseClicked(event -> {
             if (sexoAnimalValor == 'N') {
-                sexoAnimalValor = toggleViewSexo.getSelectedItem() == ToogleEnum.DIREITO ? 'F' : 'M';
+                sexoAnimalValor = toggleViewSexo.getSelectedItem() == ToogleEnum.DIREITO ? 'M' : 'F';
                 toggleViewSexo.ativarToogle();
             }else{
                 sexoAnimalValor = 'N';

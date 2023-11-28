@@ -91,7 +91,6 @@ public class DespesaServices {
             }}
         
             
-            filtro = null;
             
             despesaRepository.CommitTransaction();
             

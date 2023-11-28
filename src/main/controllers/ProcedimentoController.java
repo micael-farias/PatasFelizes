@@ -22,9 +22,11 @@ import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.model.Procedimento;
 import main.services.ProcedimentoService;
+import main.utils.Constantes;
 import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
+import static main.utils.Constantes.FORM_HOME;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
 import static main.utils.DateHelper.CalendarParaString;
@@ -121,8 +123,12 @@ public class ProcedimentoController extends CustomController implements Iniciali
             });
         
         excluirProcedimento.setOnMouseClicked(e ->{
-          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,
-                   new Object[]{ "Deseja realmente excluir essa despesa? "});        
+          App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,
+                   new Object[]{ "Deseja realmente excluir esse procedimento? "}, (dado) ->{
+                       if(procedimentoService.Excluir(procedimento.getId()) == 1){
+                           App.getInstance().EntrarTelaOnResume(FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow, new Object[] {procedimento.getAnimal()});
+                       }
+                   });        
           });  
         
         editarProcedimento.setOnMouseClicked(e ->{

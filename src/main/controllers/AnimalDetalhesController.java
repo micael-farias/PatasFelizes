@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.ENTER;
@@ -37,6 +38,7 @@ import static main.utils.Constantes.FORM_HOME;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
 import static main.utils.DateHelper.CalculaAnosEMesesPorDt;
+import static main.utils.DateHelper.invalidString;
 import main.utils.ImageLoader;
 import main.utils.NumberHelper;
 import main.utils.Rectangles;
@@ -142,13 +144,14 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     
     public void initialize(Object[] dado){
 
-   
+        
         ultimoAnimal = (dado != null) ? (Animal) ObterDadoArray(dado, 0) : ultimoAnimal;
         animalService =  new AnimalService();
         procedimentoService = new ProcedimentoService();
         adocaoService  = new AdocaoServices();
         configuraToggles();
         setData(ultimoAnimal);  
+        textFormatter(mesesAnimalTextField, anosAnimalTextField);
     }
     
     public void initializeViews(Pane contentFather, Stage primmaryStage, Pane blackShadow){
@@ -164,6 +167,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     public void configuraToggles(){
         toggleViewSexo = configuraToggleSexo(toggleSexo);
         toogleViewCastrado = configuraToggleCastrado(toogleCastrado);
+
     }
     
     public void setData(Animal animal){
@@ -174,15 +178,18 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         sexoAnimalValor = animal.getSexo();
         boolean animalSemSexoDefinido = sexoAnimalValor == 'N';
         ultimoStatus = animal.getStatus();
-        anosAnimalTextField.setText(String.valueOf(idadeAnimal.getAnos()));
-        mesesAnimalTextField.setText(String.valueOf(idadeAnimal.getMeses()));
+        if(idadeAnimal != null){
+            anosAnimalTextField.setText(String.valueOf(idadeAnimal.getAnos()));
+            mesesAnimalTextField.setText(String.valueOf(idadeAnimal.getMeses()));
+        }
+
         statusAnimal.setText(StatusAnimalFactory.GetStatusString(animal.getStatus()));
         descricaoAnimalTextField.setText(animal.getDescricao());
         setImage(animalSemSexoDefinido);
         if(animalSemSexoDefinido){
             toggleViewSexo.desativarToogle();
         }else{
-            toggleViewSexo.ativarBotao((animal.getSexo() == 'M') ? DIREITO : ESQUERDO);
+            toggleViewSexo.ativarBotao((animal.getSexo() == 'F') ? DIREITO : ESQUERDO);
         }
         
         toogleViewCastrado.ativarBotao((animal.isCastrado()) ? DIREITO : ESQUERDO);
@@ -206,7 +213,8 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
             App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrada uma adoção para o animal");
             return null;
         }
-        
+                if(!validarPet(nomeAnimal)) return null;
+
         Animal animal = animalService.Salvar(ultimoAnimal.getId() ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
         if(animal.getStatus().equals("PA") && adocao != null) adocaoService.DeletarAdocaoPorId(adocao.getId(), ultimoAnimal.getId());
         return animal;
@@ -326,44 +334,21 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
             layoutAdicionarAdocao.setVisible(true);       
         }
     }
-    
-    
-    public void handleKeyTypedAnos(KeyEvent event) {
-        char input = event.getCharacter().charAt(0);
-
-        if (!Character.isDigit(input) || anosAnimalTextField.getText().length() >= 2) {
-              manterTexto(anosAnimalTextField);     
+     public boolean validarPet(String nome){
+        if (invalidString(nome)) {
+            nomeAnimalTextField.setPromptText("O nome do animal não deve ser vazio");
+            nomeAnimalTextField.setStyle(nomeAnimalTextField.getStyle() + "-fx-border-color: red ; -fx-border-width: 1px ;");
+            return false;
         } else {
-            String currentText = anosAnimalTextField.getText();
-            int ano = NumberHelper.IntegerParse(currentText);
-            if(ano == 1 || ano == 2){
-                anosAnimalTextField.setTextFormatter(criarTextFormatter(2));
-            }else{
-                anosAnimalTextField.setTextFormatter(criarTextFormatter(1));
-            }
+            nomeAnimalTextField.setPromptText("");
+            nomeAnimalTextField.setStyle(nomeAnimalTextField.getStyle() + "-fx-border-color: black ; -fx-border-width: 1px ;");
         }
+
+        
+        return true;
     }
 
-    @FXML
-    public void handleKeyTypedMeses(KeyEvent event) {
-        char input = event.getCharacter().charAt(0);
-        if (!Character.isDigit(input)) {
-              manterTexto(mesesAnimalTextField);     
-        } else {
-            String currentText = mesesAnimalTextField.getText();
-            int ano = NumberHelper.IntegerParse(currentText);
-            if(ano == 1 || ano == 0){
-                mesesAnimalTextField.setTextFormatter(criarTextFormatter(2));
-                manterTexto(mesesAnimalTextField);     
-            }else if(ano > 12){
-                mesesAnimalTextField.setTextFormatter(criarTextFormatter(1));
-                removerUltimoDigito(mesesAnimalTextField);     
-            }else{
-                anosAnimalTextField.positionCaret(currentText.length());   
-                mesesAnimalTextField.setTextFormatter(criarTextFormatter(1));
-            }
-        }
-    }
+
 
     @Override
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {

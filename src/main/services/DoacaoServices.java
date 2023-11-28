@@ -38,7 +38,6 @@ public class DoacaoServices {
         Date data = LocalDateParaDate(dataLocal);     
         try {
             Doacao doacao = doacaoRepository.Salvar(idDoacao, doador, valor, data, fotoComprovante);
-            filtro = null;
             return doacao;
         } catch (Exception ex) {
             ex.printStackTrace();

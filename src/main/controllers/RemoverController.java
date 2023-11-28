@@ -32,7 +32,7 @@ public class RemoverController extends CustomController implements Inicializador
         mensagem.setText(msg);
         
         confirmar.setOnMouseClicked(e->{
-           acao.RealizarAcao(null);
+           acao.RealizarAcao(new Object[]{});
            App.getInstance().FecharDialog(primmaryStage, blackShadow);                  
         });  
         

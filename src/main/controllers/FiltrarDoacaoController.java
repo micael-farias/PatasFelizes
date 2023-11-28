@@ -71,6 +71,7 @@ public class FiltrarDoacaoController implements InicializadorComAcao {
         
         if((doacaoServices.filtro.getDataInicial() == null) !=  (doacaoServices.filtro.getDataFinal() == null)){
            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas");
+           return null;
         }
         
         if(doacaoServices.filtro.getDataFinal()!= null && doacaoServices.filtro.getDataFinal().before(doacaoServices.filtro.getDataInicial())){
