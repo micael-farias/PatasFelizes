@@ -103,7 +103,7 @@ public class ProcedimentoController extends CustomController implements Iniciali
                         procedimento.getAnimal().getId(), false);
             }
              if(procedimentoRetornado == null){
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado do procedimento");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado do procedimento", null);
             }else{
                 procedimento= procedimentoRetornado;
             }

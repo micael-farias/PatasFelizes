@@ -104,12 +104,12 @@ public class FiltrarTarefaController implements InicializadorComAcao {
         getFiltros();
         
         if((filtro.getDataInicial() == null) !=  (filtro.getDataFinal() == null)){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas", null);
             return null;
         }
         
         if(filtro.getDataFinal()!= null && filtro.getDataFinal().before(filtro.getDataInicial())){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial", null);
            return null;
         }
         return tarefasService.FiltrarTarefas(filtro);    

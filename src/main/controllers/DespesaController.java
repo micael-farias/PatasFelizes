@@ -85,7 +85,7 @@ public class DespesaController extends CustomController implements Inicializador
                         DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), false, despesa.getFotoComprovante());      
             }
             if(despesaObtida == null){
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da despesa");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da despesa", null);
             }else{
                 despesa= despesaObtida;
             }

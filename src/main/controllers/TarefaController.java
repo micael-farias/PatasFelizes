@@ -108,7 +108,7 @@ public class TarefaController extends CustomController implements InicializadorC
             }
             
             if(procedimentoObtido == null){
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da tarefa");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da tarefa", null);
             }else{
                 procedimento= procedimentoObtido;
             }

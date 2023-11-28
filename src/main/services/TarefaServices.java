@@ -129,7 +129,7 @@ public class TarefaServices {
             return procedimentoRepository.FiltrarProcedimentos(filtro);
         } catch (SQLException ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha em filtrar as tarefas");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha em filtrar as tarefas", null);
             return null;
         }
     }
@@ -140,7 +140,7 @@ public class TarefaServices {
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar tarefa");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar tarefa", null);
             return 0;
         }
     }

@@ -123,7 +123,7 @@ public class CadastrarVoluntarioController extends CustomController implements I
         boolean emailValido = ValidacaoUtils.validarCampo(email, emailVoluntario, "O email não deve ser vazio");
         boolean emailFormatado = ValidacaoUtils.isValidEmailAddress(email);
         if(!emailFormatado){
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Email inválido");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Email inválido", null);
             ValidacaoUtils.exibirErro(emailVoluntario, "Email inválido");
         }else{
             ValidacaoUtils.limparErro(emailVoluntario);

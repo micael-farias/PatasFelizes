@@ -217,7 +217,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         ToogleEnum castrado = toogleViewCastrado.getSelectedItem();
         
         if(ultimoStatus.equals("Adotado") && adocao == null){
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrada uma adoção para o animal");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrada uma adoção para o animal", null);
             return null;
         }
                 if(!validarPet(nomeAnimal)) return null;

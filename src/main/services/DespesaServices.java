@@ -61,7 +61,7 @@ public class DespesaServices {
         {
             animal = animalRepository.EncontrarAnimalPorNome(animalString);
             if(animal == null){
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Animal não encontrado, verifique seu nome");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Animal não encontrado, verifique seu nome", null);
                 return null;
             }  
         }       
@@ -97,7 +97,7 @@ public class DespesaServices {
         }catch(Exception e){
             e.printStackTrace();
             String mensagem = idDespesa == -1 ? "cadastrar" : "atualizar";
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a despesa");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a despesa", null);
             try {
                 despesaRepository.RollbackTransaction();
             } catch (SQLException ex) {
@@ -121,7 +121,7 @@ public class DespesaServices {
         {
             Animal animal = animalRepository.EncontrarAnimalPorNome(filtro.getAnimal());
             if(animal == null){
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Animal não encontrado, verifique seu nome");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Animal não encontrado, verifique seu nome", null);
                 return null;
             }  
             
@@ -132,7 +132,7 @@ public class DespesaServices {
             return despesaRepository.FiltrarDespesas(filtro, idAnimal);
         } catch (SQLException ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar despesas");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar despesas", null);
             return null;
         }
     }
@@ -143,7 +143,7 @@ public class DespesaServices {
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar despesa");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar despesa", null);
             return 0;
         }
     }

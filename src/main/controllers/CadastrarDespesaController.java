@@ -123,14 +123,16 @@ public class CadastrarDespesaController extends CustomController implements Inic
         
         layoutAdicionarComprovante.setOnMouseClicked(e ->{
             comprovante = ImageLoader.CarregarImagemLocal(primmaryStage);
+            if(comprovante != null){                          
             labelComprovante.setText("despesa_"+idDespesa+".pdf");
             layoutAdicionarComprovante.setVisible(false);
             layoutComprovante.setVisible(true);
+            }
         });
         
         layoutComprovante.setOnMouseClicked(e -> {
                 PdfDownloader.baixarPdf(despesa.getFotoComprovante(), "despesa_"+idDespesa+".pdf");
-
+ 
         });
         
         

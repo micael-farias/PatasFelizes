@@ -40,7 +40,7 @@ public class AdocaoServices {
         }catch(Exception e){
             e.printStackTrace();
             String mensagem = idAnimal == -1 ? "cadastrar" : "atualizar";
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a adoção");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a adoção", null);
             try {
                 adocaoRepository.RollbackTransaction();
             } catch (SQLException ex) {

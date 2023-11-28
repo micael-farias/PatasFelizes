@@ -108,10 +108,12 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         });      
           layoutAdicionarComprovante.setOnMouseClicked(e ->{
             comprovante = ImageLoader.CarregarImagemLocal(primmaryStage);
-            labelComprovante.setText("doacao_"+idDoacao+".pdf");
-            layoutAdicionarComprovante.setVisible(false);
-            layoutComprovante.setVisible(true);
-        });
+            if(comprovante != null){
+                labelComprovante.setText("doacao_"+idDoacao+".pdf");
+                layoutAdicionarComprovante.setVisible(false);
+                layoutComprovante.setVisible(true);
+            }   
+          });
         
         layoutComprovante.setOnMouseClicked(e -> {
                 PdfDownloader.baixarPdf(doacao.getFotoComprovante(), "doacao_"+idDoacao+".pdf");

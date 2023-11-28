@@ -101,12 +101,12 @@ public class FiltrarDespesaController implements InicializadorComAcao {
         getFiltros();
         
         if((despesaService.filtro.getDataInicial() == null) !=  (despesaService.filtro.getDataFinal() == null)){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas", null);
            return null;
         }
         
         if(despesaService.filtro.getDataFinal()!= null && despesaService.filtro.getDataFinal().before(despesaService.filtro.getDataInicial())){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial", null);
            return null;
         }
         

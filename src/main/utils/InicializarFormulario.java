@@ -314,7 +314,9 @@ public class InicializarFormulario {
         }        
     }
     
-    public <T> void SetMensagem(MensagemTipo tipo, String mensagem) {
+    
+    
+    public <T> void SetMensagem(MensagemTipo tipo, String mensagem, Acao acao) {
        try {
            mensagemErro.setVisible(true);
            System.out.println(mensagem);
@@ -328,6 +330,7 @@ public class InicializarFormulario {
            
 
            MensagemController cam = loader.getController();
+           cam.setAcao(acao);
            cam.setData(tipo, mensagem);
 
 

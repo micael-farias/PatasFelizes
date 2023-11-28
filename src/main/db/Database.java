@@ -23,7 +23,7 @@ public class Database {
             statement.executeUpdate(sql);
         } catch (Exception ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao criar banco de dados");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao criar banco de dados", null);
 
         }
     }
@@ -45,7 +45,7 @@ public class Database {
             connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao fechar conexão com o banco de dados");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao fechar conexão com o banco de dados", null);
         }
     }
     

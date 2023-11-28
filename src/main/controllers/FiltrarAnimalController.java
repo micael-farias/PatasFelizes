@@ -161,11 +161,11 @@ public class FiltrarAnimalController implements InicializadorComAcao {
             int segundoMesesInt = NumberHelper.IntegerParse(segundoMeses);
 
             if (segundoAnoInt < primeiroAnoInt || (segundoAnoInt == primeiroAnoInt && segundoMesesInt < primeiroMesesInt)) {
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "O segundo intervalo deve ser maior que o primeiro.");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "O segundo intervalo deve ser maior que o primeiro.", null);
                 return false;
             }
         } catch (NumberFormatException e) {
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Os valores do intervalo de data devem ser números válidos.");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Os valores do intervalo de data devem ser números válidos.", null);
             return false;
         }
 

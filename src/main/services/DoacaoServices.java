@@ -42,7 +42,7 @@ public class DoacaoServices {
         } catch (Exception ex) {
             ex.printStackTrace();
             String mensagem = idDoacao == -1 ? "cadastrar" : "atualizar";
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a doacao");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " a doacao", null);
                       
             return null;
         } 
@@ -61,7 +61,7 @@ public class DoacaoServices {
             return doacaoRepository.FiltrarDoacoes(filtro);
         } catch (SQLException ex) {
              ex.printStackTrace();
-             App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar doacoes");
+             App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar doacoes", null);
              return null;
         }
     }
@@ -72,7 +72,7 @@ public class DoacaoServices {
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar doação");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar doação", null);
             return 0;
         }
     }

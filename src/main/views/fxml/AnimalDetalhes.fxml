@@ -161,7 +161,7 @@
                         </Label>
                         <ImageView fitHeight="26.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/editar-colorido.png" />
+                              <Image url="@../../../assets/images/info.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="4.0" top="4.0" />
