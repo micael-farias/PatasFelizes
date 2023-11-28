@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="432.0" stylesheets="@../css/filtrarAnimal.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FiltrarAnimalController">
    <children>
-      <VBox id="VBoxExterna" layoutX="32.0" layoutY="32.0" prefHeight="707.0" prefWidth="368.0">
+      <VBox id="VBoxExterna" layoutX="32.0" layoutY="32.0" prefHeight="714.0" prefWidth="368.0">
          <children>
             <VBox id="VBox" prefHeight="48.0" prefWidth="100.0">
                <children>
@@ -56,6 +56,23 @@
                            </image>
                         </ImageView>
                         <Label text="Masculino">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="checkBoxSexoDesconhecido" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Sexo desconhecido">
                            <padding>
                               <Insets left="5.0" />
                            </padding>
@@ -129,7 +146,7 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox id="HBoxButton" prefHeight="30.0" prefWidth="200.0">
+            <HBox id="HBoxButton" prefHeight="48.0" prefWidth="368.0">
                <children>
                   <Button id="button" fx:id="cancelarFiltro" mnemonicParsing="false" prefHeight="32.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar">
                      <HBox.margin>
@@ -139,7 +156,7 @@
                   <Button id="Button" fx:id="filtrar" mnemonicParsing="false" prefWidth="76.0" text="Filtrar" />
                </children>
                <VBox.margin>
-                  <Insets top="133.0" />
+                  <Insets top="113.0" />
                </VBox.margin>
             </HBox>
          </children>

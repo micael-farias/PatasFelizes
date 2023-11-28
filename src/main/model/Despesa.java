@@ -95,8 +95,8 @@ public class Despesa {
         this.DataCadastro = DataCadastro;
     }
     
-    public static int somarValores(List<Despesa> despesas) {
-        int soma = 0;
+    public static double somarValores(List<Despesa> despesas) {
+        double soma = 0;
 
         for (Despesa despesa : despesas) {
             soma += despesa.getValor();

@@ -53,7 +53,7 @@ public class ImportData {
              (dado) -> { excluirArquivoFalhas(); });
            sender.setFile(arquivoFalhas);
            sender.start();
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, falhas.size() + " tuplas falharam na importação dos dados");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, falhas.size() + " tuplas falharam na importação dos dados", null);
         }
         return counter;
        

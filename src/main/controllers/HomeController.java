@@ -30,6 +30,8 @@ import main.views.gridview.AnimalGridView;
 import static main.utils.Constantes.DIALOG_MENSAGEM;
 import static main.utils.Constantes.FORM_HOME;
 import main.utils.DateHelper;
+import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 
 public class HomeController implements Inicializador, Resumidor{    
 
@@ -68,6 +70,7 @@ public class HomeController implements Inicializador, Resumidor{
         this.repository = new AnimalRepository();
         this.animalService= new AnimalService();
         hintBuscarAnimais();
+        capitalizeEachWord(buscarAnimalTextField);
     }
     
     public void hintBuscarAnimais(){
@@ -105,7 +108,7 @@ public class HomeController implements Inicializador, Resumidor{
                 filtro.getIntervaloSegundoMeses());
             
             var animais =  animalService.selecionarAnimais(Mapping.GetKeyOrdenacoes(filtro.getOrdenacaoSelecionada()),
-                    Mapping.GetKeyStatus(filtro.getStatusSelecionado()), filtro.isFiltrarMasculino(), filtro.isFiltrarFeminino(), 
+                    Mapping.GetKeyStatus(filtro.getStatusSelecionado()), filtro.isFiltrarMasculino(), filtro.isFiltrarFeminino(), filtro.isFiltrarSexoDesconhecido(),
                     filtro.isFiltrarCastradoSim(), filtro.isFiltrarCastradoNao(), intervaloUm, intervaloDois);
                             
             if(animais != null) criarGridComResultados(animais, contentFather, primmaryStage, blackShadow);   

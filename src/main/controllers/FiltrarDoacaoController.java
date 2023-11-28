@@ -70,12 +70,12 @@ public class FiltrarDoacaoController implements InicializadorComAcao {
         getFiltros();
         
         if((doacaoServices.filtro.getDataInicial() == null) !=  (doacaoServices.filtro.getDataFinal() == null)){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas", null);
            return null;
         }
         
         if(doacaoServices.filtro.getDataFinal()!= null && doacaoServices.filtro.getDataFinal().before(doacaoServices.filtro.getDataInicial())){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial", null);
            return null;
         }
         return doacaoServices.FiltrarDoacoes(doacaoServices.filtro);    

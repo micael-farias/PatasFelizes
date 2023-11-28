@@ -106,7 +106,7 @@
                </font>
             </TextField>
             <Label layoutX="926.0" layoutY="54.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Meses" />
-            <TextField fx:id="textFieldBuscarProcedimento" layoutX="266.0" layoutY="285.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="651.0" promptText="Buscar por descrição" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+            <TextField fx:id="textFieldBuscarProcedimento" layoutX="266.0" layoutY="285.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="740.0" promptText="Buscar por descrição" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
                <font>
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
@@ -150,16 +150,6 @@
                   </VBox>
                </children>
             </StackPane>
-            <Button fx:id="filtrarAnimaisButton" layoutX="927.0" layoutY="274.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="buttonFilter" stylesheets="@../css/view.css">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="buttons" x="40.0">
-                     <image>
-                        <Image url="@../../../assets/images/filtro.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label layoutX="964.0" layoutY="292.0" prefHeight="26.0" prefWidth="67.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="LabelFiltrar" stylesheets="@../css/detalhesanimal.css" text="Filtrar" />
             <Pane fx:id="layoutAdocao" layoutX="52.0" layoutY="475.0" prefHeight="153.0" prefWidth="200.0">
                <children>
                   <HBox id="button" fx:id="boxNomeAdotante" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css">
@@ -171,7 +161,7 @@
                         </Label>
                         <ImageView fitHeight="26.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/editar-colorido.png" />
+                              <Image url="@../../../assets/images/info.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="4.0" top="4.0" />

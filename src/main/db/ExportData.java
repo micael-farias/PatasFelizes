@@ -71,7 +71,7 @@ public class ExportData {
             System.out.println("Dados de todas as tabelas exportados como instruções SQL para patas.sql.");
 
         } catch (Exception e) {
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao exportar os dados");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao exportar os dados", null);
         }
     }
 

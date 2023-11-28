@@ -24,7 +24,7 @@ public class LeitorSecrets {
                 e.printStackTrace();
             }
         }catch(Exception e){
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao encontrar o arquivo de secrets");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao encontrar o arquivo de secrets", null);
         }    
         return secrets;
     }

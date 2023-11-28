@@ -3,6 +3,7 @@ package main.controllers;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.layout.GridPane;
@@ -19,6 +20,7 @@ import main.services.DoacaoServices;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DOACAO;
 import static main.utils.Constantes.DIALOG_FILTRAR_DOACOES;
 import static main.utils.Constantes.FORM_DOACOES;
+import main.utils.RealFormatter;
 import main.views.gridview.DoacoesGridView;
 
 public class DoacoesController implements Inicializador, Resumidor {  
@@ -35,6 +37,9 @@ public class DoacoesController implements Inicializador, Resumidor {
     @FXML
     private Button filtrarDoacoes;
     
+    @FXML
+    private Label totalDoacoes;
+    
     private DoacaoServices doacaoServices;
     
     @Override
@@ -45,7 +50,6 @@ public class DoacoesController implements Inicializador, Resumidor {
     public void initialize(Pane contentFather, Stage primaryStage, Pane blackShadow){
         doacaoServices = new DoacaoServices();
         criarDoacoes(contentFather, primaryStage, blackShadow);
-        setarValores();
     }  
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
@@ -81,16 +85,15 @@ public class DoacoesController implements Inicializador, Resumidor {
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
         criarDoacoes(contentFather, primmaryStage, blackShadow);
     }
-
-    
-    private void setarValores(){
-        double[] valores = doacaoServices.ObterTotalReceitaEDespesa();
-  
-   }
         
     private void criarGridDoacoesComResultados(List<Doacao> doacoes, Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         DoacoesGridView doacoesGridView = new DoacoesGridView(doacoesGrid, 1, doacoes, contentFather, stackPaneScroll, primmaryStage, blackShadow);
         doacoesGridView.createGridAsync();   
-        setarValores();
+        calcularTotal(doacoes);
+    }
+    
+    public void calcularTotal(List<Doacao> doacoes){
+        double valorTotal = Doacao.somarValores(doacoes);
+        totalDoacoes.setText(RealFormatter.formatarComoReal(valorTotal));;
     }
 }

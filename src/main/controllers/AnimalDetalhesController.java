@@ -42,6 +42,9 @@ import static main.utils.DateHelper.invalidString;
 import main.utils.ImageLoader;
 import main.utils.NumberHelper;
 import main.utils.Rectangles;
+import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.utils.ToogleEnum;
 import static main.utils.ToogleEnum.DIREITO;
 import static main.utils.ToogleEnum.ESQUERDO;
@@ -152,6 +155,10 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         configuraToggles();
         setData(ultimoAnimal);  
         textFormatter(mesesAnimalTextField, anosAnimalTextField);
+        autoCapitalizeFirstLetter(descricaoAnimalTextField);
+        capitalizeEachWord(nomeAnimalTextField);
+        autoCapitalizeFirstLetter(textFieldBuscarProcedimento);
+
     }
     
     public void initializeViews(Pane contentFather, Stage primmaryStage, Pane blackShadow){
@@ -210,7 +217,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         ToogleEnum castrado = toogleViewCastrado.getSelectedItem();
         
         if(ultimoStatus.equals("Adotado") && adocao == null){
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrada uma adoção para o animal");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrada uma adoção para o animal", null);
             return null;
         }
                 if(!validarPet(nomeAnimal)) return null;

@@ -64,11 +64,11 @@ public class ImportarBancoController implements Inicializador {
             try {
                 int count = ImportData.importar(banco);
                 if(count == 0){
-                     App.getInstance().SetMensagem(MensagemTipo.SUCESSO, "Banco importado com sucesso");
+                     App.getInstance().SetMensagem(MensagemTipo.SUCESSO, "Banco importado com sucesso", null);
                 }
 
             } catch (Exception ex) {
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao realizar upload do banco de dados");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao realizar upload do banco de dados", null);
             } 
 
             layoutAdicionarComprovante.getChildren().remove(progressIndicator);

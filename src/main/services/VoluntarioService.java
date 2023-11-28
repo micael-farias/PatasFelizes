@@ -33,7 +33,7 @@ public class VoluntarioService {
         } catch (Exception ex) {
             ex.printStackTrace();
                 String mensagem = idVoluntario == -1 ? "cadastrar" : "atualizar";
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o voluntário");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o voluntário", null);
             return null;
         }
     }
@@ -61,7 +61,7 @@ public class VoluntarioService {
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar o voluntário");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar o voluntário", null);
             return 0;
          }
 

@@ -65,7 +65,7 @@ public class ProcedimentoService {
         if(!invalidString(voluntarioString)){
             voluntario = voluntarioRepository.EncontrarVoluntarioPor(voluntarioString);
             if(voluntario == null){
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrado um voluntario, verifique a ortografia");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrado um voluntario, verifique a ortografia", null);
                 return null;
             }
         }
@@ -73,7 +73,7 @@ public class ProcedimentoService {
         if(idAnimal != -1){
             animal = animalRepository.EncontrarAnimalPor(idAnimal);
             if(animal == null){
-                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrado um animal, verifique a ortografia");
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrado um animal, verifique a ortografia", null);
                 return null;
 
             }       
@@ -124,7 +124,7 @@ public class ProcedimentoService {
             return procedimento;
         }catch(Exception e){
             String mensagem = idProcedimento == -1 ? "cadastrar" : "atualizar";
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o procedimento");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o procedimento", null);
           e.printStackTrace();
             try {
                 procedimentoRepository.RollbackTransaction();
@@ -163,7 +163,7 @@ public class ProcedimentoService {
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar procedimento");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar procedimento", null);
             return 0;
         }
     }

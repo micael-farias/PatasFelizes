@@ -20,6 +20,9 @@ import main.model.FiltroDespesa;
 import main.services.AnimalService;
 import main.services.DespesaServices;
 import main.utils.DateHelper;
+import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.views.textfield.ChoiceBoxCostumized;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -56,7 +59,8 @@ public class FiltrarDespesaController implements InicializadorComAcao {
        inicializa();
        configuraTextFields();
        setListeners(primmaryStage, blackShadow);
-    
+       capitalizeEachWord(petTextField);
+       autoCapitalizeFirstLetter(tiposDespesaTextField);
        if(despesaService.filtro != null) setFiltros();
     }
     
@@ -97,12 +101,12 @@ public class FiltrarDespesaController implements InicializadorComAcao {
         getFiltros();
         
         if((despesaService.filtro.getDataInicial() == null) !=  (despesaService.filtro.getDataFinal() == null)){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas", null);
            return null;
         }
         
         if(despesaService.filtro.getDataFinal()!= null && despesaService.filtro.getDataFinal().before(despesaService.filtro.getDataInicial())){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial", null);
            return null;
         }
         

@@ -6,7 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import main.enums.MensagemTipo;
+import main.interfaces.Acao;
 import static main.utils.Constantes.PATH_IMAGES;
 
 public class MensagemController {
@@ -20,24 +23,33 @@ public class MensagemController {
     @FXML
     private Label mensagem;
 
-    @FXML
-    private Label tituloMensagem;
-
+    private Acao acao;
+    
     public void setData(MensagemTipo tipo, String msg) {
         String estilosExistentes = layoutMensagem.getStyle();
 
-        String estiloFundo = (tipo == MensagemTipo.ERRO) ? "-fx-background-color: #BF3436;" : "-fx-background-color: #087A12;";
+        String estiloFundo = (tipo == MensagemTipo.ERRO) ? "-fx-background-color: #8C2222;" : "-fx-background-color: #228B22;";
 
         String novoEstilo = estilosExistentes + estiloFundo;
         layoutMensagem.setStyle(novoEstilo);
-
-        String iconePath = (tipo == MensagemTipo.ERRO) ? PATH_IMAGES + "erro.png" : PATH_IMAGES + "sucesso.png";
+        
+        layoutMensagem.setOnMouseClicked(e ->{
+            if(acao!= null) acao.RealizarAcao(new Object[]{});        
+        });
+        
+        String iconePath = (tipo == MensagemTipo.ERRO) ? PATH_IMAGES + "sistemaVermelho.png" : PATH_IMAGES + "sistemaVerde.png";
         Image icone = new Image(getClass().getResourceAsStream(iconePath));
         iconMensagem.setImage(icone);
         
-        String titulo = (tipo == MensagemTipo.ERRO) ? "Ops!." : "Sucesso";
-        tituloMensagem.setText(titulo);
-        
         mensagem.setText(msg);
+        
+        // Ajuste a altura da Label mensagem para se adequar ao conteúdo
+        mensagem.setPrefHeight(USE_COMPUTED_SIZE);
+        mensagem.setMinHeight(Region.USE_PREF_SIZE);
+        mensagem.setMaxHeight(USE_COMPUTED_SIZE);
+    }
+    
+    public void setAcao(Acao acao){
+       this.acao = acao;
     }
 }

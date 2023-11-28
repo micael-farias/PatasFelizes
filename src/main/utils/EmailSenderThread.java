@@ -93,7 +93,8 @@ public class EmailSenderThread extends Thread {
             if(!to.equals(username)){
                 Platform.runLater(
                   () -> {
-                        App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao enviar email");              }
+                        App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao enviar email", null);
+                  }
                  );
             }
           

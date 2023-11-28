@@ -36,7 +36,7 @@ public class AnimalService  {
         } catch (Exception ex) {
             ex.printStackTrace();
             String mensagem = idAnimal == -1 ? "cadastrar" : "atualizar";
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o pet");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o pet", null);
         } 
         
         return null;
@@ -59,19 +59,20 @@ public class AnimalService  {
             animalRepository.Excluir(Animal.class, id);
             return true;
         } catch (Exception ex) {          
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar o pet");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar o pet", null);
             return false;
         }
     }
     
         
     public List<Animal> selecionarAnimais(String ordenacao, String status, boolean filtrarMasculino,
-        boolean filtrarFeminino,boolean filtrarSim, boolean filtrarNao, Calendar intervaloPrimeiro, Calendar intervaloSegundo) {
+        boolean filtrarFeminino, boolean sexoDesconhecido, boolean filtrarSim, boolean filtrarNao, Calendar intervaloPrimeiro, Calendar intervaloSegundo) {
         try {
-            return this.animalRepository.selecionarAnimais(ordenacao, status,
-                    filtrarMasculino, filtrarFeminino, filtrarSim, filtrarNao, intervaloPrimeiro, intervaloSegundo);
+            return animalRepository.selecionarAnimais(ordenacao, status,
+                    filtrarMasculino, filtrarFeminino, sexoDesconhecido, filtrarSim, filtrarNao, intervaloPrimeiro, intervaloSegundo);
+      
         } catch (SQLException ex) {
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar os pets");
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao filtrar os pets", null);
             return null;
         }
         

@@ -47,21 +47,21 @@
                   </ImageView>
                </graphic>
             </Button>
-            <VBox alignment="BOTTOM_RIGHT" layoutX="804.0" layoutY="697.0" prefHeight="70.0" prefWidth="263.0">
+            <VBox alignment="BOTTOM_RIGHT" layoutX="770.0" layoutY="668.0" prefHeight="54.0" prefWidth="298.0">
                <children>
-                  <Label prefHeight="25.0" prefWidth="66.0" text="TOTAL" textFill="#494949">
+                  <Label alignment="CENTER_RIGHT" minHeight="-Infinity" prefHeight="26.0" prefWidth="66.0" text="TOTAL" textFill="#494949">
                      <font>
-                        <Font name="System Bold" size="21.0" />
+                        <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="totalDespesas" alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="263.0" text="R$ 1.500,00">
+                  <Label fx:id="totalDespesas" alignment="TOP_RIGHT" minHeight="-Infinity" prefHeight="27.0" prefWidth="263.0" text="R$ 1.500,00" textFill="#494949">
                      <font>
-                        <Font name="Vivaldi Italic" size="24.0" />
+                        <Font name="Calibri Light" size="27.0" />
                      </font>
                   </Label>
                </children>
             </VBox>
-            <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="580.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
+            <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="534.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                      <content>

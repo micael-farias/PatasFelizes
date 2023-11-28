@@ -23,6 +23,8 @@ import static main.utils.Constantes.PATH_IMAGES;
 import static main.utils.DateHelper.invalidString;
 import main.utils.NumberHelper;
 import main.utils.Rectangles;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.utils.ToogleEnum;
 import main.views.toggle.ToggleView;
 
@@ -84,6 +86,8 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         setListeners(contentFather, primmaryStage, blackShadow);
         configuraToggles();
         textFormatter(mesesAnimalTextField, anosAnimalTextField);
+        autoCapitalizeFirstLetter(descricaoAnimalTextField);
+        capitalizeEachWord(nomeAnimalTextField);
     }
     
     public void initialize(){

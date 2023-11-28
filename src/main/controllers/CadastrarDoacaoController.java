@@ -27,6 +27,8 @@ import main.utils.ImageLoader;
 import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -77,7 +79,8 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         doacaoServices = new DoacaoServices();
         voluntarioService = new VoluntarioService();
         TextFieldUtils.setupCurrencyTextField(valorDoacao);
-        
+        capitalizeEachWord(doadorDoacao);
+
         configurarDoadores();
         configurarVoluntarios();
         setData();
@@ -105,10 +108,12 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         });      
           layoutAdicionarComprovante.setOnMouseClicked(e ->{
             comprovante = ImageLoader.CarregarImagemLocal(primmaryStage);
-            labelComprovante.setText("doacao_"+idDoacao+".pdf");
-            layoutAdicionarComprovante.setVisible(false);
-            layoutComprovante.setVisible(true);
-        });
+            if(comprovante != null){
+                labelComprovante.setText("doacao_"+idDoacao+".pdf");
+                layoutAdicionarComprovante.setVisible(false);
+                layoutComprovante.setVisible(true);
+            }   
+          });
         
         layoutComprovante.setOnMouseClicked(e -> {
                 PdfDownloader.baixarPdf(doacao.getFotoComprovante(), "doacao_"+idDoacao+".pdf");

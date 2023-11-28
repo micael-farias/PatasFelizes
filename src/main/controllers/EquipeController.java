@@ -12,6 +12,7 @@ import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
 import main.model.Voluntario;
 import main.services.VoluntarioService;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.views.gridview.EquipeGridView;
 
 public class EquipeController implements Inicializador, Resumidor {
@@ -30,6 +31,8 @@ public class EquipeController implements Inicializador, Resumidor {
         initialize();
         criarGridVoluntarios(contentFather, primmaryStage, blackShadow);
         setListeners(contentFather, primmaryStage, blackShadow);
+        capitalizeEachWord(textFieldBuscarVoluntario);
+
     }
 
     @Override

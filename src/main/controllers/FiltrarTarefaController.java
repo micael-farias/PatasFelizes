@@ -22,6 +22,7 @@ import main.services.DespesaServices;
 import main.services.TarefaServices;
 import main.services.VoluntarioService;
 import main.utils.DateHelper;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.views.textfield.ChoiceBoxCostumized;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -103,12 +104,12 @@ public class FiltrarTarefaController implements InicializadorComAcao {
         getFiltros();
         
         if((filtro.getDataInicial() == null) !=  (filtro.getDataFinal() == null)){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas", null);
             return null;
         }
         
         if(filtro.getDataFinal()!= null && filtro.getDataFinal().before(filtro.getDataInicial())){
-           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial");
+           App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial", null);
            return null;
         }
         return tarefasService.FiltrarTarefas(filtro);    
@@ -138,5 +139,8 @@ public class FiltrarTarefaController implements InicializadorComAcao {
         cancelarFiltro.setOnMouseClicked(e ->{
            App.getInstance().FecharDialog(primmaryStage, blackShadow);
         });
+        
+        capitalizeEachWord(voluntariosTextField);
+        capitalizeEachWord(petTextField);
     }  
 }

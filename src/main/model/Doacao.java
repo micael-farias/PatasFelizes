@@ -5,6 +5,7 @@
 package main.model;
 
 import java.util.Date;
+import java.util.List;
 import main.annotations.TableName;
 
 /**
@@ -74,6 +75,15 @@ public class Doacao {
         this.Data = Data;
     }
     
+      public static double somarValores(List<Doacao> doacoes) {
+        double soma = 0;
+
+        for (Doacao doacao : doacoes) {
+            soma += doacao.getValor();
+        }
+
+        return soma;
+    }
     
 
    
