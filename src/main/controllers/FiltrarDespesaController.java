@@ -98,6 +98,7 @@ public class FiltrarDespesaController implements InicializadorComAcao {
         
         if((despesaService.filtro.getDataInicial() == null) !=  (despesaService.filtro.getDataFinal() == null)){
            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas");
+           return null;
         }
         
         if(despesaService.filtro.getDataFinal()!= null && despesaService.filtro.getDataFinal().before(despesaService.filtro.getDataInicial())){

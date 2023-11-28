@@ -3,6 +3,7 @@ package main.model;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.List;
 
 public class Despesa {
        
@@ -94,6 +95,15 @@ public class Despesa {
         this.DataCadastro = DataCadastro;
     }
     
+    public static int somarValores(List<Despesa> despesas) {
+        int soma = 0;
+
+        for (Despesa despesa : despesas) {
+            soma += despesa.getValor();
+        }
+
+        return soma;
+    }
     
     
     

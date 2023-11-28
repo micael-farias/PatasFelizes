@@ -3,6 +3,7 @@ package main.controllers;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.ENTER;
@@ -20,6 +21,7 @@ import main.services.DoacaoServices;
 import main.services.DespesaServices;
 import static main.utils.Constantes.DIALOG_FILTRAR_DESPESAS;
 import static main.utils.Constantes.FORM_DESPESAS;
+import main.utils.RealFormatter;
 import main.views.gridview.DespesasGridView;
 import main.views.toggle.ToggleView;
 
@@ -35,7 +37,9 @@ public class DespesasController implements Inicializador, Resumidor {
     
     @FXML
     private Button filtrarDespesas;
-    
+
+    @FXML
+    private Label totalDespesas;
     private DespesaServices despesaServices;
     private DoacaoServices doacaoServices;
     private ToggleView toggleViewFinancas;
@@ -48,7 +52,6 @@ public class DespesasController implements Inicializador, Resumidor {
     public void initialize(Pane contentFather, Stage primaryStage, Pane blackShadow){
         despesaServices = new DespesaServices();
         doacaoServices = new DoacaoServices();
-        setarValores();
         criarDespesas(contentFather, primaryStage, blackShadow);
     }
     
@@ -73,13 +76,19 @@ public class DespesasController implements Inicializador, Resumidor {
         });
         
     }
+    
+    public void calcularTotal(List<Despesa> despesas){
+        double valorTotal = Despesa.somarValores(despesas);
+        totalDespesas.setText(RealFormatter.formatarComoReal(valorTotal));;
+    }
 
     private void criarDespesas(Pane contentFather, Stage primaryStage, Pane blackShadow){
+        List<Despesa> despesas;
         if(despesaServices.filtro != null){
-            var despesas = despesaServices.FiltrarDespesas(despesaServices.filtro);    
+            despesas = despesaServices.FiltrarDespesas(despesaServices.filtro);    
             criarGridDespesaComResultados(despesas, contentFather, primaryStage, blackShadow);   
         }else{
-            List<Despesa> despesas = despesaServices.ObterDespesas();
+            despesas = despesaServices.ObterDespesas();
             criarGridDespesaComResultados(despesas, contentFather, primaryStage, blackShadow);     
         }
     }
@@ -90,15 +99,11 @@ public class DespesasController implements Inicializador, Resumidor {
         
     }
 
-    
-    private void setarValores(){
-        double[] valores = doacaoServices.ObterTotalReceitaEDespesa();
-   }
 
     private void criarGridDespesaComResultados(List<Despesa> despesas, Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         DespesasGridView despesasGridView = new DespesasGridView(despesasGrid, 1, despesas, contentFather, stackPaneScroll, primmaryStage, blackShadow);
         despesasGridView.createGridAsync();   
-        setarValores();
+        calcularTotal(despesas);
     }
  
 }

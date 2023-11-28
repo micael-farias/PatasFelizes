@@ -104,6 +104,7 @@ public class FiltrarTarefaController implements InicializadorComAcao {
         
         if((filtro.getDataInicial() == null) !=  (filtro.getDataFinal() == null)){
            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas");
+            return null;
         }
         
         if(filtro.getDataFinal()!= null && filtro.getDataFinal().before(filtro.getDataInicial())){

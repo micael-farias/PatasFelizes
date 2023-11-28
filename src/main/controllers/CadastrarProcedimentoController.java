@@ -23,6 +23,7 @@ import main.services.VoluntarioService;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
+import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 /**
  *
@@ -101,7 +102,9 @@ public class CadastrarProcedimentoController extends CustomController implements
         String tipo = tipoProcedimento.getText();
         String voluntario = voluntarioProcedimento.getText();
         double valor = RealFormatter.unformatarReal(valorProcedimento.getText());
-        boolean realizado = procedimento == null ? null : procedimento.isRealizado();
+        Boolean realizado = procedimento == null ? null : procedimento.isRealizado();
+        
+        if(!validarProcedimento(descricao, tipo)) return null;
         
         return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, valor, voluntario, idAnimal, realizado);      
     }
@@ -113,6 +116,13 @@ public class CadastrarProcedimentoController extends CustomController implements
         tipoProcedimento.setText(procedimento.getTipo());
         voluntarioProcedimento.setText(procedimento.getVoluntario() == null ? "" : procedimento.getVoluntario().getNome());
         valorProcedimento.setText(RealFormatter.formatarComoReal(procedimento.getDespesa() == null ? 0 : procedimento.getDespesa().getValor()));
+    }
+    
+    public boolean validarProcedimento(String descricao, String tipo){
+        boolean descricaoValida = ValidacaoUtils.validarCampo(descricao, descricaoProcedimento, "A descrição não deve ser vazia");
+        boolean tipoValido = ValidacaoUtils.validarCampo(tipo, tipoProcedimento, "O tipo não deve ser vazio");
+        boolean dataValida = ValidacaoUtils.validarCampo(dataProcedimento);
+        return descricaoValida && dataValida && tipoValido;
     }
 
 }

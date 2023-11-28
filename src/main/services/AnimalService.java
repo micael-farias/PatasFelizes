@@ -26,7 +26,7 @@ public class AnimalService  {
     public Animal Salvar(int idAnimal, String nomeAnimal, String anosAnimal, String mesesAnimal, String descricaoAnimal, ToogleEnum sexoAnimal, ToogleEnum castradoAnimal, byte[] fotoAnimal, String ultimoStatus) {
         
         Calendar idade = ConvertMesAnoToCalendar(anosAnimal, mesesAnimal);
-        char sexo = sexoAnimal == null ? 'N' : sexoAnimal == ToogleEnum.DIREITO ? 'M' : 'F';
+        char sexo = sexoAnimal == null ? 'N' : sexoAnimal == ToogleEnum.DIREITO ? 'F' : 'M';
         boolean castrado = castradoAnimal == ToogleEnum.DIREITO;
         String statusAnimal = StatusAnimalFactory.GetStatus(ultimoStatus).name();
         try {            

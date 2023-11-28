@@ -1,7 +1,9 @@
 package main.utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
@@ -12,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -36,7 +39,7 @@ import static main.utils.Constantes.DIALOG_MENSAGEM;
 
 public class InicializarFormulario {
     
-    private Parent dialogoAberto;
+    private List<Parent> dialogosAberto = new ArrayList<>();
     private static HashMap<String,FXMLLoadResult> mapping = new HashMap<>();
     private Pane mensagemErro;
     
@@ -65,9 +68,12 @@ public class InicializarFormulario {
         if(blackShadow.isVisible()) blackShadow.setVisible(false);
         if(primmaryStage != null && primmaryStage.getScene() != null && primmaryStage.getScene().getRoot() != null){
             AnchorPane pane = (AnchorPane) primmaryStage.getScene().getRoot();
-            if(pane.getChildren().contains(dialogoAberto)){
-                pane.getChildren().remove(dialogoAberto);
+            for(Parent dialogoAberto : dialogosAberto){
+                if(pane.getChildren().contains(dialogoAberto)){
+                    pane.getChildren().remove(dialogoAberto);
+                }
             }
+            
         }
     }
     
@@ -130,7 +136,8 @@ public class InicializarFormulario {
         ObservableList<Node> children = content.getChildren();
         children.addAll(result.getResult());     
     }
-    
+
+      
     public <T> void AbrirDialogComAcao(String tela, String telaOrigem, Pane content, Stage primaryStage, Pane blackShadow, Object[] dados, Acao acao){                
         try {
 
@@ -158,7 +165,7 @@ public class InicializarFormulario {
               blackShadow.setOnMouseClicked(e -> { FecharDialog(primaryStage, blackShadow);});
               
 
-              dialogoAberto = root2;
+            dialogosAberto.add(root2);
           } catch(IOException e) {
               e.printStackTrace();
           }        
@@ -210,7 +217,7 @@ public class InicializarFormulario {
             blackShadow.setVisible(true);
             pane.getChildren().addAll(blackShadow, root2, mensagemErro);
             
-            dialogoAberto = root2;
+            dialogosAberto.add(root2);
         } catch(IOException e) {
             e.printStackTrace();
         }        
@@ -241,7 +248,7 @@ public class InicializarFormulario {
             blackShadow.setVisible(true);
             pane.getChildren().addAll(blackShadow, root2, mensagemErro);
             
-            dialogoAberto = root2;
+            dialogosAberto.add(root2);
         } catch(IOException e) {
             e.printStackTrace();
         }        
@@ -271,7 +278,7 @@ public class InicializarFormulario {
             blackShadow.setVisible(true);
             pane.getChildren().addAll(blackShadow, root2, mensagemErro);
             
-            dialogoAberto = root2;
+            dialogosAberto.add(root2);
         } catch(IOException e) {
         }        
     }
@@ -301,7 +308,7 @@ public class InicializarFormulario {
             blackShadow.setVisible(true);
             pane.getChildren().addAll(blackShadow, root2, mensagemErro);
             
-            dialogoAberto = root2;
+            dialogosAberto.add(root2);
         } catch(IOException e) {
             e.printStackTrace();
         }        

@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,11 +19,12 @@
          <children>
             <VBox prefHeight="72.0" prefWidth="368.0">
                <children>
-                  <Label styleClass="Label" text="Nome">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                        <Label styleClass="Label" text="Nome" />
+                     </children>
+                  </HBox>
                   <TextField fx:id="nomeVoluntario" minHeight="-Infinity" prefHeight="30.0" prefWidth="974.0" styleClass="round-layout">
                      <font>
                         <Font name="Noto Sans Mono Regular" size="18.0" />
@@ -32,11 +34,12 @@
             </VBox>
             <VBox prefHeight="72.0" prefWidth="368.0">
                <children>
-                  <Label styleClass="Label" text="Email">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                        <Label styleClass="Label" text="Email" />
+                     </children>
+                  </HBox>
                   <TextField fx:id="emailVoluntario" minHeight="-Infinity" prefHeight="30.0" prefWidth="974.0" styleClass="round-layout">
                      <font>
                         <Font name="Noto Sans Mono Regular" size="18.0" />
@@ -46,11 +49,12 @@
             </VBox>
             <VBox prefHeight="72.0" prefWidth="368.0">
                <children>
-                  <Label styleClass="Label" text="Telefone">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
+                  <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="WHITE" />
+                        <Label styleClass="Label" text="Telefone" />
+                     </children>
+                  </HBox>
                   <TextField fx:id="telefoneVoluntario" minHeight="-Infinity" prefHeight="30.0" prefWidth="974.0" styleClass="round-layout">
                      <font>
                         <Font name="Noto Sans Mono Regular" size="18.0" />
@@ -72,5 +76,6 @@
             </ImageView>
          </children>
       </VBox>
+      <Button fx:id="removerButton" layoutX="308.0" layoutY="288.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="removerButton" stylesheets="@../css/detalhesanimal.css" text="Remover" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -95,12 +95,12 @@
                   <Insets left="10.0" />
                </padding>
             </TextField>
-            <TextField fx:id="anosAnimalTextField" layoutX="834.0" layoutY="87.0" maxWidth="-Infinity" minHeight="-Infinity" onKeyPressed="#handleKeyTypedAnos" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+            <TextField fx:id="anosAnimalTextField" layoutX="834.0" layoutY="87.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
                <font>
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
             </TextField>
-            <TextField fx:id="mesesAnimalTextField" layoutX="926.0" layoutY="87.0" maxWidth="-Infinity" minHeight="-Infinity" onKeyPressed="#handleKeyTypedMeses" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
+            <TextField fx:id="mesesAnimalTextField" layoutX="926.0" layoutY="87.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="80.0" styleClass="round-layout" stylesheets="@../css/detalhesanimal.css">
                <font>
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
@@ -116,7 +116,7 @@
             </TextField>
             <StackPane alignment="BOTTOM_RIGHT" layoutX="874.0" layoutY="-9.0" prefHeight="69.0" prefWidth="200.0">
                <children>
-                  <AnchorPane fx:id="layoutRemoverAdocao" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="176.0" visible="false">
+                  <AnchorPane fx:id="layoutRemoverAdocao" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="176.0">
                      <children>
                         <Label layoutX="55.0" prefHeight="50.0" prefWidth="120.0" stylesheets="@../css/cadastraranimal.css" text="Remover adoção" AnchorPane.rightAnchor="56.0" />
                         <StackPane layoutX="145.0" prefHeight="43.0" prefWidth="42.0" AnchorPane.rightAnchor="12.0">
@@ -138,7 +138,7 @@
                         </StackPane>
                      </children>
                   </AnchorPane>
-                  <VBox fx:id="layoutAdicionarAdocao" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="68.0">
+                  <VBox fx:id="layoutAdicionarAdocao" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="68.0" visible="false">
                      <children>
                         <ImageView fx:id="adotarButton" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="buttons">
                            <image>
@@ -171,7 +171,7 @@
                         </Label>
                         <ImageView fitHeight="26.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../assets/images/information-button.png" />
+                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/editar-colorido.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="4.0" top="4.0" />

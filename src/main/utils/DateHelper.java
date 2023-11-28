@@ -173,6 +173,7 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
     }
     
     public static Calendar DateToCalendar(Date date){
+        if(date == null) return null;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar;

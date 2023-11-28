@@ -29,6 +29,7 @@ import static main.utils.DateHelper.DataParaStringReduced;
 import static main.utils.DateHelper.GetMidnightDate;
 import static main.utils.DateHelper.LocalDateParaCalendar;
 import static main.utils.DateHelper.LocalDateParaDate;
+import static main.utils.DateHelper.invalidString;
 import main.utils.EmailSenderThread;
 import main.utils.EmailTemplate;
 import static main.utils.NumberHelper.DoubleParse;
@@ -61,7 +62,7 @@ public class ProcedimentoService {
         Voluntario voluntario = null;
         Animal animal = null;
 
-        if(voluntarioString != null){
+        if(!invalidString(voluntarioString)){
             voluntario = voluntarioRepository.EncontrarVoluntarioPor(voluntarioString);
             if(voluntario == null){
                 App.getInstance().SetMensagem(MensagemTipo.ERRO, "Não foi encontrado um voluntario, verifique a ortografia");
@@ -154,6 +155,17 @@ public class ProcedimentoService {
 
     public Procedimento ObterProcedimentoPorDespesa(int idDespesa) {
         return procedimentoRepository.encontrarProcedimentosPorDespesa(idDespesa);
+    }
+    
+    public int Excluir(int idProcedimento){
+        try {
+            procedimentoRepository.Excluir(Procedimento.class, idProcedimento);
+            return 1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar procedimento");
+            return 0;
+        }
     }
     
 }

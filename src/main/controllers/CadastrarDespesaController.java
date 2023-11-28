@@ -32,6 +32,7 @@ import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
 import main.utils.Rectangles;
 import main.utils.TextFieldUtils;
+import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 
 public class CadastrarDespesaController extends CustomController implements InicializadorComDado{
@@ -135,7 +136,11 @@ public class CadastrarDespesaController extends CustomController implements Inic
         String pet = petDespesa.getText();
         String tipo = tipoDespesa.getText();
         double valor = RealFormatter.unformatarReal(valorDespesa.getText());
-        boolean realizado = despesa != null ? despesa.isRealizada() :  null;
+        Boolean realizado = despesa != null ? despesa.isRealizada() :  null;
+        
+        if(!validarDespesa(descriao, tipo, valor)) return null;
+        
+        
         return despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, realizado , comprovante);
     }
     
@@ -155,5 +160,13 @@ public class CadastrarDespesaController extends CustomController implements Inic
                 layoutAdicionarComprovante.setVisible(false);
             }
         }
+    }
+    
+    public boolean validarDespesa(String descricao, String tipo, double valor){
+        boolean descricaoValida = ValidacaoUtils.validarCampo(descricao, descricaoDespesa, "A descrição não deve ser vazia");
+        boolean tipoValido = ValidacaoUtils.validarCampo(tipo, tipoDespesa, "O tipo não deve ser vazio");
+        boolean dataValida = ValidacaoUtils.validarCampo(dataDespesa);
+        boolean valorValido = ValidacaoUtils.validarCampoReal(valor, valorDespesa, "Um valor deve ser informado");
+        return descricaoValida && dataValida && tipoValido && valorValido;
     }
 }

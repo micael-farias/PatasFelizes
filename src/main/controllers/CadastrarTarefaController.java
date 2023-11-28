@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import main.model.Animal;
 import main.services.AnimalService;
 import static main.utils.Constantes.FORM_TAREFAS;
+import main.utils.ValidacaoUtils;
 /**
  *
  * @author grazi
@@ -117,9 +118,12 @@ public class CadastrarTarefaController extends CustomController implements Inici
         String voluntario = responsavelTarefa.getText();
         String animalString = petTarefa.getText();
         Animal animal = animalServices.ObterAnimalPorNome(animalString);
-        boolean realizado = procedimento == null ? null : procedimento.isRealizado();
+        
+        Boolean realizado = procedimento == null ? null : procedimento.isRealizado();
 
-        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, 0.0, voluntario, animal.getId(), realizado);      
+        if(!validarProcedimento(descricao, tipo)) return null;
+        
+        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, 0.0, voluntario, animal != null ?  animal.getId() : -1, realizado);      
     }
 
     private void setData() {
@@ -130,4 +134,13 @@ public class CadastrarTarefaController extends CustomController implements Inici
         responsavelTarefa.setText(procedimento.getVoluntario() != null ? procedimento.getVoluntario().getNome() : "");
         petTarefa.setText(procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : "");
     }
+    
+      public boolean validarProcedimento(String descricao, String tipo){
+        boolean descricaoValida = ValidacaoUtils.validarCampo(descricao, descricaoTarefa, "A descrição não deve ser vazia");
+        boolean tipoValido = ValidacaoUtils.validarCampo(tipo, tipoTarefa, "O tipo não deve ser vazio");
+        boolean dataValida = ValidacaoUtils.validarCampo(dataTarefa);
+        return descricaoValida && dataValida && tipoValido;
+    }
+    
+    
 }
