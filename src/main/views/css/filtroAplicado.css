@@ -1,0 +1,15 @@
+#Pane {
+    -fx-background-color: #D4E2FF;
+    -fx-background-radius: 15px;
+    -fx-border-color: #404040;
+    -fx-border-radius: 15px;
+    -fx-border-width: 2px;
+    -fx-alignment: center;
+}
+
+#Label {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-text-fill: #404040;
+    -fx-alignment: center;
+}
