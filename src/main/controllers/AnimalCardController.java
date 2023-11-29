@@ -58,7 +58,7 @@ public class AnimalCardController extends CustomController implements Inicializa
 
         if(idadeAnimalMesesAnos != null){
             
-            if(idadeAnimalMesesAnos.getAnos() == 0 && idadeAnimalMesesAnos.getAnos() == 0){
+            if(idadeAnimalMesesAnos.getAnos() == 0 && idadeAnimalMesesAnos.getMeses() == 0){
                          textoIdadeAnimal = "Recém nascido";
             }
             else if(idadeAnimalMesesAnos.getAnos() == 0){
@@ -70,7 +70,7 @@ public class AnimalCardController extends CustomController implements Inicializa
              }
              
         }else{
-             textoIdadeAnimal = "Não informada";
+             textoIdadeAnimal = "Idade não informada";
         }
         idadeAnimal.setText(textoIdadeAnimal);
         nomeAnimal.setText(animal.getNome());
@@ -86,7 +86,7 @@ public class AnimalCardController extends CustomController implements Inicializa
                 sexoAnimal.setText("Femea");
                 break;
             default:
-                sexoAnimal.setText("Não identificado");
+                sexoAnimal.setText("Sexo não identificado");
                 break;
         }
         CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimais());

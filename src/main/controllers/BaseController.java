@@ -46,11 +46,11 @@ public class BaseController implements InicializadorBase{
     
     private void onCloseRequest(Stage primmaryStage){
         primmaryStage.setOnCloseRequest(e ->{
-            /*var dados = LeitorSecrets.lerSecrets();
-            var sender = new EmailSenderThread(dados[0], "Enviando o banco de dados", "Segue o banco de dados");
+            var dados = LeitorSecrets.lerSecrets();
+            var sender = new EmailSenderThread(dados[0], "Enviando o banco de dados", "Segue o banco de dados", null);
             ExportData.export();
             sender.setFile(new File("patas.sql"));
-            sender.start();*/
+           //6 sender.start();
         });
     }
    

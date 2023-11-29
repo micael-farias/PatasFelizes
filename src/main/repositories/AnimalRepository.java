@@ -11,8 +11,11 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javafx.scene.image.Image;
 import main.model.Animal;
+import static main.utils.Constantes.PATH_IMAGES;
 import static main.utils.DateHelper.DateToCalendar;
+import static main.utils.ImageConverter.ImageFileToByteArray;
 
 public class AnimalRepository extends BaseRepository<Animal>{
     
@@ -29,6 +32,7 @@ public class AnimalRepository extends BaseRepository<Animal>{
     
     public Animal Salvar(int idAnimal, String nomeAnimal, Calendar dataNascimentoAnimal, String descricaoAnimal, char sexoAnimal, boolean castrado, byte[] fotoAnimal, String status) throws SQLException, IllegalAccessException {
         Animal animal;
+        fotoAnimal = (fotoAnimal == null) ?  ImageFileToByteArray("pet.png") : fotoAnimal;
         
         if(idAnimal == -1){
             animal = new Animal();

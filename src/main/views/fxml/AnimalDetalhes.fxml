@@ -61,7 +61,7 @@
                   <ImageView fx:id="imagemAnimal" cache="true" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" smooth="false" />
                </children>
             </VBox>
-            <Label layoutX="835.0" layoutY="54.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Idade" />
+            <Label layoutX="835.0" layoutY="54.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Anos" />
             <MenuButton id="button" fx:id="statusAnimal" layoutX="52.0" layoutY="442.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" stylesheets="@../css/detalhesanimal.css" text="Selecione">
                <items>
                   <MenuItem mnemonicParsing="false" text="Para a adoção" />
@@ -119,7 +119,7 @@
                   <AnchorPane fx:id="layoutRemoverAdocao" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="176.0">
                      <children>
                         <Label layoutX="55.0" prefHeight="50.0" prefWidth="120.0" stylesheets="@../css/cadastraranimal.css" text="Remover adoção" AnchorPane.rightAnchor="56.0" />
-                        <StackPane layoutX="145.0" prefHeight="43.0" prefWidth="42.0" AnchorPane.rightAnchor="12.0">
+                        <StackPane layoutX="145.0" prefHeight="43.0" prefWidth="42.0" style="-fx-cursor: hand;" AnchorPane.rightAnchor="12.0">
                            <children>
                               <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

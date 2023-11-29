@@ -84,7 +84,7 @@ public class TarefaController extends CustomController implements InicializadorC
                 procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().idFoto(), clip);
         descricaoTarefa.setText(procedimento.getDescricao());
         nomeAnimal.setText(procedimento.getAnimal()!= null ? procedimento.getAnimal().getNome() : "-");
-        nomeVoluntario.setText(procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().getNome());
+        nomeVoluntario.setText(procedimento.getVoluntario() == null ? "-" : procedimento.getVoluntario().getNome());
         dataTarefa.setText(CalendarParaString(procedimento.getData()));
 
        setImage(procedimento.isRealizado());
@@ -137,7 +137,7 @@ public class TarefaController extends CustomController implements InicializadorC
         
         editarTarefa.setOnMouseClicked(e ->{
           App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA, contentFather, primaryStage, blackShadow,
-                   new Object[]{ procedimento.getId(), procedimento});    
+                   new Object[]{procedimento});    
         });
     }
  

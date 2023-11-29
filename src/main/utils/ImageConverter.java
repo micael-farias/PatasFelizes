@@ -40,7 +40,7 @@ public class ImageConverter {
     }
     
     public static byte[] ImageFileToByteArray(String imagePath) {
-        File file = new File("C:\\Users\\micha\\Desktop\\Workspace2\\Patas 3.0\\PatasFelizes\\src"+imagePath);
+        File file = new File("C:\\Users\\micha\\Desktop\\ProjetoBase\\src\\assets\\images\\"+imagePath);
         byte[] imageBytes = new byte[(int) file.length()];
 
         try (FileInputStream fis = new FileInputStream(file)) {

@@ -33,7 +33,7 @@ public class Main extends Application {
             scene.getStylesheets().add(getClass().getResource("/main/views/css/view.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.setTitle("Patas Felizes");
-            primaryStage.getIcons().add(new Image("/assets/images/pata.png"));
+            primaryStage.getIcons().add(new Image("/assets/images/iconelogo2.png"));
             primaryStage.setResizable(false);
             primaryStage.show();
         } catch(IOException e) {

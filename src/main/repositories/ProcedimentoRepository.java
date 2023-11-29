@@ -105,7 +105,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
     public List<Procedimento> encontrarProcedimentosPor(int idAnimal){
         List<Procedimento> procedimentosAnimal = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(
-                     "SELECT * FROM Procedimentos WHERE idAnimal=?")) {
+                     "SELECT * FROM Procedimentos WHERE idAnimal=? ORDER BY DATA DESC")) {
 
             statement.setInt(1, idAnimal);
 

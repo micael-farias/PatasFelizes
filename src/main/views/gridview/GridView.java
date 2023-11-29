@@ -66,6 +66,11 @@ public abstract class GridView<T> {
     public void setInsets(Insets insets) {
         this.insets = insets;
     }
+    
+    public boolean cadastra = true;
+    public void setCadastra(boolean cadastra){
+       this.cadastra = cadastra;
+    }
 
     public void createGridAsync() {
         
@@ -81,7 +86,7 @@ public abstract class GridView<T> {
         
        
             Node primeiroItem = itemInicial();
-            if (primeiroItem != null) {
+            if (primeiroItem != null && cadastra) {
                 configurarItemGrid(primeiroItem);
             }    
         

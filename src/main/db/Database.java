@@ -23,7 +23,7 @@ public class Database {
             statement.executeUpdate(sql);
         } catch (Exception ex) {
             ex.printStackTrace();
-            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao criar banco de dados", null);
+            //App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao criar banco de dados", null);
 
         }
     }

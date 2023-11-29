@@ -30,7 +30,7 @@ public class AdocaoServices {
             adocaoRepository.BeginTransaction();
            
             
-            Adotante adotante = adotanteRepository.EncontrarPorTelefone(telefone);
+            Adotante adotante = adotanteRepository.EncontrarPorTelefone(telefone, tutor);
             if(adotante != null){
                 idAdotante = adotante.getId();            
             }
