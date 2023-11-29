@@ -52,14 +52,16 @@ public class PdfDownloader {
             Desktop desktop = Desktop.getDesktop();
             File arquivo = new File(caminho);
 
-            try {
-                // Abre o explorador de arquivos na localização especificada
-                desktop.open(arquivo);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (arquivo.exists()) {
+                try {
+                    desktop.open(arquivo);
+                } catch (IOException ex) {
+                    Logger.getLogger(PdfDownloader.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                System.out.println("Arquivo não existe");
             }
         } else {
-            // Desktop não suportado
             System.out.println("Desktop não suportado. Não é possível abrir o explorador de arquivos.");
         }
     }

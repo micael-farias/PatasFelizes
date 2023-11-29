@@ -64,11 +64,11 @@
             </VBox>
          </children>
       </VBox>
-      <VBox fx:id="layoutImageViewVoluntario" alignment="CENTER" layoutX="516.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" styleClass="layoutPet" stylesheets="@../css/view.css" AnchorPane.rightAnchor="25.0">
+      <VBox fx:id="layoutImageViewVoluntario" alignment="CENTER" layoutX="516.0" layoutY="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" stylesheets="@../css/cadastrarVoluntario.css" AnchorPane.rightAnchor="25.0">
          <children>
-            <ImageView fx:id="imagemVoluntario" cache="true" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" smooth="false">
+            <ImageView id="ImageView" fx:id="imagemVoluntario" cache="true" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../assets/images/plus.png" />
+                  <Image url="@../../../assets/images/adicionar-imagem.png" />
                </image>
                <VBox.margin>
                   <Insets />

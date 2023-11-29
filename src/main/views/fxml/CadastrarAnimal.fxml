@@ -31,11 +31,11 @@
       <Button id="button" fx:id="cancelarCadastro" layoutX="686.0" layoutY="419.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" AnchorPane.bottomAnchor="39.6" />
       <HBox fx:id="toggleSexo" layoutX="39.0" layoutY="251.0" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
       <HBox fx:id="toogleCastrado" layoutX="39.0" layoutY="343.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
-      <VBox fx:id="layoutImageViewAnimal" alignment="CENTER" layoutX="39.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="180.0" styleClass="layoutPet" stylesheets="@../css/view.css">
+      <VBox fx:id="layoutImageViewAnimal" alignment="CENTER" layoutX="39.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="180.0" stylesheets="@../css/cadastraranimal.css">
          <children>
-            <ImageView fx:id="imagemAnimal" cache="true" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" smooth="false" styleClass="imageViewAnimal">
+            <ImageView id="ImageView" fx:id="imagemAnimal" cache="true" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" smooth="false">
                <image>
-                  <Image url="@../../../assets/images/plus.png" />
+                  <Image url="@../../../assets/images/adicionar-imagem.png" />
                </image>
             </ImageView>
          </children>
