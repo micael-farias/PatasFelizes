@@ -1,0 +1,13 @@
+#HBox {
+    -fx-background-color: #D4E2FF;
+    -fx-background-radius: 15px;
+    -fx-alignment: center_left;
+    -fx-spacing: 5px;
+    -fx-padding: 15px;
+}
+
+#Label {
+    -fx-font: 14px "Noto Sans Mono";
+    -fx-font-weight: bold;
+    -fx-text-fill: #404040
+}
