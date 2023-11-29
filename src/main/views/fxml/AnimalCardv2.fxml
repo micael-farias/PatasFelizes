@@ -3,24 +3,38 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox blendMode="SRC_ATOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="232.0" styleClass="layoutPet" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AnimalCardController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="232.0" styleClass="layoutPetv2" stylesheets="@../css/view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AnimalCardController">
    <children>
-      <StackPane fx:id="stackPane" blendMode="SRC_ATOP" prefHeight="220.0" prefWidth="222.0">
+      <StackPane fx:id="stackPane" alignment="CENTER_RIGHT" blendMode="SRC_ATOP" prefHeight="220.0" prefWidth="222.0">
          <children>
             <ImageView fx:id="imagemAnimal" cache="true" fitHeight="245.0" fitWidth="232.0" pickOnBounds="true" smooth="false" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <HBox fx:id="statusAnimal" alignment="CENTER_RIGHT" prefHeight="25.0" style="-fx-background-color: green; -fx-background-radius: 10;" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <Label fx:id="statusAnimalLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" nodeOrientation="RIGHT_TO_LEFT" text="fffffffffffffffffffffffff" textAlignment="RIGHT" textFill="WHITE">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                           </padding>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
             <Pane fx:id="pane" prefHeight="225.0" prefWidth="232.0" styleClass="cardAnimal" stylesheets="@../css/view.css" />
-            <Circle fx:id="statusAnimal" fill="#11ff00" radius="40.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0">
-               <StackPane.margin>
-                  <Insets right="-230.0" top="-260.0" />
-               </StackPane.margin>
-            </Circle>
             <VBox alignment="BOTTOM_LEFT" prefHeight="246.0" prefWidth="241.0">
                <children>
                   <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="223.0" stylesheets="@../css/view.css">

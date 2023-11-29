@@ -6,6 +6,7 @@
 
 .menuButtonEntered {
     -fx-background-color:  #718abd;
+    -fx-background-radius: 0px 15px 15px 0px;
     -fx-padding: 0px;
 }
 
@@ -180,6 +181,15 @@
     -fx-content-display: top;
     -fx-font: 10pt "Noto Sans Mono Bold";
     -fx-text-fill: #000000;
+    -fx-cursor: hand;
+}
+
+.layoutPetv2 {
+    -fx-background-color: #DEE8FD;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-content-display: top;
     -fx-cursor: hand;
 }
 

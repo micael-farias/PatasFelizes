@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.AnimacaoController">
+   <children>
+      <StackPane fx:id="pa" layoutX="10.0" layoutY="10.0" prefHeight="383.0" prefWidth="444.0">
+         <children>
+            <ImageView fx:id="imageView" blendMode="SRC_ATOP" fitHeight="239.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/images/Ativo%2015.png" />
+               </image>
+            </ImageView>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="label" layoutX="109.0" layoutY="320.0" text="Mais uma pata felis" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="26.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</Pane>

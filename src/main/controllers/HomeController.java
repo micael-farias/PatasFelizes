@@ -3,16 +3,20 @@ package main.controllers;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import static javafx.scene.input.KeyCode.BACK_SPACE;
 import static javafx.scene.input.KeyCode.ENTER;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.App;
 import main.enums.Mapping;
 import main.enums.MensagemTipo;
@@ -29,6 +33,7 @@ import static main.utils.Constantes.DIALOG_FILTRAR_ANIMAL;
 import main.views.gridview.AnimalGridView;
 import static main.utils.Constantes.DIALOG_MENSAGEM;
 import static main.utils.Constantes.FORM_HOME;
+import static main.utils.Constantes.PATH_VIEWS_FXML;
 import main.utils.DateHelper;
 import main.utils.TextFieldUtils;
 import static main.utils.TextFieldUtils.capitalizeEachWord;
@@ -79,6 +84,7 @@ public class HomeController implements Inicializador, Resumidor{
     
     public void setListeners(Pane contentFather, Pane blackShadow, Stage primmaryStage){
         filtrarAnimaisButton.setOnMouseClicked(e ->{
+            
             App.getInstance().AbrirDialogComAcao(DIALOG_FILTRAR_ANIMAL, FORM_HOME, contentFather, primmaryStage, blackShadow, null, (dados) ->{
                 List<Animal> animais = (List<Animal>)dados[0];
                 filtro = (FiltrosAnimais) dados[1];
@@ -98,7 +104,9 @@ public class HomeController implements Inicializador, Resumidor{
         
         
     }
-    
+     private void soltarBaloes(Stage primaryStage, Pane co, Pane bla) {
+      App.getInstance().AbrirDialog(PATH_VIEWS_FXML+"Animacao.fxml", co, primaryStage, bla);
+    }
     public void criarGridAnimais(Pane contentFather, Stage primmaryStage, Pane blackShadow){    
         if(filtro != null){
             

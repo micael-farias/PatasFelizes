@@ -54,8 +54,20 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
     }
     
     public Voluntario EncontrarVoluntarioPor(int id){
-        return SelecionarTodos("*", "ID = '"+id+"'", null, Voluntario.class).get(0);
-    }
+        String sql = "SELECT * FROM Voluntarios WHERE Id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return mapearVoluntario(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;    }
     
     public  Set<String> EncontrarNomesVoluntarios(){
         return new HashSet<>(SelecionarTodos("NOME", null, null, String.class));

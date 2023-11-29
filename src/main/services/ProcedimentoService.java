@@ -90,7 +90,7 @@ public class ProcedimentoService {
 
                 procedimento = procedimentoRepository.Salvar(idProcedimento, descricao, data, tipo, despesa, voluntario, animal, realizado);
                             
-                    if(enviaEmail){
+                    if(enviaEmail && voluntario != null){
                         String template = EmailTemplate.criarCorpoEmail(descricao, DateHelper.CalendarParaString(data), voluntarioString);
                         new EmailSenderThread(voluntario.getEmail(), "Nova tarefa pra você", template, null).start();
 

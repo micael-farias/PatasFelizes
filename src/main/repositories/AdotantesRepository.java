@@ -127,5 +127,23 @@ public class AdotantesRepository extends BaseRepository<Adotante> {
         return adotante;
     }
 
+    public Adotante EncontrarPorTelefone(String telefone) {
+ Adotante adotante = null;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ADOTANTES WHERE Contato = ?")) {
+            preparedStatement.setString(1, telefone);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    adotante = mapearAdotante(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+           return null;
+        }
+
+        return adotante;    }
+
 
 }

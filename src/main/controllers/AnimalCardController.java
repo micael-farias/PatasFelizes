@@ -4,7 +4,10 @@ import main.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -32,8 +35,12 @@ public class AnimalCardController extends CustomController implements Inicializa
     @FXML
     private Pane pane;
     
+     @FXML
+    private HBox statusAnimal;
+
     @FXML
-    private Circle statusAnimal;
+    private Label statusAnimalLabel;
+    
     @FXML
     private Label nomeAnimal;
 
@@ -65,9 +72,12 @@ public class AnimalCardController extends CustomController implements Inicializa
         }else{
              textoIdadeAnimal = "Não informada";
         }
-        idadeAnimal.setText(textoIdadeAnimal + DateHelper.CalendarParaStringReduced(animal.getDataCadastro()));
+        idadeAnimal.setText(textoIdadeAnimal);
         nomeAnimal.setText(animal.getNome());
-        statusAnimal.setFill(StatusAnimalFactory.GetColorStatus(animal.getStatus()));
+        String statusColor = StatusAnimalFactory.GetColorStatus(animal.getStatus());
+        statusAnimal.setStyle("-fx-background-color: " + statusColor+ " ; -fx-background-radius: 10px");
+        statusAnimalLabel.setStyle("-fx-text-fill: white;");
+        statusAnimalLabel.setText(StatusAnimalFactory.GetStatusString(animal.getStatus()));
         switch (animal.getSexo()) {
             case 'M':
                 sexoAnimal.setText("Macho");
@@ -79,7 +89,6 @@ public class AnimalCardController extends CustomController implements Inicializa
                 sexoAnimal.setText("Não identificado");
                 break;
         }
-        
         CarregarImagem(imagemAnimal, animal.getFoto(), animal.idFoto(), Rectangles.GetRectangleImageAnimais());
         pane.setClip(Rectangles.GetRectanglePaneAnimais());
         stackPane.setOnMouseClicked(e -> {
