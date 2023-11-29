@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -31,7 +32,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="534.0" prefWidth="1064.0">
+      <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="178.0" prefHeight="500.0" prefWidth="1064.0">
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="475.0" prefWidth="1038.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                <content>
@@ -44,5 +45,6 @@
             </ScrollPane>
          </children>
       </StackPane>
+      <Pane id="filtrosAplicados" fx:id="filtros" layoutX="77.0" layoutY="121.0" prefHeight="49.0" prefWidth="991.0" stylesheets="@../css/view.css" visible="false" />
    </children>
 </AnchorPane>

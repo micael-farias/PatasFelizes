@@ -60,7 +60,7 @@ public class FiltrarDoacaoController implements InicializadorComAcao {
     
     private void inicializa(){
         doacaoServices = new DoacaoServices();
-        tiposOrdenacaoChoiceBox.setItems(Mapping.getOrdenacoes());
+        tiposOrdenacaoChoiceBox.setItems(Mapping.getOrdenacoesDespesaDoacoes());
         ordenacaoChoiceBox = new ChoiceBoxCostumized();
         ordenacaoChoiceBox.initialize(tiposOrdenacaoChoiceBox);
     }

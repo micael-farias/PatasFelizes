@@ -34,6 +34,7 @@ public class TarefaServices {
     AnimalRepository animalRepository;
     DespesaRepository despesaRepository;
     ProcedimentoRepository procedimentoRepository;
+    public static FiltroDespesa filtro;
     
     public TarefaServices(){
         tarefasRepository = new TarefasRepository();

@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,25 +14,12 @@
    <children>
       <Pane id="MenuPane" prefHeight="768.0" prefWidth="200.0" style="-fx-background-color: #84A1DB;">
          <children>
-            <Pane prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: #536B9D;" stylesheets="@../css/view.css">
-               <children>
-                  <Label layoutX="72.0" layoutY="25.0" text="Patas" textFill="WHITE">
-                     <font>
-                        <Font name="Noto Sans Mono Bold" size="36.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="73.0" layoutY="59.0" text="Felizes" textFill="WHITE">
-                     <font>
-                        <Font name="Noto Sans Mono Regular" size="24.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="14.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../assets/images/pata.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
+            <ImageView fitHeight="111.0" fitWidth="156.0" layoutX="24.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../assets/images/8.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="21.0" layoutY="121.0" prefHeight="1.0" prefWidth="156.0" style="-fx-background-color: #FFFFFF;" />
             <Button fx:id="menuButtonPets" alignment="BASELINE_LEFT" layoutY="128.0" mnemonicParsing="false" onMouseClicked="#menuButtonPetsClicked" onMouseEntered="#menuButtonPetsEntered" onMouseExited="#menuButtonPetsExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@../css/view.css" text="Pets" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />

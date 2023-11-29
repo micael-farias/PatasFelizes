@@ -35,8 +35,12 @@ import static main.utils.Constantes.DIALOG_MENSAGEM;
 import static main.utils.Constantes.FORM_HOME;
 import static main.utils.Constantes.PATH_VIEWS_FXML;
 import main.utils.DateHelper;
+import static main.utils.DateHelper.invalidString;
+import main.utils.FiltroUtils;
 import main.utils.TextFieldUtils;
 import static main.utils.TextFieldUtils.capitalizeEachWord;
+import main.views.gridview.FiltroGridView;
+import main.views.toggle.FiltroView;
 
 public class HomeController implements Inicializador, Resumidor{    
 
@@ -51,18 +55,22 @@ public class HomeController implements Inicializador, Resumidor{
     
     @FXML
     private GridPane animaisGrid;
-    
+        
+    @FXML
+    private Pane filtros;
+        
     private AnimalRepository repository;
     private AnimalService animalService;
  
-    private static FiltrosAnimais filtro;
-    
+    private FiltroView filtroView;
+    private FiltroGridView filtroGridView;
     
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         initialize();
         criarGridAnimais(contentFather, primmaryStage, blackShadow);
         setListeners(contentFather, blackShadow, primmaryStage);
+
     }
     
     @Override
@@ -73,7 +81,9 @@ public class HomeController implements Inicializador, Resumidor{
     
     public void initialize(){
         this.repository = new AnimalRepository();
-        this.animalService= new AnimalService();
+        this.animalService= new AnimalService();      
+        filtroView = new FiltroView();
+        filtroView.Criar(filtros);
         hintBuscarAnimais();
         capitalizeEachWord(buscarAnimalTextField);
     }
@@ -82,15 +92,44 @@ public class HomeController implements Inicializador, Resumidor{
         buscarAnimalTextField.setPromptText("Procurar animal por nome");
     }
     
+   public void criarFiltros(){
+        if(AnimalService.filtros == null){
+            filtros.setVisible(false);
+            return;
+        }
+        filtros.setVisible(true);
+        
+        if(invalidString(AnimalService.filtros.getOrdenacaoSelecionada())){
+            filtroView.removerOrdenacao();
+        }else{
+            filtroView.adicionarCaixaOrdenados();
+            filtroView.setOrdenacao(AnimalService.filtros.getOrdenacaoSelecionada());
+        }
+        
+        
+        var filtrosString = new ArrayList<>(AnimalService.filtros.GetFiltros().values());  
+        if(filtrosString.size() > 0){     
+            filtroView.adicionarCaixaFiltrados();
+            filtroGridView = new FiltroGridView(filtroView.getGridFiltros(), filtrosString.size(), filtrosString);
+            filtroGridView.createGridAsync();
+        }else{
+            filtroView.removerFiltros();
+        }
+        
+        if(invalidString(AnimalService.filtros.getOrdenacaoSelecionada()) && filtrosString.size() == 0) filtros.setVisible(false);
+    }
+    
+    
     public void setListeners(Pane contentFather, Pane blackShadow, Stage primmaryStage){
         filtrarAnimaisButton.setOnMouseClicked(e ->{
             
             App.getInstance().AbrirDialogComAcao(DIALOG_FILTRAR_ANIMAL, FORM_HOME, contentFather, primmaryStage, blackShadow, null, (dados) ->{
                 List<Animal> animais = (List<Animal>)dados[0];
-                filtro = (FiltrosAnimais) dados[1];
+                AnimalService.filtros = (FiltrosAnimais) dados[1];
                 criarGridComResultados(animais,contentFather, primmaryStage, blackShadow);
             });
         });
+        
         
         buscarAnimalTextField.setOnKeyPressed(e ->{
             String animal = buscarAnimalTextField.getText();
@@ -102,22 +141,26 @@ public class HomeController implements Inicializador, Resumidor{
             }
         });
         
+        filtroView.excluirFiltro((dado) ->{
+            AnimalService.filtros = null;
+            criarGridAnimais(contentFather, primmaryStage, blackShadow);
+            criarFiltros();
+        
+        });  
         
     }
-     private void soltarBaloes(Stage primaryStage, Pane co, Pane bla) {
-      App.getInstance().AbrirDialog(PATH_VIEWS_FXML+"Animacao.fxml", co, primaryStage, bla);
-    }
+    
     public void criarGridAnimais(Pane contentFather, Stage primmaryStage, Pane blackShadow){    
-        if(filtro != null){
+        if(AnimalService.filtros != null){
             
-            Calendar intervaloUm = DateHelper.ConvertMesAnoToCalendar(filtro.getIntervaloPrimeiroAno(),
-                filtro.getIntervaloPrimeiroMeses());
-            Calendar intervaloDois = DateHelper.ConvertMesAnoToCalendar(filtro.getIntervaloSegundoAno(),
-                filtro.getIntervaloSegundoMeses());
+            Calendar intervaloUm = DateHelper.ConvertMesAnoToCalendar(AnimalService.filtros.getIntervaloPrimeiroAno(),
+                AnimalService.filtros.getIntervaloPrimeiroMeses());
+            Calendar intervaloDois = DateHelper.ConvertMesAnoToCalendar(AnimalService.filtros.getIntervaloSegundoAno(),
+                AnimalService.filtros.getIntervaloSegundoMeses());
             
-            var animais =  animalService.selecionarAnimais(Mapping.GetKeyOrdenacoes(filtro.getOrdenacaoSelecionada()),
-                    Mapping.GetKeyStatus(filtro.getStatusSelecionado()), filtro.isFiltrarMasculino(), filtro.isFiltrarFeminino(), filtro.isFiltrarSexoDesconhecido(),
-                    filtro.isFiltrarCastradoSim(), filtro.isFiltrarCastradoNao(), intervaloUm, intervaloDois);
+            var animais =  animalService.selecionarAnimais(Mapping.GetKeyOrdenacoes(AnimalService.filtros.getOrdenacaoSelecionada()),
+                    Mapping.GetKeyStatus(AnimalService.filtros.getStatusSelecionado()), AnimalService.filtros.isFiltrarMasculino(), AnimalService.filtros.isFiltrarFeminino(), AnimalService.filtros.isFiltrarSexoDesconhecido(),
+                    AnimalService.filtros.isFiltrarCastradoSim(), AnimalService.filtros.isFiltrarCastradoNao(), intervaloUm, intervaloDois);
                             
             if(animais != null) criarGridComResultados(animais, contentFather, primmaryStage, blackShadow);   
         }else{
@@ -126,8 +169,11 @@ public class HomeController implements Inicializador, Resumidor{
         }
     }
     
+    
     public void criarGridComResultados(List<Animal> itens, Pane contentFather, Stage primmaryStage, Pane blackShadow){
         AnimalGridView animalGridView = new AnimalGridView(animaisGrid, 4, itens, contentFather, primmaryStage, blackShadow, stackPaneScroll);
-        animalGridView.createGridAsync();    
+        animalGridView.createGridAsync();  
+        criarFiltros();
+            
     }
 }

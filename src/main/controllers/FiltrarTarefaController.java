@@ -50,7 +50,6 @@ public class FiltrarTarefaController implements InicializadorComAcao {
     @FXML
     private TextField voluntariosTextField;
 
-    private static FiltroDespesa filtro;
     private Acao acao;
     private VoluntarioService voluntarioService;
     private AnimalService animalService;
@@ -63,16 +62,16 @@ public class FiltrarTarefaController implements InicializadorComAcao {
        configuraTextFields();
        setListeners(primmaryStage, blackShadow);
     
-       if(filtro != null) setFiltros();
+       if(TarefaServices.filtro != null) setFiltros();
     }
     
     void getFiltros(){
-        filtro = (filtro == null) ? new FiltroDespesa() : filtro;
-        filtro.setAnimal(petTextField.getText());
-        filtro.setVoluntario(voluntariosTextField.getText());
-        filtro.setDataFinal(DateHelper.LocalDateParaCalendar(dataFinalDatePicker.getValue()));
-        filtro.setDataInicial(DateHelper.LocalDateParaCalendar(dataInicialDatePicker.getValue()));
-        filtro.setOrdenacao(Mapping.GetKeyOrdenacoesDespesaDoacoes(ordenacaoChoiceBox.getValue()));      
+        TarefaServices.filtro = (TarefaServices.filtro == null) ? new FiltroDespesa() : TarefaServices.filtro;
+        TarefaServices.filtro.setAnimal(petTextField.getText());
+        TarefaServices.filtro.setVoluntario(voluntariosTextField.getText());
+        TarefaServices.filtro.setDataFinal(DateHelper.LocalDateParaCalendar(dataFinalDatePicker.getValue()));
+        TarefaServices.filtro.setDataInicial(DateHelper.LocalDateParaCalendar(dataInicialDatePicker.getValue()));
+        TarefaServices.filtro.setOrdenacao(Mapping.GetKeyOrdenacoesDespesaDoacoes(ordenacaoChoiceBox.getValue()));      
     }
     
     private void inicializa(){
@@ -103,35 +102,35 @@ public class FiltrarTarefaController implements InicializadorComAcao {
     {
         getFiltros();
         
-        if((filtro.getDataInicial() == null) !=  (filtro.getDataFinal() == null)){
+        if((TarefaServices.filtro.getDataInicial() == null) !=  (TarefaServices.filtro.getDataFinal() == null)){
            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Voce deve selecionar um intervalo de datas", null);
             return null;
         }
         
-        if(filtro.getDataFinal()!= null && filtro.getDataFinal().before(filtro.getDataInicial())){
+        if(TarefaServices.filtro.getDataFinal()!= null && TarefaServices.filtro.getDataFinal().before(TarefaServices.filtro.getDataInicial())){
            App.getInstance().SetMensagem(MensagemTipo.ERRO, "A data final deve ser maior que a inicial", null);
            return null;
         }
-        return tarefasService.FiltrarTarefas(filtro);    
+        return tarefasService.FiltrarTarefas(TarefaServices.filtro);    
     }
     
     private void setFiltros(){
-        if(filtro.getDataFinal() != null)
-            dataFinalDatePicker.setValue(DateHelper.CalendarParaLocalDate(filtro.getDataFinal()));
+        if(TarefaServices.filtro.getDataFinal() != null)
+            dataFinalDatePicker.setValue(DateHelper.CalendarParaLocalDate(TarefaServices.filtro.getDataFinal()));
         
-        if(filtro.getDataInicial() != null)
-            dataInicialDatePicker.setValue(DateHelper.CalendarParaLocalDate(filtro.getDataInicial()));
+        if(TarefaServices.filtro.getDataInicial() != null)
+            dataInicialDatePicker.setValue(DateHelper.CalendarParaLocalDate(TarefaServices.filtro.getDataInicial()));
         
-        petTextField.setText(filtro.getAnimal());
-        voluntariosTextField.setText(filtro.getVoluntario());
-        tiposOrdenacaoChoiceBox.setValue(Mapping.GetKeyByValue(Mapping.getOrdenacoesDespesaDoacoesHash(), filtro.getOrdenacao()));       
+        petTextField.setText(TarefaServices.filtro.getAnimal());
+        voluntariosTextField.setText(TarefaServices.filtro.getVoluntario());
+        tiposOrdenacaoChoiceBox.setValue(Mapping.GetKeyByValue(Mapping.getOrdenacoesDespesaDoacoesHash(), TarefaServices.filtro.getOrdenacao()));       
     }
     
     private void setListeners(Stage primmaryStage, Pane blackShadow){
         filtrar.setOnMouseClicked(e ->{
             var despesas = FiltrarProcedimentos();
             if(despesas != null){
-                 acao.RealizarAcao(new Object[]{ despesas, filtro });
+                 acao.RealizarAcao(new Object[]{ despesas, TarefaServices.filtro });
                  App.getInstance().FecharDialog(primmaryStage, blackShadow);
             }       
         });      

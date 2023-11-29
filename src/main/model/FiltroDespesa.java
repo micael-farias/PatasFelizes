@@ -1,6 +1,10 @@
 package main.model;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import main.utils.DateHelper;
+import static main.utils.DateHelper.CalendarParaStringReduced;
+import static main.utils.DateHelper.invalidString;
 
  public class FiltroDespesa{
        
@@ -57,6 +61,26 @@ import java.util.Calendar;
 
         public void setDataFinal(Calendar DataFinal) {
             this.DataFinal = DataFinal;
+        }
+
+        public HashMap<String, String> GetFiltros(){
+            HashMap<String, String> map = new HashMap<>();
+            
+            if(!invalidString(Tipo)){
+                map.put("Tipo", Tipo);
+            }
+            if(!invalidString(Voluntario)){
+                map.put("Voluntario", Voluntario);
+            }
+            if(!invalidString(Animal)){
+                map.put("Animal", Animal);
+            }
+            if(DataInicial != null && DataFinal != null){
+                map.put("Datas", "De "+ CalendarParaStringReduced(DataInicial) +" para "+ CalendarParaStringReduced(DataFinal));
+            }         
+             
+            
+            return map;
         }
         
         

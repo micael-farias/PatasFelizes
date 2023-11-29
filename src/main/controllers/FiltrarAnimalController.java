@@ -69,7 +69,6 @@ public class FiltrarAnimalController implements InicializadorComAcao {
     private ChoiceBoxCostumized ordenacaoChoiceBox;
     private ChoiceBoxCostumized statusChoiceBox;
 
-    private static FiltrosAnimais filtros;
     private AnimalService animalService;
     private Acao acao;
 
@@ -78,13 +77,13 @@ public class FiltrarAnimalController implements InicializadorComAcao {
         this.acao = acao;
         animalService = new AnimalService();
         inicializarComponentes(primmaryStage, blackShadow);
-        if (filtros != null) setData();
+        if (AnimalService.filtros != null) setData();
     }
 
     private void handleFiltrar(Stage primmaryStage, Pane blackShadow) {
         List<Animal> animaisFiltrados = ObterFiltros();
         if (animaisFiltrados != null) {
-                 acao.RealizarAcao(new Object[]{ animaisFiltrados, filtros });
+                 acao.RealizarAcao(new Object[]{ animaisFiltrados, AnimalService.filtros });
             App.getInstance().FecharDialog(primmaryStage, blackShadow);
         }
     }
@@ -121,31 +120,31 @@ public class FiltrarAnimalController implements InicializadorComAcao {
 
     
     private List<Animal> ObterFiltros() {
-        filtros = filtros == null ? new FiltrosAnimais() : filtros;
+        AnimalService.filtros = AnimalService.filtros == null ? new FiltrosAnimais() : AnimalService.filtros;
 
-        filtros.setOrdenacaoSelecionada(ordenacaoChoiceBox.getValue());
-        filtros.setStatusSelecionado(statusChoiceBox.getValue());
-        filtros.setFiltrarMasculino(checkCostumizedMasculino.getChecked());
-        filtros.setFiltrarFeminino(checkCostumizedFeminino.getChecked());
-        filtros.setFiltrarSexoDesconhecido(checkCostumizedSexoDesconhecido.getChecked());
-        filtros.setFiltrarCastradoSim(checkCostumizedSim.getChecked());
-        filtros.setFiltrarCastradoNao(checkCostumizedNao.getChecked());
-        filtros.setIntervaloPrimeiroAno(primeiroIntervaloAno.getText());
-        filtros.setIntervaloPrimeiroMeses(primeiraIntervaloMeses.getText());
-        filtros.setIntervaloSegundoAno(segundoIntervaloAno.getText());
-        filtros.setIntervaloSegundoMeses(segundoIntervaloMeses.getText());
+        AnimalService.filtros.setOrdenacaoSelecionada(ordenacaoChoiceBox.getValue());
+        AnimalService.filtros.setStatusSelecionado(statusChoiceBox.getValue());
+        AnimalService.filtros.setFiltrarMasculino(checkCostumizedMasculino.getChecked());
+        AnimalService.filtros.setFiltrarFeminino(checkCostumizedFeminino.getChecked());
+        AnimalService.filtros.setFiltrarSexoDesconhecido(checkCostumizedSexoDesconhecido.getChecked());
+        AnimalService.filtros.setFiltrarCastradoSim(checkCostumizedSim.getChecked());
+        AnimalService.filtros.setFiltrarCastradoNao(checkCostumizedNao.getChecked());
+        AnimalService.filtros.setIntervaloPrimeiroAno(primeiroIntervaloAno.getText());
+        AnimalService.filtros.setIntervaloPrimeiroMeses(primeiraIntervaloMeses.getText());
+        AnimalService.filtros.setIntervaloSegundoAno(segundoIntervaloAno.getText());
+        AnimalService.filtros.setIntervaloSegundoMeses(segundoIntervaloMeses.getText());
 
-        if (!validarIntervaloDataNascimento(filtros.getIntervaloPrimeiroAno(), filtros.getIntervaloPrimeiroMeses(),
-                filtros.getIntervaloSegundoAno(), filtros.getIntervaloSegundoMeses())) return null;
+        if (!validarIntervaloDataNascimento(AnimalService.filtros.getIntervaloPrimeiroAno(), AnimalService.filtros.getIntervaloPrimeiroMeses(),
+                AnimalService.filtros.getIntervaloSegundoAno(), AnimalService.filtros.getIntervaloSegundoMeses())) return null;
 
-        Calendar invervaloUm = DateHelper.ConvertMesAnoToCalendar(filtros.getIntervaloPrimeiroAno(),
-                filtros.getIntervaloPrimeiroMeses());
-        Calendar invervaloDois = DateHelper.ConvertMesAnoToCalendar(filtros.getIntervaloSegundoAno(),
-                filtros.getIntervaloSegundoMeses());
+        Calendar invervaloUm = DateHelper.ConvertMesAnoToCalendar(AnimalService.filtros.getIntervaloPrimeiroAno(),
+                AnimalService.filtros.getIntervaloPrimeiroMeses());
+        Calendar invervaloDois = DateHelper.ConvertMesAnoToCalendar(AnimalService.filtros.getIntervaloSegundoAno(),
+                AnimalService.filtros.getIntervaloSegundoMeses());
 
-        return animalService.selecionarAnimais(Mapping.GetKeyOrdenacoes(filtros.getOrdenacaoSelecionada()),
-                Mapping.GetKeyStatus(filtros.getStatusSelecionado()), filtros.isFiltrarMasculino(),
-                filtros.isFiltrarFeminino(), filtros.isFiltrarSexoDesconhecido(), filtros.isFiltrarCastradoSim(), filtros.isFiltrarCastradoNao(),
+        return animalService.selecionarAnimais(Mapping.GetKeyOrdenacoes(AnimalService.filtros.getOrdenacaoSelecionada()),
+                Mapping.GetKeyStatus(AnimalService.filtros.getStatusSelecionado()), AnimalService.filtros.isFiltrarMasculino(),
+                AnimalService.filtros.isFiltrarFeminino(), AnimalService.filtros.isFiltrarSexoDesconhecido(), AnimalService.filtros.isFiltrarCastradoSim(), AnimalService.filtros.isFiltrarCastradoNao(),
                 invervaloDois, invervaloUm);
     }
 
@@ -173,20 +172,20 @@ public class FiltrarAnimalController implements InicializadorComAcao {
     }
 
     public void setData() {
-        tiposOrdenacaoChoiceBox.setValue(filtros.getOrdenacaoSelecionada());
-        ordenacaoChoiceBox.setValue(filtros.getOrdenacaoSelecionada());
-        statusCheckBox.setValue(filtros.getStatusSelecionado());
-        statusChoiceBox.setValue(filtros.getStatusSelecionado());
+        tiposOrdenacaoChoiceBox.setValue(AnimalService.filtros.getOrdenacaoSelecionada());
+        ordenacaoChoiceBox.setValue(AnimalService.filtros.getOrdenacaoSelecionada());
+        statusCheckBox.setValue(AnimalService.filtros.getStatusSelecionado());
+        statusChoiceBox.setValue(AnimalService.filtros.getStatusSelecionado());
 
-        checkCostumizedMasculino.setImage(filtros.isFiltrarMasculino(), checkBoxMasculino);
-        checkCostumizedFeminino.setImage(filtros.isFiltrarFeminino(), checkBoxFeminino);
-        checkCostumizedSexoDesconhecido.setImage(filtros.isFiltrarSexoDesconhecido(), checkBoxSexoDesconhecido);
-        checkCostumizedSim.setImage(filtros.isFiltrarCastradoSim(), checkBoxSim);
-        checkCostumizedNao.setImage(filtros.isFiltrarCastradoNao(), checkBoxNao);
+        checkCostumizedMasculino.setImage(AnimalService.filtros.isFiltrarMasculino(), checkBoxMasculino);
+        checkCostumizedFeminino.setImage(AnimalService.filtros.isFiltrarFeminino(), checkBoxFeminino);
+        checkCostumizedSexoDesconhecido.setImage(AnimalService.filtros.isFiltrarSexoDesconhecido(), checkBoxSexoDesconhecido);
+        checkCostumizedSim.setImage(AnimalService.filtros.isFiltrarCastradoSim(), checkBoxSim);
+        checkCostumizedNao.setImage(AnimalService.filtros.isFiltrarCastradoNao(), checkBoxNao);
 
-        primeiroIntervaloAno.setText(filtros.getIntervaloPrimeiroAno());
-        primeiraIntervaloMeses.setText(filtros.getIntervaloPrimeiroMeses());
-        segundoIntervaloAno.setText(filtros.getIntervaloSegundoAno());
-        segundoIntervaloMeses.setText(filtros.getIntervaloSegundoMeses());
+        primeiroIntervaloAno.setText(AnimalService.filtros.getIntervaloPrimeiroAno());
+        primeiraIntervaloMeses.setText(AnimalService.filtros.getIntervaloPrimeiroMeses());
+        segundoIntervaloAno.setText(AnimalService.filtros.getIntervaloSegundoAno());
+        segundoIntervaloMeses.setText(AnimalService.filtros.getIntervaloSegundoMeses());
     }
 }

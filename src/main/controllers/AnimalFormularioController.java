@@ -46,7 +46,7 @@ public class AnimalFormularioController extends CustomController{
             String newText = change.getControlNewText();
 
             // Verificar se o novo texto é um número de 1 a 12
-            if (newText.matches("([1-9]|1[0-2])?")) {
+            if (newText.matches("([0-9]|1[0-2])?")) {
                 return change;  // Aceitar a alteração
             } else {
                 return null;  // Rejeitar a alteração
@@ -61,7 +61,7 @@ public class AnimalFormularioController extends CustomController{
             String newText = change.getControlNewText();
 
             // Verificar se o novo texto é um número de 1 a 30
-            if (newText.matches("([1-9]|[12][0-9]|30)?")) {
+            if (newText.matches("([0-9]|[12][0-9]|30)?")) {
                 return change;  // Aceitar a alteração
             } else {
                 return null;  // Rejeitar a alteração
