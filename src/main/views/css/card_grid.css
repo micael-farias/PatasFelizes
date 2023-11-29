@@ -1,37 +1,49 @@
 .check-box{
-    -fx-cursor: "hand"    
+    -fx-cursor: hand    
 }
 
 .check-box:hover{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);
-    -fx-cursor: "hand";
+    -fx-cursor: hand;
 }
 
 .box {
     -fx-background-color: #E7EDEE;
     -fx-background-radius: 5pt;
+    -fx-cursor: hand;
+}
+
+.box:hover {
+    -fx-background-color: #E7EDEE;
+    -fx-background-radius: 5pt;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);
 }
 
 .editar{
     -fx-background-color: #00F00F;
     -fx-background-radius: 20pt;
-    -fx-cursor: "hand"    
+    -fx-cursor: hand   
 }
 
 .editar:hover{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);
-    -fx-cursor: "hand"    
+    -fx-cursor: hand   
+}
+
+.view:hover{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);
+    -fx-cursor: hand  
 }
 
 .excluir{
     -fx-background-color: #00F00F;
     -fx-background-radius: 20pt;
-    -fx-cursor: "hand"    
+    -fx-cursor: hand
 }
 
 .excluir:hover{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);
-    -fx-cursor: "hand"    
+    -fx-cursor: hand   
 }
 
 .labelData{

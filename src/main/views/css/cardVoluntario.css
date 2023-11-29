@@ -9,7 +9,7 @@
 .labeNomeVoluntario {
     -fx-font: 16pt "Arial";
     -fx-text-fill: #000000;
-        -fx-font-weight: bold;
+    -fx-font-weight: bold;
 }
 
 .labelTelefoneVoluntario {
