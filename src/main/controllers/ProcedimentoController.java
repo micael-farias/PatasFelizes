@@ -126,7 +126,7 @@ public class ProcedimentoController extends CustomController implements Iniciali
           App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,
                    new Object[]{ "Deseja realmente excluir esse procedimento? "}, (dado) ->{
                        if(procedimentoService.Excluir(procedimento.getId()) == 1){
-                           App.getInstance().EntrarTelaOnResume(FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow, new Object[] {procedimento.getAnimal()});
+                           App.getInstance().EntrarTelaOnResume(FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow, new Object[] { procedimento.getAnimal().getId(),procedimento.getAnimal()});
                        }
                    });        
           });  

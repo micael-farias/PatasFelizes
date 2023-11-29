@@ -23,13 +23,15 @@ public class ProcedimentoGridView extends GridView<Procedimento> {
     Stage primaryStage;
     int idAnimal;
     
-    public ProcedimentoGridView(Pane contentFather, Stage primmaryStage, StackPane stackPaneScroll, Pane blackShadow, GridPane animaisGrid, int numColumns, List<Procedimento> items, int id) {
+    public ProcedimentoGridView(Pane contentFather, Stage primmaryStage, StackPane stackPaneScroll, Pane blackShadow, GridPane animaisGrid, int numColumns, List<Procedimento> items,
+            int id, boolean cadastraProcedimento) {
         super(animaisGrid, numColumns, items);
         this.contentFather = contentFather;
         this.blackShadow = blackShadow;
         this.primaryStage = primmaryStage;
         this.idAnimal = id;
         set(stackPaneScroll);
+        setCadastra(cadastraProcedimento);
         setInsets(new Insets(0,10,0,0));
     }
 

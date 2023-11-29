@@ -40,7 +40,7 @@
             </ImageView>
          </children>
       </VBox>
-      <Label layoutX="741.0" layoutY="28.0" prefHeight="26.0" prefWidth="80.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Idade" />
+      <Label layoutX="741.0" layoutY="28.0" prefHeight="26.0" prefWidth="80.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Anos" />
       <MenuButton id="button" fx:id="statusAnimal" layoutX="39.0" layoutY="405.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" stylesheets="@../css/detalhesanimal.css" text="Selecione">
          <items>
             <MenuItem mnemonicParsing="false" text="Para a adoção" />

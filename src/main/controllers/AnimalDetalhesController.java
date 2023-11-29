@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.enums.MensagemTipo;
 import main.factories.StatusAnimalFactory;
+import static main.factories.StatusAnimalFactory.GetStatusString;
 import main.interfaces.InicializadorComDado;
 import main.interfaces.Resumidor;
 import main.model.Adocao;
@@ -135,14 +136,13 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     
     private static Adocao adocao;
     private static Animal ultimoAnimal;
-
+    private boolean cadastraProcedimento;
 
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dado) {
         initialize(dado);
         initializeViews(contentFather,primmaryStage, blackShadow);
         setListeners(contentFather, primmaryStage, blackShadow);
-        configurarLayoutAdocao();
     }
     
     public void initialize(Object[] dado){
@@ -158,6 +158,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         autoCapitalizeFirstLetter(descricaoAnimalTextField);
         capitalizeEachWord(nomeAnimalTextField);
         autoCapitalizeFirstLetter(textFieldBuscarProcedimento);
+        cadastraProcedimento = ultimoAnimal == null ? true : !ultimoAnimal.getStatus().equals("F");
 
     }
     
@@ -167,7 +168,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
     
     public void criarGridProcedimentos(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         List<Procedimento> procedimentos = procedimentoService.EncontrarProcedimentosPor(ultimoAnimal.getId());
-        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primmaryStage,stackPaneScroll, blackShadow, procedimentosGridView, 1, procedimentos, ultimoAnimal.getId());
+        ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primmaryStage,stackPaneScroll, blackShadow, procedimentosGridView, 1, procedimentos, ultimoAnimal.getId(), cadastraProcedimento);
         procedimentosGrid.createGridAsync();   
     }
     
@@ -184,12 +185,20 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         Idade idadeAnimal = CalculaAnosEMesesPorDt(animal.getDataNascimento());
         sexoAnimalValor = animal.getSexo();
         boolean animalSemSexoDefinido = sexoAnimalValor == 'N';
-        ultimoStatus = animal.getStatus();
+        ultimoStatus =  GetStatusString(animal.getStatus());
+        fotoAnimal = animal.getFoto();
         if(idadeAnimal != null){
             anosAnimalTextField.setText(String.valueOf(idadeAnimal.getAnos()));
             mesesAnimalTextField.setText(String.valueOf(idadeAnimal.getMeses()));
         }
-
+           
+               configurarLayoutAdocao();
+   
+            if(ultimoStatus.equals("Falecido")){
+               layoutRemoverAdocao.setVisible(false);
+               layoutAdicionarAdocao.setVisible(false);
+            }
+            
         statusAnimal.setText(StatusAnimalFactory.GetStatusString(animal.getStatus()));
         descricaoAnimalTextField.setText(animal.getDescricao());
         setImage(animalSemSexoDefinido);
@@ -240,6 +249,15 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         statusAnimal.getItems().forEach(item -> item.setOnAction(event -> {
             statusAnimal.setText(item.getText());
             ultimoStatus = item.getText();
+            
+            
+            if(ultimoStatus.equals("Falecido")){
+               layoutRemoverAdocao.setVisible(false);
+               layoutAdicionarAdocao.setVisible(false);
+            }else{
+               configurarLayoutAdocao();
+            }
+            
         }));
         
         voltarButton.setOnMouseClicked(e ->{
@@ -276,7 +294,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
             String nome = textFieldBuscarProcedimento.getText();
             if(e.getCode().equals(ENTER)){
                   List<Procedimento> procedimentos = procedimentoService.EncontrarProcedimentosPor(nome, ultimoAnimal.getId());
-                  ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primaryStage,stackPaneScroll, blackShadow, procedimentosGridView, 1, procedimentos, ultimoAnimal.getId());
+                  ProcedimentoGridView procedimentosGrid = new ProcedimentoGridView(contentFather, primaryStage,stackPaneScroll, blackShadow, procedimentosGridView, 1, procedimentos, ultimoAnimal.getId(), cadastraProcedimento);
                   procedimentosGrid.createGridAsync();
             }
         });  
@@ -334,7 +352,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         if(adocao != null){
             layoutAdicionarAdocao.setVisible(false);
             layoutAdocao.setVisible(true);
-            nomeAdotante.setText(adocao.getAdotante().getNome());
+            nomeAdotante.setText(adocao.getAdotante() == null ? null : adocao.getAdotante().getNome());
             dataAdocao.setText(DateHelper.CalendarParaString(adocao.getDataCadastro()));
             layoutRemoverAdocao.setVisible(true);
         }else{
