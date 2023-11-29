@@ -46,7 +46,10 @@
     -fx-background-color: #F0F0F0 !important;
 }
 
-.imageViewAnimal{
-    -fx-pref-width: 10px; /* Largura desejada */
-    -fx-fit-height: 150px; /* Altura desejada */
+#ImageView {
+    -fx-cursor: hand;
+}
+
+#ImageView:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
 }

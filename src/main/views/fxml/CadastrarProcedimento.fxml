@@ -43,7 +43,7 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="95.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Voluntário" />
+                  <Label prefHeight="26.0" prefWidth="105.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Voluntário" />
                </children>
             </HBox>
             <TextField fx:id="voluntarioProcedimento" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />

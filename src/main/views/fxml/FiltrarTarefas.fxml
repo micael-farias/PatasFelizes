@@ -53,7 +53,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="Button" fx:id="filtrar" mnemonicParsing="false" prefWidth="76.0" text="Filtrar" />
+                  <Button id="Button" fx:id="filtrar" mnemonicParsing="false" prefWidth="86.0" text="Filtrar" />
                </children>
                <VBox.margin>
                   <Insets top="258.0" />

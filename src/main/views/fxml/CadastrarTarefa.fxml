@@ -20,7 +20,7 @@
                   <HBox prefHeight="26.0" prefWidth="607.0">
                      <children>
                         <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
-                        <Label prefHeight="20.0" prefWidth="54.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Tarefa">
+                        <Label prefHeight="20.0" prefWidth="64.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Tarefa">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -36,7 +36,7 @@
                      <children>
                         <HBox prefHeight="29.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="104.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Responsavel">
+                              <Label prefHeight="20.0" prefWidth="124.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Responsavel">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -58,7 +58,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
-                              <Label prefHeight="20.0" prefWidth="42.0" styleClass="Label" text="Data">
+                              <Label prefHeight="20.0" prefWidth="52.0" styleClass="Label" text="Data">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -82,7 +82,7 @@
                      <children>
                         <HBox prefHeight="29.0" prefWidth="290.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="32.0" styleClass="Label" text="Pet">
+                              <Label prefHeight="20.0" prefWidth="42.0" styleClass="Label" text="Pet">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -104,7 +104,7 @@
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
-                              <Label prefHeight="20.0" prefWidth="36.0" styleClass="Label" text="Tipo">
+                              <Label prefHeight="20.0" prefWidth="46.0" styleClass="Label" text="Tipo">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

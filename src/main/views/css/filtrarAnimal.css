@@ -70,3 +70,11 @@
     -fx-text-fill: #515151;
     -fx-cursor: hand;
 }
+
+#ImageView {
+    -fx-cursor: hand;
+}
+
+#ImageView:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+}
