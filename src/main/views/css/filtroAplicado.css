@@ -9,7 +9,7 @@
 
 #Label {
     -fx-font: 14px "Noto Sans Mono";
-    -fx-font-weight: Regular;
+    -fx-font-weight: normal;
     -fx-text-fill: #404040;
     -fx-alignment: center;
 }

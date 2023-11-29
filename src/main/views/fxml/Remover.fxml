@@ -16,7 +16,7 @@
             <Image url="@../../../assets/images/aviso-exclamacao.png" />
          </image>
       </ImageView>
-      <Label fx:id="mensagem" alignment="CENTER" layoutX="87.0" layoutY="163.0" prefHeight="86.0" prefWidth="502.0" text="Você tem certeza de que deseja remover este pet?" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="mensagem" alignment="CENTER" layoutX="67.0" layoutY="163.0" prefHeight="86.0" prefWidth="552.0" text="Você tem certeza de que deseja remover este pet?" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
