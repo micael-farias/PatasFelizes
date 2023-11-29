@@ -38,6 +38,28 @@ public class TextFieldUtils {
         textField.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
     }
 
+    public static String formatarTelefone(String numero) {
+        if (numero == null) {
+            return "";
+        }
+
+        // Remover todos os caracteres não numéricos
+        String numerosApenas = numero.replaceAll("\\D", "");
+
+        // Verificar o tamanho da string
+           // Verificar o tamanho da string
+        if (numerosApenas.length() == 11) {
+            // Formato (##) 9 ####-####
+            return numerosApenas.replaceFirst("(\\d{2})(\\d{1})(\\d{4})(\\d{4})", "($1) $2 $3-$4");
+        } else if (numerosApenas.length() == 10) {
+            // Formato (##) ####-####
+            return numerosApenas.replaceFirst("(\\d{2})(\\d{4})(\\d{4})", "($1) $2-$3");
+        } else {
+            // Caso não corresponda aos formatos esperados
+            return numero;
+        }
+    }
+    
     private static void formatText(TextField textField, NumberFormat format, SimpleDoubleProperty amount, String text) {
         if (text != null && !text.isEmpty()) {
             String plainText = text.replaceAll("[^0-9]", "");

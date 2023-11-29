@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
 public class Mapping {
     private static HashMap<String, String> ordenacoes = new HashMap<>(
             Map.of(
-                "Mais recente (Data de cadastro)", "DataCadastro Desc",
+                "Mais recente", "DataCadastro Desc",
                 "Mais antigo (Data de cadastro)", "DataCadastro Asc",
                 "Mais novo", "DataNascimento Desc",
                 "Mais velho", "DataNascimento Asc"

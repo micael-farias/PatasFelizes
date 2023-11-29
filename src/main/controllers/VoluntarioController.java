@@ -15,6 +15,7 @@ import static main.utils.Constantes.DIALOG_CADASTRAR_VOLUNTARIO;
 import static main.utils.ImageLoader.CarregarImagem;
 import static main.utils.Rectangles.GetCircleVoluntario;
 import static main.utils.Rectangles.GetRectangleVoluntario;
+import static main.utils.TextFieldUtils.formatarTelefone;
 import main.utils.ValidacaoUtils;
 
 public class VoluntarioController extends CustomController implements InicializadorComDado{
@@ -39,6 +40,7 @@ public class VoluntarioController extends CustomController implements Inicializa
         CarregarImagem(fotoVoluntario, voluntario.getFoto(), voluntario.idFoto(), GetCircleVoluntario());
         String nome = voluntario.getNome();
         nomeVoluntario.setText(nome);
+        telefoneVoluntario.setText(formatarTelefone(voluntario.getTelefone()));
     }
 
     @Override

@@ -29,7 +29,16 @@ public class DateHelper {
         return resultado;
     }
     
-    
+    public static String CalendarParaStringReduced(Calendar calendar) {
+        if (calendar == null) {
+            return null;
+        }
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String resultado = formato.format(calendar.getTime());
+        resultado = resultado.substring(0, 1).toUpperCase() + resultado.substring(1);
+        return resultado;
+    }
     
     
     public static String DataParaStringReduced(Date data) {
@@ -177,7 +186,7 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
             
             int mesInt = NumberHelper.IntegerParse(mes);
             int anoInt = NumberHelper.IntegerParse(ano);
-            
+            if(mesInt == 0 && anoInt == 0) return Calendar.getInstance();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(new Date());
             // Configura o mês e o ano
@@ -189,7 +198,7 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
             calendar.set(Calendar.MINUTE, 0);
             calendar.set(Calendar.SECOND, 0);
             calendar.set(Calendar.MILLISECOND, 0);
-
+            System.out.println(CalendarParaString(calendar));
             return calendar;
         } catch (NumberFormatException e) {
             e.printStackTrace();  // ou trate de acordo com sua lógica de erro

@@ -55,11 +55,12 @@ public abstract class GridView<T> {
             row++;
         }
         
-        if(primeiraLinha){         
-            GridPane.setMargin(gridItem, firstRowInsets());
-        }else{
-            GridPane.setMargin(gridItem, insets);        
-        }
+        if(insets != null)
+            if(primeiraLinha){         
+                GridPane.setMargin(gridItem, firstRowInsets());
+            }else{
+                GridPane.setMargin(gridItem, insets);        
+            }
     }
 
     public void setInsets(Insets insets) {

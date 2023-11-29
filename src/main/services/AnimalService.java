@@ -11,6 +11,7 @@ import main.App;
 import main.enums.MensagemTipo;
 import main.factories.StatusAnimalFactory;
 import main.model.Animal;
+import main.model.FiltrosAnimais;
 import main.repositories.AnimalRepository;
 import static main.utils.DateHelper.ConvertMesAnoToCalendar;
 import main.utils.ToogleEnum;
@@ -18,7 +19,8 @@ import main.utils.ToogleEnum;
 public class AnimalService  {
 
     AnimalRepository animalRepository;    
-    
+    public static FiltrosAnimais filtros;
+
     public AnimalService(){
         animalRepository = new AnimalRepository();
     }

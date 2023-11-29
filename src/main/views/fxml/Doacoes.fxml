@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -39,7 +40,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="534.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
+            <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="178.0" prefHeight="500.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                      <content>
@@ -55,7 +56,7 @@
             <HBox fx:id="toogleFinancas" layoutX="450.0" layoutY="76.0" prefHeight="32.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
-      <VBox alignment="BOTTOM_RIGHT" layoutX="770.0" layoutY="668.0" prefHeight="54.0" prefWidth="298.0">
+      <VBox alignment="BOTTOM_RIGHT" layoutX="770.0" layoutY="677.0" prefHeight="54.0" prefWidth="298.0">
          <children>
             <Label alignment="CENTER_RIGHT" minHeight="-Infinity" prefHeight="26.0" prefWidth="66.0" text="TOTAL" textFill="#494949">
                <font>
@@ -69,5 +70,6 @@
             </Label>
          </children>
       </VBox>
+      <Pane id="filtrosAplicados" fx:id="filtros" layoutX="77.0" layoutY="121.0" prefHeight="49.0" prefWidth="991.0" stylesheets="@../css/view.css" visible="false" />
    </children>
 </AnchorPane>

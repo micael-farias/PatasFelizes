@@ -38,6 +38,8 @@ public class Constantes {
     public static String DIALOG_FILTRAR_ANIMAL = PATH_VIEWS_FXML + "FiltrarAnimal.fxml";
     public static String DIALOG_FILTRAR_DESPESAS = PATH_VIEWS_FXML + "FiltrarDespesa.fxml";
     public static String DIALOG_FILTRAR_TAREFAS = PATH_VIEWS_FXML + "FiltrarTarefas.fxml";
+    public static String FILTRO_VIEW = PATH_VIEWS_FXML + "FiltrosAplicados.fxml";
+    public static String FILTRO_APLICADO_VIEW = PATH_VIEWS_FXML + "filtroAplicado.fxml";
     public static String DIALOG_FILTRAR_DOACOES = PATH_VIEWS_FXML + "FiltrarDoacao.fxml";
     public static String DIALOG_REMOVER = PATH_VIEWS_FXML + "Remover.fxml";
     public static String PATH_DATA_BASE = PATH_FILES + "scripts.sql";

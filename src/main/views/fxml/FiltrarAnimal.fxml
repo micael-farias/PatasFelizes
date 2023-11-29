@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="432.0" stylesheets="@../css/filtrarAnimal.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FiltrarAnimalController">
    <children>
-      <VBox id="VBoxExterna" layoutX="32.0" layoutY="32.0" prefHeight="714.0" prefWidth="368.0">
+      <VBox id="VBoxExterna" layoutX="32.0" layoutY="32.0" prefHeight="694.0" prefWidth="368.0">
          <children>
             <VBox id="VBox" prefHeight="48.0" prefWidth="100.0">
                <children>
@@ -150,13 +150,13 @@
                <children>
                   <Button id="button" fx:id="cancelarFiltro" mnemonicParsing="false" prefHeight="32.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar">
                      <HBox.margin>
-                        <Insets right="5.0" />
+                        <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
                   <Button id="Button" fx:id="filtrar" mnemonicParsing="false" prefWidth="86.0" text="Filtrar" />
                </children>
                <VBox.margin>
-                  <Insets top="113.0" />
+                  <Insets top="100.0" />
                </VBox.margin>
             </HBox>
          </children>

@@ -1,5 +1,6 @@
 package main.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,22 +9,32 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.App;
+import main.enums.Mapping;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
+import main.model.Animal;
 import main.model.Despesa;
 import static main.model.Despesa.somarValores;
 import main.model.FiltroDespesa;
+import main.model.FiltrosAnimais;
 import main.model.Procedimento;
+import main.services.AnimalService;
 import main.services.DoacaoServices;
 import main.services.DespesaServices;
+import static main.utils.Constantes.DIALOG_FILTRAR_ANIMAL;
 import static main.utils.Constantes.DIALOG_FILTRAR_DESPESAS;
 import static main.utils.Constantes.FORM_DESPESAS;
+import static main.utils.Constantes.FORM_HOME;
+import static main.utils.DateHelper.invalidString;
 import main.utils.RealFormatter;
 import main.views.gridview.DespesasGridView;
+import main.views.gridview.FiltroGridView;
+import main.views.toggle.FiltroView;
 import main.views.toggle.ToggleView;
 
 public class DespesasController implements Inicializador, Resumidor {  
@@ -38,12 +49,17 @@ public class DespesasController implements Inicializador, Resumidor {
     
     @FXML
     private Button filtrarDespesas;
+    
+    @FXML
+    private Pane filtros;
 
     @FXML
     private Label totalDespesas;
     private DespesaServices despesaServices;
     private DoacaoServices doacaoServices;
     private ToggleView toggleViewFinancas;
+    private FiltroView filtroView;
+    private FiltroGridView filtroGridView;
     
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
@@ -53,7 +69,36 @@ public class DespesasController implements Inicializador, Resumidor {
     public void initialize(Pane contentFather, Stage primaryStage, Pane blackShadow){
         despesaServices = new DespesaServices();
         doacaoServices = new DoacaoServices();
+        filtroView = new FiltroView();
+        filtroView.Criar(filtros);
         criarDespesas(contentFather, primaryStage, blackShadow);
+    }
+    
+     public void criarFiltros(){
+        if(DespesaServices.filtro == null){
+            filtros.setVisible(false);
+            return;
+        }
+        filtros.setVisible(true);
+        var key = Mapping.GetKeyByValue(Mapping.getOrdenacoesDespesaDoacoesHash(), DespesaServices.filtro.getOrdenacao());
+        if(invalidString(key)){
+            filtroView.removerOrdenacao();
+        }else{
+            filtroView.adicionarCaixaOrdenados();
+            filtroView.setOrdenacao(key);
+        }
+        
+        
+        var filtrosString = new ArrayList<>(DespesaServices.filtro.GetFiltros().values());  
+        if(filtrosString.size() > 0){     
+            filtroView.adicionarCaixaFiltrados();
+            filtroGridView = new FiltroGridView(filtroView.getGridFiltros(), filtrosString.size(), filtrosString);
+            filtroGridView.createGridAsync();
+        }else{
+            filtroView.removerFiltros();
+        }
+        
+        if(invalidString(key) && filtrosString.size() == 0) filtros.setVisible(false);
     }
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
@@ -75,6 +120,15 @@ public class DespesasController implements Inicializador, Resumidor {
             });
             
         });
+        
+
+        
+        filtroView.excluirFiltro((dado) ->{
+            AnimalService.filtros = null;
+            criarDespesas(contentFather, primmaryStage, blackShadow);
+            criarFiltros();
+        
+        });  
         
     }
     
@@ -105,6 +159,7 @@ public class DespesasController implements Inicializador, Resumidor {
         DespesasGridView despesasGridView = new DespesasGridView(despesasGrid, 1, despesas, contentFather, stackPaneScroll, primmaryStage, blackShadow);
         despesasGridView.createGridAsync();   
         calcularTotal(despesas);
+        criarFiltros();
     }
  
 }
