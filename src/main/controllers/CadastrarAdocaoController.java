@@ -21,6 +21,7 @@ import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.DateHelper.invalidString;
 import main.utils.ValidacaoUtils;
 import javafx.scene.control.TextInputControl;
+import static main.utils.Constantes.PATH_VIEWS_FXML;
 import static main.utils.TextFieldUtils.applyNumericMask;
 import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
 
@@ -64,12 +65,17 @@ public class CadastrarAdocaoController extends CustomController implements Inici
     private Adocao adocao;
     private int idAnimal;
     Acao acao;
+    private boolean estaCadastrando;
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
        salvarAdocao.setOnMouseClicked(e->{
-            if(CadastrarAdocao() == null) return;
-            acao.RealizarAcao(new Object[]{});
-            App.getInstance().FecharDialog(primmaryStage,blackShadow);
+            adocao = CadastrarAdocao();
+            if(adocao == null) return;
+            acao.RealizarAcao(new Object[]{adocao});
+            
+            App.getInstance().removerDialogoAberto(blackShadow, primmaryStage);
+            
+            if(estaCadastrando) App.getInstance().AbrirDialog(PATH_VIEWS_FXML+"Animacao.fxml", contentFather, primmaryStage, blackShadow);
                     
         });
        
@@ -106,6 +112,7 @@ public class CadastrarAdocaoController extends CustomController implements Inici
         int idAdocao = adocao == null ? -1 : adocao.getId();
         int idAdotante = adocao == null || adocao.getAdotante() == null ? -1 : adocao.getAdotante().getId();
         
+        
         if(!validarAdocao(tutor, telefone)) return null;
         
         return adocaoServices.Salvar(idAdocao, idAdotante, tutor, telefone, cep, rua, cidade, bairro, numero, complemento, idAnimal);
@@ -131,6 +138,7 @@ public class CadastrarAdocaoController extends CustomController implements Inici
         this.acao =acao;
         idAnimal = ObterDadoArray(dados, 0) == null ? -1 : (int) ObterDadoArray(dados, 0);
         adocao = ObterDadoArray(dados, 1) == null ? null : (Adocao) ObterDadoArray(dados, 1);
+        estaCadastrando = adocao == null; 
         adocaoServices = new AdocaoServices();
         setListeners(contentFather, primmaryStage, blackShadow);
         setData();

@@ -83,7 +83,7 @@ public class TarefaServices {
             if(idTarefa == -1){
                 if(animal != null){
                     procedimento = procedimentoRepository.Salvar(-1, descricao, data, tipo, null, voluntario, animal, realizado);
-                                if(enviaEmail){
+                                if(enviaEmail && voluntario != null){
                 new EmailSenderThread(voluntario.getEmail(), "Nova tarefa pra você", "Patas felizes tem uma nova tarefa", null).start();
             }
                 }

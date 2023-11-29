@@ -48,19 +48,19 @@ public class StatusAnimalFactory {
         }
     }  
     
-    public static Color GetColorStatus(String status){
+    public static String GetColorStatus(String status){
         switch (status) {
             case "PA" -> {
-                return Color.web("#7CD474");
+                return "#7CD474";
             }
             case "A" -> {
-                return Color.web("#3855FC");
+                return "#3855FC";
             }
             case "F" -> {
-                return Color.web("#757575");
+                return "#757575";
             }
             case "D" -> {
-                return Color.web("#D47474");
+                return "#D47474";
             }
             default -> throw new AssertionError();
         }

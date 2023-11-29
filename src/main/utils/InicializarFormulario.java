@@ -212,6 +212,7 @@ public class InicializarFormulario {
             if(pane.getChildren().contains(mensagemErro)){
                 pane.getChildren().remove(mensagemErro);
             }
+            blackShadow.setOnMouseClicked(e ->{FecharDialog(primaryStage, blackShadow);});
             
             
             blackShadow.setVisible(true);

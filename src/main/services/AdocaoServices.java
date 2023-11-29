@@ -29,7 +29,13 @@ public class AdocaoServices {
         try{
             adocaoRepository.BeginTransaction();
            
-            Adotante adotante = adotanteRepository.SalvarAdotante(idAdotante,tutor, telefone, cep, cidade, rua, bairro, numero, complemento);
+            
+            Adotante adotante = adotanteRepository.EncontrarPorTelefone(telefone);
+            if(adotante != null){
+                idAdotante = adotante.getId();            
+            }
+            
+            adotante= adotanteRepository.SalvarAdotante(idAdotante,tutor, telefone, cep, cidade, rua, bairro, numero, complemento);
             
             adocao = adocaoRepository.SalvarAdocao(idAdocao, idAnimal, adotante);
                 

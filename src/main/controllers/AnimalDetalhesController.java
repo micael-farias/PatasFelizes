@@ -295,6 +295,8 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         adotarButton.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialogComAcao(DIALOG_CADASTRAR_ADOCAO,FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow, new Object[]{ultimoAnimal.getId(), adocao}, (dado) -> {           
                 configurarLayoutAdocao();
+                adocao = (Adocao) dado[0];
+                ultimoStatus = "Adotado";
                 statusAnimal.setText("Adotado");
             } );
         });

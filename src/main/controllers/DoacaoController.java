@@ -62,7 +62,7 @@ public class DoacaoController extends CustomController implements InicializadorC
         
         nomeDoador.setText(doacao.getDoador());
         idDoacao.setText("Doação "+ doacao.getId());
-        dataDoacao.setText(DataParaString(doacao.getData()) + "-" +DateHelper.DataParaStringReduced(doacao.getDataCadastro()));
+        dataDoacao.setText(DataParaString(doacao.getData()));
         dataDoacao.setStyle("-fx-font-weight: bold;");
         valorDoacao.setText(RealFormatter.formatarComoReal(doacao.getValor()));
         iconComprovante.setVisible(doacao.getFotoComprovante() != null);
