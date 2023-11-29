@@ -33,9 +33,9 @@
                   <Label id="Label" text="Sexo" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="checkBoxFeminino" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="ImageView" fx:id="checkBoxFeminino" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                              <Image url="@../../../assets/images/check_azul_not_checked.png" />
                            </image>
                         </ImageView>
                         <Label text="Feminino">
@@ -50,9 +50,9 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="35.0" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="checkBoxMasculino" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="ImageView" fx:id="checkBoxMasculino" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                              <Image url="@../../../assets/images/check_azul_not_checked.png" />
                            </image>
                         </ImageView>
                         <Label text="Masculino">
@@ -67,9 +67,9 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="checkBoxSexoDesconhecido" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="ImageView" fx:id="checkBoxSexoDesconhecido" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                              <Image url="@../../../assets/images/check_azul_not_checked.png" />
                            </image>
                         </ImageView>
                         <Label text="Sexo desconhecido">
@@ -89,9 +89,9 @@
                   <Label id="Label" text="Castrado" />
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="checkBoxSim" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="ImageView" fx:id="checkBoxSim" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                              <Image url="@../../../assets/images/check_azul_not_checked.png" />
                            </image>
                         </ImageView>
                         <Label text="Sim">
@@ -106,9 +106,9 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="checkBoxNao" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="ImageView" fx:id="checkBoxNao" fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Workspace2/Patas%203.0/PatasFelizes/src/assets/images/check_azul_not_checked.png" />
+                              <Image url="@../../../assets/images/check_azul_not_checked.png" />
                            </image>
                         </ImageView>
                         <Label text="Não">
@@ -153,7 +153,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button id="Button" fx:id="filtrar" mnemonicParsing="false" prefWidth="76.0" text="Filtrar" />
+                  <Button id="Button" fx:id="filtrar" mnemonicParsing="false" prefWidth="86.0" text="Filtrar" />
                </children>
                <VBox.margin>
                   <Insets top="100.0" />

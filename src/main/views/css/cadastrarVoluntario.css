@@ -45,3 +45,11 @@
 .cancelButton {
     -fx-background-color: #F0F0F0 !important;
 }
+
+#ImageView {
+    -fx-cursor: hand;
+}
+
+#ImageView:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+}

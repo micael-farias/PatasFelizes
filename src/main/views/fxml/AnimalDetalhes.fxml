@@ -80,7 +80,7 @@
                         <Image url="@../../../assets/images/check_azul_not_checked.png" />
                      </image>
                   </ImageView>
-                  <Label text="Sexo desconhecido">
+                  <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="131.0" text="Sexo desconhecido">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
