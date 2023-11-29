@@ -88,11 +88,11 @@ public class ToogleButtonController {
         switch (opcao) {
             case DIREITO -> {
                 lado = ToogleEnum.DIREITO;
-                moverParaEsquerda();
+                manterParaDireita();
             }
             case ESQUERDO -> {
                 lado = ToogleEnum.ESQUERDO;
-                moverParaDireita();
+                manterParaEsquerda();
             }
             default -> {
             }
@@ -123,6 +123,8 @@ public class ToogleButtonController {
         labelEsquerda.setVisible(true);
     } 
 
+    
+    
     private void moverParaEsquerda() {
             TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), paneAtual);
             transition.setToX(layoutCheckBox.getWidth() - paneAtual.getWidth());
@@ -134,6 +136,15 @@ public class ToogleButtonController {
         transition.setToX(0);
         transition.play();
     }
+    
+    public void manterParaEsquerda() {
+        paneAtual.setLayoutX(0);
+    }
+
+    public void manterParaDireita() {
+        paneAtual.setTranslateX(90);
+    }
+
     
     public ToogleEnum getSelectedItem() {
         return lado;

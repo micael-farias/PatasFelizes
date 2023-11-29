@@ -1,11 +1,8 @@
 package main.controllers;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import static javafx.scene.input.KeyCode.BACK_SPACE;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -13,10 +10,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
-import main.model.Tarefa;
 import main.model.Voluntario;
 import main.services.VoluntarioService;
-import static main.utils.Constantes.PATH_IMAGES;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 import main.views.gridview.EquipeGridView;
 
 public class EquipeController implements Inicializador, Resumidor {
@@ -35,6 +31,8 @@ public class EquipeController implements Inicializador, Resumidor {
         initialize();
         criarGridVoluntarios(contentFather, primmaryStage, blackShadow);
         setListeners(contentFather, primmaryStage, blackShadow);
+        capitalizeEachWord(textFieldBuscarVoluntario);
+
     }
 
     @Override
@@ -53,8 +51,6 @@ public class EquipeController implements Inicializador, Resumidor {
             if(e.getCode().equals(ENTER)){
                   List<Voluntario> voluntarios = voluntarioService.ObterVoluntarios(nome);
                   criarGridComResultados(voluntarios, contentFather, primmaryStage, blackShadow);
-            }else if(e.getCode().equals(BACK_SPACE)){
-                if(nome.length() == 0) hintBuscarVoluntario();
             }
         });  
     }

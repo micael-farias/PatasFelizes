@@ -3,7 +3,7 @@ package main.controllers;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Set;
-import java.util.Calendar;
+import java.util.Date;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -27,6 +27,9 @@ import main.utils.ImageLoader;
 import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
+import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 
 public class CadastrarDoacaoController extends CustomController implements InicializadorComDado{
@@ -52,7 +55,7 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     @FXML
     private HBox layoutComprovante;
 
-        @FXML
+    @FXML
     private Label labelComprovante;
     @FXML
     private Button cancelarCadastro;
@@ -76,7 +79,8 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         doacaoServices = new DoacaoServices();
         voluntarioService = new VoluntarioService();
         TextFieldUtils.setupCurrencyTextField(valorDoacao);
-        
+        capitalizeEachWord(doadorDoacao);
+
         configurarDoadores();
         configurarVoluntarios();
         setData();
@@ -95,8 +99,8 @@ public class CadastrarDoacaoController extends CustomController implements Inici
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarDoacao.setOnMouseClicked(e->{
-            SalvarDespesa();
-            App.getInstance().EntrarTelaOnResume(FORM_DOACOES ,contentFather, primmaryStage, blackShadow, null);                      
+            if(SalvarDespesa() != null)
+                App.getInstance().EntrarTelaOnResume(FORM_DOACOES ,contentFather, primmaryStage, blackShadow, null);                      
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
@@ -104,10 +108,12 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         });      
           layoutAdicionarComprovante.setOnMouseClicked(e ->{
             comprovante = ImageLoader.CarregarImagemLocal(primmaryStage);
-            labelComprovante.setText("doacao_"+idDoacao+".pdf");
-            layoutAdicionarComprovante.setVisible(false);
-            layoutComprovante.setVisible(true);
-        });
+            if(comprovante != null){
+                labelComprovante.setText("doacao_"+idDoacao+".pdf");
+                layoutAdicionarComprovante.setVisible(false);
+                layoutComprovante.setVisible(true);
+            }   
+          });
         
         layoutComprovante.setOnMouseClicked(e -> {
                 PdfDownloader.baixarPdf(doacao.getFotoComprovante(), "doacao_"+idDoacao+".pdf");
@@ -115,12 +121,14 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         });
     }
     
-    public void SalvarDespesa(){
+    public Doacao SalvarDespesa(){
         LocalDate data = dataDoacao.getValue();
         String doador = doadorDoacao.getText();
         double valor = RealFormatter.unformatarReal(valorDoacao.getText());
         
-        doacaoServices.Salvar(idDoacao, doador, valor, data, comprovante);
+        if(!validaDoacao(doador, doador, valor)) return null;
+        
+        return doacaoServices.Salvar(idDoacao, doador, valor, data, comprovante);
     }
     
     private void setData() {
@@ -137,6 +145,14 @@ public class CadastrarDoacaoController extends CustomController implements Inici
                 layoutAdicionarComprovante.setVisible(false);
             }
         }
+    }
+    
+      
+    public boolean validaDoacao(String descricao, String tipo, double valor){
+        boolean doador = ValidacaoUtils.validarCampo(descricao, doadorDoacao, "O nome do doador não deve ser vazio");
+        boolean dataValida = ValidacaoUtils.validarCampo(dataDoacao);
+        boolean valorValido = ValidacaoUtils.validarCampoReal(valor, valorDoacao, "Um valor deve ser informado");
+        return doador && dataValida && valorValido;
     }
      
     

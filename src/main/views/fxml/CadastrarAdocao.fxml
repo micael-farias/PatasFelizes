@@ -20,8 +20,13 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="546.0">
+            <HBox prefHeight="38.0" prefWidth="546.0">
                <children>
+                  <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED">
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </Label>
                   <Label prefHeight="38.0" prefWidth="106.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="Tutor">
                      <font>
                         <Font size="14.0" />
@@ -33,9 +38,17 @@
                      </children>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="546.0">
+            <HBox prefHeight="38.0" prefWidth="546.0">
                <children>
+                  <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
                   <Label prefHeight="30.0" prefWidth="98.0" styleClass="Label_reduced" stylesheets="@../css/cadastrar.css" text="Telefone">
                      <font>
                         <Font size="14.0" />

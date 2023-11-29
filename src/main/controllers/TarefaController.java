@@ -15,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import main.App;
+import main.enums.MensagemTipo;
 import main.interfaces.InicializadorComDado;
 import main.model.Despesa;
 import main.model.Procedimento;
@@ -84,20 +85,34 @@ public class TarefaController extends CustomController implements InicializadorC
         descricaoTarefa.setText(procedimento.getDescricao());
         nomeAnimal.setText(procedimento.getAnimal()!= null ? procedimento.getAnimal().getNome() : "-");
         nomeVoluntario.setText(procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().getNome());
-        dataTarefa.setText(CalendarParaString(procedimento.getData()));
+        dataTarefa.setText(CalendarParaString(procedimento.getData()) + "-" +DateHelper.CalendarParaStringReduced(procedimento.getDataCadastro()));
 
-      /*  setImage(procedimento.isRealizada());
+       setImage(procedimento.isRealizado());
         checkBoxRealizado.setOnMouseClicked(event -> {
-            boolean realizada = !procedimento.isRealizada();
+            boolean realizada = !procedimento.isRealizado();
             setImage(realizada);
+            Procedimento procedimentoObtido;
             if (realizada) {  
-              //  procedimento = tarefaServices.Salvar(procedimento.getId(), procedimento.getVoluntario().getNome(), procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : null,
-              //          procedimento.getDescricao(), DateHelper.CalendarParaLocalDate(procedimento.getData()), procedimento.getTipo(), true);
+                procedimentoObtido = tarefaServices.Salvar(procedimento.getId(),
+                        procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().getNome(),
+                        procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : null,
+                        procedimento.getDescricao(),
+                        DateHelper.CalendarParaLocalDate(procedimento.getData()),
+                        procedimento.getTipo(), true);
             }else{
-               // procedimento = tarefaServices.Salvar(procedimento.getId(), procedimento.getVoluntario().getNome(), procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : null,
-               //         procedimento.getDescricao(), DateHelper.CalendarParaLocalDate(procedimento.getData()), procedimento.getTipo(), false);       
+                procedimentoObtido = tarefaServices.Salvar(procedimento.getId(),
+                        procedimento.getVoluntario() == null ? null : procedimento.getVoluntario().getNome(),
+                        procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : null,
+                        procedimento.getDescricao(),
+                        DateHelper.CalendarParaLocalDate(procedimento.getData()), procedimento.getTipo(), false);       
             }
-        });   */
+            
+            if(procedimentoObtido == null){
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da tarefa", null);
+            }else{
+                procedimento= procedimentoObtido;
+            }
+        });   
         
         if(posicao % 2 == 0){
             layoutTarefa.setStyle("-fx-background-color: white;");
@@ -112,9 +127,13 @@ public class TarefaController extends CustomController implements InicializadorC
         });  
         
         excluirTarefa.setOnMouseClicked(e ->{
-          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_TAREFAS, contentFather, primaryStage, blackShadow,
-                   new Object[]{ "Deseja realmente excluir essa tarefa? "});        
-          });  
+          App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_TAREFAS, contentFather, primaryStage, blackShadow,
+                   new Object[]{ "Deseja realmente excluir essa tarefa? "}, (dados) ->{
+                       if(tarefaServices.Excluir(procedimento.getId()) == 1){
+                           App.getInstance().EntrarTelaOnResume(FORM_TAREFAS, contentFather, primaryStage, blackShadow, null);
+                       }
+                   });
+        });
         
         editarTarefa.setOnMouseClicked(e ->{
           App.getInstance().AbrirDialogComDado(DIALOG_CADASTRAR_TAREFA, contentFather, primaryStage, blackShadow,

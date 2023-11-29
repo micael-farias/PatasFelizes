@@ -12,6 +12,8 @@ import main.repositories.VoluntarioRepository;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.App;
+import main.enums.MensagemTipo;
 
 /**
  *
@@ -25,11 +27,14 @@ public class VoluntarioService {
          voluntarioRepository = new VoluntarioRepository();
     }
 
-    public void Salvar(int idVoluntario, String nome, String email, String telefone, byte[] fotoVoluntario) {
+    public Voluntario Salvar(int idVoluntario, String nome, String email, String telefone, byte[] fotoVoluntario) {
         try {
-            voluntarioRepository.Salvar(idVoluntario, nome, email, telefone, fotoVoluntario);
+            return voluntarioRepository.Salvar(idVoluntario, nome, email, telefone, fotoVoluntario);
         } catch (Exception ex) {
             ex.printStackTrace();
+                String mensagem = idVoluntario == -1 ? "cadastrar" : "atualizar";
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao " + mensagem + " o voluntário", null);
+            return null;
         }
     }
 
@@ -47,6 +52,19 @@ public class VoluntarioService {
 
     public Voluntario ObterVoluntarioPorNome(String voluntarioString) {
         return voluntarioRepository.EncontrarVoluntarioPor(voluntarioString);
+    }
+
+    public int DeletarVoluntarioPorId(int id) {
+          
+        try {
+            voluntarioRepository.Excluir(Voluntario.class, id);
+            return 1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar o voluntário", null);
+            return 0;
+         }
+
     }
      
 }

@@ -6,13 +6,7 @@ package main.controllers;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -23,13 +17,14 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
 import main.interfaces.InicializadorComDado;
-import main.interfaces.InicializadorComOrigemEDado;
 import main.model.Procedimento;
 import main.services.ProcedimentoService;
 import main.services.VoluntarioService;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import main.utils.RealFormatter;
 import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 /**
  *
@@ -38,9 +33,6 @@ import org.controlsfx.control.textfield.TextFields;
 public class CadastrarProcedimentoController extends CustomController implements InicializadorComDado{
     @FXML
     private DatePicker dataProcedimento;
-   
-    @FXML
-    private CheckBox checkBoxJaRealizado;
     
     @FXML
     private TextArea descricaoProcedimento;
@@ -64,7 +56,6 @@ public class CadastrarProcedimentoController extends CustomController implements
     private VoluntarioService voluntarioService;
     private int idAnimal;
     private Procedimento procedimento;
-    private boolean jaRealizado;
     
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
@@ -91,32 +82,22 @@ public class CadastrarProcedimentoController extends CustomController implements
         configurarVoluntarios();
         configurarTiposProcedimento();
         TextFieldUtils.setupCurrencyTextField(valorProcedimento);
+        autoCapitalizeFirstLetter(descricaoProcedimento);
+        autoCapitalizeFirstLetter(voluntarioProcedimento);
+        autoCapitalizeFirstLetter(tipoProcedimento);
 
         if(procedimento != null) setData();
     }
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarProcedimento.setOnMouseClicked(e->{
-            cadastrarNovoProcedimento(primmaryStage);
-            App.getInstance().EntrarTelaOnResume(FORM_ANIMAL_DETALHES ,contentFather, primmaryStage, blackShadow, null);                       
+            if(cadastrarNovoProcedimento(primmaryStage) != null)
+                App.getInstance().EntrarTelaOnResume(FORM_ANIMAL_DETALHES ,contentFather, primmaryStage, blackShadow, null);                       
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
             App.getInstance().FecharDialog(primmaryStage, blackShadow);                       
-        });
-
-        checkBoxJaRealizado.setOnAction(event -> {
-            jaRealizado = checkBoxJaRealizado.isSelected();
-        });
-        
-        dataProcedimento.setOnAction(e -> {
-            LocalDate data = dataProcedimento.getValue();
-            if (data != null && data.isEqual(LocalDate.now())) {
-                checkBoxJaRealizado.setVisible(true);
-            } else {
-                checkBoxJaRealizado.setVisible(false);
-            }
-        });     
+        });    
     }
     
     public Procedimento cadastrarNovoProcedimento(Stage primaryStage) {
@@ -125,8 +106,11 @@ public class CadastrarProcedimentoController extends CustomController implements
         String tipo = tipoProcedimento.getText();
         String voluntario = voluntarioProcedimento.getText();
         double valor = RealFormatter.unformatarReal(valorProcedimento.getText());
-
-        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, valor, voluntario, idAnimal, jaRealizado);      
+        Boolean realizado = procedimento == null ? null : procedimento.isRealizado();
+        
+        if(!validarProcedimento(descricao, tipo)) return null;
+        
+        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, valor, voluntario, idAnimal, realizado);      
     }
 
     private void setData() {
@@ -136,7 +120,13 @@ public class CadastrarProcedimentoController extends CustomController implements
         tipoProcedimento.setText(procedimento.getTipo());
         voluntarioProcedimento.setText(procedimento.getVoluntario() == null ? "" : procedimento.getVoluntario().getNome());
         valorProcedimento.setText(RealFormatter.formatarComoReal(procedimento.getDespesa() == null ? 0 : procedimento.getDespesa().getValor()));
-        jaRealizado = procedimento.isRealizado();
+    }
+    
+    public boolean validarProcedimento(String descricao, String tipo){
+        boolean descricaoValida = ValidacaoUtils.validarCampo(descricao, descricaoProcedimento, "A descrição não deve ser vazia");
+        boolean tipoValido = ValidacaoUtils.validarCampo(tipo, tipoProcedimento, "O tipo não deve ser vazio");
+        boolean dataValida = ValidacaoUtils.validarCampo(dataProcedimento);
+        return descricaoValida && dataValida && tipoValido;
     }
 
 }

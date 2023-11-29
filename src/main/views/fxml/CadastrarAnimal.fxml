@@ -16,16 +16,17 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="948.0" styleClass="pane" stylesheets="@../css/detalhesanimal.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.CadastrarAnimalController">
    <children>
-      <Label fx:id="labelNome" layoutX="248.0" layoutY="28.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Nome">
+      <Label layoutX="239.0" layoutY="29.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+      <Label fx:id="labelNome" layoutX="248.0" layoutY="28.0" prefHeight="26.0" prefWidth="220.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Nome">
          <font>
             <Font size="3.0" />
          </font>
       </Label>
-      <Label id="Labels" layoutX="248.0" layoutY="94.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Sobre" textFill="WHITE" />
+      <Label id="Labels" layoutX="248.0" layoutY="94.0" prefHeight="26.0" prefWidth="162.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Sobre" textFill="WHITE" />
       <TextArea fx:id="descricaoAnimalTextField" layoutX="248.0" layoutY="124.0" prefHeight="94.0" prefWidth="660.0" styleClass="round-layout-text-area" stylesheets="@../css/detalhesanimal.css" wrapText="true" AnchorPane.bottomAnchor="258.0" AnchorPane.rightAnchor="39.0" />
-      <Label id="Labels" layoutX="39.0" layoutY="221.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Sexo" />
-      <Label id="Labels" layoutX="39.0" layoutY="313.0" lineSpacing="2.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Castrado" />
-      <Label id="Labels" layoutX="39.0" layoutY="374.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Status" />
+      <Label id="Labels" layoutX="39.0" layoutY="221.0" prefHeight="26.0" prefWidth="96.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Sexo" />
+      <Label id="Labels" layoutX="39.0" layoutY="313.0" lineSpacing="2.0" prefHeight="26.0" prefWidth="106.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Castrado" />
+      <Label id="Labels" layoutX="39.0" layoutY="374.0" prefHeight="26.0" prefWidth="118.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Status" />
       <Button id="button" fx:id="salvarAnimal" layoutX="802.0" layoutY="419.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" stylesheets="@../css/cadastraranimal.css" text="Salvar" AnchorPane.bottomAnchor="39.6" AnchorPane.rightAnchor="39.0" />
       <Button id="button" fx:id="cancelarCadastro" layoutX="686.0" layoutY="419.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="106.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar" AnchorPane.bottomAnchor="39.6" />
       <HBox fx:id="toggleSexo" layoutX="39.0" layoutY="251.0" prefHeight="27.0" prefWidth="180.0" styleClass="card" stylesheets="@../css/toggle.css" />
@@ -39,13 +40,10 @@
             </ImageView>
          </children>
       </VBox>
-      <Label layoutX="741.0" layoutY="28.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Idade" />
+      <Label layoutX="741.0" layoutY="28.0" prefHeight="26.0" prefWidth="80.0" style="-fx-font-family: Noto Sans Devanagari;" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Idade" />
       <MenuButton id="button" fx:id="statusAnimal" layoutX="39.0" layoutY="405.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" stylesheets="@../css/detalhesanimal.css" text="Selecione">
          <items>
             <MenuItem mnemonicParsing="false" text="Para a adoção" />
-            <MenuItem mnemonicParsing="false" text="Adotado" />
-            <MenuItem mnemonicParsing="false" text="Desaparecido" />
-            <MenuItem mnemonicParsing="false" text="Falecido" />
          </items>
          <font>
             <Font name="System Bold" size="12.0" />
@@ -83,7 +81,7 @@
             <Font name="Noto Sans Mono Regular" size="18.0" />
          </font>
       </TextField>
-      <Label layoutX="832.0" layoutY="28.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Meses" />
+      <Label layoutX="832.0" layoutY="28.0" prefHeight="26.0" prefWidth="80.0" styleClass="Label" stylesheets="@../css/detalhesanimal.css" text="Meses" />
       <Button fx:id="filtrarAnimaisButton" layoutX="937.0" layoutY="284.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" styleClass="buttonFilter" stylesheets="@../css/view.css" />
    </children>
 </AnchorPane>

@@ -34,7 +34,7 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
 
     
     // Method to insert a new Adocao into the database
-    public Adocao InserirAdocao(Adocao adocao) {
+    public Adocao InserirAdocao(Adocao adocao) throws SQLException {
         String sql = "INSERT INTO ADOCOES (IdAnimal, IdAdotante, DataCadastro) VALUES (?, ?, ?)";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -53,20 +53,19 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         }
         return null;
     }
 
     // Method to update an existing Adocao in the database
     public Adocao AtualizarAdocao(Adocao adocao) throws SQLException {
-        String sql = "UPDATE ADOCOES SET IdAnimal=?, IdAdotante=?, DataCadastro=? WHERE Id=?";
+        String sql = "UPDATE ADOCOES SET IdAnimal=?, IdAdotante=? WHERE Id=?";
         
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, adocao.getIdAnimal());
             preparedStatement.setInt(2, adocao.getAdotante().getId());
-            preparedStatement.setTimestamp(3, new Timestamp(adocao.getDataCadastro().getTimeInMillis()));
-            preparedStatement.setInt(4, adocao.getId());
+            preparedStatement.setInt(3, adocao.getId());
             
             int rowsAffected = preparedStatement.executeUpdate();
 

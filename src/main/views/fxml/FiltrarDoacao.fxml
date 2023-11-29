@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="432.0" stylesheets="@../css/filtrarDoacao.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="432.0" stylesheets="@../css/filtrarDoacao.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.FiltrarDoacaoController">
    <children>
       <VBox id="VBoxExterna" layoutX="32.0" layoutY="32.0" prefHeight="707.0" prefWidth="368.0">
          <children>
             <VBox id="VBox" prefHeight="48.0" prefWidth="100.0">
                <children>
                   <Label id="Label" text="Ordenar por" />
-                  <ChoiceBox id="ChoiceBox" prefWidth="368.0" />
+                  <ChoiceBox id="ChoiceBox" fx:id="tiposOrdenacaoChoiceBox" prefWidth="368.0" />
                </children>
             </VBox>
             <VBox id="VBox" prefHeight="64.0" prefWidth="100.0">
@@ -25,17 +25,22 @@
                   <Label id="Label" text="De" />
                   <HBox id="HBox" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <DatePicker id="DatePicker" prefWidth="368.0" />
+                        <DatePicker id="DatePicker" fx:id="dataInicialDatePicker" prefWidth="368.0" />
                      </children>
                   </HBox>
                   <Label id="Label" text="Até" />
                   <HBox id="HBox" prefHeight="100.0" prefWidth="200.0" />
-                  <DatePicker id="DatePicker" prefWidth="368.0" />
+                  <DatePicker id="DatePicker" fx:id="dataFinalDatePicker" prefWidth="368.0" />
                </children>
             </VBox>
             <HBox id="HBoxButton" prefHeight="30.0" prefWidth="200.0">
                <children>
-                  <Button id="Button" mnemonicParsing="false" text="Filtrar" />
+                  <Button id="button" fx:id="cancelarFiltro" mnemonicParsing="false" prefHeight="32.0" prefWidth="76.0" styleClass="cancelButton" stylesheets="@../css/cadastraranimal.css" text="Cancelar">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="Button" fx:id="filtrar" mnemonicParsing="false" prefWidth="76.0" text="Filtrar" />
                </children>
                <VBox.margin>
                   <Insets top="422.0" />

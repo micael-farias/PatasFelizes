@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS Procedimentos (
     Tipo VARCHAR(255) NOT NULL,
     IdVoluntario INTEGER,
     IdDespesa INTEGER,
-    IdTarefa INTEGER NOT NULL,
     Realizado BOOLEAN NOT NULL,
     DataCadastro TIMESTAMP NOT NULL,
     FOREIGN KEY (IdAnimal) REFERENCES Animais(Id) ON DELETE CASCADE,

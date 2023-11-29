@@ -7,6 +7,11 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.util.Properties;
+import javafx.application.Platform;
+import main.App;
+import static main.db.ImportData.excluirArquivoFalhas;
+import main.enums.MensagemTipo;
+import main.interfaces.Acao;
 
 public class EmailSenderThread extends Thread {
 
@@ -14,11 +19,13 @@ public class EmailSenderThread extends Thread {
     private String subject;
     private String body;
     private File attachmentFile;
+    private Acao acao;
 
-    public EmailSenderThread(String to, String subject, String body) {
+    public EmailSenderThread(String to, String subject, String body, Acao acao) {
         this.to = to;
         this.subject = subject;
         this.body = body;
+        this.acao = acao;
         this.attachmentFile = attachmentFile;
     }
     
@@ -37,8 +44,9 @@ public class EmailSenderThread extends Thread {
         properties.put("mail.smtp.ssl.enable", true);
 
         // Configurações do usuário e senha do email
-        String username = "patasfelizes750@gmail.com";
-        String password = "htytvlcvipagqkql";
+        String[] dados = LeitorSecrets.lerSecrets();
+        String username = dados[0];
+        String password = dados[1];
 
         // Configuração da sessão
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -57,26 +65,42 @@ public class EmailSenderThread extends Thread {
 
             // Parte de texto (corpo do email)
             MimeBodyPart textPart = new MimeBodyPart();
-            textPart.setText(body);
+            textPart.setText(body, "utf-8", "html");
+            
+            Multipart multipart = new MimeMultipart();
 
             // Parte anexada (arquivo)
-            MimeBodyPart attachmentPart = new MimeBodyPart();
-            attachmentPart.attachFile(attachmentFile);
+            if(attachmentFile != null){
+               MimeBodyPart attachmentPart = new MimeBodyPart();
+               attachmentPart.attachFile(attachmentFile);
+               multipart.addBodyPart(attachmentPart);      
+            }
 
             // Montando a mensagem
-            Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(textPart);
-            multipart.addBodyPart(attachmentPart);
 
             // Definindo a mensagem como multipart
             message.setContent(multipart);
 
             // Enviando o email
-            Transport.send(message);
+            Transport.send(message);  
 
             System.out.println("Email enviado para: " + to);
+
+
         } catch (Exception e) {
+            
+            if(!to.equals(username)){
+                Platform.runLater(
+                  () -> {
+                        App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao enviar email", null);
+                  }
+                 );
+            }
+          
             e.printStackTrace();
         }
+        if(acao != null)
+            acao.RealizarAcao(null);
     }
 }

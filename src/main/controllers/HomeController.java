@@ -1,6 +1,7 @@
 package main.controllers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -13,12 +14,24 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import main.App;
+import main.enums.Mapping;
+import main.enums.MensagemTipo;
+import static main.enums.MensagemTipo.ERRO;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
 import main.model.Animal;
+import main.model.FiltroDespesa;
+import main.model.FiltrosAnimais;
+import main.model.Procedimento;
 import main.repositories.AnimalRepository;
+import main.services.AnimalService;
 import static main.utils.Constantes.DIALOG_FILTRAR_ANIMAL;
 import main.views.gridview.AnimalGridView;
+import static main.utils.Constantes.DIALOG_MENSAGEM;
+import static main.utils.Constantes.FORM_HOME;
+import main.utils.DateHelper;
+import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
 
 public class HomeController implements Inicializador, Resumidor{    
 
@@ -35,7 +48,11 @@ public class HomeController implements Inicializador, Resumidor{
     private GridPane animaisGrid;
     
     private AnimalRepository repository;
+    private AnimalService animalService;
  
+    private static FiltrosAnimais filtro;
+    
+    
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         initialize();
@@ -51,7 +68,9 @@ public class HomeController implements Inicializador, Resumidor{
     
     public void initialize(){
         this.repository = new AnimalRepository();
+        this.animalService= new AnimalService();
         hintBuscarAnimais();
+        capitalizeEachWord(buscarAnimalTextField);
     }
     
     public void hintBuscarAnimais(){
@@ -60,7 +79,11 @@ public class HomeController implements Inicializador, Resumidor{
     
     public void setListeners(Pane contentFather, Pane blackShadow, Stage primmaryStage){
         filtrarAnimaisButton.setOnMouseClicked(e ->{
-            App.getInstance().AbrirDialogAlinhado(DIALOG_FILTRAR_ANIMAL, contentFather, filtrarAnimaisButton, blackShadow);
+            App.getInstance().AbrirDialogComAcao(DIALOG_FILTRAR_ANIMAL, FORM_HOME, contentFather, primmaryStage, blackShadow, null, (dados) ->{
+                List<Animal> animais = (List<Animal>)dados[0];
+                filtro = (FiltrosAnimais) dados[1];
+                criarGridComResultados(animais,contentFather, primmaryStage, blackShadow);
+            });
         });
         
         buscarAnimalTextField.setOnKeyPressed(e ->{
@@ -76,9 +99,23 @@ public class HomeController implements Inicializador, Resumidor{
         
     }
     
-    public void criarGridAnimais(Pane contentFather, Stage primmaryStage, Pane blackShadow){       
-        List<Animal> animais = repository.EncontrarAnimais();
-        criarGridComResultados(animais, contentFather, primmaryStage, blackShadow);
+    public void criarGridAnimais(Pane contentFather, Stage primmaryStage, Pane blackShadow){    
+        if(filtro != null){
+            
+            Calendar intervaloUm = DateHelper.ConvertMesAnoToCalendar(filtro.getIntervaloPrimeiroAno(),
+                filtro.getIntervaloPrimeiroMeses());
+            Calendar intervaloDois = DateHelper.ConvertMesAnoToCalendar(filtro.getIntervaloSegundoAno(),
+                filtro.getIntervaloSegundoMeses());
+            
+            var animais =  animalService.selecionarAnimais(Mapping.GetKeyOrdenacoes(filtro.getOrdenacaoSelecionada()),
+                    Mapping.GetKeyStatus(filtro.getStatusSelecionado()), filtro.isFiltrarMasculino(), filtro.isFiltrarFeminino(), filtro.isFiltrarSexoDesconhecido(),
+                    filtro.isFiltrarCastradoSim(), filtro.isFiltrarCastradoNao(), intervaloUm, intervaloDois);
+                            
+            if(animais != null) criarGridComResultados(animais, contentFather, primmaryStage, blackShadow);   
+        }else{
+            List<Animal> animais = repository.EncontrarAnimais();
+            criarGridComResultados(animais, contentFather, primmaryStage, blackShadow);
+        }
     }
     
     public void criarGridComResultados(List<Animal> itens, Pane contentFather, Stage primmaryStage, Pane blackShadow){

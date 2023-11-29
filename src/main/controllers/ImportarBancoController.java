@@ -2,6 +2,10 @@ package main.controllers;
 
 
 import java.io.File;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
 import main.db.ImportData;
+import main.enums.MensagemTipo;
 import main.interfaces.Inicializador;
 import static main.utils.Constantes.FORM_HOME;
 import static main.utils.Constantes.PATH_FILES;
@@ -56,7 +61,15 @@ public class ImportarBancoController implements Inicializador {
             progressIndicator.setPrefSize(100, 100);
             layoutAdicionarComprovante.getChildren().add(progressIndicator);
 
-            ImportData.importar(banco);
+            try {
+                int count = ImportData.importar(banco);
+                if(count == 0){
+                     App.getInstance().SetMensagem(MensagemTipo.SUCESSO, "Banco importado com sucesso", null);
+                }
+
+            } catch (Exception ex) {
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao realizar upload do banco de dados", null);
+            } 
 
             layoutAdicionarComprovante.getChildren().remove(progressIndicator);
             App.getInstance().EntrarTelaOnResume(FORM_HOME, contentFather, primmaryStage, blackShadow, null);

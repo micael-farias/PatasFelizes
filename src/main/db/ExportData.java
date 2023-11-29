@@ -2,6 +2,9 @@ package main.db;
 
 import java.io.*;
 import java.sql.*;
+import main.App;
+import main.enums.MensagemTipo;
+import main.utils.ArquivoUtil;
 
 public class ExportData {
 
@@ -63,11 +66,12 @@ public class ExportData {
             printWriter.close();
             fileWriter.close();
             connection.close();
+            ArquivoUtil.salvarArquivoNoDiretorioUsuario("patas.sql", new File("patas.sql"));
 
             System.out.println("Dados de todas as tabelas exportados como instruções SQL para patas.sql.");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao exportar os dados", null);
         }
     }
 
@@ -80,7 +84,6 @@ public class ExportData {
     }
     
     private static String escapeString(String input) {
-        // Substitui cada apóstrofo por dois apóstrofos
         if(input != null)
             return input.replace("'", "''");
         return "";

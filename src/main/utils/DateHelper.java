@@ -29,6 +29,18 @@ public class DateHelper {
         return resultado;
     }
     
+     public static String CalendarParaStringReduced(Calendar calendar) {
+        if (calendar == null) {
+            return null;
+        }
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String resultado = formato.format(calendar.getTime());
+        resultado = resultado.substring(0, 1).toUpperCase() + resultado.substring(1);
+        return resultado;
+    }
+    
+    
     public static String DataParaStringReduced(Date data) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         return formato.format(data);
@@ -80,7 +92,7 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
         return instant.atZone(ZoneId.systemDefault()).toLocalDate();
     }
     
-    public static Date GetMidnightDate() {
+    public static Calendar GetMidnightDate() {
         // Obtendo a instância de Calendar
         Calendar calendar = Calendar.getInstance();
 
@@ -90,8 +102,7 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        Date data =  calendar.getTime();
-        return data;
+        return calendar;
     }
     
     public static Idade CalculaAnosEMesesPorDt(Date data) {
@@ -162,6 +173,7 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
     }
     
     public static Calendar DateToCalendar(Date date){
+        if(date == null) return null;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return calendar;
@@ -169,9 +181,12 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
     
      public static Calendar ConvertMesAnoToCalendar(String ano, String mes) {
         try {
+            
+            if(invalidString(mes) && invalidString(ano)) return null;
+            
             int mesInt = NumberHelper.IntegerParse(mes);
             int anoInt = NumberHelper.IntegerParse(ano);
-
+            
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(new Date());
             // Configura o mês e o ano
@@ -190,4 +205,8 @@ public static Idade CalculaAnosEMesesPorDt(Calendar dataNascimento) {
             return null;
         }
     }
+     
+     public static boolean invalidString(String value){
+           return value == null || value.isBlank() || value.isEmpty();      
+     }
 }

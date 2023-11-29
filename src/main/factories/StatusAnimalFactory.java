@@ -46,22 +46,21 @@ public class StatusAnimalFactory {
             default:
                 return "Para adoção";
         }
-    }
-
-        
+    }  
+    
     public static Color GetColorStatus(String status){
         switch (status) {
             case "PA" -> {
-                return Color.web("#84E884");
+                return Color.web("#7CD474");
             }
             case "A" -> {
-                return Color.web("#E991F2");
+                return Color.web("#3855FC");
             }
             case "F" -> {
-                return Color.web("#1F1D1D");
+                return Color.web("#757575");
             }
             case "D" -> {
-                return Color.web("#FFF261");
+                return Color.web("#D47474");
             }
             default -> throw new AssertionError();
         }

@@ -38,6 +38,39 @@ public class AnimalFormularioController extends CustomController{
         toogleViewCastrado.setTextoEsquerdo("NÃO");
         return toogleViewCastrado;
     }
+    
+        
+    public static void textFormatter(TextField mesesTextField, TextField anoTextField) {
+       // Criar um TextFormatter que aceita apenas números de 1 a 12
+        TextFormatter<String> textFormatter = new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+
+            // Verificar se o novo texto é um número de 1 a 12
+            if (newText.matches("([1-9]|1[0-2])?")) {
+                return change;  // Aceitar a alteração
+            } else {
+                return null;  // Rejeitar a alteração
+            }
+        });
+
+        // Adicionar o TextFormatter ao TextField
+        mesesTextField.setTextFormatter(textFormatter);
+        
+           // Criar um TextFormatter que aceita apenas números de 1 a 30
+        TextFormatter<String> textFormatter2 = new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+
+            // Verificar se o novo texto é um número de 1 a 30
+            if (newText.matches("([1-9]|[12][0-9]|30)?")) {
+                return change;  // Aceitar a alteração
+            } else {
+                return null;  // Rejeitar a alteração
+            }
+        });
+
+        // Adicionar o TextFormatter ao TextField
+        anoTextField.setTextFormatter(textFormatter2);
+    }
 
     public static byte[] CarregarImagem(Stage primaryStage, ImageView image, VBox layoutImageView, Rectangle clip) {
         byte[] foto = ImageLoader.CarregarImagemLocal(primaryStage);

@@ -27,6 +27,9 @@ import javafx.scene.control.TextField;
 import main.model.Animal;
 import main.services.AnimalService;
 import static main.utils.Constantes.FORM_TAREFAS;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
+import main.utils.ValidacaoUtils;
 /**
  *
  * @author grazi
@@ -67,7 +70,11 @@ public class CadastrarTarefaController extends CustomController implements Inici
         procedimento = ObterDadoArray(dados,0) == null ? null : (Procedimento) ObterDadoArray(dados, 0);
         
         initialize();
-        setListeners(contentFather, primmaryStage, blackShadow);     
+        setListeners(contentFather, primmaryStage, blackShadow); 
+        autoCapitalizeFirstLetter(descricaoTarefa);
+        capitalizeEachWord(responsavelTarefa);
+        capitalizeEachWord(petTarefa);
+        autoCapitalizeFirstLetter(tipoTarefa);
     }
     
     public void configurarPets(){
@@ -101,8 +108,8 @@ public class CadastrarTarefaController extends CustomController implements Inici
 
     private void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
         salvarTarefa.setOnMouseClicked(e->{
-            cadastrarNovaTarefa(primmaryStage);
-            App.getInstance().EntrarTelaOnResume(FORM_TAREFAS ,contentFather, primmaryStage, blackShadow, null);                       
+            if(cadastrarNovaTarefa(primmaryStage) != null)
+                App.getInstance().EntrarTelaOnResume(FORM_TAREFAS ,contentFather, primmaryStage, blackShadow, null);                       
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
@@ -117,8 +124,12 @@ public class CadastrarTarefaController extends CustomController implements Inici
         String voluntario = responsavelTarefa.getText();
         String animalString = petTarefa.getText();
         Animal animal = animalServices.ObterAnimalPorNome(animalString);
+        
+        Boolean realizado = procedimento == null ? null : procedimento.isRealizado();
 
-        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, 0.0, voluntario, animal.getId(), null);      
+        if(!validarProcedimento(descricao, tipo)) return null;
+        
+        return procedimentoService.Salvar(procedimento == null ? -1 : procedimento.getId(), descricao, data, tipo, 0.0, voluntario, animal != null ?  animal.getId() : -1, realizado);      
     }
 
     private void setData() {
@@ -129,4 +140,13 @@ public class CadastrarTarefaController extends CustomController implements Inici
         responsavelTarefa.setText(procedimento.getVoluntario() != null ? procedimento.getVoluntario().getNome() : "");
         petTarefa.setText(procedimento.getAnimal() != null ? procedimento.getAnimal().getNome() : "");
     }
+    
+      public boolean validarProcedimento(String descricao, String tipo){
+        boolean descricaoValida = ValidacaoUtils.validarCampo(descricao, descricaoTarefa, "A descrição não deve ser vazia");
+        boolean tipoValido = ValidacaoUtils.validarCampo(tipo, tipoTarefa, "O tipo não deve ser vazio");
+        boolean dataValida = ValidacaoUtils.validarCampo(dataTarefa);
+        return descricaoValida && dataValida && tipoValido;
+    }
+    
+    
 }

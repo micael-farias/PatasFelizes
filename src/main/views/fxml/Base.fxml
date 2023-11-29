@@ -186,5 +186,6 @@
          </children>
       </Pane>
       <Pane fx:id="blackShadow" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: rgba(0, 0, 0, 0.5);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane fx:id="paneMensagem" prefHeight="91.0" prefWidth="270.0" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
    </children>
 </AnchorPane>

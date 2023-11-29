@@ -17,13 +17,16 @@ import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import java.util.Calendar;
 import main.App;
+import main.enums.MensagemTipo;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComDado;
 import main.model.Procedimento;
 import main.services.ProcedimentoService;
+import main.utils.Constantes;
 import static main.utils.Constantes.DIALOG_CADASTRAR_PROCEDIMENTO;
 import static main.utils.Constantes.DIALOG_REMOVER;
 import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
+import static main.utils.Constantes.FORM_HOME;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
 import static main.utils.DateHelper.CalendarParaString;
@@ -80,23 +83,29 @@ public class ProcedimentoController extends CustomController implements Iniciali
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !procedimento.isRealizado();
             setImage(realizada);
+            Procedimento procedimentoRetornado;
             if (realizada) {  
 
-                procedimentoService.Salvar(procedimento.getId(),
+                procedimentoRetornado = procedimentoService.Salvar(procedimento.getId(),
                         procedimento.getDescricao(), 
                         DateHelper.CalendarParaLocalDate(procedimento.getData()),
                         procedimento.getTipo(),
                         procedimento.getDespesa() == null ? 0.0 : procedimento.getDespesa().getValor(),
-                        procedimento.getVoluntario().getNome(),
+                        procedimento.getVoluntario() == null? null : procedimento.getVoluntario().getNome(),
                         procedimento.getAnimal().getId(), true);
             }else{
-                procedimentoService.Salvar(procedimento.getId(),
+                 procedimentoRetornado = procedimentoService.Salvar(procedimento.getId(),
                         procedimento.getDescricao(), 
                         DateHelper.CalendarParaLocalDate(procedimento.getData()),
                         procedimento.getTipo(),
                         procedimento.getDespesa() == null ? 0.0 : procedimento.getDespesa().getValor(),
-                        procedimento.getVoluntario().getNome(),
+                        procedimento.getVoluntario() == null? null : procedimento.getVoluntario().getNome(),
                         procedimento.getAnimal().getId(), false);
+            }
+             if(procedimentoRetornado == null){
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado do procedimento", null);
+            }else{
+                procedimento= procedimentoRetornado;
             }
         });        
           
@@ -114,8 +123,12 @@ public class ProcedimentoController extends CustomController implements Iniciali
             });
         
         excluirProcedimento.setOnMouseClicked(e ->{
-          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,
-                   new Object[]{ "Deseja realmente excluir essa despesa? "});        
+          App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,
+                   new Object[]{ "Deseja realmente excluir esse procedimento? "}, (dado) ->{
+                       if(procedimentoService.Excluir(procedimento.getId()) == 1){
+                           App.getInstance().EntrarTelaOnResume(FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow, new Object[] {procedimento.getAnimal()});
+                       }
+                   });        
           });  
         
         editarProcedimento.setOnMouseClicked(e ->{

@@ -16,6 +16,7 @@ import main.interfaces.InicializadorBase;
 import main.utils.Constantes;
 import static main.utils.Constantes.*;
 import main.utils.EmailSenderThread;
+import main.utils.LeitorSecrets;
 
 public class BaseController implements InicializadorBase{
     
@@ -26,6 +27,9 @@ public class BaseController implements InicializadorBase{
     @FXML
     protected Pane content;   
     @FXML
+    protected Pane paneMensagem;   
+    
+    @FXML
     private Pane blackShadow;
     
     private Stage primmaryStage;
@@ -35,13 +39,15 @@ public class BaseController implements InicializadorBase{
     public void Inicializar(Stage primmaryStage) {
         this.primmaryStage = primmaryStage;
         App.getInstance().EntrarTelaInicial(content, primmaryStage, blackShadow);
+        App.getInstance().setPane(paneMensagem);
         setActive(menuButtonPets);  
         onCloseRequest(primmaryStage);
     }
     
     private void onCloseRequest(Stage primmaryStage){
         primmaryStage.setOnCloseRequest(e ->{
-            /*var sender = new EmailSenderThread("michaelfarias374@gmail.com", "Enviando o banco de dados", "Segue o banco de dados");
+            /*var dados = LeitorSecrets.lerSecrets();
+            var sender = new EmailSenderThread(dados[0], "Enviando o banco de dados", "Segue o banco de dados");
             ExportData.export();
             sender.setFile(new File("patas.sql"));
             sender.start();*/

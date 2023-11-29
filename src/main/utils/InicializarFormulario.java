@@ -1,21 +1,31 @@
 package main.utils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
+import javafx.util.Duration;
 import main.controllers.BaseController;
+import main.controllers.MensagemController;
+import main.enums.MensagemTipo;
 import main.interfaces.Acao;
 import main.interfaces.Inicializador;
 import main.interfaces.InicializadorComAcao;
@@ -25,11 +35,17 @@ import main.interfaces.InicializadorComOrigemEDado;
 import main.interfaces.InicializadorMiniDialog;
 import main.interfaces.Resumidor;
 import static main.utils.Constantes.FORM_HOME;
+import static main.utils.Constantes.DIALOG_MENSAGEM;
 
 public class InicializarFormulario {
     
-    private Parent dialogoAberto;
+    private List<Parent> dialogosAberto = new ArrayList<>();
     private static HashMap<String,FXMLLoadResult> mapping = new HashMap<>();
+    private Pane mensagemErro;
+    
+    public void setPane(Pane mensagem){
+        mensagemErro = mensagem;
+    }
     
     public boolean MappingContatis(String key){
         return mapping.containsKey(key);
@@ -52,9 +68,12 @@ public class InicializarFormulario {
         if(blackShadow.isVisible()) blackShadow.setVisible(false);
         if(primmaryStage != null && primmaryStage.getScene() != null && primmaryStage.getScene().getRoot() != null){
             AnchorPane pane = (AnchorPane) primmaryStage.getScene().getRoot();
-            if(pane.getChildren().contains(dialogoAberto)){
-                pane.getChildren().remove(dialogoAberto);
+            for(Parent dialogoAberto : dialogosAberto){
+                if(pane.getChildren().contains(dialogoAberto)){
+                    pane.getChildren().remove(dialogoAberto);
+                }
             }
+            
         }
     }
     
@@ -117,7 +136,8 @@ public class InicializarFormulario {
         ObservableList<Node> children = content.getChildren();
         children.addAll(result.getResult());     
     }
-    
+
+      
     public <T> void AbrirDialogComAcao(String tela, String telaOrigem, Pane content, Stage primaryStage, Pane blackShadow, Object[] dados, Acao acao){                
         try {
 
@@ -129,19 +149,25 @@ public class InicializarFormulario {
               FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
               Parent root2 = loader.load();
               InicializadorComAcao controlador = loader.getController();
-              controlador.Inicializar(telaOrigem, content,primaryStage, blackShadow, acao, dados);
+              controlador.Inicializar(telaOrigem,content,primaryStage, blackShadow, acao, dados);
 
-              AnchorPane pane = CentralizarDialogo(root2, primaryStage);
+              AnchorPane pane = (tela.contains("Filtrar")) ? CentralizarDialogoDireita(root2, primaryStage) : CentralizarDialogo(root2, primaryStage);
 
               if(pane.getChildren().contains(blackShadow)){
                   pane.getChildren().remove(blackShadow);
               }
-
+              if(pane.getChildren().contains(mensagemErro)){
+                  pane.getChildren().remove(mensagemErro);
+              }
               blackShadow.setVisible(true);
-              pane.getChildren().addAll(blackShadow, root2);
+              pane.getChildren().addAll(blackShadow, root2, mensagemErro);
+              
+              blackShadow.setOnMouseClicked(e -> { FecharDialog(primaryStage, blackShadow);});
+              
 
-              dialogoAberto = root2;
+            dialogosAberto.add(root2);
           } catch(IOException e) {
+              e.printStackTrace();
           }        
     }
     
@@ -178,17 +204,22 @@ public class InicializarFormulario {
             Inicializador cam = loader.getController();
             cam.Inicializar(contentFather, primaryStage, blackShadow);
 
-            AnchorPane pane = CentralizarDialogo(root2, primaryStage);
-            
+            AnchorPane pane = (tela.contains("Filtrar")) ? CentralizarDialogoDireita(root2, primaryStage) : CentralizarDialogo(root2, primaryStage);
             if(pane.getChildren().contains(blackShadow)){
                 pane.getChildren().remove(blackShadow);
             }
             
-            blackShadow.setVisible(true);
-            pane.getChildren().addAll(blackShadow, root2);
+            if(pane.getChildren().contains(mensagemErro)){
+                pane.getChildren().remove(mensagemErro);
+            }
             
-            dialogoAberto = root2;
+            
+            blackShadow.setVisible(true);
+            pane.getChildren().addAll(blackShadow, root2, mensagemErro);
+            
+            dialogosAberto.add(root2);
         } catch(IOException e) {
+            e.printStackTrace();
         }        
     }
     
@@ -211,11 +242,13 @@ public class InicializarFormulario {
             if(pane.getChildren().contains(blackShadow)){
                 pane.getChildren().remove(blackShadow);
             }
-            
+            if(pane.getChildren().contains(mensagemErro)){
+                pane.getChildren().remove(mensagemErro);
+            }
             blackShadow.setVisible(true);
-            pane.getChildren().addAll(blackShadow, root2);
+            pane.getChildren().addAll(blackShadow, root2, mensagemErro);
             
-            dialogoAberto = root2;
+            dialogosAberto.add(root2);
         } catch(IOException e) {
             e.printStackTrace();
         }        
@@ -239,11 +272,13 @@ public class InicializarFormulario {
             if(pane.getChildren().contains(blackShadow)){
                 pane.getChildren().remove(blackShadow);
             }
-            
+            if(pane.getChildren().contains(mensagemErro)){
+                pane.getChildren().remove(mensagemErro);
+            }
             blackShadow.setVisible(true);
-            pane.getChildren().addAll(blackShadow, root2);
+            pane.getChildren().addAll(blackShadow, root2, mensagemErro);
             
-            dialogoAberto = root2;
+            dialogosAberto.add(root2);
         } catch(IOException e) {
         }        
     }
@@ -266,61 +301,60 @@ public class InicializarFormulario {
             if(pane.getChildren().contains(blackShadow)){
                 pane.getChildren().remove(blackShadow);
             }
+            if(pane.getChildren().contains(mensagemErro)){
+                pane.getChildren().remove(mensagemErro);
+            }
             
             blackShadow.setVisible(true);
-            pane.getChildren().addAll(blackShadow, root2);
+            pane.getChildren().addAll(blackShadow, root2, mensagemErro);
             
-            dialogoAberto = root2;
+            dialogosAberto.add(root2);
         } catch(IOException e) {
             e.printStackTrace();
         }        
     }
     
-    public <T> void AbrirDialogAlinhado(String tela, Pane contentFather, Parent reference, Pane blackShadow) {   
-    try {
-        Stage dialog = new Stage();
-        dialog.initStyle(StageStyle.UNDECORATED);
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(tela));
-        Parent root2 = loader.load();
-        Inicializador cam = loader.getController();
-        cam.Inicializar(contentFather, (Stage) contentFather.getScene().getWindow(), blackShadow);
-
-        AnchorPane pane = (AnchorPane) contentFather.getScene().getRoot();
-
-        double topOffset = reference.getBoundsInParent().getMaxY();
-        double leftOffset = reference.getBoundsInParent().getMaxX()-calcularDistanciaDireita(reference);
-
-        AnchorPane.setTopAnchor(root2, topOffset);
-        AnchorPane.setLeftAnchor(root2, leftOffset);
-
-        pane.getChildren().addAll(root2);
-
-        // Configurar a posição do dialog
-        dialog.setY(contentFather.getScene().getWindow().getY() + topOffset);
-        dialog.setX(contentFather.getScene().getWindow().getX() + leftOffset);
-        
-        dialogoAberto = root2;
-    } catch(IOException e) {
-        e.printStackTrace();
-    }        
-}
-     public  double calcularDistanciaDireita(Node node) {
-        // Obtém a Scene associada à Node
-        Window janela = node.getScene().getWindow();
-
-        // Obtém as coordenadas locais da Node
-        Bounds boundsInLocal = node.getBoundsInLocal();
-
-        // Converte as coordenadas locais para as coordenadas da tela
-        Bounds boundsInScreen = node.localToScreen(boundsInLocal);
-
-        // Calcula a distância da extremidade direita da Node até a extremidade direita da janela
-        double distanciaDireita = janela.getX() + janela.getWidth() - boundsInScreen.getMaxX();
-
-        return distanciaDireita;
-    }
     
+    
+    public <T> void SetMensagem(MensagemTipo tipo, String mensagem, Acao acao) {
+       try {
+           mensagemErro.setVisible(true);
+           System.out.println(mensagem);
+           Stage dialog = new Stage();
+           dialog.initStyle(StageStyle.UNDECORATED);
+
+               FXMLLoader loader = new FXMLLoader(getClass().getResource(DIALOG_MENSAGEM));
+               Parent root2 = loader.load();
+             //  dado =new FXMLLoadResult<>(root2,loader);
+             //  mapping.put(DIALOG_MENSAGEM, dado);
+           
+
+           MensagemController cam = loader.getController();
+           cam.setAcao(acao);
+           cam.setData(tipo, mensagem);
+
+
+           mensagemErro.getChildren().addAll(root2);
+           root2.toFront();
+
+           Timeline timeline = new Timeline();
+           KeyFrame startFadeOut = new KeyFrame(Duration.seconds(5), new KeyValue(root2.opacityProperty(), 1.0));
+           KeyFrame endFadeOut = new KeyFrame(Duration.seconds(6), new KeyValue(root2.opacityProperty(), 0.0));
+
+           timeline.getKeyFrames().addAll(startFadeOut, endFadeOut);
+           timeline.setOnFinished(event -> {
+                  mensagemErro.getChildren().removeAll(root2);
+                  mensagemErro.setVisible(false);
+           });
+
+           // Iniciar a animação
+           timeline.play();
+
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+   }
+   
     public AnchorPane CentralizarDialogo(Parent root, Stage primmaryStage){    
         if(primmaryStage != null && primmaryStage.getScene() != null && primmaryStage.getScene().getRoot() != null){
             AnchorPane pane = (AnchorPane) primmaryStage.getScene().getRoot();
@@ -331,8 +365,27 @@ public class InicializarFormulario {
         return null;
     }
     
+    public AnchorPane CentralizarDialogoDireita(Parent root, Stage primaryStage){    
+    if(primaryStage != null && primaryStage.getScene() != null && primaryStage.getScene().getRoot() != null){
+        AnchorPane pane = (AnchorPane) primaryStage.getScene().getRoot();
+        
+        double paneWidth = pane.getWidth();
+        double paneHeight = pane.getHeight();
+        
+        double rootWidth = root.prefWidth(-1);
+        double rootHeight = root.prefHeight(-1);
+        
+        // Ajuste as âncoras para centralizar o diálogo à direita
+        AnchorPane.setTopAnchor(root, (paneHeight - rootHeight) / 2);
+        AnchorPane.setLeftAnchor(root, paneWidth - rootWidth);
+        
+        return pane;
+    }
+    return null;
+}
+
+    
     public void EntrarTelaInicial(Pane content, Stage primmaryStage, Pane blackShadow){
           EntrarTela(FORM_HOME, content, primmaryStage, blackShadow);
-    }
-            
+    }  
 }

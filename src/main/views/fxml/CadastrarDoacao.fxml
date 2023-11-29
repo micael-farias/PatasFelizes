@@ -21,7 +21,8 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="22.0" prefWidth="169.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Doador" />
+                  <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="26.0" prefWidth="478.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Doador" />
                </children>
             </HBox>
             <TextField fx:id="doadorDoacao" minHeight="-Infinity" prefHeight="30.0" prefWidth="542.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
@@ -31,7 +32,8 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="18.0" prefWidth="161.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Data" />
+                  <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="26.0" prefWidth="254.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Data" />
                </children>
             </HBox>
             <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
@@ -45,7 +47,8 @@
          <children>
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
-                  <Label prefHeight="22.0" prefWidth="163.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Valor" />
+                  <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
+                  <Label prefHeight="26.0" prefWidth="254.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Valor" />
                </children>
             </HBox>
             <TextField fx:id="valorDoacao" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
@@ -69,7 +72,7 @@
                      <children>
                         <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../assets/images/arquivo-pdf%20.png" />
+                              <Image url="@../../../assets/images/arquivo-pdf-escuro.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="labelComprovante" text="doacao_n12.pdf" textFill="#666666">

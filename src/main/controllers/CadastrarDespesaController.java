@@ -32,6 +32,9 @@ import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
 import main.utils.Rectangles;
 import main.utils.TextFieldUtils;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
+import static main.utils.TextFieldUtils.capitalizeEachWord;
+import main.utils.ValidacaoUtils;
 import org.controlsfx.control.textfield.TextFields;
 
 public class CadastrarDespesaController extends CustomController implements InicializadorComDado{
@@ -91,6 +94,10 @@ public class CadastrarDespesaController extends CustomController implements Inic
         configurarTiposDespesa();
         
         TextFieldUtils.setupCurrencyTextField(valorDespesa);
+        autoCapitalizeFirstLetter(descricaoDespesa);
+        autoCapitalizeFirstLetter(tipoDespesa);
+        capitalizeEachWord(petDespesa);
+        
          setData();
    }
 
@@ -106,8 +113,8 @@ public class CadastrarDespesaController extends CustomController implements Inic
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarDespesa.setOnMouseClicked(e->{
-            SalvarDespesa();
-            App.getInstance().EntrarTelaOnResume(FORM_DESPESAS ,contentFather, primmaryStage, blackShadow, null);                      
+            if(SalvarDespesa() != null)
+                App.getInstance().EntrarTelaOnResume(FORM_DESPESAS ,contentFather, primmaryStage, blackShadow, null);                      
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
@@ -116,27 +123,33 @@ public class CadastrarDespesaController extends CustomController implements Inic
         
         layoutAdicionarComprovante.setOnMouseClicked(e ->{
             comprovante = ImageLoader.CarregarImagemLocal(primmaryStage);
+            if(comprovante != null){                          
             labelComprovante.setText("despesa_"+idDespesa+".pdf");
             layoutAdicionarComprovante.setVisible(false);
             layoutComprovante.setVisible(true);
+            }
         });
         
         layoutComprovante.setOnMouseClicked(e -> {
                 PdfDownloader.baixarPdf(despesa.getFotoComprovante(), "despesa_"+idDespesa+".pdf");
-
+ 
         });
         
         
     }
     
-    public void SalvarDespesa(){
+    public Despesa SalvarDespesa(){
         LocalDate data = dataDespesa.getValue();
         String descriao = descricaoDespesa.getText();
         String pet = petDespesa.getText();
         String tipo = tipoDespesa.getText();
         double valor = RealFormatter.unformatarReal(valorDespesa.getText());
+        Boolean realizado = despesa != null ? despesa.isRealizada() :  null;
         
-        despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, null, comprovante);
+        if(!validarDespesa(descriao, tipo, valor)) return null;
+        
+        
+        return despesaServices.Cadastrar(idDespesa, descriao, valor, data, pet, tipo, realizado , comprovante);
     }
     
     private void setData() {
@@ -145,7 +158,7 @@ public class CadastrarDespesaController extends CustomController implements Inic
             descricaoDespesa.setText(despesa.getDescricao());
             LocalDate localDate = despesa.getData().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             dataDespesa.setValue(localDate);
-            petDespesa.setText((procedimento == null) ? "" : procedimento.getAnimal().getNome());
+            petDespesa.setText((procedimento == null) ? "" : procedimento.getAnimal() == null ? null : procedimento.getAnimal().getNome());
             tipoDespesa.setText(despesa.getTipo());
             valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
             comprovante = despesa.getFotoComprovante();
@@ -155,5 +168,13 @@ public class CadastrarDespesaController extends CustomController implements Inic
                 layoutAdicionarComprovante.setVisible(false);
             }
         }
+    }
+    
+    public boolean validarDespesa(String descricao, String tipo, double valor){
+        boolean descricaoValida = ValidacaoUtils.validarCampo(descricao, descricaoDespesa, "A descrição não deve ser vazia");
+        boolean tipoValido = ValidacaoUtils.validarCampo(tipo, tipoDespesa, "O tipo não deve ser vazio");
+        boolean dataValida = ValidacaoUtils.validarCampo(dataDespesa);
+        boolean valorValido = ValidacaoUtils.validarCampoReal(valor, valorDespesa, "Um valor deve ser informado");
+        return descricaoValida && dataValida && tipoValido && valorValido;
     }
 }

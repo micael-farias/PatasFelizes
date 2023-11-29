@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" minWidth="-Infinity" prefHeight="768.0" prefWidth="1166.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controllers.DespesasController">
@@ -36,7 +38,7 @@
                   <Font name="Noto Sans Mono Regular" size="18.0" />
                </font>
             </TextField>
-            <Button contentDisplay="TOP" layoutX="1087.0" layoutY="64.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
+            <Button fx:id="filtrarDespesas" contentDisplay="TOP" layoutX="1087.0" layoutY="64.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="48.0" styleClass="buttonFilter" stylesheets="@../css/view.css" text="Filtrar">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" x="40.0">
                      <image>
@@ -45,7 +47,21 @@
                   </ImageView>
                </graphic>
             </Button>
-            <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="598.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
+            <VBox alignment="BOTTOM_RIGHT" layoutX="770.0" layoutY="668.0" prefHeight="54.0" prefWidth="298.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" minHeight="-Infinity" prefHeight="26.0" prefWidth="66.0" text="TOTAL" textFill="#494949">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="totalDespesas" alignment="TOP_RIGHT" minHeight="-Infinity" prefHeight="27.0" prefWidth="263.0" text="R$ 1.500,00" textFill="#494949">
+                     <font>
+                        <Font name="Calibri Light" size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <StackPane fx:id="stackPaneScroll" layoutX="64.0" layoutY="134.0" prefHeight="534.0" prefWidth="1064.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1038.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../css/scroll-pane.css" vbarPolicy="ALWAYS">
                      <content>

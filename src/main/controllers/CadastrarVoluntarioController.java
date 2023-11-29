@@ -10,15 +10,22 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.App;
 import static main.controllers.AnimalFormularioController.CarregarImagem;
+import main.enums.MensagemTipo;
 import main.interfaces.InicializadorComDado;
 import main.model.Voluntario;
 import main.services.VoluntarioService;
+import static main.utils.Constantes.DIALOG_CADASTRAR_VOLUNTARIO;
+import static main.utils.Constantes.DIALOG_REMOVER;
+import static main.utils.Constantes.FORM_ANIMAL_DETALHES;
 import static main.utils.Constantes.FORM_EQUIPE;
+import static main.utils.Constantes.FORM_HOME;
 import main.utils.ImageLoader;
 import main.utils.Rectangles;
 import static main.utils.Rectangles.GetCircleVoluntario;
 import static main.utils.Rectangles.GetRectangleVoluntario;
+import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
 import main.utils.ToogleEnum;
+import main.utils.ValidacaoUtils;
 
 public class CadastrarVoluntarioController extends CustomController implements InicializadorComDado{
 
@@ -35,7 +42,7 @@ public class CadastrarVoluntarioController extends CustomController implements I
     private TextField nomeVoluntario;
 
     @FXML
-    private Button salvarVoluntario;
+    private Button salvarVoluntario, removerButton;
 
     @FXML
     private TextField telefoneVoluntario; 
@@ -60,13 +67,15 @@ public class CadastrarVoluntarioController extends CustomController implements I
     
     public void initialise(Stage primmaryStage){
         voluntarioService = new VoluntarioService();
+        removerButton.setVisible(idVoluntario != -1);
         setData(primmaryStage);
+        ValidacaoUtils.mascaraEmail(emailVoluntario);
     }
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
         salvarVoluntario.setOnMouseClicked(e ->{
-            Cadastrar();
-            App.getInstance().EntrarTela(FORM_EQUIPE, contentFather, primmaryStage, blackShadow);  
+            if(Cadastrar() != null)
+                App.getInstance().EntrarTela(FORM_EQUIPE, contentFather, primmaryStage, blackShadow);  
         });
         
         cancelarCadastro.setOnMouseClicked(e ->{
@@ -76,14 +85,25 @@ public class CadastrarVoluntarioController extends CustomController implements I
         layoutImageViewVoluntario.setOnMouseClicked(e -> {
             fotoVoluntario = CarregarImagem(primmaryStage, imagemVoluntario, layoutImageViewVoluntario, GetCircleVoluntario());
         });
+        
+        removerButton.setOnMouseClicked(e ->{
+            App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, DIALOG_CADASTRAR_VOLUNTARIO, contentFather, primmaryStage, blackShadow,new Object[]{"Deseja realmente deletar esse voluntário?"}, (dado) ->{
+                if(voluntarioService.DeletarVoluntarioPorId(voluntario.getId()) == 1);
+                    App.getInstance().EntrarTelaOnResume(FORM_EQUIPE, contentFather, primmaryStage, blackShadow, null);
+            });
+        }); 
+        
+        autoCapitalizeFirstLetter(nomeVoluntario);
     }
     
-    public void Cadastrar(){
+    public Voluntario Cadastrar(){
         String nome = nomeVoluntario.getText();
         String email = emailVoluntario.getText();
         String telefone = telefoneVoluntario.getText();
         
-        voluntarioService.Salvar(idVoluntario ,nome, email, telefone, fotoVoluntario);
+        if(!validarVoluntario(nome, email)) return null;
+        
+        return voluntarioService.Salvar(idVoluntario ,nome, email, telefone, fotoVoluntario);
     }
     
     public void setData(Stage primmaryStage){
@@ -98,6 +118,17 @@ public class CadastrarVoluntarioController extends CustomController implements I
         }
     }
     
-    
+    public boolean validarVoluntario(String nome, String email){
+        boolean nomeValido = ValidacaoUtils.validarCampo(nome, nomeVoluntario, "O nome não deve ser vazio");
+        boolean emailValido = ValidacaoUtils.validarCampo(email, emailVoluntario, "O email não deve ser vazio");
+        boolean emailFormatado = ValidacaoUtils.isValidEmailAddress(email);
+        if(!emailFormatado){
+            App.getInstance().SetMensagem(MensagemTipo.ERRO, "Email inválido", null);
+            ValidacaoUtils.exibirErro(emailVoluntario, "Email inválido");
+        }else{
+            ValidacaoUtils.limparErro(emailVoluntario);
+        }
+        return nomeValido && emailValido && emailFormatado;
+    }
 
 }

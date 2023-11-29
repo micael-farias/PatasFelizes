@@ -8,13 +8,16 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
+import main.enums.MensagemTipo;
 import main.interfaces.InicializadorComDado;
 import main.model.Despesa;
 import main.model.Procedimento;
 import main.services.DespesaServices;
 import main.services.ProcedimentoService;
+import main.utils.Constantes;
 import static main.utils.Constantes.DIALOG_CADASTRAR_DESPESA;
 import static main.utils.Constantes.DIALOG_REMOVER;
+import static main.utils.Constantes.FORM_DESPESAS;
 import static main.utils.Constantes.FORM_DOACOES;
 import static main.utils.Constantes.PATH_IMAGES;
 import main.utils.DateHelper;
@@ -64,7 +67,7 @@ public class DespesaController extends CustomController implements Inicializador
         int posicao = (int) ObterDadoArray(dados, 1);
 
         descricaoDespesa.setText(despesa.getDescricao());
-        dataDespesa.setText(CalendarParaString(despesa.getData()));
+        dataDespesa.setText(CalendarParaString(despesa.getData()) + "-" +DateHelper.CalendarParaStringReduced(despesa.getDataCadastro()));
         valorDespesa.setText(RealFormatter.formatarComoReal(despesa.getValor()));
         iconComprovante.setVisible(despesa.getFotoComprovante() != null);
         setImage(despesa.isRealizada());
@@ -73,12 +76,18 @@ public class DespesaController extends CustomController implements Inicializador
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !despesa.isRealizada();
             setImage(realizada);
+            Despesa despesaObtida;
             if (realizada) {  
-                despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
+                despesaObtida = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
                         DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), true, despesa.getFotoComprovante());
             }else{
-                despesa = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
+                despesaObtida = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
                         DateHelper.CalendarParaLocalDate(despesa.getData()), ObterAnimalDespesa(), despesa.getTipo(), false, despesa.getFotoComprovante());      
+            }
+            if(despesaObtida == null){
+                App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da despesa", null);
+            }else{
+                despesa= despesaObtida;
             }
         });        
         
@@ -104,8 +113,12 @@ public class DespesaController extends CustomController implements Inicializador
           });
         
         excluirDespesa.setOnMouseClicked(e ->{
-          App.getInstance().AbrirDialogComOrigemEDado(DIALOG_REMOVER, FORM_DOACOES, contentFather, primaryStage, blackShadow,
-                   new Object[]{ "Deseja realmente excluir essa despesa? "});        
+          App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_DESPESAS, contentFather, primaryStage, blackShadow,
+                  new Object[]{ "Deseja realmente excluir essa despesa? "}, (dados) ->{
+                       if(despesaService.Excluir(despesa.getId()) == 1){
+                           App.getInstance().EntrarTelaOnResume(FORM_DESPESAS, contentFather, primaryStage, blackShadow, null);
+                       }
+                   });             
           });  
         
         editarDespesa.setOnMouseClicked(e ->{
@@ -115,13 +128,11 @@ public class DespesaController extends CustomController implements Inicializador
     }
       
     public void setImage(boolean realizado){
-
-            if(realizado){
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
-            }else{
-                checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
-            }
-        
+        if(realizado){
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_checked.png"));          
+        }else{
+            checkBoxRealizado.setImage(new Image(PATH_IMAGES + "check_cinza_not_checked.png"));           
+        }       
     }
     
     @Override

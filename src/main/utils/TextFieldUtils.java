@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.function.UnaryOperator;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.control.TextInputControl;
 
 public class TextFieldUtils {
 
@@ -50,5 +53,54 @@ public class TextFieldUtils {
             amount.set(newValue);
             textField.setText(format.format(newValue));
         }
+    }
+    
+    public static void autoCapitalizeFirstLetter(TextInputControl textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 0) {
+                textField.setText(newValue.substring(0, 1).toUpperCase() + newValue.substring(1));
+            }
+        });
+    }
+    
+       public static void capitalizeEachWord(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.isEmpty()) {
+                return;
+            }
+
+            StringBuilder result = new StringBuilder();
+            boolean capitalizeNext = true;
+
+            for (char c : newValue.toCharArray()) {
+                if (Character.isWhitespace(c)) {
+                    result.append(c);
+                    capitalizeNext = true;
+                } else {
+                    if (capitalizeNext) {
+                        result.append(Character.toUpperCase(c));
+                        capitalizeNext = false;
+                    } else {
+                        result.append(c);
+                    }
+                }
+            }
+
+            textField.setText(result.toString());
+        });
+    }
+    
+      public static void applyNumericMask(TextField textField) {
+        // Configura um TextFormatter para aceitar apenas números
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("[0-9]*")) {
+                return change;
+            }
+            return null;
+        };
+
+        TextFormatter<String> textFormatter = new TextFormatter<>(filter);
+        textField.setTextFormatter(textFormatter);
     }
 }
