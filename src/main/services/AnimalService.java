@@ -2,11 +2,8 @@ package main.services;
 
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import main.App;
 import main.enums.MensagemTipo;
 import main.factories.StatusAnimalFactory;

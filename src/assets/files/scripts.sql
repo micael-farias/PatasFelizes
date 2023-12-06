@@ -93,7 +93,7 @@ LEFT JOIN PROCEDIMENTOS P ON D.ID = P.IDDESPESA
 WHERE 1 = 1;
 
 CREATE VIEW IF NOT EXISTS ViewProcedimentos AS
-SELECT P.*, A.Nome as NomeAnimal, v.Nome as NomeVoluntario
+SELECT P.*, A.Nome as NomeAnimal, A.Id as IdAnimal, v.Nome as NomeVoluntario, D.valor as valorDespesa
 FROM PROCEDIMENTOS P
 LEFT JOIN ANIMAIS A ON P.IDANIMAL = A.ID
 LEFT JOIN VOLUNTARIOS V ON P.IDVOLUNTARIO = V.ID

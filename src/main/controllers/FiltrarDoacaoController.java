@@ -1,5 +1,6 @@
 package main.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import javafx.fxml.FXML;
@@ -47,7 +48,8 @@ public class FiltrarDoacaoController implements InicializadorComAcao {
        this.acao = acao;
        inicializa();
        setListeners(primmaryStage, blackShadow);
-    
+       dataFinalDatePicker.setValue(LocalDate.now());
+       dataInicialDatePicker.setValue(LocalDate.now());
        if(doacaoServices.filtro != null) setFiltros();
     }
     

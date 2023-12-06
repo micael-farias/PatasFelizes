@@ -3,9 +3,6 @@ package main.controllers;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.Calendar;
 import javafx.fxml.FXML;
@@ -18,7 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.App;
-import static main.controllers.AnimalFormularioController.CarregarImagem;
 import main.interfaces.InicializadorComDado;
 import main.model.Despesa;
 import main.model.Procedimento;
@@ -26,11 +22,9 @@ import main.services.AnimalService;
 import main.services.DespesaServices;
 import main.services.ProcedimentoService;
 import static main.utils.Constantes.FORM_DESPESAS;
-import static main.utils.Constantes.FORM_HOME;
 import main.utils.ImageLoader;
 import main.utils.PdfDownloader;
 import main.utils.RealFormatter;
-import main.utils.Rectangles;
 import main.utils.TextFieldUtils;
 import static main.utils.TextFieldUtils.autoCapitalizeFirstLetter;
 import static main.utils.TextFieldUtils.capitalizeEachWord;
@@ -97,7 +91,8 @@ public class CadastrarDespesaController extends CustomController implements Inic
         autoCapitalizeFirstLetter(descricaoDespesa);
         autoCapitalizeFirstLetter(tipoDespesa);
         capitalizeEachWord(petDespesa);
-        
+        dataDespesa.setValue(LocalDate.now());
+
          setData();
    }
 

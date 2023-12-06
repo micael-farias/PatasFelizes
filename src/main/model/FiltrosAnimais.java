@@ -41,12 +41,9 @@ public class FiltrosAnimais {
             }
             if(filtrarSexoDesconhecido){
                 map.put("Sexo desconhecido", "Sexo desconhecido");
-            }             
-             
-            
-          
+            }                
                 
- int primeiroAno = IntegerParse(intervaloPrimeiroAno);
+        int primeiroAno = IntegerParse(intervaloPrimeiroAno);
         int primeiroMeses = IntegerParse(intervaloPrimeiroMeses);
         int segundoAno = IntegerParse(intervaloSegundoAno);
         int segundoMeses = IntegerParse(intervaloSegundoMeses);
@@ -55,21 +52,38 @@ public class FiltrosAnimais {
         String componentesIdade = "";
 
         // Adicionando ao mapa se os valores convertidos são diferentes de zero
-        if (primeiroAno != 0) {
-            componentesIdade+=(primeiroAno + " anos");
+        if (primeiroAno != 0 || (primeiroAno == 0 && primeiroMeses == 0)) {
+            if(primeiroAno == 1){
+               componentesIdade+=(primeiroAno + " ano");
+            }else{
+               componentesIdade+=(primeiroAno + " anos");          
+            }
         }
 
         if (primeiroMeses != 0) {
-            componentesIdade+=(" e "+ primeiroMeses + " meses");
+            if(primeiroMeses == 1){
+                componentesIdade+=(" e "+ primeiroMeses + " mes");
+            }else{
+                componentesIdade+=(" e "+ primeiroMeses + " meses");
+            }
         }
-        componentesIdade+=" até ";
+        
+        if(segundoAno != 0 || segundoMeses != 0) componentesIdade+=" até ";
+        
         if (segundoAno != 0) {
-            componentesIdade+=(segundoAno + " anos");
+            if(segundoAno == 1){
+               componentesIdade+=(segundoAno + " ano");
+            }else{
+               componentesIdade+=(segundoAno + " anos");          
+            }        
         }
 
         if (segundoMeses != 0) {
-            componentesIdade+=(" e "+ segundoMeses + " meses");
-        }
+            if(segundoMeses == 1){
+                componentesIdade+=(" e "+ segundoMeses + " mes");
+            }else{
+                componentesIdade+=(" e "+ segundoMeses + " meses");
+            }        }
 
         // Concatenando os componentes da idade
         if (!componentesIdade.isEmpty()) {

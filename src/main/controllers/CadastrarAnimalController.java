@@ -2,7 +2,6 @@ package main.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,7 +10,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import java.util.Calendar;
 import javafx.stage.Stage;
 import main.App;
 import static main.controllers.AnimalFormularioController.CarregarImagem;
@@ -38,9 +36,6 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     private TextArea descricaoAnimalTextField;
 
     @FXML
-    private Button filtrarAnimaisButton;
-
-    @FXML
     private ImageView imagemAnimal;
 
     @FXML
@@ -58,7 +53,6 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     @FXML
     private ImageView sexoDesconhecidoCheckBox;
 
-
     @FXML
     private HBox toggleSexo;
 
@@ -74,8 +68,6 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     private byte[] fotoAnimal;
     private AnimalService animalService;
     
-    private ProcedimentoService procedimentoService;
-
 
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
@@ -89,7 +81,6 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     
     public void initialize(){
         animalService =  new AnimalService();
-        procedimentoService = new ProcedimentoService();
     }
     
     public void configuraToggles(){
