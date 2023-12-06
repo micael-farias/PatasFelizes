@@ -101,7 +101,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
     public List<Procedimento> encontrarProcedimentosPor(int idAnimal){
         List<Procedimento> procedimentosAnimal = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(
-                     "SELECT * FROM Procedimentos WHERE idAnimal=? ORDER BY DATA DESC")) {
+                     "SELECT * FROM ViewProcedimentos WHERE idAnimal=? ORDER BY DATA DESC")) {
 
             statement.setInt(1, idAnimal);
 
@@ -136,26 +136,7 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
 
         return null;
     }
-
-    public Procedimento encontrarProcedimentosPorTarefa(int idProcedimento) {
-        try (PreparedStatement statement = connection.prepareStatement(
-                     "SELECT * FROM Procedimentos WHERE id=?")) {
-
-            statement.setInt(1, idProcedimento);
-
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    return mapearProcedimento(resultSet);
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
+    
     public Set<String> encontrarNomesTipos() {
         Set<String> tiposNomes = new HashSet<>();
 
@@ -219,8 +200,8 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
         }
  
         return procedimento;
-    }
-
+    }   
+    
     public List<Procedimento> encontrarProcedimentosPor(String descricao, int idAnimal) {
         List<Procedimento> procedimentosAnimal = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(

@@ -37,7 +37,7 @@ public class PdfDownloader {
                 
                 App.getInstance().SetMensagem(MensagemTipo.SUCESSO, "Um PDF foi salvo na pasta Downloads \nClique aqui para abrir",(dados) -> {
                    abrirExplorer(caminhoDestino);
-                  });
+                });
                 
 
         } catch (Exception e) {

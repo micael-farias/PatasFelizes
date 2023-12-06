@@ -90,7 +90,7 @@ public class TarefaServices {
                 }
             }else{               
                 //if(animal != null){
-                    procedimento = procedimentoRepository.encontrarProcedimentosPorTarefa(idTarefa);
+                    procedimento = procedimentoRepository.encontrarProcedimentosPorId(idTarefa);
                     realizado = foiRealizado == null ? procedimento.isRealizado() : foiRealizado;
 
                     if(procedimento.getDespesa() == null){

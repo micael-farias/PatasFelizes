@@ -55,23 +55,26 @@ public class AnimalCardController extends CustomController implements Inicializa
         String textoIdadeAnimal;
              
         Idade idadeAnimalMesesAnos= CalculaAnosEMesesPorDt(animal.getDataNascimento());
-
+     
         if(idadeAnimalMesesAnos != null){
+            int ano = idadeAnimalMesesAnos.getAnos();
+            int meses = idadeAnimalMesesAnos.getMeses();
             
-            if(idadeAnimalMesesAnos.getAnos() == 0 && idadeAnimalMesesAnos.getMeses() == 0){
-                         textoIdadeAnimal = "Recém nascido";
+            if(ano == 0 && meses == 0){
+                textoIdadeAnimal = "Recém nascido";
             }
-            else if(idadeAnimalMesesAnos.getAnos() == 0){
-                 textoIdadeAnimal = idadeAnimalMesesAnos.getMeses()+ " meses";
-             }else if(idadeAnimalMesesAnos.getMeses() == 0){
-                 textoIdadeAnimal = idadeAnimalMesesAnos.getAnos()+ " anos";
-             }else{
-                 textoIdadeAnimal = idadeAnimalMesesAnos.getAnos() + " anos e " + idadeAnimalMesesAnos.getMeses() + " meses";   
-             }
-             
+            else if(ano == 0){                     
+                textoIdadeAnimal = (meses == 1) ? meses + " mes" : meses + " meses";
+            }else if(meses == 0){
+                textoIdadeAnimal = (ano == 1) ? ano + " ano" : ano + " anos";
+            }else{
+                textoIdadeAnimal = (ano == 1) ? ano + " ano e " : ano + " anos e ";
+                textoIdadeAnimal += (meses == 1) ? meses + " mes" : meses + " meses";   
+            }             
         }else{
              textoIdadeAnimal = "Idade não informada";
         }
+        
         idadeAnimal.setText(textoIdadeAnimal);
         nomeAnimal.setText(animal.getNome());
         String statusColor = StatusAnimalFactory.GetColorStatus(animal.getStatus());

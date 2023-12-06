@@ -18,8 +18,6 @@ import main.interfaces.Resumidor;
 import main.model.Despesa;
 import static main.model.Despesa.somarValores;
 import main.model.FiltroDespesa;
-import main.services.AnimalService;
-import main.services.DoacaoServices;
 import main.services.DespesaServices;
 import static main.utils.Constantes.DIALOG_FILTRAR_DESPESAS;
 import static main.utils.Constantes.FORM_DESPESAS;
@@ -28,7 +26,6 @@ import main.utils.RealFormatter;
 import main.views.gridview.DespesasGridView;
 import main.views.gridview.FiltroGridView;
 import main.views.toggle.FiltroView;
-import main.views.toggle.ToggleView;
 
 public class DespesasController implements Inicializador, Resumidor {  
     
@@ -49,8 +46,6 @@ public class DespesasController implements Inicializador, Resumidor {
     @FXML
     private Label totalDespesas;
     private DespesaServices despesaServices;
-    private DoacaoServices doacaoServices;
-    private ToggleView toggleViewFinancas;
     private FiltroView filtroView;
     private FiltroGridView filtroGridView;
     
@@ -61,7 +56,6 @@ public class DespesasController implements Inicializador, Resumidor {
     }
     public void initialize(Pane contentFather, Stage primaryStage, Pane blackShadow){
         despesaServices = new DespesaServices();
-        doacaoServices = new DoacaoServices();
         filtroView = new FiltroView();
         filtroView.Criar(filtros);
         criarDespesas(contentFather, primaryStage, blackShadow);
@@ -83,7 +77,7 @@ public class DespesasController implements Inicializador, Resumidor {
         
         
         var filtrosString = new ArrayList<>(DespesaServices.filtro.GetFiltros().values());  
-        if(filtrosString.size() > 0){     
+        if(!filtrosString.isEmpty()){     
             filtroView.adicionarCaixaFiltrados();
             filtroGridView = new FiltroGridView(filtroView.getGridFiltros(), filtrosString.size(), filtrosString);
             filtroGridView.createGridAsync();
@@ -91,7 +85,7 @@ public class DespesasController implements Inicializador, Resumidor {
             filtroView.removerFiltros();
         }
         
-        if(invalidString(key) && filtrosString.size() == 0) filtros.setVisible(false);
+        if(invalidString(key) && filtrosString.isEmpty()) filtros.setVisible(false);
     }
     
     public void setListeners(Pane contentFather, Stage primmaryStage, Pane blackShadow){
@@ -108,7 +102,7 @@ public class DespesasController implements Inicializador, Resumidor {
         filtrarDespesas.setOnMouseClicked(e -> {
             App.getInstance().AbrirDialogComAcao(DIALOG_FILTRAR_DESPESAS, FORM_DESPESAS, contentFather, primmaryStage, blackShadow, null, (dados) ->{
                 List<Despesa> despesas = (List<Despesa>)dados[0];
-                despesaServices.filtro = (FiltroDespesa) dados[1];
+                DespesaServices.filtro = (FiltroDespesa) dados[1];
                 criarGridDespesaComResultados(despesas,contentFather, primmaryStage, blackShadow);
             });
             
@@ -127,13 +121,13 @@ public class DespesasController implements Inicializador, Resumidor {
     
     public void calcularTotal(List<Despesa> despesas){
         double valorTotal = somarValores(despesas);
-        totalDespesas.setText(RealFormatter.formatarComoReal(valorTotal));;
+        totalDespesas.setText(RealFormatter.formatarComoReal(valorTotal));
     }
 
     private void criarDespesas(Pane contentFather, Stage primaryStage, Pane blackShadow){
         List<Despesa> despesas;
-        if(despesaServices.filtro != null){
-            despesas = despesaServices.FiltrarDespesas(despesaServices.filtro);    
+        if(DespesaServices.filtro != null){
+            despesas = despesaServices.FiltrarDespesas(DespesaServices.filtro);    
             criarGridDespesaComResultados(despesas, contentFather, primaryStage, blackShadow);   
         }else{
             despesas = despesaServices.ObterDespesas();

@@ -85,6 +85,7 @@ public class CadastrarProcedimentoController extends CustomController implements
         autoCapitalizeFirstLetter(descricaoProcedimento);
         autoCapitalizeFirstLetter(voluntarioProcedimento);
         autoCapitalizeFirstLetter(tipoProcedimento);
+        dataProcedimento.setValue(LocalDate.now());
 
         if(procedimento != null) setData();
     }

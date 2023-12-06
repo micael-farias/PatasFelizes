@@ -196,11 +196,31 @@
     -fx-cursor: hand;
 }
 
+.layoutPet:hover {
+    -fx-background-color: #DEE8FD;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);
+    -fx-content-display: top;
+    -fx-font: 10pt "Noto Sans Mono Bold";
+    -fx-text-fill: #000000;
+    -fx-cursor: hand;
+}
+
 .layoutPetv2 {
     -fx-background-color: #DEE8FD;
     -fx-background-radius: 10;
     -fx-border-radius: 10px;
     -fx-effect: dropshadow(three-pass-box, rgba(22,22,22,0.4), 5, 0, 2, 2);
+    -fx-content-display: top;
+    -fx-cursor: hand;
+}
+
+.layoutPetv2:hover {
+    -fx-background-color: #DEE8FD;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 0);
     -fx-content-display: top;
     -fx-cursor: hand;
 }

@@ -1,5 +1,6 @@
 package main.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import javafx.fxml.FXML;
@@ -61,7 +62,8 @@ public class FiltrarTarefaController implements InicializadorComAcao {
        inicializa();
        configuraTextFields();
        setListeners(primmaryStage, blackShadow);
-    
+       dataFinalDatePicker.setValue(LocalDate.now());
+       dataInicialDatePicker.setValue(LocalDate.now());
        if(TarefaServices.filtro != null) setFiltros();
     }
     

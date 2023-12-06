@@ -98,7 +98,7 @@ public class CadastrarTarefaController extends CustomController implements Inici
         voluntarioService = new VoluntarioService();
         animalServices = new AnimalService();
         procedimentoService= new ProcedimentoService();
-        
+        dataTarefa.setValue(LocalDate.now());
         configurarPets();
         configurarVoluntarios();
         configurarTiposTarefa();

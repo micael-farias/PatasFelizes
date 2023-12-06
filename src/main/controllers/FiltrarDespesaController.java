@@ -1,5 +1,6 @@
 package main.controllers;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -61,7 +62,9 @@ public class FiltrarDespesaController implements InicializadorComAcao {
        setListeners(primmaryStage, blackShadow);
        capitalizeEachWord(petTextField);
        autoCapitalizeFirstLetter(tiposDespesaTextField);
-       if(despesaService.filtro != null) setFiltros();
+       dataFinalDatePicker.setValue(LocalDate.now());
+       dataInicialDatePicker.setValue(LocalDate.now());
+       if(DespesaServices.filtro != null) setFiltros();
     }
     
     void getFiltros(){

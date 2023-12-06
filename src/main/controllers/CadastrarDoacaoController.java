@@ -80,6 +80,7 @@ public class CadastrarDoacaoController extends CustomController implements Inici
         voluntarioService = new VoluntarioService();
         TextFieldUtils.setupCurrencyTextField(valorDoacao);
         capitalizeEachWord(doadorDoacao);
+        dataDoacao.setValue(LocalDate.now());
 
         configurarDoadores();
         configurarVoluntarios();
