@@ -16,10 +16,9 @@ public class ExportData {
             FileWriter fileWriter = new FileWriter("patas.sql");
             PrintWriter printWriter = new PrintWriter(fileWriter);
 
-            ResultSet tables = metaData.getTables(null, null, null, new String[]{"TABLE"});
+            String[] tables = {"Voluntarios","Adotantes","Adocoes","Animais","Despesas","Doacoes","Procedimentos"};
 
-            while (tables.next()) {
-                String tableName = tables.getString("TABLE_NAME");
+            for (String tableName : tables) {
 
                 printWriter.println("DELETE FROM " + tableName + ";");
 
@@ -35,7 +34,7 @@ public class ExportData {
 
                     for (int i = 1; i <= columnCount; i++) {
                         if (rsMetaData.getColumnType(i) == Types.BLOB) {
-                            // Tratar dados BLOB
+
                             InputStream inputStream = resultSet.getBinaryStream(i);
                             if (inputStream != null) {
                                 byte[] bytes = inputStream.readAllBytes();

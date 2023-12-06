@@ -58,8 +58,6 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     @FXML
     private ImageView sexoDesconhecidoCheckBox;
 
-    @FXML
-    private MenuButton statusAnimal;
 
     @FXML
     private HBox toggleSexo;
@@ -74,7 +72,6 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     private ToggleView toogleViewCastrado;
     private char sexoAnimalValor;
     private byte[] fotoAnimal;
-    private String ultimoStatus;
     private AnimalService animalService;
     
     private ProcedimentoService procedimentoService;
@@ -93,8 +90,6 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
     public void initialize(){
         animalService =  new AnimalService();
         procedimentoService = new ProcedimentoService();
-        statusAnimal.setText("Para a adoção");
-        ultimoStatus = "Para a adoção";
     }
     
     public void configuraToggles(){
@@ -119,7 +114,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
 
         if(!validarPet(nomeAnimal)) return null;
         
-        return animalService.Salvar(-1 ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, ultimoStatus);
+        return animalService.Salvar(-1 ,nomeAnimal, anosAnimal, mesesAnimal, descricaoAnimal, sexoAnimal, castrado, fotoAnimal, "Para adoção");
     }
     
     public boolean validarPet(String nome){
@@ -147,13 +142,7 @@ public class CadastrarAnimalController extends AnimalFormularioController implem
         layoutImageViewAnimal.setOnMouseClicked(e -> {
             fotoAnimal = CarregarImagem(primaryStage, imagemAnimal, layoutImageViewAnimal, Rectangles.GetRectangleImageAnimaisDetails());
         });
-
-        statusAnimal.getItems().forEach(item -> item.setOnAction(event -> {
-            statusAnimal.setText(item.getText());
-            ultimoStatus = item.getText();
-        }));
-        
-        
+              
         sexoDesconhecidoCheckBox.setOnMouseClicked(event -> {
             if (sexoAnimalValor == 'N') {
                 sexoAnimalValor = toggleViewSexo.getSelectedItem() == ToogleEnum.DIREITO ? 'M' : 'F';

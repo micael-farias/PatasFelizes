@@ -2,13 +2,11 @@ package main.repositories;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
+import java.sql.*;
+
 import main.model.Voluntario;
 import static main.utils.DateHelper.DateToCalendar;
 
@@ -26,7 +24,6 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
                 if (resultSet.next()) {
                     Voluntario encontrado = mapearVoluntario(resultSet);
 
-                    // Verificar se há mais de uma correspondência
                     if (resultSet.next()) {
                         return null;
                     }
@@ -70,17 +67,114 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
         return null;    }
     
     public  Set<String> EncontrarNomesVoluntarios(){
-        return new HashSet<>(SelecionarTodos("NOME", null, null, String.class));
+        Set<String> lista = new HashSet<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT NOME FROM VOLUNTARIOS")) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    while(resultSet.next()) {
+                       lista.add(resultSet.getString("NOME"));
+                    }
+
+                    return lista;
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;      
     }
     
     public List<Voluntario> ObterVoluntarios(){
-        return new ArrayList<>(SelecionarTodos("*", null, "NOME DESC", Voluntario.class));
+        List<Voluntario> lista = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM VOLUNTARIOS")) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    while(resultSet.next()) {
+                       Voluntario encontrado = mapearVoluntario(resultSet);
+                       lista.add(encontrado);
+                    }
+
+                    return lista;
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;   
     }
 
     public List<Voluntario> ObterVoluntariosPorNome(String nome){
-        return new ArrayList<>(SelecionarTodos("*", "NOME LIKE '%"+nome+"%'", "NOME DESC", Voluntario.class));
+        List<Voluntario> lista = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(QueryBuscaPorNome("Voluntarios", nome))) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    while(resultSet.next()) {
+                       Voluntario encontrado = mapearVoluntario(resultSet);
+                       lista.add(encontrado);
+                    }
+
+                    return lista;
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;      
     }
-    
+    public Voluntario inserirVoluntario(Voluntario voluntario) throws SQLException {
+        String sql = "INSERT INTO Voluntarios (Nome, Foto, Email, Telefone, DataCadastro) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, voluntario.getNome());
+            statement.setBytes(2, voluntario.getFoto());
+            statement.setString(3, voluntario.getEmail());
+            statement.setString(4, voluntario.getTelefone());
+            statement.setTimestamp(5, new Timestamp(voluntario.getDataCadastro().getTimeInMillis()));
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int generatedId = generatedKeys.getInt(1);
+                    voluntario.setId(generatedId);
+                    return voluntario;
+                }
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return null;
+    }
+
+    public Voluntario atualizarVoluntario(Voluntario voluntario) throws SQLException {
+        String sql = "UPDATE Voluntarios SET Nome=?, Foto=?, Email=?, Telefone=?, DataCadastro=? WHERE Id=?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, voluntario.getNome());
+            statement.setBytes(2, voluntario.getFoto());
+            statement.setString(3, voluntario.getEmail());
+            statement.setString(4, voluntario.getTelefone());
+            statement.setTimestamp(5, new Timestamp(voluntario.getDataCadastro().getTimeInMillis()));
+            statement.setInt(6, voluntario.getId());
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                return voluntario;
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return null;
+    }
+
     public Voluntario Salvar(int idVoluntario, String nome, String email, String telefone, byte[] fotoVoluntario) throws SQLException, IllegalAccessException {
        
        Voluntario voluntario;
@@ -91,7 +185,7 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
             voluntario.setEmail(email);
             voluntario.setTelefone(telefone);     
             voluntario.setFoto(fotoVoluntario);
-            this.Inserir(voluntario);  
+            inserirVoluntario(voluntario);  
        }else{
             voluntario = new Voluntario();
             voluntario.setId(idVoluntario);
@@ -99,7 +193,7 @@ public class VoluntarioRepository extends BaseRepository<Voluntario>{
             voluntario.setEmail(email);
             voluntario.setTelefone(telefone);  
             voluntario.setFoto(fotoVoluntario);
-            Atualizar(voluntario);  
+            atualizarVoluntario(voluntario);  
        }
        
        return voluntario;

@@ -112,7 +112,7 @@ public class ProcedimentoService {
 
                     }
                 }else if(valor == 0 && procedimento.getDespesa() != null){
-                    despesaRepository.Deletar(procedimento.getDespesa());
+                    despesaRepository.Deletar(procedimento.getDespesa().getId());
                 }
 
                 procedimento = procedimentoRepository.Salvar(idProcedimento, descricao, data, tipo, despesa, voluntario, animal, realizado);
@@ -159,7 +159,7 @@ public class ProcedimentoService {
     
     public int Excluir(int idProcedimento){
         try {
-            procedimentoRepository.Excluir(Procedimento.class, idProcedimento);
+            procedimentoRepository.Excluir(idProcedimento);
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();

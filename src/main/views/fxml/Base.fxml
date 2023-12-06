@@ -140,6 +140,30 @@
                   <Font name="Noto Sans Mono Bold" size="18.0" />
                </font>
             </Button>
+            <Button fx:id="menuButtonAuditoria" alignment="BASELINE_LEFT" layoutY="512.0" mnemonicParsing="false" onMouseClicked="#menuButtonAuditoriaClicked" onMouseEntered="#menuButtonAuditoriaEntered" onMouseExited="#menuButtonAuditoriaExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@../css/view.css" text="Auditoria" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <Pane prefHeight="64.0" prefWidth="64.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="64.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="8.0" />
+                        <HBox alignment="CENTER" layoutX="16.0" prefHeight="64.0" prefWidth="48.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../assets/images/auditoria.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </graphic>
+               <font>
+                  <Font name="Noto Sans Mono Bold" size="18.0" />
+               </font>
+            </Button>
             <Button fx:id="menuButtonAgenda1" alignment="BASELINE_LEFT" layoutY="448.0" mnemonicParsing="false" onMouseClicked="#menuButtonBancoClicked" onMouseEntered="#menuButtonBancoEntered" onMouseExited="#menuButtonBancoExited" prefHeight="64.0" prefWidth="200.0" styleClass="menuButtonDefault" stylesheets="@../css/view.css" text="Banco" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />

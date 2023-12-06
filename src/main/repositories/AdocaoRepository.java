@@ -2,13 +2,9 @@ package main.repositories;
 
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-import main.db.Database;
 import main.model.Adocao;
 import main.model.Adotante;
-import main.model.Despesa;
 import static main.utils.DateHelper.DateToCalendar;
 
 public class AdocaoRepository extends BaseRepository<Adocao> {
@@ -16,7 +12,6 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
     public AdocaoRepository() {
         super(Adocao.class);
     }
-
         
     public Adocao SalvarAdocao(int idAdocao, int idAnimal, Adotante adotante) throws SQLException {
         Adocao adocao = new Adocao();
@@ -32,8 +27,6 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
         }
     }
 
-    
-    // Method to insert a new Adocao into the database
     public Adocao InserirAdocao(Adocao adocao) throws SQLException {
         String sql = "INSERT INTO ADOCOES (IdAnimal, IdAdotante, DataCadastro) VALUES (?, ?, ?)";
         
@@ -58,7 +51,6 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
         return null;
     }
 
-    // Method to update an existing Adocao in the database
     public Adocao AtualizarAdocao(Adocao adocao) throws SQLException {
         String sql = "UPDATE ADOCOES SET IdAnimal=?, IdAdotante=? WHERE Id=?";
         
@@ -80,7 +72,6 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
         return null;
     }
 
-    // Method to find adoptions by animal
     public Adocao EncontrarAdocaoPorAnimal(int idAnimal) {
 
         try (Statement statement = connection.createStatement();
@@ -98,7 +89,6 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
         return null;
     }
 
-    // Method to map an Adocao from a ResultSet
     private Adocao mapearAdocao(ResultSet resultSet) throws SQLException {
         Adocao adocao = new Adocao();
         adocao.setId(resultSet.getInt("Id"));
@@ -113,9 +103,7 @@ public class AdocaoRepository extends BaseRepository<Adocao> {
         return adocao;
     }
 
-    // Add other methods as needed for Adocao repository
-
     public void DeletarAdocaoPorId(int id) throws Exception {
-        Excluir(Adocao.class, id);
+        Excluir(id);
     }
 }

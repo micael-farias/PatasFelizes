@@ -8,22 +8,16 @@ public class TriggerCreator {
 
 
     public static void create(Statement statement) throws SQLException {
-        // Exemplo de uso para a tabela Animais
         createTriggersForTableAndColumns("Animais", "Nome,Sexo,Castrado,Status", statement, "Nome");
 
-        // Exemplo de uso para a tabela Doacoes
         createTriggersForTableAndColumns("Doacoes", "Doador,Valor,Data", statement, "Doador");
 
-        // Exemplo de uso para a tabela Voluntarios
         createTriggersForTableAndColumns("Voluntarios", "Email,Telefone", statement, "Nome");
 
-        // Exemplo de uso para a tabela Despesas
         createTriggersForTableAndColumns("Despesas", "Valor,Data,Tipo", statement, "Descricao");
 
-        // Exemplo de uso para a tabela Tarefas
-        createTriggersForTableAndColumns("Tarefas", "IdVoluntario,IdAnimal,Data,Tipo,Realizado", statement, "Descricao");
+        createTriggersForTableAndColumns("Procedimentos", "IdVoluntario,IdAnimal,Data,Tipo", statement, "Descricao");
 
-        // Exemplo de uso para a tabela Adotantes
         createTriggersForTableAndColumns("Adotantes", "Nome,Contato,CEP,Cidade,Rua,Bairro,Numero", statement, "Nome");
     }
 
@@ -33,8 +27,9 @@ public class TriggerCreator {
         for (String column : columnArray) {
             String triggerName = tableName + "AposAtualizar_" + column.trim();
             String triggerSQL = generateTriggerSQL(triggerName, tableName, column.trim(), descritor);
+            System.out.println(triggerSQL+"\n");
             statement.executeUpdate(triggerSQL);
-            System.out.println("Trigger criada para " + tableName + "." + column);
+          //  System.out.println("Trigger criada para " + tableName + "." + column);
         }
     }
 

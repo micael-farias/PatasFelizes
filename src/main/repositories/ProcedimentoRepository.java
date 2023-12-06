@@ -3,17 +3,14 @@ package main.repositories;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import main.db.Database;
 import main.model.Animal;
 import main.model.Despesa;
 import main.model.FiltroDespesa;
 
 import main.model.Procedimento;
-import main.model.Tarefa;
 import main.model.Voluntario;
 import static main.utils.DateHelper.DateToCalendar;
 import static main.utils.DateHelper.invalidString;
@@ -24,7 +21,6 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
     public ProcedimentoRepository() {
         super(Procedimento.class);
     }
-
 
     public Procedimento Salvar(int idProcedimento, String descricao, Calendar data, String tipo, Despesa despesa, Voluntario voluntario, Animal animal, boolean realizado) throws SQLException {
         Procedimento procedimento = new Procedimento();
@@ -203,28 +199,25 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
         procedimento.setData(DateToCalendar(resultSet.getDate("data")));
         procedimento.setTipo(resultSet.getString("tipo"));
         procedimento.setRealizado(resultSet.getBoolean("realizado"));
-          // Mapear Despesa
+
         int despesaId = resultSet.getInt("idDespesa");
         if (despesaId > 0) {
             Despesa despesa = new DespesaRepository().EncontrarDespesaPor(despesaId);
             procedimento.setDespesa(despesa);
         }
 
-        // Mapear Voluntario
         int voluntarioId = resultSet.getInt("idVoluntario");
         if (voluntarioId > 0) {
             Voluntario voluntario = new VoluntarioRepository().EncontrarVoluntarioPor(voluntarioId);
             procedimento.setVoluntario(voluntario);
         }
 
-        // Mapear Animal
         int animalId = resultSet.getInt("idAnimal");
         if (animalId > 0) {
             Animal animal = new AnimalRepository().EncontrarAnimalPor(animalId);
             procedimento.setAnimal(animal);
         }
-            // Você precisará implementar métodos para carregar Despesa, Voluntario, Tarefa e Animal a partir de seus respectivos IDs
-
+ 
         return procedimento;
     }
 
@@ -249,18 +242,14 @@ public class ProcedimentoRepository extends BaseRepository<Procedimento>{
     public List<Procedimento> FiltrarProcedimentos(FiltroDespesa filtro) throws SQLException {
         List<Procedimento> procedimentos = new ArrayList<>();
 
-        StringBuilder sql = new StringBuilder("SELECT * FROM PROCEDIMENTOS P " +
-                "LEFT JOIN ANIMAIS A ON P.IDANIMAL = A.ID " +
-                "LEFT JOIN VOLUNTARIOS V ON P.IDVOLUNTARIO = V.ID " +
-                "LEFT JOIN DESPESAS D ON P.IDDESPESA = D.ID " +
-                "WHERE 1 = 1");
+        StringBuilder sql = new StringBuilder("SELECT * FROM ViewProcedimentos P WHERE 1 = 1");
 
         if (!invalidString(filtro.getVoluntario())) {
-            sql.append(" AND V.NOME = '").append(filtro.getVoluntario()).append("'");
+            sql.append(" AND NomeVoluntario = '").append(filtro.getVoluntario()).append("'");
         }
 
         if (!invalidString(filtro.getAnimal())) {
-            sql.append(" AND A.NOME = '").append(filtro.getAnimal()).append("'");
+            sql.append(" AND NomeAnimal = '").append(filtro.getAnimal()).append("'");
         }
 
         if (filtro.getDataFinal() != null && filtro.getDataInicial() != null) {

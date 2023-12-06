@@ -21,7 +21,7 @@ public class Database {
             statement.setQueryTimeout(30);  // set timeout to 30 sec.
             String sql = FileUtils.LoadTextFile(PATH_DATA_BASE);
             statement.executeUpdate(sql);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             //App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao criar banco de dados", null);
 

@@ -1,6 +1,7 @@
 package main.model;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import static main.utils.DateHelper.CalendarParaStringReduced;
 
 public class Alteracao {
     private int Id;
@@ -99,17 +100,12 @@ public class Alteracao {
 
     // Método para formatar a mensagem
     public void formatarMensagem() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd 'de' MMMM 'de' yyyy");
-        
-        if(Descritor == "MJ"){
-            int A = 1;
-        }
         this.Mensagem = String.format(
-                "Sua/Seu %s alterada de \"%s\" para \"%s\" na %s.",
+                "Sua/Seu %s alterada de \"%s\" para \"%s\" em %s.",
                 ColunaAlterada.toLowerCase(),
                 ValorAntigo,
                 ValorNovo,
-               "Qu");
+                CalendarParaStringReduced(DataAlteracao));
         
         this.Identificador =  String.format("%s descrito por %s foi alterado",transformarParaSingular(TabelaAfetada), Descritor);      
        

@@ -48,10 +48,6 @@ public class DoacaoServices {
         } 
     }
 
-    public double[] ObterTotalReceitaEDespesa() {
-        return doacaoRepository.BuscarValoresDoacoesEDespesa();
-    }
-
     public List<Doacao> ObterDoacoesPorDoador(String texto) {
         return doacaoRepository.ObterDoacoesPorDescricao(texto);
     }
@@ -68,7 +64,7 @@ public class DoacaoServices {
 
     public int Excluir(int id) {
         try {
-            doacaoRepository.Excluir(Doacao.class, id);
+            doacaoRepository.Excluir(id);
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();

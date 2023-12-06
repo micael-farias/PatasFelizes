@@ -7,27 +7,35 @@ import java.sql.Timestamp;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javafx.scene.image.Image;
 import main.model.Animal;
-import static main.utils.Constantes.PATH_IMAGES;
 import static main.utils.DateHelper.DateToCalendar;
 import static main.utils.ImageConverter.ImageFileToByteArray;
 
 public class AnimalRepository extends BaseRepository<Animal>{
     
-    
     public AnimalRepository(){
-        super(Animal.class);    
-                        
+        super(Animal.class);                        
     }
     
-    public ArrayList<Animal> EncontrarAnimais(){
-       var a =  new ArrayList<>(SelecionarTodos("*", null, "DataCadastro desc", Animal.class ));
-       return a;
+    public ArrayList<Animal> EncontrarAnimais() {
+        String sql = "SELECT * FROM Animais ORDER BY DataCadastro DESC";
+        ArrayList<Animal> animais = new ArrayList<>();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                Animal animal = mapearAnimal(resultSet);
+                animais.add(animal);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return animais;
     }
     
     public Animal Salvar(int idAnimal, String nomeAnimal, Calendar dataNascimentoAnimal, String descricaoAnimal, char sexoAnimal, boolean castrado, byte[] fotoAnimal, String status) throws SQLException, IllegalAccessException {
@@ -158,7 +166,6 @@ private Animal atualizarAnimal(Animal animal) throws SQLException {
                 if (resultSet.next()) {
                     Animal encontrado = mapearAnimal(resultSet);
 
-                    // Verificar se há mais de uma correspondência
                     if (resultSet.next()) {
                         return null;
                     }
@@ -172,13 +179,45 @@ private Animal atualizarAnimal(Animal animal) throws SQLException {
 
         return null;
     }
+    
+    public List<Animal> EncontrarAnimaisPorNome(String nome) {  
+        List<Animal> lista = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(QueryBuscaPorNome("Animais",nome))) {
+          System.err.println(QueryBuscaPorNome("Animais",nome));
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
-    public Set<String> EncontrarNomesAnimais() {     
-        return new HashSet<String>(SelecionarTodos("NOME",null,null, String.class));
+                    while(resultSet.next()) {
+                       Animal encontrado = mapearAnimal(resultSet);
+                       lista.add(encontrado);
+                    }
+
+                    return lista;
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
-    public List<Animal> EncontrarAnimaisPorNome(String nome) {
-        return SelecionarTodos("*", "NOME LIKE '%"+nome+"%'",null, Animal.class);
+    public Set<String> EncontrarNomesAnimais() {     
+        Set<String> set = new HashSet<String>();
+        String sql = "SELECT NOME FROM Animais";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                set.add(resultSet.getString("NOME"));
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return set;
+
     }
 
     public void AtualizarStatusAnimal(String status, int idAnimal) throws Exception {
@@ -219,7 +258,6 @@ private Animal atualizarAnimal(Animal animal) throws SQLException {
                 sql.append("Sexo = 'N' OR ");
             }
 
-            // Remove o último " OR "
             sql.delete(sql.length() - 4, sql.length());
 
             sql.append(")");

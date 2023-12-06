@@ -75,7 +75,6 @@ public class DespesaController extends CustomController implements Inicializador
         
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !despesa.isRealizada();
-            setImage(realizada);
             Despesa despesaObtida;
             if (realizada) {  
                 despesaObtida = despesaService.Cadastrar(despesa.getId(), despesa.getDescricao(), despesa.getValor(),
@@ -87,6 +86,7 @@ public class DespesaController extends CustomController implements Inicializador
             if(despesaObtida == null){
                 App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da despesa", null);
             }else{
+                setImage(realizada);
                 despesa= despesaObtida;
             }
         });        

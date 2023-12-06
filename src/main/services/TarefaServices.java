@@ -89,7 +89,7 @@ public class TarefaServices {
             }
                 }
             }else{               
-                if(animal != null){
+                //if(animal != null){
                     procedimento = procedimentoRepository.encontrarProcedimentosPorTarefa(idTarefa);
                     realizado = foiRealizado == null ? procedimento.isRealizado() : foiRealizado;
 
@@ -97,10 +97,10 @@ public class TarefaServices {
                       procedimento =  procedimentoRepository.Salvar(procedimento.getId(), descricao, data, tipo, null, voluntario, animal, realizado);
 
                     }else{
-                        despesaRepository.Salvar(procedimento.getDespesa().getId(), descricao, procedimento.getDespesa().getValor(), data, tipo, realizado, procedimento.getDespesa().getFotoComprovante());
+                      despesaRepository.Salvar(procedimento.getDespesa().getId(), descricao, procedimento.getDespesa().getValor(), data, tipo, realizado, procedimento.getDespesa().getFotoComprovante());
                       procedimento =  procedimentoRepository.Salvar(procedimento.getId(), descricao, data, tipo, procedimento.getDespesa(), voluntario, animal, realizado);
                     }
-                }
+               // }
             }
             
             tarefasRepository.CommitTransaction();
@@ -137,7 +137,7 @@ public class TarefaServices {
     
     public int Excluir(int id) {
         try {
-            procedimentoRepository.Excluir(Procedimento.class, id);
+            procedimentoRepository.Excluir(id);
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();

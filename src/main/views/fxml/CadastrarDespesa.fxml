@@ -42,7 +42,7 @@
             </HBox>
             <StackPane alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <DatePicker fx:id="dataDespesa" editable="false" minHeight="-Infinity" prefHeight="30.0" prefWidth="272.0" stylesheets="@../css/datePicker.css" />
+                  <DatePicker fx:id="dataDespesa" minHeight="-Infinity" prefHeight="30.0" prefWidth="272.0" stylesheets="@../css/datePicker.css" />
                </children>
             </StackPane>
          </children>
@@ -52,10 +52,10 @@
             <HBox prefHeight="50.0" prefWidth="546.0">
                <children>
                   <Label prefHeight="0.0" prefWidth="2.0" stylesheets="@../css/cadastraranimal.css" text="*" textFill="RED" />
-                  <Label prefHeight="26.0" prefWidth="255.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Tipo" />
+                  <Label prefHeight="26.0" prefWidth="255.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Tipo de despesa" />
                </children>
             </HBox>
-            <TextField fx:id="tipoDespesa" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+            <TextField fx:id="tipoDespesa" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" promptText="Digite a descrição do tipo da despesa" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
          </children>
       </VBox>
       <VBox layoutX="56.0" layoutY="187.0" prefHeight="52.0" prefWidth="271.0">
@@ -80,7 +80,7 @@
                   <Label prefHeight="26.0" prefWidth="250.0" styleClass="Label" stylesheets="@../css/cadastrar.css" text="Pet" />
                </children>
             </HBox>
-            <TextField fx:id="petDespesa" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
+            <TextField fx:id="petDespesa" minHeight="-Infinity" prefHeight="30.0" prefWidth="504.0" promptText="Digite o nome do pet" styleClass="round-layout" stylesheets="@../css/cadastrar.css" />
          </children>
       </VBox>
       <VBox layoutX="57.0" layoutY="254.0" prefHeight="82.0" prefWidth="554.0">

@@ -57,7 +57,7 @@ public class VoluntarioService {
     public int DeletarVoluntarioPorId(int id) {
           
         try {
-            voluntarioRepository.Excluir(Voluntario.class, id);
+            voluntarioRepository.Excluir(id);
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();

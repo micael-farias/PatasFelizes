@@ -90,7 +90,6 @@ public class TarefaController extends CustomController implements InicializadorC
        setImage(procedimento.isRealizado());
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !procedimento.isRealizado();
-            setImage(realizada);
             Procedimento procedimentoObtido;
             if (realizada) {  
                 procedimentoObtido = tarefaServices.Salvar(procedimento.getId(),
@@ -110,6 +109,7 @@ public class TarefaController extends CustomController implements InicializadorC
             if(procedimentoObtido == null){
                 App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado da tarefa", null);
             }else{
+                setImage(realizada);
                 procedimento= procedimentoObtido;
             }
         });   

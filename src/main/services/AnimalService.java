@@ -58,7 +58,7 @@ public class AnimalService  {
 
     public boolean DeletarAnimalPorId(int id) {
         try {
-            animalRepository.Excluir(Animal.class, id);
+            animalRepository.Excluir(id);
             return true;
         } catch (Exception ex) {          
             App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao deletar o pet", null);

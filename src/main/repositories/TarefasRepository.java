@@ -2,28 +2,20 @@ package main.repositories;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import main.db.Database;
 import main.model.Animal;
 import main.model.Procedimento;
-import main.model.Tarefa;
 import main.model.Voluntario;
 import static main.utils.DateHelper.DateToCalendar;
 
-public class TarefasRepository extends BaseRepository<Tarefa>{
+public class TarefasRepository extends BaseRepository<Procedimento>{
 
     public TarefasRepository() {
-        super(Tarefa.class);
+        super(Procedimento.class);
     }
 
-
-    // Método para obter todas as tarefas do banco de dados
     public List<Procedimento> ObterTarefas() {
         List<Procedimento> tarefasRetornadas = new ArrayList<>();
         try (Statement statement = connection.createStatement();
@@ -42,7 +34,6 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
         return tarefasRetornadas;
     }
 
-    // Método para mapear uma tarefa a partir de um ResultSet
     private Procedimento mapearTarefa(ResultSet resultSet) throws SQLException {
         Procedimento tarefa = new Procedimento();
         tarefa.setId(resultSet.getInt("id"));
@@ -51,13 +42,11 @@ public class TarefasRepository extends BaseRepository<Tarefa>{
         tarefa.setTipo(resultSet.getString("tipo"));
         tarefa.setRealizado(resultSet.getBoolean("realizado"));
 
-      // Mapear Voluntario
         int voluntarioId = resultSet.getInt("idVoluntario");
         if (voluntarioId > 0) {
             Voluntario voluntario = new VoluntarioRepository().EncontrarVoluntarioPor(voluntarioId);
             tarefa.setVoluntario(voluntario);
         }
-        // Mapear Animal
         int animalId = resultSet.getInt("idAnimal");
         if (animalId > 0) {
             Animal animal = new AnimalRepository().EncontrarAnimalPor(animalId);
