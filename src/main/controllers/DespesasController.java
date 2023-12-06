@@ -6,10 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.ENTER;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -17,19 +15,14 @@ import main.App;
 import main.enums.Mapping;
 import main.interfaces.Inicializador;
 import main.interfaces.Resumidor;
-import main.model.Animal;
 import main.model.Despesa;
 import static main.model.Despesa.somarValores;
 import main.model.FiltroDespesa;
-import main.model.FiltrosAnimais;
-import main.model.Procedimento;
 import main.services.AnimalService;
 import main.services.DoacaoServices;
 import main.services.DespesaServices;
-import static main.utils.Constantes.DIALOG_FILTRAR_ANIMAL;
 import static main.utils.Constantes.DIALOG_FILTRAR_DESPESAS;
 import static main.utils.Constantes.FORM_DESPESAS;
-import static main.utils.Constantes.FORM_HOME;
 import static main.utils.DateHelper.invalidString;
 import main.utils.RealFormatter;
 import main.views.gridview.DespesasGridView;
@@ -124,7 +117,7 @@ public class DespesasController implements Inicializador, Resumidor {
 
         
         filtroView.excluirFiltro((dado) ->{
-            AnimalService.filtros = null;
+            DespesaServices.filtro = null;
             criarDespesas(contentFather, primmaryStage, blackShadow);
             criarFiltros();
         

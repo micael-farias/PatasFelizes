@@ -43,7 +43,7 @@ public class ImportarBancoController implements Inicializador {
         layoutAdicionarComprovante.setOnMouseClicked(e ->{
             File arquivoSql = CarregarSql(primmaryStage);
             if(arquivoSql != null){
-                var mg = PATH_IMAGES+"arquivo-pdf.png";
+                var mg = PATH_IMAGES+"documento_escuro.png";
                 iconNuvem.setImage(new Image(mg));
                 banco = arquivoSql;
             }

@@ -2,28 +2,21 @@ package main.services;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import main.model.Animal;
 import main.model.Despesa;
 import main.model.Procedimento;
-import main.model.Tarefa;
 import main.repositories.AnimalRepository;
 import main.repositories.DespesaRepository;
 import main.repositories.ProcedimentoRepository;
 import static main.utils.DateHelper.GetMidnightDate;
-import static main.utils.DateHelper.LocalDateParaDate;
-import static main.utils.NumberHelper.DoubleParse;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import main.App;
 import main.enums.MensagemTipo;
 import main.model.FiltroDespesa;
-import main.repositories.TarefasRepository;
-import main.utils.DateHelper;
 import static main.utils.DateHelper.LocalDateParaCalendar;
 import static main.utils.DateHelper.invalidString;
 
@@ -32,7 +25,6 @@ public class DespesaServices {
     DespesaRepository despesaRepository;
     AnimalRepository animalRepository; 
     ProcedimentoRepository procedimentoRepository;
-    TarefasRepository tarefaRepository;
     public static FiltroDespesa filtro;
 
     
@@ -40,7 +32,6 @@ public class DespesaServices {
         despesaRepository = new DespesaRepository();
         animalRepository = new AnimalRepository();
         procedimentoRepository = new ProcedimentoRepository();
-        tarefaRepository = new TarefasRepository();
     }
     
     public List<Despesa> ObterDespesas(){
@@ -139,7 +130,7 @@ public class DespesaServices {
     
     public int Excluir(int id) {
         try {
-            despesaRepository.Excluir(Despesa.class, id);
+            despesaRepository.Excluir( id);
             return 1;
         } catch (Exception ex) {
             ex.printStackTrace();

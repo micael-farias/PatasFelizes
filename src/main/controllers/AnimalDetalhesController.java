@@ -8,11 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import static javafx.scene.input.KeyCode.ENTER;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -302,6 +300,8 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
         layoutRemoverAdocao.setOnMouseClicked(e ->{
             App.getInstance().AbrirDialogComAcao(DIALOG_REMOVER, FORM_ANIMAL_DETALHES, contentFather, primaryStage, blackShadow,new Object[]{"Deseja realmente deletar essa adoção"}, (dado) ->{
                 adocaoService.DeletarAdocaoPorId(adocao.getId(), ultimoAnimal.getId());
+                adocao = null;
+                ultimoStatus = "Para adoção";
                 configurarLayoutAdocao(); 
                 statusAnimal.setText("Para adoção");
             });
@@ -379,7 +379,7 @@ public class AnimalDetalhesController  extends AnimalFormularioController implem
 
     @Override
     public void onResume(Pane contentFather, Stage primmaryStage, Pane blackShadow, Object[] dados) {
-        ultimoAnimal = (dados != null) ? (Animal) ObterDadoArray(dados, 0) : ultimoAnimal;
+        ultimoAnimal = (dados != null) ? (Animal) ObterDadoArray(dados, 1) : ultimoAnimal;
         criarGridProcedimentos(contentFather, primmaryStage, blackShadow);
         configurarLayoutAdocao();
 

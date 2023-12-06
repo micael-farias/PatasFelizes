@@ -128,7 +128,7 @@ public class AdotantesRepository extends BaseRepository<Adotante> {
     }
 
     public Adotante EncontrarPorTelefone(String telefone, String nome) {
- Adotante adotante = null;
+        Adotante adotante = null;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ADOTANTES WHERE Contato = ? Or Nome = ?")) {
             preparedStatement.setString(1, telefone);

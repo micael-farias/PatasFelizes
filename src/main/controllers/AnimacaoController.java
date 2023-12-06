@@ -21,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import main.App;
 import main.interfaces.Inicializador;
 
 /**
@@ -35,18 +36,17 @@ public class AnimacaoController implements Inicializador {
 
     @FXML
     private StackPane pa;
+    
+    @FXML
+    private Pane pane;
 
     @FXML
     private Label label;
     
     @Override
     public void Inicializar(Pane contentFather, Stage primmaryStage, Pane blackShadow) {
-  // Adiciona a animação ao imageView
-         // Adiciona a animação de escala
-           // Adiciona a animação de escala
-         // Adiciona a animação de escala e rotação simultaneamente (tempo 1 até tempo 2)
-       // Adiciona a animação de escala e rotação simultaneamente (tempo 1 até tempo 2)
- ParallelTransition parallelTransition = new ParallelTransition();
+        pane.setOnMouseClicked(e ->{ App.getInstance().FecharDialog(primmaryStage, blackShadow); });
+        ParallelTransition parallelTransition = new ParallelTransition();
 
         // Adiciona a animação de escala
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(2), imageView);
@@ -70,7 +70,7 @@ public class AnimacaoController implements Inicializador {
         continuousScaleTransition.setAutoReverse(true); // Inverte a animação (aumenta e diminui)
 
         // Adiciona a Label com transição de opacidade no tempo 3
-label.setOpacity(0);
+        label.setOpacity(0);
         continuousScaleTransition.setOnFinished(event -> {
             
 

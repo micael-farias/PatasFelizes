@@ -1,7 +1,6 @@
 package main.controllers;
 
 import java.io.File;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -9,11 +8,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import main.App;
 import main.db.ExportData;
 import main.interfaces.InicializadorBase;
-import main.utils.Constantes;
 import static main.utils.Constantes.*;
 import main.utils.EmailSenderThread;
 import main.utils.LeitorSecrets;
@@ -50,7 +47,7 @@ public class BaseController implements InicializadorBase{
             var sender = new EmailSenderThread(dados[0], "Enviando o banco de dados", "Segue o banco de dados", null);
             ExportData.export();
             sender.setFile(new File("patas.sql"));
-           //6 sender.start();
+            //sender.start();
         });
     }
    
@@ -77,7 +74,8 @@ public class BaseController implements InicializadorBase{
         }
         setActive(button);  
     }
-  @FXML
+   
+    @FXML
     private void menuButtonBancoExited(MouseEvent event) {
         Button button = (Button) event.getSource();
         toExitedStyle(button);
@@ -93,6 +91,25 @@ public class BaseController implements InicializadorBase{
     private void menuButtonBancoClicked(MouseEvent event) {
         Button button = (Button) event.getSource();
         App.getInstance().AbrirDialog(CARD_BANCO, content, primmaryStage, blackShadow);
+        setActive(button);  
+    }
+    
+   @FXML
+    private void menuButtonAuditoriaExited(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        toExitedStyle(button);
+    }
+
+    @FXML
+    private void menuButtonAuditoriaEntered(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        toEnteredStyle(button);
+    }
+
+    @FXML
+    private void menuButtonAuditoriaClicked(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        App.getInstance().EntrarTela(FORM_AUDITORIAS, content, primmaryStage, blackShadow);
         setActive(button);  
     }
 

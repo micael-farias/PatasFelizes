@@ -82,7 +82,6 @@ public class ProcedimentoController extends CustomController implements Iniciali
         
         checkBoxRealizado.setOnMouseClicked(event -> {
             boolean realizada = !procedimento.isRealizado();
-            setImage(realizada);
             Procedimento procedimentoRetornado;
             if (realizada) {  
 
@@ -105,6 +104,7 @@ public class ProcedimentoController extends CustomController implements Iniciali
              if(procedimentoRetornado == null){
                 App.getInstance().SetMensagem(MensagemTipo.ERRO, "Falha ao alterar o estado do procedimento", null);
             }else{
+                setImage(realizada);
                 procedimento= procedimentoRetornado;
             }
         });        

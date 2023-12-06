@@ -31,7 +31,7 @@ public class DespesaRepository extends BaseRepository<Despesa> {
             despesa.setTipo(tipo);
             despesa.setRealizada(realizado);
             despesa.setFotoComprovante(fotoComprovante);
-            idDespesa = Inserir(despesa);
+            idDespesa = inserirDespesa(despesa);
             despesa.setId(idDespesa);
         } else {
             despesa = EncontrarDespesaPor(idDespesa);
@@ -48,42 +48,101 @@ public class DespesaRepository extends BaseRepository<Despesa> {
     }
     
     private Despesa atualizarDespesa(Despesa despesa) throws SQLException {
-    try (PreparedStatement statement = connection.prepareStatement(
-                 "UPDATE Despesas SET descricao=?, valor=?, data=?, tipo=?, realizada=?, fotoComprovante=? WHERE id=?")) {
+        try (PreparedStatement statement = connection.prepareStatement(
+                     "UPDATE Despesas SET descricao=?, valor=?, data=?, tipo=?, realizada=?, fotoComprovante=? WHERE id=?")) {
 
-        statement.setString(1, despesa.getDescricao());
-        statement.setDouble(2, despesa.getValor());
-        statement.setTimestamp(3, new Timestamp(despesa.getData().getTimeInMillis()));
-        statement.setString(4, despesa.getTipo());
-        statement.setBoolean(5, despesa.isRealizada());
-        statement.setBytes(6, despesa.getFotoComprovante());
-        statement.setInt(7, despesa.getId());
+            statement.setString(1, despesa.getDescricao());
+            statement.setDouble(2, despesa.getValor());
+            statement.setTimestamp(3, new Timestamp(despesa.getData().getTimeInMillis()));
+            statement.setString(4, despesa.getTipo());
+            statement.setBoolean(5, despesa.isRealizada());
+            statement.setBytes(6, despesa.getFotoComprovante());
+            statement.setInt(7, despesa.getId());
 
-        System.out.println("SQL gerado: " + statement.toString());
+            System.out.println("SQL gerado: " + statement.toString());
 
-        int rowsAffected = statement.executeUpdate();
+            int rowsAffected = statement.executeUpdate();
 
-        if (rowsAffected > 0) {
-            return despesa;
+            if (rowsAffected > 0) {
+                return despesa;
+            }
+        } catch (SQLException e) {
+            throw e;
         }
-    } catch (SQLException e) {
-        throw e;
-    }
 
-    return null;
-}
+        return null;
+    }
+    public int inserirDespesa(Despesa despesa) throws SQLException {
+        String sql = "INSERT INTO Despesas (Descricao, Valor, Data, Tipo, Realizada, DataCadastro, FotoComprovante) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, despesa.getDescricao());
+            statement.setDouble(2, despesa.getValor());
+            statement.setTimestamp(3, new Timestamp(despesa.getData().getTimeInMillis()));
+            statement.setString(4, despesa.getTipo());
+            statement.setBoolean(5, despesa.isRealizada());
+            statement.setTimestamp(6, new Timestamp(despesa.getDataCadastro().getTimeInMillis()));
+            statement.setBytes(7, despesa.getFotoComprovante());
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return -1;  
+    }
 
 
     public List<Despesa> ObterDespesas() {
-        return new ArrayList<>(SelecionarTodos("*", null,"Data desc", Despesa.class));
+        List<Despesa> lista = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                 "SELECT * FROM DESPESAS ORDER BY DATA DESC")) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    while(resultSet.next()) {
+                       Despesa despesa = mapearDespesa(resultSet);
+                       lista.add(despesa);
+                    }
+
+                    return lista;
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;   
     }
 
     public Set<String> ObterTiposDespesa() {
-        return new HashSet<>( SelecionarTodos("TIPO", null,null, String.class));
+        Set<String> lista = new HashSet<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT TIPO FROM DESPESAS")) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    while(resultSet.next()) {
+                       lista.add(resultSet.getString("TIPO"));
+                    }
+
+                    return lista;
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;    
     }
 
-    public void Deletar(Despesa despesa) {
-        //Excluir(despesa);
+    public void Deletar(int idDespesa) throws Exception {
+        Excluir(idDespesa);
     }
 
     public Despesa EncontrarDespesaPor(int id) {
@@ -94,7 +153,6 @@ public class DespesaRepository extends BaseRepository<Despesa> {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    // Mapear os resultados para o objeto Despesa
                     return mapearDespesa(resultSet);
                 }
             }
@@ -105,7 +163,6 @@ public class DespesaRepository extends BaseRepository<Despesa> {
         return null;
     }
 
-    // Método para mapear uma despesa a partir de um ResultSet
     private Despesa mapearDespesa(ResultSet resultSet) throws SQLException {
         Despesa despesa = new Despesa();
         despesa.setId(resultSet.getInt("Id"));
@@ -121,19 +178,34 @@ public class DespesaRepository extends BaseRepository<Despesa> {
     }
 
     public List<Despesa> ObterDespesasPorDescricao(String desc) {
-        return SelecionarTodos("*", "DESCRICAO LIKE '%"+desc+"%'", null, Despesa.class);
+        List<Despesa> lista = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(QueryBuscaPorDescricao("Despesas",desc))) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                    while(resultSet.next()) {
+                       Despesa encontrado = mapearDespesa(resultSet);
+                       lista.add(encontrado);
+                    }
+
+                    return lista;
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;    
     }
 
     public List<Despesa> FiltrarDespesas(FiltroDespesa filtro, int idAnimal) throws SQLException {
 
         List<Despesa> despesas = new ArrayList<Despesa>();     
 
-        StringBuilder sql = new StringBuilder("SELECT D.* FROM DESPESAS D ");
-        sql.append("LEFT JOIN PROCEDIMENTOS P ON D.ID = P.IDDESPESA ");
-        sql.append("WHERE 1 = 1");
-
+        StringBuilder sql = new StringBuilder("SELECT * FROM ViewDespesas D WHERE 1 = 1");
+        
         if (!invalidString(filtro.getAnimal())) {
-            sql.append(" AND P.IDANIMAL = ").append(idAnimal);
+            sql.append(" AND IDANIMAL = ").append(idAnimal);
         }       
 
         if(!invalidString(filtro.getTipo())){
